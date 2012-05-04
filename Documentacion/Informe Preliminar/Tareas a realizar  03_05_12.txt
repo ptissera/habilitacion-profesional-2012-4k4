@@ -1,0 +1,22 @@
+1. No realizar Modelo de negocios, no se usa massss!!!!
+
+2. Realizar Diagrama de Procesos de Negocio. 
+
+2. Para que usan el equipamiento informatico la empresa?
+
+3. El Sistema terminado debe contar con un grado de configurabilidad importante. Conocimiento detallado de todo lo que interviene.
+
+4. Mejorar Alcances.
+
+5. Las Iteraciones son: entregar cosas concretas. Entregable validable, documento, aplicacion
+
+6. Iteracion 1 puede ser el armado del digrama de procesos de negocio.
+
+7.Que el sistema certifique.
+
+8. Realizar Requerimientos.
+
+9. Traer informe preliminar completo.
+
+10. Averiguar el grado de responsabilidad respecto a los integrantes de las cuadrillas.
+
