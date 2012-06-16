@@ -46,7 +46,12 @@
 					<span id="operarios-label" class="property-label"><g:message code="cuadrilla.operarios.label" default="Operarios" /></span>
 					
 						<g:each in="${cuadrillaInstance.operarios}" var="o">
-						<span class="property-value" aria-labelledby="operarios-label"><g:link controller="empleado" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="operarios-label">
+                                                  ${o?.encodeAsHTML()}
+                                                  <g:link controller="empleado" action="show" id="${o.id}">
+                                                    <img src="${resource(dir:'images/skin', file:'database_delete.png')}" style="vertical-align:middle;"/>
+                                                 </g:link>
+                                                </span>
 						</g:each>
 					
 				</li>

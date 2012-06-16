@@ -1,7 +1,7 @@
 package business.cuadrillas
 
 class Cuadrilla {
-    List operarios = new ArrayList()
+    
     static hasMany = [ operarios:Empleado ]
     String nombre
     String estado
@@ -9,9 +9,7 @@ class Cuadrilla {
     static constraints = {
         nombre(black:false, unique: true)
         estado()
+        operarios()
     }
     
-     def getExpandableOperariosList() {
-        return LazyList.decorate(operarios,FactoryUtils.instantiateFactory(Empleado.class))
-    }
 }
