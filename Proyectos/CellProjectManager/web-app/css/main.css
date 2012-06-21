@@ -132,6 +132,16 @@ img {
 	text-indent: -9999px;
 }
 
+
+.selectedItem {
+	background-color: #F3F5CF;
+	color: #666666;
+	padding: 0.5em 0.75em;
+	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
+	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
+	        box-shadow: 0 0 3px 1px #aaaaaa;
+	zoom: 1;
+}
 /* NAVIGATION MENU */
 
 .nav {
@@ -142,6 +152,8 @@ img {
 	        box-shadow: 0 0 3px 1px #aaaaaa;
 	zoom: 1;
 }
+
+
 
 .nav ul {
 	overflow: hidden;
@@ -567,10 +579,14 @@ th:hover, tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .add {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
+}
+
+.buttons .add {
+	background-image: url(../images/skin/database_add.png);
 }
 
 .buttons .delete {

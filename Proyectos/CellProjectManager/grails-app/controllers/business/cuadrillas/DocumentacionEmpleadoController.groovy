@@ -16,24 +16,30 @@ class DocumentacionEmpleadoController {
     }
 
     def create() {
-        [documentacionEmpleadoInstance: new DocumentacionEmpleado(params)]
+        def empleadoInstance=session.getAttribute("empleadoSelected")              
+        [documentacionEmpleadoInstance: new DocumentacionEmpleado(params), empleadoInstance: empleadoInstance]
     }
 
     def save() {
+        def empleadoInstance=(Empleado)session.getAttribute("empleadoSelected")        
+        params.empleado.id=empleadoInstance.id
         def documentacionEmpleadoInstance = new DocumentacionEmpleado(params)
-        if (!documentacionEmpleadoInstance.save(flush: true)) {
+        
+        
+        if (!documentacionEmpleadoInstance.save(flush: true)) {            
             render(view: "create", model: [documentacionEmpleadoInstance: documentacionEmpleadoInstance])
             return
         }
-
-		flash.message = message(code: 'default.created.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), documentacionEmpleadoInstance.id])
-        redirect(action: "show", id: documentacionEmpleadoInstance.id)
+        
+        empleadoInstance.addDocumentacionEmpleado(documentacionEmpleadoInstance)
+        flash.message = message(code: 'default.created.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), documentacionEmpleadoInstance.id])
+        redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
     }
 
     def show() {
         def documentacionEmpleadoInstance = DocumentacionEmpleado.get(params.id)
         if (!documentacionEmpleadoInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
             redirect(action: "list")
             return
         }
@@ -64,7 +70,7 @@ class DocumentacionEmpleadoController {
             def version = params.version.toLong()
             if (documentacionEmpleadoInstance.version > version) {
                 documentacionEmpleadoInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado')] as Object[],
+                    [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado')] as Object[],
                           "Another user has updated this DocumentacionEmpleado while you were editing")
                 render(view: "edit", model: [documentacionEmpleadoInstance: documentacionEmpleadoInstance])
                 return
@@ -78,25 +84,25 @@ class DocumentacionEmpleadoController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), documentacionEmpleadoInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), documentacionEmpleadoInstance.id])
         redirect(action: "show", id: documentacionEmpleadoInstance.id)
     }
 
     def delete() {
         def documentacionEmpleadoInstance = DocumentacionEmpleado.get(params.id)
         if (!documentacionEmpleadoInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
             documentacionEmpleadoInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
             redirect(action: "show", id: params.id)
         }
     }

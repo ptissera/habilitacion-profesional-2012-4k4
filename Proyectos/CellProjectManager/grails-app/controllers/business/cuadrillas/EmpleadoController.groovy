@@ -32,12 +32,13 @@ class EmpleadoController {
 
     def show() {
         def empleadoInstance = Empleado.get(params.id)
+        
         if (!empleadoInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'empleado.label', default: 'Empleado'), params.id])
             redirect(action: "list")
             return
         }
-
+        session.setAttribute("empleadoSelected",empleadoInstance);
         [empleadoInstance: empleadoInstance]
     }
 

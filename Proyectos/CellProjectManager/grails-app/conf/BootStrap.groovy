@@ -16,10 +16,10 @@ class BootStrap {
             pablo.save(flush: true, insert: true)
         }
         
-        def carlos=User.findByUserName('ctrepad')
+        def carlos=User.findByUserName('ctrepat')
         if(!carlos){
-            carlos = new User(userName: 'ctrepad', nombre: 'Carlos', apellido: 'Trepad', password: '123',
-                enabled: true, email: 'ctrepad@coming.com')
+            carlos = new User(userName: 'ctrepat', nombre: 'Carlos', apellido: 'Trepat', password: '123',
+                enabled: true, email: 'ctrepat@coming.com')
             carlos.setAuthorities(role)                
             carlos.save(flush: true, insert: true)
         }        

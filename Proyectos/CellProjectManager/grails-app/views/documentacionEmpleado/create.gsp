@@ -14,6 +14,9 @@
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
+                <div class="selectedItem">
+                  <g:fieldValue bean="${empleadoInstance}" field="nombre"/>, <g:fieldValue bean="${empleadoInstance}" field="apellido"/>
+                </div>
 		<div id="create-documentacionEmpleado" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">

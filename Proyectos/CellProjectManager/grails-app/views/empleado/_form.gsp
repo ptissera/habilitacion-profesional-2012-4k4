@@ -42,36 +42,27 @@
 	<g:textField name="telefono" value="${empleadoInstance?.telefono}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: empleadoInstance, field: 'documentacion', 'error')} ">
-	<label for="documentacion">
-		<g:message code="empleado.documentacion.label" default="Documentacion" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${empleadoInstance?.documentacion?}" var="d">
-    <li><g:link controller="documentacionEmpleado" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="documentacionEmpleado" action="create" params="['empleado.id': empleadoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado')])}</g:link>
-</li>
-</ul>
+<div class="fieldcontain ${hasErrors(bean: empleadoInstance, field: 'documentacion', 'error')} ">	
+<table>
+            <thead>
+              <tr><g:message code="empleado.documentacion.label" default="Documentacion" /></tr>
+              <tr>              
+                <th><g:message code="documentacionEmpleado.tipoDocumento.label" default="Tipo Documento" /></th>					
+            <g:sortableColumn property="vigenciaDesde" title="${message(code: 'documentacionEmpleado.vigenciaDesde.label', default: 'Vigencia Desde')}" />					
+            <g:sortableColumn property="vigenciaHasta" title="${message(code: 'documentacionEmpleado.vigenciaHasta.label', default: 'Vigencia Hasta')}" />					
+            <g:sortableColumn property="descripcion" title="${message(code: 'documentacionEmpleado.descripcion.label', default: 'Descripcion')}" />									
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${empleadoInstance?.documentacion}" status="i" var="documentacionEmpleadoInstance">
+              <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
+                <td><g:link action="show" id="${documentacionEmpleadoInstance.id}">${fieldValue(bean: documentacionEmpleadoInstance, field: "tipoDocumento")}</g:link></td>					
+              <td><g:formatDate date="${documentacionEmpleadoInstance.vigenciaDesde}" /></td>					
+              <td><g:formatDate date="${documentacionEmpleadoInstance.vigenciaHasta}" /></td>					
+              <td>${fieldValue(bean: documentacionEmpleadoInstance, field: "descripcion")}</td>
+              </tr>
+            </g:each>
+            </tbody>
+          </table>
 
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: empleadoInstance, field: 'fechaAlta', 'error')} required">
-	<label for="fechaAlta">
-		<g:message code="empleado.fechaAlta.label" default="Fecha Alta" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="fechaAlta" precision="day"  value="${empleadoInstance?.fechaAlta}"  />
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: empleadoInstance, field: 'fechaBaja', 'error')} required">
-	<label for="fechaBaja">
-		<g:message code="empleado.fechaBaja.label" default="Fecha Baja" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="fechaBaja" precision="day"  value="${empleadoInstance?.fechaBaja}"  />
-</div>
-

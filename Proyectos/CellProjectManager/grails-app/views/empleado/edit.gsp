@@ -36,6 +36,7 @@
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                        <g:link class="add" action="create"><g:message code="default.add.label" args="[message(code: 'tipoDocumentacionEmpleado.label', default: 'Tipo Documentacion')]"/></g:link>
 				</fieldset>
 			</g:form>
 		</div>

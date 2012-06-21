@@ -58,16 +58,7 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${documentacionEmpleadoInstance?.empleado}">
-				<li class="fieldcontain">
-					<span id="empleado-label" class="property-label"><g:message code="documentacionEmpleado.empleado.label" default="Empleado" /></span>
-					
-						<span class="property-value" aria-labelledby="empleado-label"><g:link controller="empleado" action="show" id="${documentacionEmpleadoInstance?.empleado?.id}">${documentacionEmpleadoInstance?.empleado?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
+								
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

@@ -1,4 +1,4 @@
-<%@ page import="business.secondary.TipoDocumentacionEmpleado" %>
+<%@ page import="business.cuadrillas.TipoDocumentacionEmpleado" %>
 <!doctype html>
 <html>
 	<head>

@@ -34,11 +34,4 @@
 	<g:textField name="descripcion" value="${documentacionEmpleadoInstance?.descripcion}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: documentacionEmpleadoInstance, field: 'empleado', 'error')} required">
-	<label for="empleado">
-		<g:message code="documentacionEmpleado.empleado.label" default="Empleado" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="empleado" name="empleado.id" from="${business.cuadrillas.Empleado.list()}" optionKey="id" required="" value="${documentacionEmpleadoInstance?.empleado?.id}" class="many-to-one"/>
-</div>
 
