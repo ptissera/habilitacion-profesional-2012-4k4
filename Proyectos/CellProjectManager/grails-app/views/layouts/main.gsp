@@ -19,7 +19,7 @@
   <r:layoutResources />
 </head>
 <body>
-  <div id="grailsLogo" role="banner"><img src="${resource(dir: 'images', file: 'signal-Vista.png')}" style="padding: 20px 20px; width: 70px;height: 90px;"/>Gestión de instalación y mantenimiento de antenas de telecomunicaciones</div>
+  <div id="grailsLogo" role="banner" style="width: 100%; height: 90px;"><img src="${resource(dir: 'images', file: 'celltower.png')}" style="padding: 10px 10px; width: 100px;height: 100px;  position:absolute;z-index: 1"/></div>
   <div id="header">
     <g:loginControl />
   </div>

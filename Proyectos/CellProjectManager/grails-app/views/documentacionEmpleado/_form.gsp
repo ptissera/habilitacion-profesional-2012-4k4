@@ -1,7 +1,7 @@
 <%@ page import="business.cuadrillas.DocumentacionEmpleado" %>
 
 
-
+<g:hiddenField id="empleado" name="empleado.id" value="${documentacionEmpleadoInstance?.empleado?.id}"  optionKey="id" />
 <div class="fieldcontain ${hasErrors(bean: documentacionEmpleadoInstance, field: 'tipoDocumento', 'error')} required">
 	<label for="tipoDocumento">
 		<g:message code="documentacionEmpleado.tipoDocumento.label" default="Tipo Documento" />

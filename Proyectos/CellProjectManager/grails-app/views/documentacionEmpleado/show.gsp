@@ -12,10 +12,13 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="back" action="show" controller="empleado" id="${empleadoInstance?.id}">Regresar</g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
+                <div class="selectedItem">
+                  <g:fieldValue bean="${empleadoInstance}" field="nombre"/>, <g:fieldValue bean="${empleadoInstance}" field="apellido"/>
+                </div>
 		<div id="show-documentacionEmpleado" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -36,7 +39,7 @@
 				<li class="fieldcontain">
 					<span id="vigenciaDesde-label" class="property-label"><g:message code="documentacionEmpleado.vigenciaDesde.label" default="Vigencia Desde" /></span>
 					
-						<span class="property-value" aria-labelledby="vigenciaDesde-label"><g:formatDate date="${documentacionEmpleadoInstance?.vigenciaDesde}" /></span>
+						<span class="property-value" aria-labelledby="vigenciaDesde-label"><g:formatDate format="dd/MM/yyyy" date="${documentacionEmpleadoInstance?.vigenciaDesde}" /></span>
 					
 				</li>
 				</g:if>
@@ -45,7 +48,7 @@
 				<li class="fieldcontain">
 					<span id="vigenciaHasta-label" class="property-label"><g:message code="documentacionEmpleado.vigenciaHasta.label" default="Vigencia Hasta" /></span>
 					
-						<span class="property-value" aria-labelledby="vigenciaHasta-label"><g:formatDate date="${documentacionEmpleadoInstance?.vigenciaHasta}" /></span>
+						<span class="property-value" aria-labelledby="vigenciaHasta-label"><g:formatDate format="dd/MM/yyyy" date="${documentacionEmpleadoInstance?.vigenciaHasta}" /></span>
 					
 				</li>
 				</g:if>

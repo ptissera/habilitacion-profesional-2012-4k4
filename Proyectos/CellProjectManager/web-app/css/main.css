@@ -196,10 +196,14 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create {
+.nav a.home, .nav a.list, .nav a.create, a.back {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
+}
+
+.nav a.back {
+	background-image: url(../images/skin/back_4.png);
 }
 
 .nav a.home {

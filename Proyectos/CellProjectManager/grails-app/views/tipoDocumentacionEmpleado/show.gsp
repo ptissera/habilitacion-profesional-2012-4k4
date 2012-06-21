@@ -48,18 +48,8 @@
 						<span class="property-value" aria-labelledby="requerida-label"><g:formatBoolean boolean="${tipoDocumentacionEmpleadoInstance?.requerida}" /></span>
 					
 				</li>
-				</g:if>
-			
-				<g:if test="${tipoDocumentacionEmpleadoInstance?.people}">
-				<li class="fieldcontain">
-					<span id="people-label" class="property-label"><g:message code="tipoDocumentacionEmpleado.people.label" default="People" /></span>
-					
-						<g:each in="${tipoDocumentacionEmpleadoInstance.people}" var="p">
-						<span class="property-value" aria-labelledby="people-label"><g:link controller="documentacionEmpleado" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+				</g:if>		
+				
 			
 			</ol>
 			<g:form>

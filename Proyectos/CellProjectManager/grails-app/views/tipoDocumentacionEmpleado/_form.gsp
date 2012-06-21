@@ -24,22 +24,5 @@
 		
 	</label>
 	<g:checkBox name="requerida" value="${tipoDocumentacionEmpleadoInstance?.requerida}" />
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: tipoDocumentacionEmpleadoInstance, field: 'people', 'error')} ">
-	<label for="people">
-		<g:message code="tipoDocumentacionEmpleado.people.label" default="People" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${tipoDocumentacionEmpleadoInstance?.people?}" var="p">
-    <li><g:link controller="documentacionEmpleado" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="documentacionEmpleado" action="create" params="['tipoDocumentacionEmpleado.id': tipoDocumentacionEmpleadoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado')])}</g:link>
-</li>
-</ul>
-
-</div>
+</di>
 

@@ -84,9 +84,9 @@
             <tbody>
             <g:each in="${empleadoInstance?.documentacion}" status="i" var="documentacionEmpleadoInstance">
               <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
-                <td><g:link action="show" id="${documentacionEmpleadoInstance.id}">${fieldValue(bean: documentacionEmpleadoInstance, field: "tipoDocumento")}</g:link></td>					
-              <td><g:formatDate date="${documentacionEmpleadoInstance.vigenciaDesde}" /></td>					
-              <td><g:formatDate date="${documentacionEmpleadoInstance.vigenciaHasta}" /></td>					
+                <td><g:link action="show" controller="documentacionEmpleado" id="${documentacionEmpleadoInstance.id}">${fieldValue(bean: documentacionEmpleadoInstance, field: "tipoDocumento")}</g:link></td>					
+              <td><g:formatDate format="dd/MM/yyyy" date="${documentacionEmpleadoInstance.vigenciaDesde}" /></td>					
+              <td><g:formatDate format="dd/MM/yyyy" date="${documentacionEmpleadoInstance.vigenciaHasta}" /></td>					
               <td>${fieldValue(bean: documentacionEmpleadoInstance, field: "descripcion")}</td>
               </tr>
             </g:each>

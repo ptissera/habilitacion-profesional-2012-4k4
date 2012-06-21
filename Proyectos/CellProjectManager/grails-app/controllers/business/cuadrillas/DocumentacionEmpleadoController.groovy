@@ -16,53 +16,56 @@ class DocumentacionEmpleadoController {
     }
 
     def create() {
-        def empleadoInstance=session.getAttribute("empleadoSelected")              
-        [documentacionEmpleadoInstance: new DocumentacionEmpleado(params), empleadoInstance: empleadoInstance]
+        def empleadoInstance=session.getAttribute("empleadoSelected")  
+        def documentacionEmpleadoInstance= new DocumentacionEmpleado(params)
+        documentacionEmpleadoInstance.setEmpleado(empleadoInstance)
+        [documentacionEmpleadoInstance: documentacionEmpleadoInstance, empleadoInstance: empleadoInstance]
     }
 
     def save() {
         def empleadoInstance=(Empleado)session.getAttribute("empleadoSelected")        
         params.empleado.id=empleadoInstance.id
-        def documentacionEmpleadoInstance = new DocumentacionEmpleado(params)
-        
-        
+        def documentacionEmpleadoInstance = new DocumentacionEmpleado(params)        
         if (!documentacionEmpleadoInstance.save(flush: true)) {            
-            render(view: "create", model: [documentacionEmpleadoInstance: documentacionEmpleadoInstance])
+            render(view: "create", model: [documentacionEmpleadoInstance: documentacionEmpleadoInstance, empleadoInstance: empleadoInstance])
             return
         }
         
-        empleadoInstance.addDocumentacionEmpleado(documentacionEmpleadoInstance)
+        empleadoInstance.addToDocumentacion(documentacionEmpleadoInstance)
         flash.message = message(code: 'default.created.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), documentacionEmpleadoInstance.id])
         redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
     }
 
     def show() {
+        def empleadoInstance=(Empleado)session.getAttribute("empleadoSelected") 
         def documentacionEmpleadoInstance = DocumentacionEmpleado.get(params.id)
         if (!documentacionEmpleadoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
-            redirect(action: "list")
+            redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
             return
         }
 
-        [documentacionEmpleadoInstance: documentacionEmpleadoInstance]
+        [documentacionEmpleadoInstance: documentacionEmpleadoInstance, empleadoInstance: empleadoInstance]
     }
 
     def edit() {
+        def empleadoInstance=(Empleado)session.getAttribute("empleadoSelected") 
         def documentacionEmpleadoInstance = DocumentacionEmpleado.get(params.id)
         if (!documentacionEmpleadoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
-            redirect(action: "list")
+            redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
             return
         }
 
-        [documentacionEmpleadoInstance: documentacionEmpleadoInstance]
+        [documentacionEmpleadoInstance: documentacionEmpleadoInstance, empleadoInstance: empleadoInstance]
     }
 
     def update() {
+        def empleadoInstance=(Empleado)session.getAttribute("empleadoSelected") 
         def documentacionEmpleadoInstance = DocumentacionEmpleado.get(params.id)
         if (!documentacionEmpleadoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
-            redirect(action: "list")
+            redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
             return
         }
 
@@ -72,7 +75,7 @@ class DocumentacionEmpleadoController {
                 documentacionEmpleadoInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                     [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado')] as Object[],
                           "Another user has updated this DocumentacionEmpleado while you were editing")
-                render(view: "edit", model: [documentacionEmpleadoInstance: documentacionEmpleadoInstance])
+                render(view: "edit", model: [documentacionEmpleadoInstance: documentacionEmpleadoInstance, empleadoInstance: empleadoInstance])
                 return
             }
         }
@@ -80,30 +83,31 @@ class DocumentacionEmpleadoController {
         documentacionEmpleadoInstance.properties = params
 
         if (!documentacionEmpleadoInstance.save(flush: true)) {
-            render(view: "edit", model: [documentacionEmpleadoInstance: documentacionEmpleadoInstance])
+            render(view: "edit", model: [documentacionEmpleadoInstance: documentacionEmpleadoInstance, empleadoInstance: empleadoInstance])
             return
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), documentacionEmpleadoInstance.id])
-        redirect(action: "show", id: documentacionEmpleadoInstance.id)
+        redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
     }
 
     def delete() {
+        def empleadoInstance=(Empleado)session.getAttribute("empleadoSelected") 
         def documentacionEmpleadoInstance = DocumentacionEmpleado.get(params.id)
         if (!documentacionEmpleadoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
-            redirect(action: "list")
+            redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
             return
         }
 
         try {
             documentacionEmpleadoInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
-            redirect(action: "list")
+            redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
-            redirect(action: "show", id: params.id)
+            redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
         }
     }
 }

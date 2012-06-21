@@ -7,6 +7,8 @@ def loginControl = {
 			out << "Hello ${session.user.nombre} "
 			out << """${link(action:"logout", controller:"authorize"){"Logout"}}"""
 			out << "</div></fieldset>"                        
-		}
+		}else{
+                    out << "<fieldset class='login'><div></div></fieldset>"                        
+                }
 	}
 }
