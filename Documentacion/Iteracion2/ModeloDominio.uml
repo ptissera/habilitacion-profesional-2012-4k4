@@ -19045,8 +19045,6 @@ relacionados con la gestion, consulta, registracion, eliminacion y modificacion.
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="32OuUunLtUGPauAhGYSwqAAA">
 <XPD:ATTR name="Name" type="string">opcionCrearProyecto</XPD:ATTR>
 <XPD:REF name="Owner">YptrV/AncUOKMtGDyC8EIgAA</XPD:REF>
-<XPD:ATTR name="#CallActions" type="integer">1</XPD:ATTR>
-<XPD:REF name="CallActions[0]">RcQv3jCeL0OrOqdDSxo90wAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Operations[1]" type="UMLOperation" guid="J0era6Lg00O0h1ug1N0QDAAA">
 <XPD:ATTR name="Name" type="string">habilitarPantalla</XPD:ATTR>
@@ -19363,11 +19361,11 @@ relacionados con la gestion, consulta, registracion, eliminacion y modificacion.
 <XPD:REF name="Model">JkUzBFkLbEy9MrTKuZptiwAA</XPD:REF>
 <XPD:REF name="HostEdge">j/AtSmuGU0uD3Cj9H9VoAwAA</XPD:REF>
 <XPD:OBJ name="NameLabel" type="NodeLabelView" guid="K+w9yWH0WkeL9lMpf2t4ogAA">
-<XPD:ATTR name="Width" type="integer">125</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">94</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">13</XPD:ATTR>
 <XPD:ATTR name="Alpha" type="real">-4,53253526700245</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">22,3606797749979</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">1 : opcionCrearProyecto()</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">1 : CrearProyecto()</XPD:ATTR>
 <XPD:REF name="Model">JkUzBFkLbEy9MrTKuZptiwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="NodeLabelView" guid="ltI0hCDmkkiMl55KiI03jAAA">
@@ -20782,12 +20780,12 @@ relacionados con la gestion, consulta, registracion, eliminacion y modificacion.
 </XPD:OBJ>
 <XPD:ATTR name="#ParticipatingStimuli" type="integer">32</XPD:ATTR>
 <XPD:OBJ name="ParticipatingStimuli[0]" type="UMLStimulus" guid="JkUzBFkLbEy9MrTKuZptiwAA">
+<XPD:ATTR name="Name" type="string">CrearProyecto</XPD:ATTR>
 <XPD:REF name="Sender">W/CGDieO/0iya+5AkFygEwAA</XPD:REF>
 <XPD:REF name="Receiver">NzpK/VZB3kWYpIeWQB3OIgAA</XPD:REF>
 <XPD:REF name="CommunicationLink">yKZkIpZGlEqV83XQFudoFAAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="RcQv3jCeL0OrOqdDSxo90wAA">
 <XPD:REF name="Stimulus">JkUzBFkLbEy9MrTKuZptiwAA</XPD:REF>
-<XPD:REF name="Operation">32OuUunLtUGPauAhGYSwqAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:REF name="InteractionInstanceSet">/RxilJCjHEC2/VRbxrEudgAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
