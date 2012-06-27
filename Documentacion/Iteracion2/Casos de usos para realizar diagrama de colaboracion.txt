@@ -2,5 +2,4 @@ Crear solicitud de tarea
 Modificar solicitud de tarea
 Registar documento solicitud de tarea
 Registrar permiso de acceso
-Generar reporte de documentacion de proyecto.
-Generar reporte de documentacion de cuadrillas
+Iniciar Sesion.
