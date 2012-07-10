@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'loginControl.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'selectedControl.css')}" type="text/css">
   <g:layoutHead/>
   <r:layoutResources />
 </head>
@@ -22,6 +23,7 @@
   <div id="grailsLogo" role="banner" style="width: 100%; height: 90px;"><img src="${resource(dir: 'images', file: 'celltower.png')}" style="padding: 10px 10px; width: 100px;height: 100px;  position:absolute;z-index: 1"/></div>
   <div id="header">
     <g:loginControl />
+    <g:selectedItems />
   </div>
 <g:layoutBody/>
 <div class="footer" role="contentinfo"></div>

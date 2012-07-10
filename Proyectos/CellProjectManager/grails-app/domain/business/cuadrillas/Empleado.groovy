@@ -16,6 +16,8 @@ class Empleado {
         apellido(black:false)
         legajo(black:false, unique:true)
         telefono(black:false)        
+        fechaAlta(black: false)
+        fechaBaja(black:true)
     }
     def getExpandableDocumentacionList() {
         return LazyList.decorate(documentacion,FactoryUtils.instantiateFactory(DocumentacionEmpleado.class))

@@ -15,30 +15,35 @@ class EmpleadoController {
         [empleadoInstanceList: Empleado.list(params), empleadoInstanceTotal: Empleado.count()]
     }
 
-    def create() {
-        [empleadoInstance: new Empleado(params)]
+    def create() {        
+        def empleadoInstance=new Empleado(params)
+        empleadoInstance.setFechaAlta(new Date())
+        session.setAttribute("empleadoSelected",empleadoInstance);
+        [empleadoInstance: empleadoInstance, cuadrilaInstance: session.getAttribute("cuadrillaSelected")]        
     }
 
-    def save() {
-        def empleadoInstance = new Empleado(params)
+    def save() {        
+        def cuadrilaInstance=session.getAttribute("cuadrillaSelected")    
+        def empleadoInstance = new Empleado(params)        
         if (!empleadoInstance.save(flush: true)) {
-            render(view: "create", model: [empleadoInstance: empleadoInstance])
+            render(view: "create", model: [empleadoInstance: empleadoInstance, cuadrilaInstance: cuadrilaInstance])
             return
         }
-
-		flash.message = message(code: 'default.created.message', args: [message(code: 'empleado.label', default: 'Empleado'), empleadoInstance.id])
-        redirect(action: "show", id: empleadoInstance.id)
+        
+        cuadrilaInstance.addToOperario(empleadoInstance)
+        flash.message = message(code: 'default.created.message', args: [message(code: 'empleado.label', default: 'Empleado'), empleadoInstance.id])
+        redirect(action: "show", controller: "cuadrilla", id: empleadoInstance.id)
     }
 
     def show() {
-        def empleadoInstance = Empleado.get(params.id)
-        
+        def empleadoInstance = Empleado.get(params.id)        
         if (!empleadoInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'empleado.label', default: 'Empleado'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'empleado.label', default: 'Empleado'), params.id])
             redirect(action: "list")
             return
         }
         session.setAttribute("empleadoSelected",empleadoInstance);
+        session.setAttribute("documentacionEmpleadoSelectedTF",null);
         [empleadoInstance: empleadoInstance]
     }
 

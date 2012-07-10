@@ -13,10 +13,7 @@
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="back" action="show" controller="empleado" id="${empleadoInstance?.id}">Regresar</g:link></li>
 			</ul>
-		</div>
-                <div class="selectedItem">
-                  <g:fieldValue bean="${empleadoInstance}" field="nombre"/>, <g:fieldValue bean="${empleadoInstance}" field="apellido"/>
-                </div>
+		</div>                
 		<div id="create-documentacionEmpleado" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">

@@ -47,38 +47,22 @@
            <table>
 				<thead>
                                         <tr><g:message code="cuadrilla.operarios.label" default="Operarios" /></tr>
-					<tr>
-					
-						<g:sortableColumn property="du" title="${message(code: 'empleado.du.label', default: 'Du')}" />
-					
-						<g:sortableColumn property="nombre" title="${message(code: 'empleado.nombre.label', default: 'Nombre')}" />
-					
-						<g:sortableColumn property="apellido" title="${message(code: 'empleado.apellido.label', default: 'Apellido')}" />
-					
-						<g:sortableColumn property="legajo" title="${message(code: 'empleado.legajo.label', default: 'Legajo')}" />
-					
-						<g:sortableColumn property="telefono" title="${message(code: 'empleado.telefono.label', default: 'Telefono')}" />
-					
-						<g:sortableColumn property="fechaAlta" title="${message(code: 'empleado.fechaAlta.label', default: 'Fecha Alta')}" />
-					
+					<tr>					
+						<g:sortableColumn property="du" title="${message(code: 'empleado.du.label', default: 'Du')}" />					
+						<g:sortableColumn property="nombre" title="${message(code: 'empleado.nombre.label', default: 'Nombre')}" />					
+						<g:sortableColumn property="apellido" title="${message(code: 'empleado.apellido.label', default: 'Apellido')}" />					
+						<g:sortableColumn property="legajo" title="${message(code: 'empleado.legajo.label', default: 'Legajo')}" />					
+						<g:sortableColumn property="telefono" title="${message(code: 'empleado.telefono.label', default: 'Telefono')}" />					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${cuadrillaInstance?.operarios}" status="i" var="empleadoInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${empleadoInstance.id}">${fieldValue(bean: empleadoInstance, field: "du")}</g:link></td>
-					
-						<td>${fieldValue(bean: empleadoInstance, field: "nombre")}</td>
-					
-						<td>${fieldValue(bean: empleadoInstance, field: "apellido")}</td>
-					
-						<td>${fieldValue(bean: empleadoInstance, field: "legajo")}</td>
-					
-						<td>${fieldValue(bean: empleadoInstance, field: "telefono")}</td>
-					
-						<td><g:formatDate date="${empleadoInstance.fechaAlta}" /></td>
-					
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
+						<td><g:link action="show" controller="empleado" id="${empleadoInstance.id}">${fieldValue(bean: empleadoInstance, field: "du")}</g:link></td>					
+						<td>${fieldValue(bean: empleadoInstance, field: "nombre")}</td>					
+						<td>${fieldValue(bean: empleadoInstance, field: "apellido")}</td>					
+						<td>${fieldValue(bean: empleadoInstance, field: "legajo")}</td>					
+						<td>${fieldValue(bean: empleadoInstance, field: "telefono")}</td>					
 					</tr>
 				</g:each>
 				</tbody>
@@ -93,7 +77,7 @@
         <g:hiddenField name="id" value="${cuadrillaInstance?.id}" />
         <g:link class="edit" action="edit" id="${cuadrillaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
         <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-        <g:link class="add" action="create"><g:message code="default.add.label" args="[message(code: 'empleado.label', default: 'Operario')]"/></g:link>
+        <g:link class="add" action="create" controller="empleado"><g:message code="default.add.label" args="[message(code: 'empleado.label', default: 'Operario')]"/></g:link>
       </fieldset>
     </g:form>
   </div>

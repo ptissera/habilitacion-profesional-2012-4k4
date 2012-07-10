@@ -19,6 +19,7 @@ class DocumentacionEmpleadoController {
         def empleadoInstance=session.getAttribute("empleadoSelected")  
         def documentacionEmpleadoInstance= new DocumentacionEmpleado(params)
         documentacionEmpleadoInstance.setEmpleado(empleadoInstance)
+        session.setAttribute("documentacionEmpleadoSelectedTF",new Boolean(true));
         [documentacionEmpleadoInstance: documentacionEmpleadoInstance, empleadoInstance: empleadoInstance]
     }
 
@@ -44,7 +45,7 @@ class DocumentacionEmpleadoController {
             redirect(action: "show",controller: "empleado", id: empleadoInstance.id)
             return
         }
-
+        session.setAttribute("documentacionEmpleadoSelectedTF",new Boolean(true));
         [documentacionEmpleadoInstance: documentacionEmpleadoInstance, empleadoInstance: empleadoInstance]
     }
 
@@ -93,6 +94,7 @@ class DocumentacionEmpleadoController {
 
     def delete() {
         def empleadoInstance=(Empleado)session.getAttribute("empleadoSelected") 
+        session.setAttribute("documentacionEmpleadoSelectedTF",new Boolean(true));
         def documentacionEmpleadoInstance = DocumentacionEmpleado.get(params.id)
         if (!documentacionEmpleadoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionEmpleado.label', default: 'DocumentacionEmpleado'), params.id])
