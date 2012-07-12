@@ -47,6 +47,14 @@ class BootStrap {
             javier.setAuthorities(role)                
             javier.save(flush: true, insert: true)
         }   
+        
+        def mguillen=User.findByUserName('mguillen')
+        if(!mguillen){
+            mguillen = new User(userName: 'mguillen', nombre: 'Mariano', apellido: 'Guillen', password: '123',
+                enabled: true, email: 'mguillen@coming.com')
+            mguillen.setAuthorities(role)                
+            mguillen.save(flush: true, insert: true)
+        }   
     }
     
     def destroy = {

@@ -16,23 +16,25 @@ class EmpleadoController {
     }
 
     def create() {        
-        def empleadoInstance=new Empleado(params)
-        empleadoInstance.setFechaAlta(new Date())
+        def empleadoInstance=new Empleado(params)        
         session.setAttribute("empleadoSelected",empleadoInstance);
         [empleadoInstance: empleadoInstance, cuadrilaInstance: session.getAttribute("cuadrillaSelected")]        
     }
 
     def save() {        
         def cuadrilaInstance=session.getAttribute("cuadrillaSelected")    
-        def empleadoInstance = new Empleado(params)        
+        def empleadoInstance = new Empleado(params)  
+        empleadoInstance.setFechaAlta(new Date())
+        empleadoInstance.setCuadrilla(cuadrilaInstance)
         if (!empleadoInstance.save(flush: true)) {
             render(view: "create", model: [empleadoInstance: empleadoInstance, cuadrilaInstance: cuadrilaInstance])
             return
         }
         
-        cuadrilaInstance.addToOperario(empleadoInstance)
+        
+        
         flash.message = message(code: 'default.created.message', args: [message(code: 'empleado.label', default: 'Empleado'), empleadoInstance.id])
-        redirect(action: "show", controller: "cuadrilla", id: empleadoInstance.id)
+        redirect(action: "show", controller: "empleado", id: empleadoInstance.id)
     }
 
     def show() {

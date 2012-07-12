@@ -1,9 +1,5 @@
 <%@ page import="business.cuadrillas.Empleado" %>
 
-
-<g:hiddenField name="fechaAlta" value="${empleadoInstance?.fechaAlta}"/>
-<g:hiddenField name="fechaBaja" value="${empleadoInstance?.fechaBaja}"/>
-
 <div class="fieldcontain ${hasErrors(bean: empleadoInstance, field: 'du', 'error')} ">
 	<label for="du">
 		<g:message code="empleado.du.label" default="Du" />

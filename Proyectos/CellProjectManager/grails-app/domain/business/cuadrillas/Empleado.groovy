@@ -2,7 +2,8 @@ package business.cuadrillas
 
 class Empleado {
     List documentacion = new ArrayList()
-    static hasMany = [ documentacion:DocumentacionEmpleado ]    
+    static hasMany = [ documentacion:DocumentacionEmpleado ]
+    static belongsTo = [cuadrilla:Cuadrilla]
     String du
     String nombre
     String apellido
@@ -10,6 +11,7 @@ class Empleado {
     String telefono
     Date fechaAlta
     Date fechaBaja
+    
     static constraints = {
         du(black:false, unique:true)
         nombre(black:false)
@@ -17,10 +19,7 @@ class Empleado {
         legajo(black:false, unique:true)
         telefono(black:false)        
         fechaAlta(black: false)
-        fechaBaja(black:true)
-    }
-    def getExpandableDocumentacionList() {
-        return LazyList.decorate(documentacion,FactoryUtils.instantiateFactory(DocumentacionEmpleado.class))
+        fechaBaja(black:true, nullable:true)
     }
     
      def String toString() {
