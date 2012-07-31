@@ -4555,7 +4555,7 @@
 <XPD:REF name="Views[1]">Oq+ij983vEmckuqREzRPkAAA</XPD:REF>
 <XPD:REF name="Views[2]">2iqwXG91ika/+IRrIbGwWAAA</XPD:REF>
 <XPD:REF name="Views[3]">mSGQL2y5skCX3gI0FqS74wAA</XPD:REF>
-<XPD:ATTR name="#Operations" type="integer">11</XPD:ATTR>
+<XPD:ATTR name="#Operations" type="integer">12</XPD:ATTR>
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="k+n2DTfW2064V+qmdzuqGAAA">
 <XPD:ATTR name="Name" type="string">getId</XPD:ATTR>
 <XPD:REF name="Owner">DhdDY0ZkBEa9qql6Z+OPEQAA</XPD:REF>
@@ -4625,6 +4625,12 @@
 <XPD:REF name="Owner">DhdDY0ZkBEa9qql6Z+OPEQAA</XPD:REF>
 <XPD:ATTR name="#CallActions" type="integer">1</XPD:ATTR>
 <XPD:REF name="CallActions[0]">01hloPA3skqco5YWwH95pwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[11]" type="UMLOperation" guid="tU+gZbin60uiWv0KXY2x8wAA">
+<XPD:ATTR name="Name" type="string">setFechaIngreso</XPD:ATTR>
+<XPD:REF name="Owner">DhdDY0ZkBEa9qql6Z+OPEQAA</XPD:REF>
+<XPD:ATTR name="#CallActions" type="integer">1</XPD:ATTR>
+<XPD:REF name="CallActions[0]">l/cej7vO60iedgZnE/+gtwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:ATTR name="#Associations" type="integer">12</XPD:ATTR>
 <XPD:REF name="Associations[0]">5+AJig1HPEiwbHHHbMFS+wAA</XPD:REF>
@@ -50223,10 +50229,10 @@ La cuadrilla a modificar ya ha sido seleccionada.
 <XPD:OBJ name="OwnedViews[32]" type="UMLColStimulusView" guid="h7Uhs3nz302XFREvX9vUFAAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">21</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">20</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">34</XPD:ATTR>
-<XPD:ATTR name="Alpha" type="real">1,90994964478957</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">19,2093727122985</XPD:ATTR>
+<XPD:ATTR name="Alpha" type="real">0,961311632735513</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">19,0262975904404</XPD:ATTR>
 <XPD:REF name="Model">HsnnVCDGmkuEdKd/L4syUgAA</XPD:REF>
 <XPD:REF name="HostEdge">9zjkbxotJ068Td7hD/3CyQAA</XPD:REF>
 <XPD:OBJ name="NameLabel" type="NodeLabelView" guid="NX5rsjrIyU2UIEDgxJb3QwAA">
@@ -50252,36 +50258,36 @@ La cuadrilla a modificar ya ha sido seleccionada.
 <XPD:REF name="Model">HsnnVCDGmkuEdKd/L4syUgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="OwnedViews[33]" type="UMLColStimulusView" guid="vXATZJqUX06ebByd8G5k+QAA">
+<XPD:OBJ name="OwnedViews[33]" type="UMLColStimulusView" guid="GQR88MLJNUOGxCTiZWIN3QAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">20</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">21</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">34</XPD:ATTR>
-<XPD:ATTR name="Alpha" type="real">0,978195566781684</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">28,0178514522438</XPD:ATTR>
-<XPD:REF name="Model">I0zTY4Y/IU+AlnkojxHtegAA</XPD:REF>
+<XPD:ATTR name="Alpha" type="real">0,295064821967764</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">42,5205832509386</XPD:ATTR>
+<XPD:REF name="Model">OjqUYvyRsUCrLl6WJe0iSAAA</XPD:REF>
 <XPD:REF name="HostEdge">9zjkbxotJ068Td7hD/3CyQAA</XPD:REF>
-<XPD:OBJ name="NameLabel" type="NodeLabelView" guid="9JyEL9Sth06f/hi0M1IDmgAA">
+<XPD:OBJ name="NameLabel" type="NodeLabelView" guid="WKHg/89hcEetyn8rUwbLxQAA">
 <XPD:ATTR name="Width" type="integer">111</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">13</XPD:ATTR>
-<XPD:ATTR name="Alpha" type="real">1,5707963267949</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
+<XPD:ATTR name="Alpha" type="real">-4,46741201661059</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">4,12310562561766</XPD:ATTR>
 <XPD:ATTR name="Text" type="string">21 : setFechaIngreso()</XPD:ATTR>
-<XPD:REF name="Model">I0zTY4Y/IU+AlnkojxHtegAA</XPD:REF>
+<XPD:REF name="Model">OjqUYvyRsUCrLl6WJe0iSAAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="StereotypeLabel" type="NodeLabelView" guid="6k38cQVJmESxHM3mpggKBAAA">
+<XPD:OBJ name="StereotypeLabel" type="NodeLabelView" guid="uW81ZcngJ0SzKMaFExETnAAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">13</XPD:ATTR>
 <XPD:ATTR name="Alpha" type="real">1,5707963267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">25</XPD:ATTR>
-<XPD:REF name="Model">I0zTY4Y/IU+AlnkojxHtegAA</XPD:REF>
+<XPD:REF name="Model">OjqUYvyRsUCrLl6WJe0iSAAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="PropertyLabel" type="NodeLabelView" guid="A4VpXggUQU62LXjKaY0htQAA">
+<XPD:OBJ name="PropertyLabel" type="NodeLabelView" guid="HAA6zeaeDEeYBGQxO0JbmgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">13</XPD:ATTR>
 <XPD:ATTR name="Alpha" type="real">1,5707963267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<XPD:REF name="Model">I0zTY4Y/IU+AlnkojxHtegAA</XPD:REF>
+<XPD:REF name="Model">OjqUYvyRsUCrLl6WJe0iSAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -50588,20 +50594,20 @@ La cuadrilla a modificar ya ha sido seleccionada.
 <XPD:REF name="Views[2]">EnPQvZMFzEqtIy0mg3cPnAAA</XPD:REF>
 <XPD:REF name="Views[3]">Lm5Qa50Rx0iJ5vrsF0n8tAAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="ParticipatingStimuli[20]" type="UMLStimulus" guid="I0zTY4Y/IU+AlnkojxHtegAA">
-<XPD:ATTR name="Name" type="string">setFechaIngreso</XPD:ATTR>
+<XPD:OBJ name="ParticipatingStimuli[20]" type="UMLStimulus" guid="OjqUYvyRsUCrLl6WJe0iSAAA">
 <XPD:REF name="Sender">A1toWF9xmEO/jp0e3R26IwAA</XPD:REF>
 <XPD:REF name="Receiver">VducP8WqDUu60wUhunp9iwAA</XPD:REF>
 <XPD:REF name="CommunicationLink">8lHZ7bYIb0K/Eueb7vbBlQAA</XPD:REF>
-<XPD:OBJ name="Action" type="UMLCallAction" guid="sw0+ZLYV60+mqDlBVLRxZwAA">
-<XPD:REF name="Stimulus">I0zTY4Y/IU+AlnkojxHtegAA</XPD:REF>
+<XPD:OBJ name="Action" type="UMLCallAction" guid="l/cej7vO60iedgZnE/+gtwAA">
+<XPD:REF name="Stimulus">OjqUYvyRsUCrLl6WJe0iSAAA</XPD:REF>
+<XPD:REF name="Operation">tU+gZbin60uiWv0KXY2x8wAA</XPD:REF>
 </XPD:OBJ>
 <XPD:REF name="InteractionInstanceSet">8dyOYZ70k0GpcvfNo27IGAAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
-<XPD:REF name="Views[0]">vXATZJqUX06ebByd8G5k+QAA</XPD:REF>
-<XPD:REF name="Views[1]">9JyEL9Sth06f/hi0M1IDmgAA</XPD:REF>
-<XPD:REF name="Views[2]">6k38cQVJmESxHM3mpggKBAAA</XPD:REF>
-<XPD:REF name="Views[3]">A4VpXggUQU62LXjKaY0htQAA</XPD:REF>
+<XPD:REF name="Views[0]">GQR88MLJNUOGxCTiZWIN3QAA</XPD:REF>
+<XPD:REF name="Views[1]">WKHg/89hcEetyn8rUwbLxQAA</XPD:REF>
+<XPD:REF name="Views[2]">uW81ZcngJ0SzKMaFExETnAAA</XPD:REF>
+<XPD:REF name="Views[3]">HAA6zeaeDEeYBGQxO0JbmgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingStimuli[21]" type="UMLStimulus" guid="ed4MUwwTrEaSuzKp5fIyMAAA">
 <XPD:REF name="Sender">A1toWF9xmEO/jp0e3R26IwAA</XPD:REF>
@@ -50664,7 +50670,7 @@ La cuadrilla a modificar ya ha sido seleccionada.
 <XPD:REF name="SendingStimuli[7]">HS1JdSJDgki62D1ySf0/WgAA</XPD:REF>
 <XPD:REF name="SendingStimuli[8]">6s6Y5vSyREaasOy5noMwPQAA</XPD:REF>
 <XPD:REF name="SendingStimuli[9]">HsnnVCDGmkuEdKd/L4syUgAA</XPD:REF>
-<XPD:REF name="SendingStimuli[10]">I0zTY4Y/IU+AlnkojxHtegAA</XPD:REF>
+<XPD:REF name="SendingStimuli[10]">OjqUYvyRsUCrLl6WJe0iSAAA</XPD:REF>
 <XPD:ATTR name="#ReceivingStimuli" type="integer">8</XPD:ATTR>
 <XPD:REF name="ReceivingStimuli[0]">KUt/K2jJFkqUCP5256meggAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[1]">BgE2ZEAxHUeVdsLVwwnarQAA</XPD:REF>
@@ -50734,7 +50740,7 @@ La cuadrilla a modificar ya ha sido seleccionada.
 <XPD:ATTR name="#ReceivingStimuli" type="integer">3</XPD:ATTR>
 <XPD:REF name="ReceivingStimuli[0]">HS1JdSJDgki62D1ySf0/WgAA</XPD:REF>
 <XPD:REF name="ReceivingStimuli[1]">HsnnVCDGmkuEdKd/L4syUgAA</XPD:REF>
-<XPD:REF name="ReceivingStimuli[2]">I0zTY4Y/IU+AlnkojxHtegAA</XPD:REF>
+<XPD:REF name="ReceivingStimuli[2]">OjqUYvyRsUCrLl6WJe0iSAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:ATTR name="#ParticipatingLinks" type="integer">6</XPD:ATTR>
 <XPD:OBJ name="ParticipatingLinks[0]" type="UMLLink" guid="Q/EQHAFC1Ei/vrRrKsFs7AAA">
@@ -50889,7 +50895,7 @@ La cuadrilla a modificar ya ha sido seleccionada.
 <XPD:ATTR name="#Stimuli" type="integer">3</XPD:ATTR>
 <XPD:REF name="Stimuli[0]">HS1JdSJDgki62D1ySf0/WgAA</XPD:REF>
 <XPD:REF name="Stimuli[1]">HsnnVCDGmkuEdKd/L4syUgAA</XPD:REF>
-<XPD:REF name="Stimuli[2]">I0zTY4Y/IU+AlnkojxHtegAA</XPD:REF>
+<XPD:REF name="Stimuli[2]">OjqUYvyRsUCrLl6WJe0iSAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
