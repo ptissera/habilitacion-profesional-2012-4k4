@@ -1,12 +1,18 @@
 package business.cuadrillas
 
-import business.core.Estado
-
-class EstadoCuadrilla extends Estado{
+class EstadoCuadrilla {
 
     static hasMany = [cuadrillas: Cuadrilla]
+    String nombre
+    String descripcion
     
     static constraints = {
+        nombre(blank: false, unique: true)
+        descripcion(blank: false)  
         cuadrillas()
+    }
+    
+    @Override String toString() {
+	return getNombre()
     }
 }

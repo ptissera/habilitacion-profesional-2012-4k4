@@ -7,6 +7,7 @@ class BootStrap {
     def init = { 
         initRolAndUsuarios()
         initTipos()
+        initEstados()
         initCliente()
     }
     
@@ -106,9 +107,18 @@ class BootStrap {
         if(!cliente1){
             cliente1 = new Cliente(razonSocial: 'Claro SA', 
                 telefono: '334443444', email: 'claro@claro.com', direccion: 'Av Sabatini 650, Cordoba Capital',
-            cuit: '34-2344432344-3', nombreContacto: 'Luis Chamorro', telefonoContacto: '1232133323', 
-            emailContacto: 'luis.chamorro@claro.com')
+            cuit: '34-2344432344-3', contactoNombre: 'Luis Chamorro', contactoTelefono: '1232133323', 
+            contactoEmail: 'luis.chamorro@claro.com')
             cliente1.save(flush: true, insert: true)
+        }
+        
+        def cliente2=Cliente.findByRazonSocial('Nokia SA')
+        if(!cliente2){
+            cliente2 = new Cliente(razonSocial: 'Nokia SA', 
+                telefono: '73645534', email: 'nokia@nokia.com', direccion: '27 de Abril 763, Cordoba Capital',
+            cuit: '20-223444344-3', contactoNombre: 'Juan Lemperd', contactoTelefono: '144255553', 
+            contactoEmail: 'juan.lemperd@nokia.com')
+            cliente2.save(flush: true, insert: true)
         }
     }
     

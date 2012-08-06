@@ -1,9 +1,10 @@
 package business.cuadrillas
-import business.core.Tipo
 
-class TipoDocumentacionIntegranteCuadrilla extends Tipo{
+class TipoDocumentacionIntegranteCuadrilla{
     
    static hasMany = [documentacionIntegranteCuadrilla: DocumentacionIntegranteCuadrilla]
+   String nombre
+    String descripcion    
    int diaAntesVencimiento
 
    static constraints = {
@@ -12,5 +13,9 @@ class TipoDocumentacionIntegranteCuadrilla extends Tipo{
       diaAntesVencimiento(blank: false, range:1..30)
       documentacionIntegranteCuadrilla()
    }      
+   
+    @Override String toString() {
+	return getNombre()
+    }
     
 }
