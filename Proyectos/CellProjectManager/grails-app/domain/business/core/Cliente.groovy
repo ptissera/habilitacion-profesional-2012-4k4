@@ -6,19 +6,25 @@ class Cliente {
     String razonSocial
     String cuit
     String direccion
+    String email
     String telefono
     String contactoNombre
     String contactoTelefono
+    String contactoEmail
     
     static constraints = {
-        razonSocial(black:false, unique: true)
+        razonSocial(size:3..50, unique: true)
         cuit(black:false, unique: true)
         telefono(black:false)
         direccion(black:false)
-        email(email:true,black:false)
+        email(email:true, blank: false)
         contactoNombre(black:false)
         contactoTelefono(black:false)
-        contactoEmail(email:true ,black:false)
+        contactoEmail(email:true, black:false)
         licitaciones()
     }
+    
+       @Override String toString() {
+		return getRazonSocial()
+	}
 }

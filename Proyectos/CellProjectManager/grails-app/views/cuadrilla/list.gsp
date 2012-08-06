@@ -26,7 +26,11 @@
 					
 						<g:sortableColumn property="nombre" title="${message(code: 'cuadrilla.nombre.label', default: 'Nombre')}" />
 					
-						<g:sortableColumn property="estado" title="${message(code: 'cuadrilla.estado.label', default: 'Estado')}" />
+						<g:sortableColumn property="descripcion" title="${message(code: 'cuadrilla.descripcion.label', default: 'Descripcion')}" />
+					
+						<g:sortableColumn property="propia" title="${message(code: 'cuadrilla.propia.label', default: 'Propia')}" />
+					
+						<th><g:message code="cuadrilla.estadoCuadrilla.label" default="Estado Cuadrilla" /></th>
 					
 					</tr>
 				</thead>
@@ -36,7 +40,11 @@
 					
 						<td><g:link action="show" id="${cuadrillaInstance.id}">${fieldValue(bean: cuadrillaInstance, field: "nombre")}</g:link></td>
 					
-						<td>${fieldValue(bean: cuadrillaInstance, field: "estado")}</td>
+						<td>${fieldValue(bean: cuadrillaInstance, field: "descripcion")}</td>
+					
+						<td><g:formatBoolean boolean="${cuadrillaInstance.propia}" /></td>
+					
+						<td>${fieldValue(bean: cuadrillaInstance, field: "estadoCuadrilla")}</td>
 					
 					</tr>
 				</g:each>

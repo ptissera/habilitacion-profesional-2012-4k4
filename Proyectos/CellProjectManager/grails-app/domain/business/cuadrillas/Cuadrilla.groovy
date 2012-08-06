@@ -1,15 +1,25 @@
 package business.cuadrillas
+import business.core.*
 
 class Cuadrilla {
     
-    static hasMany = [ operarios:Empleado ]
+    static belongsTo = [estadoCuadrilla: EstadoCuadrilla]
+    static hasMany = [ operarios:IntegranteCuadrilla, historialDeCambios: HistorialCuadrilla, prestatmosHerramientas: PrestamoHerramienta]
     String nombre
-    String estado
+    String descripcion
+    Boolean propia
+    
     
     static constraints = {
         nombre(black:false, unique: true)
-        estado()
+        descripcion(black:false)        
+        propia()
+        estadoCuadrilla()
         operarios()
+        historialDeCambios()
     }
     
+    @Override String toString() {
+		return getNombre()
+	}
 }

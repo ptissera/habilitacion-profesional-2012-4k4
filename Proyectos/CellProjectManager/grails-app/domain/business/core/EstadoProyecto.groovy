@@ -1,12 +1,6 @@
 package business.core
 
-class EstadoProyecto {
+class EstadoProyecto extends Estado {
     static hasMany = [ proyectos:Proyecto]
-    String nombre
-    String descripcion
-    
-    static constraints = {
-        nombre(blank: false, unique: true)
-        descripcion(blank: false)
-    }
+ 
 }

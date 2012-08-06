@@ -83,6 +83,13 @@
 	<body>
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="status" role="complementary">
+                        <h1>Proyectos</h1>
+			<ul>
+                              <li><g:link controller="cliente">Clientes</g:link></li>
+			      <li><g:link controller="licitacion">Licitaciones</g:link></li>				
+                              <li><g:link controller="proyecto">Proyectos</g:link></li>
+                              <li><g:link controller="estadoProyecto">Estados Proyecto</g:link></li>                             
+			</ul>	
 			<h1>Soporte Usuarios</h1>
 			<ul>
 			      <li><g:link controller="user">Usuarios</g:link></li>				
@@ -91,8 +98,8 @@
                         <h1>Cuadrilla</h1>
 			<ul>
                               <li><g:link controller="cuadrilla">Cuadrilla</g:link></li>
-			      <li><g:link controller="empleado">Empleado</g:link></li>				
-                              <li><g:link controller="tipoDocumentacionEmpleado">Tipo Documentacion</g:link></li>
+			      <li><g:link controller="integranteCuadrilla">Empleado</g:link></li>				
+                              <li><g:link controller="tipoDocumentacionIntegranteCuadrilla">Tipo Documentacion</g:link></li>
 			</ul>		
 		</div>
 		<div id="page-body" role="main">

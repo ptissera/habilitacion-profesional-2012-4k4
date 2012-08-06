@@ -1,4 +1,4 @@
-package support.secure
+package business.core
 
 
 
@@ -8,8 +8,8 @@ import org.junit.*
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Role)
-class RoleTests {
+@TestFor(Tipo)
+class TipoTests {
 
     void testSomething() {
        fail "Implement me"

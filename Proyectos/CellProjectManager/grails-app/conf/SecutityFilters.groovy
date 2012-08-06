@@ -11,7 +11,7 @@ class SecutityFilters {
 	 def filters = {
         loginCheck(controller: '*', action: '*') {
             before = {
-                if (!session.user && !actionName.equals('login')) {
+                if (!session.usuario && !actionName.equals('login')) {
                     redirect(controller:"authorize",action: 'login')                    
                 }
             }

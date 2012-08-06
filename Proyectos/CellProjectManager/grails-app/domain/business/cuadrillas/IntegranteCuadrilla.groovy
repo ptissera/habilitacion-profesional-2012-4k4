@@ -1,8 +1,8 @@
 package business.cuadrillas
 
-class Empleado {
-    List documentacion = new ArrayList()
-    static hasMany = [ documentacion:DocumentacionEmpleado ]
+class IntegranteCuadrilla {
+    
+    static hasMany = [ documentacion:DocumentacionIntegranteCuadrilla ]
     static belongsTo = [cuadrilla:Cuadrilla]
     String du
     String nombre
@@ -22,7 +22,7 @@ class Empleado {
         fechaBaja(black:true, nullable:true)
     }
     
-     def String toString() {
-        return apellido +", "+ nombre
-    }
+    @Override String toString() {
+		return getApellido() + ", " + getNombre()
+	}
 }

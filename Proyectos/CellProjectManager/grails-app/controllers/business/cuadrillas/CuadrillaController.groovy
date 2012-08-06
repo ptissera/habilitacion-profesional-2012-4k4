@@ -37,8 +37,7 @@ class CuadrillaController {
             redirect(action: "list")
             return
         }
-        session.setAttribute("cuadrillaSelected",cuadrillaInstance);
-        session.setAttribute("empleadoSelected",null);
+
         [cuadrillaInstance: cuadrillaInstance]
     }
 

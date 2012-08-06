@@ -8,11 +8,11 @@
 <html>
 <head>
 <meta name="layout" content="main" />
-<title>Login</title>
+<title>Ingreso</title>
 </head>
 <body>
 	<div class="content scaffold-create">
-		<h1>Login</h1>
+		<h1>Ingresar al Sistema</h1>
 		<g:if test="${flash.message}">
 			<div class="message">
 				${flash.message}
@@ -21,26 +21,26 @@
 		<g:form action="authenticate" method="post">
 			<fieldset class="form">
 				<div
-					class="fieldcontain ${hasErrors(bean: userInstance, field: 'userName', 'error')} required">
-					<label for="userName"> <g:message
-							code="user.userName.label" default="userName" /> <span
+					class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'nombreUsuario', 'error')} required">
+					<label for="nombreUsuario"> <g:message
+							code="usuario.nombreUsuario.label" default="nombreUsuario" /> <span
 						class="required-indicator">*</span>
 					</label>
-					<g:field type="text" name="userName" required=""
-						value="${fieldValue(bean: userInstance, field: 'userName')}" />
+					<g:field type="text" name="nombreUsuario" required=""
+						value="${fieldValue(bean: usuarioInstance, field: 'nombreUsuario')}" />
 				</div>
 				<div
-					class="fieldcontain ${hasErrors(bean: userInstance, field: 'password', 'error')} ">
-					<label for="password"> <g:message
-							code="user.password.label" default="Password" />
+					class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'clave', 'error')} ">
+					<label for="clave"> <g:message
+							code="usuario.clave.label" default="Clave" />
 
 					</label>
-					<g:field type="password" name="password" maxlength="32"
-						value="${userInstance?.password}" />
+					<g:field type="password" name="clave" maxlength="32"
+						value="${usuarioInstance?.clave}" />
 				</div>
 			</fieldset>
 			<fieldset class="buttons">
-				<g:submitButton name="login" class="save" value="Login" />
+				<g:submitButton name="login" class="save" value="Ingresar" />
 			</fieldset>
 		</g:form>
 	</div>

@@ -1,9 +1,9 @@
 package business.core
-import support.secure.User
+import support.secure.Usuario
 
 class Proyecto {
     static hasMany = [ solicitudes:SolicitudDeTarea]
-    static belongsTo = [licitacion: Licitacion, usuario: User, estadoProyecto: EstadoProyecto]
+    static belongsTo = [licitacion: Licitacion, usuario: Usuario, estadoProyecto: EstadoProyecto]
     String nombre
     Date fechaCreacion
     Date fechaInicio
@@ -20,4 +20,9 @@ class Proyecto {
         usuario(black:true, nullable:true)
         solicitudes()
     }
+    
+    
+       @Override String toString() {
+		return getNombre()
+	}
 }

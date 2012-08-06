@@ -81,7 +81,7 @@
 				<li class="fieldcontain">
 					<span id="usuario-label" class="property-label"><g:message code="proyecto.usuario.label" default="Usuario" /></span>
 					
-						<span class="property-value" aria-labelledby="usuario-label"><g:link controller="user" action="show" id="${proyectoInstance?.usuario?.id}">${proyectoInstance?.usuario?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="usuario-label"><g:link controller="usuario" action="show" id="${proyectoInstance?.usuario?.id}">${proyectoInstance?.usuario?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

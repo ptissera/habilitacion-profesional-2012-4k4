@@ -12,4 +12,8 @@ class Licitacion {
         cliente()
         proyectos()
     }
+    
+       @Override String toString() {
+		return getNombre()
+	}
 }

@@ -55,7 +55,7 @@
 		<g:message code="proyecto.usuario.label" default="Usuario" />
 		
 	</label>
-	<g:select id="usuario" name="usuario.id" from="${support.secure.User.list()}" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'solicitudes', 'error')} ">
