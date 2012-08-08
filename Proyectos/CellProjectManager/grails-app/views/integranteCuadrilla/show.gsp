@@ -11,8 +11,7 @@
 		<a href="#show-integranteCuadrilla" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>				
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -85,26 +84,33 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${integranteCuadrillaInstance?.cuadrilla}">
-				<li class="fieldcontain">
-					<span id="cuadrilla-label" class="property-label"><g:message code="integranteCuadrilla.cuadrilla.label" default="Cuadrilla" /></span>
-					
-						<span class="property-value" aria-labelledby="cuadrilla-label"><g:link controller="cuadrilla" action="show" id="${integranteCuadrillaInstance?.cuadrilla?.id}">${integranteCuadrillaInstance?.cuadrilla?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${integranteCuadrillaInstance?.documentacion}">
-				<li class="fieldcontain">
-					<span id="documentacion-label" class="property-label"><g:message code="integranteCuadrilla.documentacion.label" default="Documentacion" /></span>
-					
-						<g:each in="${integranteCuadrillaInstance.documentacion}" var="d">
-						<span class="property-value" aria-labelledby="documentacion-label"><g:link controller="documentacionIntegranteCuadrilla" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+        <li class="fieldcontain">
+          
+          <table>
+            <thead>
+              <tr><g:message code="documentacionIntegrante.documentacion.label" default="Documentacion" /></tr>
+              <tr>              
+                <th><g:message code="documentacionIntegranteCuadrilla.tipoDocumento.label" default="Tipo Documento" /></th>					
+            <g:sortableColumn property="vigenciaDesde" title="${message(code: 'documentacionIntegranteCuadrilla.vigenciaDesde.label', default: 'Vigencia Desde')}" />					
+            <g:sortableColumn property="vigenciaHasta" title="${message(code: 'documentacionIntegranteCuadrilla.vigenciaHasta.label', default: 'Vigencia Hasta')}" />					
+            <g:sortableColumn property="descripcion" title="${message(code: 'documentacionIntegranteCuadrilla.descripcion.label', default: 'Descripcion')}" />									
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${integranteCuadrillaInstance?.documentacion}" status="i" var="documentacionIntegranteCuadrillaInstance">
+              <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
+                <td><g:link action="show" controller="documentacionIntegranteCuadrilla" id="${documentacionIntegranteCuadrillaInstance.id}">${fieldValue(bean: documentacionIntegranteCuadrillaInstance, field: "tipoDocumento")}</g:link></td>					
+              <td><g:formatDate format="dd/MM/yyyy" date="${documentacionIntegranteCuadrillaInstance.vigenciaDesde}" /></td>					
+              <td><g:formatDate format="dd/MM/yyyy" date="${documentacionIntegranteCuadrillaInstance.vigenciaHasta}" /></td>					
+              <td>${fieldValue(bean: documentacionIntegranteCuadrillaInstance, field: "descripcion")}</td>
+              </tr>
+            </g:each>
+            </tbody>
+          </table>
+
+        </li>
+      </g:if>
 			
 			</ol>
 			<g:form>
@@ -112,6 +118,7 @@
 					<g:hiddenField name="id" value="${integranteCuadrillaInstance?.id}" />
 					<g:link class="edit" action="edit" id="${integranteCuadrillaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                        <g:link class="add" controller="documentacionIntegranteCuadrilla" action="create" id="${integranteCuadrillaInstance?.id}"><g:message code="default.add.label" args="[message(code: 'documentacionIntegranteCuadrilla.label', default: 'Tipo Documentacion')]"/></g:link>
 				</fieldset>
 			</g:form>
 		</div>

@@ -18,14 +18,14 @@ class DocumentacionIntegranteCuadrillaController {
     def create() {
         def integranteCuadrillaInstance=(IntegranteCuadrilla)session.getAttribute("integranteCuadrillaSelected")  
         def documentacionIntegranteCuadrillaInstance= new DocumentacionIntegranteCuadrilla(params)
-        documentacionIntegranteCuadrillaInstance.setIntegranteCuadrilla(integranteCuadrillaInstance)
+        documentacionIntegranteCuadrillaInstance.setIntegrante(integranteCuadrillaInstance)
         session.setAttribute("documentacionIntegranteCuadrillaSelectedTF",new Boolean(true))
         [documentacionIntegranteCuadrillaInstance: documentacionIntegranteCuadrillaInstance, integranteCuadrillaInstance: integranteCuadrillaInstance]        
     }
 
     def save() {
         def integranteCuadrillaInstance=(IntegranteCuadrilla)session.getAttribute("integranteCuadrillaSelected")        
-        params.integranteCuadrilla.id=integranteCuadrillaInstance.id
+        params.integrante.id=integranteCuadrillaInstance.id
         def documentacionIntegranteCuadrillaInstance = new DocumentacionIntegranteCuadrilla(params)
         if (!documentacionIntegranteCuadrillaInstance.save(flush: true)) {
             render(view: "create", model: [documentacionIntegranteCuadrillaInstance: documentacionIntegranteCuadrillaInstance])

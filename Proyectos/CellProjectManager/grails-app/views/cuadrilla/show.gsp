@@ -14,6 +14,7 @@
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+                                <li><g:link class="list" action="list" controller="historialCuadrilla" id="${cuadrillaInstance?.id}">Historial Cuadrilla</g:link></li>
 			</ul>
 		</div>
 		<div id="show-cuadrilla" class="content scaffold-show" role="main">
@@ -58,46 +59,42 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${cuadrillaInstance?.operarios}">
-				<li class="fieldcontain">
-					<span id="operarios-label" class="property-label"><g:message code="cuadrilla.operarios.label" default="Operarios" /></span>
-					
-						<g:each in="${cuadrillaInstance.operarios}" var="o">
-						<span class="property-value" aria-labelledby="operarios-label"><g:link controller="integranteCuadrilla" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cuadrillaInstance?.historialDeCambios}">
-				<li class="fieldcontain">
-					<span id="historialDeCambios-label" class="property-label"><g:message code="cuadrilla.historialDeCambios.label" default="Historial De Cambios" /></span>
-					
-						<g:each in="${cuadrillaInstance.historialDeCambios}" var="h">
-						<span class="property-value" aria-labelledby="historialDeCambios-label"><g:link controller="historialCuadrilla" action="show" id="${h.id}">${h?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${cuadrillaInstance?.prestatmosHerramientas}">
-				<li class="fieldcontain">
-					<span id="prestatmosHerramientas-label" class="property-label"><g:message code="cuadrilla.prestatmosHerramientas.label" default="Prestatmos Herramientas" /></span>
-					
-						<g:each in="${cuadrillaInstance.prestatmosHerramientas}" var="p">
-						<span class="property-value" aria-labelledby="prestatmosHerramientas-label"><g:link controller="prestamoHerramienta" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+		      <g:if test="${cuadrillaInstance?.operarios}">
+                        <li class="fieldcontain">
+                          <table>
+                                  <thead>
+                                          <tr><g:message code="cuadrilla.operarios.label" default="Operarios" /></tr>
+                                          <tr>					
+                                                  <g:sortableColumn property="du" title="${message(code: 'empleado.du.label', default: 'Du')}" />					
+                                                  <g:sortableColumn property="nombre" title="${message(code: 'empleado.nombre.label', default: 'Nombre')}" />					
+                                                  <g:sortableColumn property="apellido" title="${message(code: 'empleado.apellido.label', default: 'Apellido')}" />					
+                                                  <g:sortableColumn property="legajo" title="${message(code: 'empleado.legajo.label', default: 'Legajo')}" />					
+                                                  <g:sortableColumn property="telefono" title="${message(code: 'empleado.telefono.label', default: 'Telefono')}" />					
+                                          </tr>
+                                  </thead>
+                                  <tbody>
+                                  <g:each in="${cuadrillaInstance?.operarios}" status="i" var="integranteCuadrillaInstance">
+                                          <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
+                                                  <td><g:link action="show" controller="integranteCuadrilla" id="${integranteCuadrillaInstance.id}">${fieldValue(bean: integranteCuadrillaInstance, field: "du")}</g:link></td>					
+                                                  <td>${fieldValue(bean: integranteCuadrillaInstance, field: "nombre")}</td>					
+                                                  <td>${fieldValue(bean: integranteCuadrillaInstance, field: "apellido")}</td>					
+                                                  <td>${fieldValue(bean: integranteCuadrillaInstance, field: "legajo")}</td>					
+                                                  <td>${fieldValue(bean: integranteCuadrillaInstance, field: "telefono")}</td>					
+                                          </tr>
+                                  </g:each>
+                                  </tbody>
+                          </table>
+                        </li>
+                      </g:if>
+
 			
 			</ol>
 			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${cuadrillaInstance?.id}" />
-					<g:link class="edit" action="edit" id="${cuadrillaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+				<fieldset class="buttons">					
+                                        <g:hiddenField name="id" value="${cuadrillaInstance?.id}" />
+                                        <g:link class="edit" action="edit" id="${cuadrillaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                                        <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                        <g:link class="add" action="create" controller="integranteCuadrilla"><g:message code="default.add.label" args="[message(code: 'empleado.label', default: 'Operario')]"/></g:link>
 				</fieldset>
 			</g:form>
 		</div>

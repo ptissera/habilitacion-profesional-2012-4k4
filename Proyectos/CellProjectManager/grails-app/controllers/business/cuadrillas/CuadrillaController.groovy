@@ -39,6 +39,7 @@ class CuadrillaController {
         }
         session.setAttribute("cuadrillaSelected",cuadrillaInstance);
         session.setAttribute("integranteCuadrillaSelected",null);
+        session.setAttribute("historialCuadrillaSelectedTF",null);
         [cuadrillaInstance: cuadrillaInstance]
     }
 

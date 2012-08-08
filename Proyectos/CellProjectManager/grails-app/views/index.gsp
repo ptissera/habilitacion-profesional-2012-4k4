@@ -97,8 +97,7 @@
 			</ul>		
                         <h1>Cuadrilla</h1>
 			<ul>
-                              <li><g:link controller="cuadrilla">Cuadrilla</g:link></li>
-			      <li><g:link controller="integranteCuadrilla">Empleado</g:link></li>				
+                              <li><g:link controller="cuadrilla">Cuadrilla</g:link></li>			      
                               <li><g:link controller="tipoDocumentacionIntegranteCuadrilla">Tipo Documentacion</g:link></li>
 			</ul>		
 		</div>

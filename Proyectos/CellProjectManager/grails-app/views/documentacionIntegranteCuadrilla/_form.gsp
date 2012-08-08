@@ -1,7 +1,7 @@
 <%@ page import="business.cuadrillas.DocumentacionIntegranteCuadrilla" %>
 
 
-
+<g:hiddenField id="integrante" name="integrante.id" value="${documentacionIntegranteCuadrillaInstance?.integrante?.id}"  optionKey="id" />
 <div class="fieldcontain ${hasErrors(bean: documentacionIntegranteCuadrillaInstance, field: 'vigenciaDesde', 'error')} required">
 	<label for="vigenciaDesde">
 		<g:message code="documentacionIntegranteCuadrilla.vigenciaDesde.label" default="Vigencia Desde" />
@@ -34,11 +34,4 @@
 	<g:select id="tipoDocumento" name="tipoDocumento.id" from="${business.cuadrillas.TipoDocumentacionIntegranteCuadrilla.list()}" optionKey="id" required="" value="${documentacionIntegranteCuadrillaInstance?.tipoDocumento?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: documentacionIntegranteCuadrillaInstance, field: 'integrante', 'error')} required">
-	<label for="integrante">
-		<g:message code="documentacionIntegranteCuadrilla.integrante.label" default="Integrante" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="integrante" name="integrante.id" from="${business.cuadrillas.IntegranteCuadrilla.list()}" optionKey="id" required="" value="${documentacionIntegranteCuadrillaInstance?.integrante?.id}" class="many-to-one"/>
-</div>
 

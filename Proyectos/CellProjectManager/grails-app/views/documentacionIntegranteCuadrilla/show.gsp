@@ -11,8 +11,7 @@
 		<a href="#show-documentacionIntegranteCuadrilla" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>				
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -59,15 +58,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${documentacionIntegranteCuadrillaInstance?.integrante}">
-				<li class="fieldcontain">
-					<span id="integrante-label" class="property-label"><g:message code="documentacionIntegranteCuadrilla.integrante.label" default="Integrante" /></span>
-					
-						<span class="property-value" aria-labelledby="integrante-label"><g:link controller="integranteCuadrilla" action="show" id="${documentacionIntegranteCuadrillaInstance?.integrante?.id}">${documentacionIntegranteCuadrillaInstance?.integrante?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
+							
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
