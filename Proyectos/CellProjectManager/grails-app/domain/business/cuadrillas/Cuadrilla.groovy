@@ -5,6 +5,7 @@ class Cuadrilla {
     
     static belongsTo = [estadoCuadrilla: EstadoCuadrilla]
     static hasMany = [ operarios:IntegranteCuadrilla, historialDeCambios: HistorialCuadrilla, prestatmosHerramientas: PrestamoHerramienta]
+    static fetchMode = [historialDeCambios:"eager"] 
     String nombre
     String descripcion
     Boolean propia

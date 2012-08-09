@@ -9,5 +9,6 @@ class HistorialCuadrilla {
     static constraints = {
         fecha(blank: false)
         descripcion(blank: false)
+        cuadrilla()
     }
 }

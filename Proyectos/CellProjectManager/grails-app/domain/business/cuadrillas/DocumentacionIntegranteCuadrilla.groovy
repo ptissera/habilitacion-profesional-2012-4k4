@@ -14,7 +14,19 @@ class DocumentacionIntegranteCuadrilla {
         integrante()
     }
     
-    def String toString() {
-        return getTipoDocumento()
+    def checkVencimiento(){
+        def diffDate = getVigenciaHasta() - new Date()
+        if(diffDate.days >=0 ){
+            return ["-1","Vencido"]    
+        } else if(diffDate.days < 0  && diffDate.days >= tipoDocumento.getDiaAntesVencimiento()){
+            return ["0","Actualizar"]    
+        }else{
+            return ["1","Sin Problema"]    
+        }
+        
+    }
+    
+    @Override String toString() {
+        return getTipoDocumento() +", "+ checkVencimiento()
     }
 }

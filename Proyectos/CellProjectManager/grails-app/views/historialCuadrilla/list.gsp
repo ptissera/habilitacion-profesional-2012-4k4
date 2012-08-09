@@ -27,7 +27,7 @@
 					
 						<g:sortableColumn property="descripcion" title="${message(code: 'historialCuadrilla.descripcion.label', default: 'Descripcion')}" />
 					
-						<th><g:message code="historialCuadrilla.cuadrilla.label" default="Cuadrilla" /></th>
+						
 					
 					</tr>
 				</thead>
@@ -35,11 +35,11 @@
 				<g:each in="${historialCuadrillaInstanceList}" status="i" var="historialCuadrillaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td>${fieldValue(bean: historialCuadrillaInstance, field: "fecha")}</td>
+						<td><g:formatDate format="dd/MM/yyyy" date="${historialCuadrillaInstance.fecha}" /></td>
 					
 						<td>${fieldValue(bean: historialCuadrillaInstance, field: "descripcion")}</td>
 					
-						<td>${fieldValue(bean: historialCuadrillaInstance, field: "cuadrilla")}</td>
+						
 					
 					</tr>
 				</g:each>

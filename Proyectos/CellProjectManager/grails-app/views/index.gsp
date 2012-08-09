@@ -92,8 +92,8 @@
 			</ul>	
 			<h1>Soporte Usuarios</h1>
 			<ul>
-			      <li><g:link controller="user">Usuarios</g:link></li>				
-                              <li><g:link controller="role">Roles</g:link></li>
+			      <li><g:link controller="usuario">Usuarios</g:link></li>				
+                              <li><g:link controller="rol">Roles</g:link></li>
 			</ul>		
                         <h1>Cuadrilla</h1>
 			<ul>

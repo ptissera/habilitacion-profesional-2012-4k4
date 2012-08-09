@@ -13,7 +13,8 @@ class HistorialCuadrillaController {
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         session.setAttribute("historialCuadrillaSelectedTF",new Boolean(true))
-        [historialCuadrillaInstanceList: HistorialCuadrilla.list(params), historialCuadrillaInstanceTotal: HistorialCuadrilla.count()]
+        Cuadrilla cuadrillaSelected=(Cuadrilla)session.getAttribute("cuadrillaSelected")        
+        [historialCuadrillaInstanceList: cuadrillaSelected.getHistorialDeCambios(), historialCuadrillaInstanceTotal: HistorialCuadrilla.count()]
     }
 
     def create() {

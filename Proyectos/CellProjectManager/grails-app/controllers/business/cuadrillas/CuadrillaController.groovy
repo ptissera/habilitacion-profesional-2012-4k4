@@ -25,7 +25,9 @@ class CuadrillaController {
             render(view: "create", model: [cuadrillaInstance: cuadrillaInstance])
             return
         }
-
+        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: cuadrilaInstance)       
+        historial.setDescripcion(" Cuadrilla -- Alta -- (cuadrilaInstance)")
+        historial.save()
 		flash.message = message(code: 'default.created.message', args: [message(code: 'cuadrilla.label', default: 'Cuadrilla'), cuadrillaInstance.id])
         redirect(action: "show", id: cuadrillaInstance.id)
     }
@@ -50,7 +52,7 @@ class CuadrillaController {
             redirect(action: "list")
             return
         }
-
+        
         [cuadrillaInstance: cuadrillaInstance]
     }
 
@@ -79,13 +81,19 @@ class CuadrillaController {
             render(view: "edit", model: [cuadrillaInstance: cuadrillaInstance])
             return
         }
-
+        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: cuadrilaInstance)       
+        historial.setDescripcion(" Cuadrilla -- Modificada -- (cuadrilaInstance)")
+        historial.save()
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'cuadrilla.label', default: 'Cuadrilla'), cuadrillaInstance.id])
         redirect(action: "show", id: cuadrillaInstance.id)
     }
 
     def delete() {
-        def cuadrillaInstance = Cuadrilla.get(params.id)
+        def cuadrillaInstance = Cuadrilla.get(params.id)        
+        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: cuadrilaInstance)       
+        historial.setDescripcion(" Cuadrilla -- Baja -- (cuadrilaInstance)")
+        historial.save()
+        
         if (!cuadrillaInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'cuadrilla.label', default: 'Cuadrilla'), params.id])
             redirect(action: "list")
