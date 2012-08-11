@@ -23,11 +23,29 @@
 			</g:if>
 			<ol class="property-list proyecto">
 			
+				<g:if test="${proyectoInstance?.licitacion}">
+				<li class="fieldcontain">
+					<span id="licitacion-label" class="property-label"><g:message code="proyecto.licitacion.label" default="Licitacion" /></span>
+					
+						<span class="property-value" aria-labelledby="licitacion-label"><g:fieldValue bean="${proyectoInstance}" field="licitacion"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${proyectoInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="proyecto.nombre.label" default="Nombre" /></span>
 					
 						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${proyectoInstance}" field="nombre"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${proyectoInstance?.descripcion}">
+				<li class="fieldcontain">
+					<span id="descripcion-label" class="property-label"><g:message code="proyecto.descripcion.label" default="Descripcion" /></span>
+					
+						<span class="property-value" aria-labelledby="descripcion-label"><g:fieldValue bean="${proyectoInstance}" field="descripcion"/></span>
 					
 				</li>
 				</g:if>
@@ -68,15 +86,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${proyectoInstance?.licitacion}">
-				<li class="fieldcontain">
-					<span id="licitacion-label" class="property-label"><g:message code="proyecto.licitacion.label" default="Licitacion" /></span>
-					
-						<span class="property-value" aria-labelledby="licitacion-label"><g:link controller="licitacion" action="show" id="${proyectoInstance?.licitacion?.id}">${proyectoInstance?.licitacion?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${proyectoInstance?.usuario}">
 				<li class="fieldcontain">
 					<span id="usuario-label" class="property-label"><g:message code="proyecto.usuario.label" default="Usuario" /></span>
@@ -93,6 +102,15 @@
 						<g:each in="${proyectoInstance.solicitudes}" var="s">
 						<span class="property-value" aria-labelledby="solicitudes-label"><g:link controller="solicitudDeTarea" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
 						</g:each>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${proyectoInstance?.cliente}">
+				<li class="fieldcontain">
+					<span id="cliente-label" class="property-label"><g:message code="proyecto.cliente.label" default="Cliente" /></span>
+					
+						<span class="property-value" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${proyectoInstance?.cliente?.id}">${proyectoInstance?.cliente?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

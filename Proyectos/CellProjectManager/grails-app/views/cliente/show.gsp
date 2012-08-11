@@ -100,7 +100,7 @@
 					<span id="licitaciones-label" class="property-label"><g:message code="cliente.licitaciones.label" default="Licitaciones" /></span>
 					
 						<g:each in="${clienteInstance.licitaciones}" var="l">
-						<span class="property-value" aria-labelledby="licitaciones-label"><g:link controller="licitacion" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="licitaciones-label"><g:link controller="proyecto" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

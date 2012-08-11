@@ -7,7 +7,7 @@
 		<g:message code="cliente.razonSocial.label" default="Razon Social" />
 		
 	</label>
-	<g:textField name="razonSocial" value="${clienteInstance?.razonSocial}"/>
+	<g:textField name="razonSocial" maxlength="50" value="${clienteInstance?.razonSocial}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'cuit', 'error')} ">
@@ -74,10 +74,10 @@
 	
 <ul class="one-to-many">
 <g:each in="${clienteInstance?.licitaciones?}" var="l">
-    <li><g:link controller="licitacion" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="proyecto" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
-<g:link controller="licitacion" action="create" params="['cliente.id': clienteInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'licitacion.label', default: 'Licitacion')])}</g:link>
+<g:link controller="proyecto" action="create" params="['cliente.id': clienteInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'proyecto.label', default: 'Proyecto')])}</g:link>
 </li>
 </ul>
 

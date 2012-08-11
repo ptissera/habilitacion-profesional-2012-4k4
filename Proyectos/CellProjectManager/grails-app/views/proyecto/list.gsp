@@ -24,7 +24,11 @@
 				<thead>
 					<tr>
 					
+						<g:sortableColumn property="licitacion" title="${message(code: 'proyecto.licitacion.label', default: 'Licitacion')}" />
+					
 						<g:sortableColumn property="nombre" title="${message(code: 'proyecto.nombre.label', default: 'Nombre')}" />
+					
+						<g:sortableColumn property="descripcion" title="${message(code: 'proyecto.descripcion.label', default: 'Descripcion')}" />
 					
 						<g:sortableColumn property="fechaCreacion" title="${message(code: 'proyecto.fechaCreacion.label', default: 'Fecha Creacion')}" />
 					
@@ -32,27 +36,23 @@
 					
 						<g:sortableColumn property="fechaFin" title="${message(code: 'proyecto.fechaFin.label', default: 'Fecha Fin')}" />
 					
-						<th><g:message code="proyecto.estadoProyecto.label" default="Estado Proyecto" /></th>
-					
-						<th><g:message code="proyecto.licitacion.label" default="Licitacion" /></th>
-					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${proyectoInstanceList}" status="i" var="proyectoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${proyectoInstance.id}">${fieldValue(bean: proyectoInstance, field: "nombre")}</g:link></td>
+						<td><g:link action="show" id="${proyectoInstance.id}">${fieldValue(bean: proyectoInstance, field: "licitacion")}</g:link></td>
+					
+						<td>${fieldValue(bean: proyectoInstance, field: "nombre")}</td>
+					
+						<td>${fieldValue(bean: proyectoInstance, field: "descripcion")}</td>
 					
 						<td><g:formatDate date="${proyectoInstance.fechaCreacion}" /></td>
 					
 						<td><g:formatDate date="${proyectoInstance.fechaInicio}" /></td>
 					
 						<td><g:formatDate date="${proyectoInstance.fechaFin}" /></td>
-					
-						<td>${fieldValue(bean: proyectoInstance, field: "estadoProyecto")}</td>
-					
-						<td>${fieldValue(bean: proyectoInstance, field: "licitacion")}</td>
 					
 					</tr>
 				</g:each>

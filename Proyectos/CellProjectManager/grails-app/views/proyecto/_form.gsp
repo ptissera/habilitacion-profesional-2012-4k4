@@ -2,12 +2,28 @@
 
 
 
+<div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'licitacion', 'error')} ">
+	<label for="licitacion">
+		<g:message code="proyecto.licitacion.label" default="Licitacion" />
+		
+	</label>
+	<g:textField name="licitacion" value="${proyectoInstance?.licitacion}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'nombre', 'error')} ">
 	<label for="nombre">
 		<g:message code="proyecto.nombre.label" default="Nombre" />
 		
 	</label>
 	<g:textField name="nombre" value="${proyectoInstance?.nombre}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'descripcion', 'error')} ">
+	<label for="descripcion">
+		<g:message code="proyecto.descripcion.label" default="Descripcion" />
+		
+	</label>
+	<g:textField name="descripcion" value="${proyectoInstance?.descripcion}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'fechaCreacion', 'error')} required">
@@ -42,14 +58,6 @@
 	<g:select id="estadoProyecto" name="estadoProyecto.id" from="${business.core.EstadoProyecto.list()}" optionKey="id" required="" value="${proyectoInstance?.estadoProyecto?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'licitacion', 'error')} required">
-	<label for="licitacion">
-		<g:message code="proyecto.licitacion.label" default="Licitacion" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="licitacion" name="licitacion.id" from="${business.core.Licitacion.list()}" optionKey="id" required="" value="${proyectoInstance?.licitacion?.id}" class="many-to-one"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'usuario', 'error')} ">
 	<label for="usuario">
 		<g:message code="proyecto.usuario.label" default="Usuario" />
@@ -63,6 +71,14 @@
 		<g:message code="proyecto.solicitudes.label" default="Solicitudes" />
 		
 	</label>
-	<g:select name="solicitudes" from="${business.core.SolicitudDeTarea.list()}" multiple="multiple" optionKey="id" size="5" value="${proyectoInstance?.solicitudes*.id}" class="many-to-many"/>
+	<g:select name="solicitudes" from="${business.tarea.SolicitudDeTarea.list()}" multiple="multiple" optionKey="id" size="5" value="${proyectoInstance?.solicitudes*.id}" class="many-to-many"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'cliente', 'error')} required">
+	<label for="cliente">
+		<g:message code="proyecto.cliente.label" default="Cliente" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="cliente" name="cliente.id" from="${business.core.Cliente.list()}" optionKey="id" required="" value="${proyectoInstance?.cliente?.id}" class="many-to-one"/>
 </div>
 

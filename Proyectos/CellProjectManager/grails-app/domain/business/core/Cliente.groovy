@@ -2,7 +2,7 @@ package business.core
 
 class Cliente {
     
-    static hasMany = [ licitaciones:Licitacion ]
+    static hasMany = [ licitaciones:Proyecto ]
     String razonSocial
     String cuit
     String direccion
