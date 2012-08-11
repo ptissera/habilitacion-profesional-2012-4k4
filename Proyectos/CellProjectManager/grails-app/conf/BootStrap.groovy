@@ -12,6 +12,7 @@ class BootStrap {
         initTipos()
         initEstados()
         initCliente()
+        initProvincia()
     }
     
     def initRolAndUsuarios(){
@@ -144,6 +145,40 @@ class BootStrap {
             contactoEmail: 'juan.lemperd@nokia.com')
             cliente2.save(flush: true, insert: true)
         }
+    }
+    
+     def initProvincia(){
+        def provincia1=Provincia.findByNombre('CORDOBA')
+        if(!provincia1){
+            provincia1 = new Provincia(nombre: 'CORDOBA')
+            provincia1.save(flush: true, insert: true)
+        }
+        def provincia2=Provincia.findByNombre('BUENOS AIRES')
+        if(!provincia2){
+            provincia2 = new Provincia(nombre: 'BUENOS AIRES')
+            provincia2.save(flush: true, insert: true)
+        }
+        def provincia3=Provincia.findByNombre('SANTA FE')
+        if(!provincia3){
+            provincia3 = new Provincia(nombre: 'SANTA FE')
+            provincia3.save(flush: true, insert: true)
+        }
+         def provincia4=Provincia.findByNombre('CORRIENTES')
+        if(!provincia4){
+            provincia4 = new Provincia(nombre: 'CORRIENTES')
+            provincia4.save(flush: true, insert: true)
+        }
+        def provincia5=Provincia.findByNombre('MISIONES')
+        if(!provincia5){
+            provincia5 = new Provincia(nombre: 'MISIONES')
+            provincia5.save(flush: true, insert: true)
+        }
+         def provincia6=Provincia.findByNombre('CATAMARCA')
+        if(!provincia6){
+            provincia6 = new Provincia(nombre: 'CATAMARCA')
+            provincia6.save(flush: true, insert: true)
+        }
+        
     }
     
     def destroy = {
