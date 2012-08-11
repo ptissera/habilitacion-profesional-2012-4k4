@@ -1,5 +1,0 @@
-Crear solicitud de tarea
-Modificar solicitud de tarea
-Registar documento solicitud de tarea
-Registrar permiso de acceso
-Iniciar Sesion.

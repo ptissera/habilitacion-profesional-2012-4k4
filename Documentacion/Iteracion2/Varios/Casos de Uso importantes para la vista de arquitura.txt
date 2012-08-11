@@ -1,7 +1,0 @@
-UC Crear solicitud de Tarea
-Uc Generar reporte
-UC ABM Gestionar
-UC Iniciar Sesion
-UC Notificacion Alarma
-UC Registrar acontecimiento en sitio por móvil
-UC Registrar documento de 
