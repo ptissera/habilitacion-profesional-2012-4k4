@@ -1,5 +1,5 @@
 package business.cuadrillas
-import business.core.*
+import business.herramienta.PrestamoHerramienta
 
 class Cuadrilla {
     

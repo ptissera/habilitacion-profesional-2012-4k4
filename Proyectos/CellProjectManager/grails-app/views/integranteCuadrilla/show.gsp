@@ -94,7 +94,8 @@
                 <th><g:message code="documentacionIntegranteCuadrilla.tipoDocumento.label" default="Tipo Documento" /></th>					
             <g:sortableColumn property="vigenciaDesde" title="${message(code: 'documentacionIntegranteCuadrilla.vigenciaDesde.label', default: 'Vigencia Desde')}" />					
             <g:sortableColumn property="vigenciaHasta" title="${message(code: 'documentacionIntegranteCuadrilla.vigenciaHasta.label', default: 'Vigencia Hasta')}" />					
-            <g:sortableColumn property="descripcion" title="${message(code: 'documentacionIntegranteCuadrilla.descripcion.label', default: 'Descripcion')}" />									
+            <g:sortableColumn property="descripcion" title="${message(code: 'documentacionIntegranteCuadrilla.descripcion.label', default: 'Descripcion')}" />								
+            <g:sortableColumn property="tipoDocumento" title="Estado del Documento" />								
             </tr>
             </thead>
             <tbody>
@@ -104,6 +105,7 @@
               <td><g:formatDate format="dd/MM/yyyy" date="${documentacionIntegranteCuadrillaInstance.vigenciaDesde}" /></td>					
               <td><g:formatDate format="dd/MM/yyyy" date="${documentacionIntegranteCuadrillaInstance.vigenciaHasta}" /></td>					
               <td>${fieldValue(bean: documentacionIntegranteCuadrillaInstance, field: "descripcion")}</td>
+              <td>${documentacionIntegranteCuadrillaInstance.estadoDocumento()}</td>
               </tr>
             </g:each>
             </tbody>

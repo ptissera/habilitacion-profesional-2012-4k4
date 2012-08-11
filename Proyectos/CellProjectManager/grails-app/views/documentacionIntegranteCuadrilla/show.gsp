@@ -22,6 +22,13 @@
 			</g:if>
 			<ol class="property-list documentacionIntegranteCuadrilla">
 			
+                                <li class="fieldcontain">
+					<span id="vigenciaDesde-label" class="property-label">Estado del documento</span>
+					
+						<span class="property-value" aria-labelledby="vigenciaDesde-label">${documentacionIntegranteCuadrillaInstance.estadoDocumento()}</span>
+					
+				</li>
+                                
 				<g:if test="${documentacionIntegranteCuadrillaInstance?.vigenciaDesde}">
 				<li class="fieldcontain">
 					<span id="vigenciaDesde-label" class="property-label"><g:message code="documentacionIntegranteCuadrilla.vigenciaDesde.label" default="Vigencia Desde" /></span>
@@ -58,6 +65,7 @@
 				</li>
 				</g:if>
 			
+                                
 							
 			</ol>
 			<g:form>

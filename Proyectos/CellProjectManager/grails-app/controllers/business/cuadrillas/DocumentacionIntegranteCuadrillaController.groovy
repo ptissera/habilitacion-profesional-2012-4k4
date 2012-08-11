@@ -38,7 +38,7 @@ class DocumentacionIntegranteCuadrillaController {
 
     def show() {
         def integranteCuadrillaInstance=(IntegranteCuadrilla)session.getAttribute("integranteCuadrillaSelected") 
-        def documentacionIntegranteCuadrillaInstance = DocumentacionIntegranteCuadrilla.get(params.id)
+        def documentacionIntegranteCuadrillaInstance = DocumentacionIntegranteCuadrilla.get(params.id)        
         if (!documentacionIntegranteCuadrillaInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), params.id])
             redirect(action: "show",controller: "integranteCuadrilla", id: documentacionIntegranteCuadrillaInstance.id)

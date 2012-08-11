@@ -1,6 +1,9 @@
 import support.secure.*
 import business.cuadrillas.*
+import business.herramienta.*
 import business.core.*
+import business.tarea.*
+import business.documento.*
 
 class BootStrap {
     
@@ -85,7 +88,7 @@ class BootStrap {
         
     }
     
-    def initEstados(){
+    def initEstados(){        
         def estadoCuadrilla1=EstadoCuadrilla.findByNombre('Sin Asignacion')
         if(!estadoCuadrilla1){
             estadoCuadrilla1 = new EstadoCuadrilla(nombre: 'Sin Asignacion', 
@@ -98,6 +101,27 @@ class BootStrap {
             estadoCuadrilla2 = new EstadoCuadrilla(nombre: 'Asignada', 
                 descripcion: 'Cuadrilla asignada')
             estadoCuadrilla2.save(flush: true, insert: true)
+        }
+        
+        def estadoHerramienta1=EstadoHerramienta.findByNombre('Prestada')
+        if(!estadoHerramienta1){
+            estadoHerramienta1 = new EstadoHerramienta(nombre: 'Prestada', 
+                descripcion: 'Herramienta presatada alguna Cuadrilla')
+            estadoHerramienta1.save(flush: true, insert: true)            
+        }
+        
+        def estadoHerramienta2=EstadoHerramienta.findByNombre('Libre')
+        if(!estadoHerramienta2){
+            estadoHerramienta2 = new EstadoHerramienta(nombre: 'Libre', 
+                descripcion: 'Disponible para prestamo')
+            estadoHerramienta2.save(flush: true, insert: true)
+        }
+        
+        def estadoHerramienta3=EstadoHerramienta.findByNombre('No disponible')
+        if(!estadoHerramienta3){
+            estadoHerramienta3 = new EstadoHerramienta(nombre: 'No disponible', 
+                descripcion: 'Herramienta averiada o en mantenimiento')
+            estadoHerramienta3.save(flush: true, insert: true)
         }
         
     }

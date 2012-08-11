@@ -16,14 +16,16 @@ class DocumentacionIntegranteCuadrilla {
     
     def checkVencimiento(){
         def diffDate = getVigenciaHasta() - new Date()
-        if(diffDate.days >=0 ){
-            return ["-1","Vencido"]    
-        } else if(diffDate.days < 0  && diffDate.days >= tipoDocumento.getDiaAntesVencimiento()){
-            return ["0","Actualizar"]    
-        }else{
-            return ["1","Sin Problema"]    
+        return (diffDate <=0 ? 1:(diffDate > 0  && diffDate <= tipoDocumento.getDiaAntesVencimiento()?2:3))        
+    }
+    
+    def estadoDocumento(){
+        switch (checkVencimiento()){
+            case 1: return "Vencido"
+            case 2: return "Necesita Actualizar"
+            case 3: return "Actualizado"
+            default: return ""
         }
-        
     }
     
     @Override String toString() {
