@@ -1,0 +1,36 @@
+Agregar nombre a Solicitud de Tarea en diagrama de clases
+cuando dice "18.	El SISTEMA registra el documento a la solicitud de tarea con los siguientes datos: 
+   tipo de documento, descripción, fecha de registración, documento adjunto y 
+   si se indico que tiene fecha de vencimiento: fecha a partir de la cual contar los días de vigencia, cantidad de días de vigencias."
+preguntas:
+- descripcion de que? del tipo de documento? o del documento en si? si es el de documento en si, falta agregar que el usuario lo ingrese por pantalla.
+- que es Fecha de vencimiento? porque la unica fecha que pide es fecha de realizacion. Si se necesita una fecha de vencimiento, falta agregar el ingreso del usuario.
+
+Como se hace iteacion iniciar sesion
+
+Sesion, falta estado de sesion
+
+
+
+CU Modificar Solicitud de tarea:
+monto por defecto de tipo de tarea donde esta?
+
+CU crear solicitud tarea
+falta clase provincia
+al tipotarea le falta campo montoestimado
+
+
+CURegistrarPermiso
+
+5.	El SISTEMA busca las solicitudes de tareas que tengan por lo menos un sitio sin permiso de acceso, y muestra por cada una su identificador, nombre y provincia de cada sitio.
+NOmbre de solicitud de tarea o de la tarea en si?
+
+
+CUGenerarReporteDocumentoIntegrante
+
+El ingreso de integrante y cuadrilla no deberia ser manual, sino seleccionado.
+Se podria guardar el reporte y permitir imprimir.
+
+
+GENERAL:
+ver diagrama de col, cuando se crea nuevo objeto que tiene referencia
