@@ -12,10 +12,10 @@ class Tarea {
     Date fechaAlta
     
     static constraints = {
-        descripcion(black:false)
-        monto(black:false)
-        observaciones(black:true, nullable:true)
-        fechaAlta(black:false)
+        descripcion(blank:false)
+        monto(blank:false)
+        observaciones(blank:true, nullable:true)
+        fechaAlta(blank:false)
         estado()
         tipo()
         tareaSitio()

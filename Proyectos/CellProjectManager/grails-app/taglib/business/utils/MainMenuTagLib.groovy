@@ -7,7 +7,8 @@ class MainMenuTagLib {
         
         tituloItemMenu("Proyectos")  
 	subItemMenu([["cliente","Clientes"],                     
-                     ["proyecto","Proyectos"]])
+                     ["proyecto","Proyectos"],
+                     ["sitio","Sitios"]])
                               	
 	tituloItemMenu("Soporte Usuarios")
         subItemMenu([["usuario","Usuarios"],

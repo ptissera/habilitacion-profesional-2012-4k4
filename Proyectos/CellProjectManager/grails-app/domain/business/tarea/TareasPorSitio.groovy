@@ -13,7 +13,7 @@ class TareasPorSitio {
     
     static constraints = {
         ordenEjecucion(min:1)
-        fechaInicio(black:false)
+        fechaInicio(blank:false)
         sitio()
         tarea()
         solicitudDeTarea()

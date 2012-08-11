@@ -13,7 +13,7 @@ class SolicitudDeTarea {
     Date fechaAlta
     
     static constraints = {
-        fechaAlta(black:true)
+        fechaAlta(blank:true)
         tareasPorSitio()
         po()
         cuadrilla()

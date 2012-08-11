@@ -14,13 +14,13 @@ class Cliente {
     
     static constraints = {
         razonSocial(size:3..50, unique: true)
-        cuit(black:false, unique: true)
-        telefono(black:false)
-        direccion(black:false)
+        cuit(blank:false, unique: true)
+        telefono(blank:false)
+        direccion(blank:false)
         email(email:true, blank: false)
-        contactoNombre(black:false)
-        contactoTelefono(black:false)
-        contactoEmail(email:true, black:false)
+        contactoNombre(blank:false)
+        contactoTelefono(blank:false)
+        contactoEmail(email:true, blank:false)
         licitaciones()
     }
     
