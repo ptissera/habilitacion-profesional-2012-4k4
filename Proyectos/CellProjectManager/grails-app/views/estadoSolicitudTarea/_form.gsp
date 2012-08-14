@@ -23,6 +23,15 @@
 		<g:message code="estadoSolicitudTarea.solicitudes.label" default="Solicitudes" />
 		
 	</label>
-	<g:select name="solicitudes" from="${business.tarea.SolicitudDeTarea.list()}" multiple="multiple" optionKey="id" size="5" value="${estadoSolicitudTareaInstance?.solicitudes*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${estadoSolicitudTareaInstance?.solicitudes?}" var="s">
+    <li><g:link controller="solicitudDeTarea" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="solicitudDeTarea" action="create" params="['estadoSolicitudTarea.id': estadoSolicitudTareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'solicitudDeTarea.label', default: 'SolicitudDeTarea')])}</g:link>
+</li>
+</ul>
+
 </div>
 

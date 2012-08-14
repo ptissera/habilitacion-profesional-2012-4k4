@@ -73,110 +73,160 @@ class BootStrap {
     }
     
     def initTipos(){
-        def tipoDocIntCuadrilla1=TipoDocumentacionIntegranteCuadrilla.findByNombre('Seguro de vida')
-        if(!tipoDocIntCuadrilla1){
-            tipoDocIntCuadrilla1 = new TipoDocumentacionIntegranteCuadrilla(nombre: 'Seguro de vida', 
-                descripcion: 'Seguro de vida obligatorio ley 3323', diaAntesVencimiento: 15)
-            tipoDocIntCuadrilla1.save(flush: true, insert: true)
-        }
         
-        def tipoDocIntCuadrilla2=TipoDocumentacionIntegranteCuadrilla.findByNombre('Apto medico')
-        if(!tipoDocIntCuadrilla2){
-            tipoDocIntCuadrilla2 = new TipoDocumentacionIntegranteCuadrilla(nombre: 'Apto medico', 
-                descripcion: 'Certificado Medico apto para trabajos en altura', diaAntesVencimiento: 7)
-            tipoDocIntCuadrilla2.save(flush: true, insert: true)
+        if(!TipoDocumentacionIntegranteCuadrilla.findByNombre('Seguro de vida')){
+            new TipoDocumentacionIntegranteCuadrilla(nombre: 'Seguro de vida', 
+                descripcion: 'Seguro de vida obligatorio ley 3323', 
+                diaAntesVencimiento: 15).save(flush: true, insert: true)
+        }        
+        
+        if(!TipoDocumentacionIntegranteCuadrilla.findByNombre('Apto medico')){
+            new TipoDocumentacionIntegranteCuadrilla(nombre: 'Apto medico', 
+                descripcion: 'Certificado Medico apto para trabajos en altura', 
+                diaAntesVencimiento: 7).save(flush: true, insert: true)
         }
         
     }
     
     def initEstados(){        
-        def estadoCuadrilla1=EstadoCuadrilla.findByNombre('Sin Asignacion')
-        if(!estadoCuadrilla1){
+        
+        if(!EstadoCuadrilla.findByNombre('Sin Asignacion')){
             estadoCuadrilla1 = new EstadoCuadrilla(nombre: 'Sin Asignacion', 
-                descripcion: 'Cuadrilla no asignada')
-            estadoCuadrilla1.save(flush: true, insert: true)
+                descripcion: 'Cuadrilla no asignada').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoCuadrilla.findByNombre('Asignada')){
+            new EstadoCuadrilla(nombre: 'Asignada', 
+                descripcion: 'Cuadrilla asignada').save(flush: true, insert: true)
         }
         
-        def estadoCuadrilla2=EstadoCuadrilla.findByNombre('Asignada')
-        if(!estadoCuadrilla2){
-            estadoCuadrilla2 = new EstadoCuadrilla(nombre: 'Asignada', 
-                descripcion: 'Cuadrilla asignada')
-            estadoCuadrilla2.save(flush: true, insert: true)
+        if(!EstadoHerramienta.findByNombre('Prestada')){
+            new EstadoHerramienta(nombre: 'Prestada', 
+                descripcion: 'Herramienta presatada alguna Cuadrilla').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoHerramienta.findByNombre('Libre')){
+            new EstadoHerramienta(nombre: 'Libre', 
+                descripcion: 'Disponible para prestamo').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoHerramienta.findByNombre('No disponible')){
+            new EstadoHerramienta(nombre: 'No disponible', 
+                descripcion: 'Herramienta averiada o en mantenimiento').save(flush: true, insert: true)
         }
         
-        def estadoHerramienta1=EstadoHerramienta.findByNombre('Prestada')
-        if(!estadoHerramienta1){
-            estadoHerramienta1 = new EstadoHerramienta(nombre: 'Prestada', 
-                descripcion: 'Herramienta presatada alguna Cuadrilla')
-            estadoHerramienta1.save(flush: true, insert: true)            
+        
+        if(!EstadoProyecto.findByNombre('Creado')){
+           new EstadoProyecto(nombre: 'Creado', 
+                descripcion: 'Creado').save(flush: true, insert: true)
         }
         
-        def estadoHerramienta2=EstadoHerramienta.findByNombre('Libre')
-        if(!estadoHerramienta2){
-            estadoHerramienta2 = new EstadoHerramienta(nombre: 'Libre', 
-                descripcion: 'Disponible para prestamo')
-            estadoHerramienta2.save(flush: true, insert: true)
+        if(!EstadoProyecto.findByNombre('Activo')){
+           new EstadoProyecto(nombre: 'Activo', 
+                descripcion: 'Activo').save(flush: true, insert: true)
         }
         
-        def estadoHerramienta3=EstadoHerramienta.findByNombre('No disponible')
-        if(!estadoHerramienta3){
-            estadoHerramienta3 = new EstadoHerramienta(nombre: 'No disponible', 
-                descripcion: 'Herramienta averiada o en mantenimiento')
-            estadoHerramienta3.save(flush: true, insert: true)
+        if(!EstadoProyecto.findByNombre('Resuelto')){
+           new EstadoProyecto(nombre: 'Resuelto', 
+                descripcion: 'Resuelto').save(flush: true, insert: true)
+        }
+        
+        if(!EstadoProyecto.findByNombre('Cerrado')){
+           new EstadoProyecto(nombre: 'Cerrado', 
+                descripcion: 'Cerrado').save(flush: true, insert: true)
+        }
+        
+        if(!EstadoProyecto.findByNombre('Cancelado')){
+           new EstadoProyecto(nombre: 'Cancelado', 
+                descripcion: 'Cancelado').save(flush: true, insert: true)
+        }
+        
+//        if(!EstadoSolicitudTarea.findByNombre('Pendiente')){
+//           new EstadoSolicitudTarea(nombre: 'Pendiente', 
+//                descripcion: 'Pendiente').save(flush: true, insert: true)
+//        }
+//        
+//        if(!EstadoSolicitudTarea.findByNombre('En Ejecucion')){
+//           new EstadoSolicitudTarea(nombre: 'En Ejecucion', 
+//                descripcion: 'En Ejecucion').save(flush: true, insert: true)
+//        }
+//        
+//        if(!EstadoSolicitudTarea.findByNombre('Resuelto')){
+//           new EstadoSolicitudTarea(nombre: 'Resuelto', 
+//                descripcion: 'Resuelto').save(flush: true, insert: true)
+//        }
+//        
+//        if(!EstadoSolicitudTarea.findByNombre('Cerrado')){
+//           new EstadoSolicitudTarea(nombre: 'Cerrado', 
+//                descripcion: 'Cerrado').save(flush: true, insert: true)
+//        }
+        
+        if(!EstadoTarea.findByNombre('Pendiente')){
+           new EstadoTarea(nombre: 'Pendiente', 
+                descripcion: 'Pendiente').save(flush: true, insert: true)
+        }
+        
+        if(!EstadoTarea.findByNombre('En Ejecucion')){
+           new EstadoTarea(nombre: 'En Ejecucion', 
+                descripcion: 'En Ejecucion').save(flush: true, insert: true)
+        }
+        
+        if(!EstadoTarea.findByNombre('Resuelto')){
+           new EstadoTarea(nombre: 'Resuelto', 
+                descripcion: 'Resuelto').save(flush: true, insert: true)
+        }
+        
+        if(!EstadoTarea.findByNombre('Cerrado')){
+           new EstadoTarea(nombre: 'Cerrado', 
+                descripcion: 'Cerrado').save(flush: true, insert: true)
         }
         
     }
     
     def initCliente(){
-        def cliente1=Cliente.findByRazonSocial('Claro SA')
-        if(!cliente1){
-            cliente1 = new Cliente(razonSocial: 'Claro SA', 
+        
+        if(!Cliente.findByRazonSocial('Claro SA')){
+            new Cliente(razonSocial: 'Claro SA', 
                 telefono: '334443444', email: 'claro@claro.com', direccion: 'Av Sabatini 650, Cordoba Capital',
             cuit: '34-2344432344-3', contactoNombre: 'Luis Chamorro', contactoTelefono: '1232133323', 
-            contactoEmail: 'luis.chamorro@claro.com')
-            cliente1.save(flush: true, insert: true)
+            contactoEmail: 'luis.chamorro@claro.com').save(flush: true, insert: true)
         }
         
-        def cliente2=Cliente.findByRazonSocial('Nokia SA')
-        if(!cliente2){
-            cliente2 = new Cliente(razonSocial: 'Nokia SA', 
+        
+        if(!Cliente.findByRazonSocial('Nokia SA')){
+            new Cliente(razonSocial: 'Nokia SA', 
                 telefono: '73645534', email: 'nokia@nokia.com', direccion: '27 de Abril 763, Cordoba Capital',
             cuit: '20-223444344-3', contactoNombre: 'Juan Lemperd', contactoTelefono: '144255553', 
-            contactoEmail: 'juan.lemperd@nokia.com')
-            cliente2.save(flush: true, insert: true)
+            contactoEmail: 'juan.lemperd@nokia.com').save(flush: true, insert: true)
         }
     }
     
      def initProvincia(){
-        def provincia1=Provincia.findByNombre('CORDOBA')
-        if(!provincia1){
-            provincia1 = new Provincia(nombre: 'CORDOBA')
-            provincia1.save(flush: true, insert: true)
-        }
-        def provincia2=Provincia.findByNombre('BUENOS AIRES')
-        if(!provincia2){
-            provincia2 = new Provincia(nombre: 'BUENOS AIRES')
-            provincia2.save(flush: true, insert: true)
-        }
-        def provincia3=Provincia.findByNombre('SANTA FE')
-        if(!provincia3){
-            provincia3 = new Provincia(nombre: 'SANTA FE')
-            provincia3.save(flush: true, insert: true)
-        }
-         def provincia4=Provincia.findByNombre('CORRIENTES')
-        if(!provincia4){
-            provincia4 = new Provincia(nombre: 'CORRIENTES')
-            provincia4.save(flush: true, insert: true)
-        }
-        def provincia5=Provincia.findByNombre('MISIONES')
-        if(!provincia5){
-            provincia5 = new Provincia(nombre: 'MISIONES')
-            provincia5.save(flush: true, insert: true)
-        }
-         def provincia6=Provincia.findByNombre('CATAMARCA')
-        if(!provincia6){
-            provincia6 = new Provincia(nombre: 'CATAMARCA')
-            provincia6.save(flush: true, insert: true)
+        
+        if(!Provincia.findByNombre('CORDOBA')){
+            new Provincia(nombre: 'CORDOBA').save()
+            new Provincia(nombre: 'BUENOS AIRES').save()
+            new Provincia(nombre: 'SALTA').save()
+            new Provincia(nombre: 'JUJUY').save()
+            new Provincia(nombre: 'TUCUMAN').save()
+            new Provincia(nombre: 'CHACO').save()
+            new Provincia(nombre: 'FORMOSA').save()
+            new Provincia(nombre: 'ENTRE RIOS').save()
+            new Provincia(nombre: 'SANTA FE').save()
+            new Provincia(nombre: 'CORRIENTES').save()
+            new Provincia(nombre: 'MISIONES').save()
+            new Provincia(nombre: 'SANTIAGO DEL ESTERO').save()
+            new Provincia(nombre: 'LA RIOJA').save()
+            new Provincia(nombre: 'SAN JUAN').save()
+            new Provincia(nombre: 'SAN LUIS').save()
+            new Provincia(nombre: 'MENDOZA').save()
+            new Provincia(nombre: 'NEUQUEN').save()
+            new Provincia(nombre: 'LA PAMPA').save()
+            new Provincia(nombre: 'RIO NEGRO').save()
+            new Provincia(nombre: 'CHUBUT').save()
+            new Provincia(nombre: 'SANTA CRUZ').save()
+            new Provincia(nombre: 'TIERRA DEL FUEGO').save()
+            new Provincia(nombre: 'CATAMARCA').save(flush: true, insert: true)
         }
         
     }
