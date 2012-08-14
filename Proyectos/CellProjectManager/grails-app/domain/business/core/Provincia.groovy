@@ -1,16 +1,13 @@
 package business.core
 
 class Provincia {
-    
-    static hasMany = [sitios:Sitio]
+    static hasMany = [ sitios:Sitio]  
     String nombre
-    
     static constraints = {
-        nombre(blank:false)
+        nombre(blank:false, unique:true)
         sitios()
     }
-    
     @Override String toString() {
-		return getNombre()
-	}
+	return getNombre()
+    }
 }
