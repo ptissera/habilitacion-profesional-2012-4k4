@@ -48,7 +48,7 @@
 	text-decoration: underline;
 }
 
-.selectedItem a.home, .selectedItem a.cuadrilla, .selectedItem a.operario {
+.selectedItem a.home, .selectedItem a.cuadrilla, .selectedItem a.proyecto, .selectedItem a.operario {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -65,4 +65,8 @@
 
 .selectedItem a.operario {
 	background-image: url(../images/taglib/operario_1.png);
+}
+
+.selectedItem a.proyecto {
+	background-image: url(../images/taglib/proyecto_1.png);
 }

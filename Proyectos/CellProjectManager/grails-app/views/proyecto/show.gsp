@@ -10,8 +10,7 @@
 	<body>
 		<a href="#show-proyecto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+			<ul>				
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
@@ -54,7 +53,7 @@
 				<li class="fieldcontain">
 					<span id="fechaCreacion-label" class="property-label"><g:message code="proyecto.fechaCreacion.label" default="Fecha Creacion" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaCreacion-label"><g:formatDate date="${proyectoInstance?.fechaCreacion}" /></span>
+						<span class="property-value" aria-labelledby="fechaCreacion-label"><g:formatDate  format="dd/MM/yyyy" date="${proyectoInstance?.fechaCreacion}" /></span>
 					
 				</li>
 				</g:if>
@@ -63,7 +62,7 @@
 				<li class="fieldcontain">
 					<span id="fechaInicio-label" class="property-label"><g:message code="proyecto.fechaInicio.label" default="Fecha Inicio" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaInicio-label"><g:formatDate date="${proyectoInstance?.fechaInicio}" /></span>
+						<span class="property-value" aria-labelledby="fechaInicio-label"><g:formatDate  format="dd/MM/yyyy" date="${proyectoInstance?.fechaInicio}" /></span>
 					
 				</li>
 				</g:if>
@@ -72,7 +71,7 @@
 				<li class="fieldcontain">
 					<span id="fechaFin-label" class="property-label"><g:message code="proyecto.fechaFin.label" default="Fecha Fin" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaFin-label"><g:formatDate date="${proyectoInstance?.fechaFin}" /></span>
+						<span class="property-value" aria-labelledby="fechaFin-label"><g:formatDate  format="dd/MM/yyyy" date="${proyectoInstance?.fechaFin}" /></span>
 					
 				</li>
 				</g:if>

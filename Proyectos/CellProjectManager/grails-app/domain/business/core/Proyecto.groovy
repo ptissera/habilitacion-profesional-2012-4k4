@@ -1,6 +1,6 @@
 package business.core
 import support.secure.Usuario
-import business.tarea.SolicitudDeTarea
+import business.tarea.*
 
 class Proyecto {
     
@@ -15,15 +15,15 @@ class Proyecto {
     
     
     static constraints = {
-        licitacion(black:false, unique: true)        
-        nombre(black:false, unique: true)
-        descripcion(black:false)
-        fechaCreacion(black:false)
-        fechaInicio(black:true, nullable:true)
-        fechaFin(black:true, nullable:true)
-        estadoProyecto(black:false)
+        licitacion(blank:false, unique: true)        
+        nombre(blank:false, unique: true)
+        descripcion(blank:false)
+        fechaCreacion(blank:false)
+        fechaInicio(blank:true, nullable:true)
+        fechaFin(blank:true, nullable:true)
+        estadoProyecto(blank:false)
         licitacion()
-        usuario(black:true, nullable:true)
+        usuario(blank:true, nullable:true)
         solicitudes()
     }
     

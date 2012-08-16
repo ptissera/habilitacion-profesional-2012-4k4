@@ -66,14 +66,6 @@
 	<g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'solicitudes', 'error')} ">
-	<label for="solicitudes">
-		<g:message code="proyecto.solicitudes.label" default="Solicitudes" />
-		
-	</label>
-	<g:select name="solicitudes" from="${business.tarea.SolicitudDeTarea.list()}" multiple="multiple" optionKey="id" size="5" value="${proyectoInstance?.solicitudes*.id}" class="many-to-many"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'cliente', 'error')} required">
 	<label for="cliente">
 		<g:message code="proyecto.cliente.label" default="Cliente" />

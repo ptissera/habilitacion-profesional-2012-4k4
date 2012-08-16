@@ -15,6 +15,16 @@ class ProyectoController {
         [proyectoInstanceList: Proyecto.list(params), proyectoInstanceTotal: Proyecto.count()]
     }
 
+    def selectedProject() {
+        session.setAttribute("proyectoSelected", Proyecto.get(params.id))
+        redirect(uri:"/")
+    }
+    
+    def selectList() {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        [proyectoInstanceList: Proyecto.list(params), proyectoInstanceTotal: Proyecto.count()]
+    }
+    
     def create() {
         [proyectoInstance: new Proyecto(params)]
     }

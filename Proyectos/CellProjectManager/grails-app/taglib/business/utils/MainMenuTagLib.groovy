@@ -7,16 +7,17 @@ class MainMenuTagLib {
         
         tituloItemMenu("Proyectos")  
 	subItemMenu([["cliente","Clientes"],                     
-                     ["proyecto","Proyectos"],
-                     ["sitio","Sitios"]])
+                ["proyecto","Proyectos"],
+                ["proyecto","Seleccionar Proyectos","selectList"],
+                ["sitio","Sitios"]])
                               	
 	tituloItemMenu("Soporte Usuarios")
         subItemMenu([["usuario","Usuarios"],
-                     ["rol","Roles"]])
+                ["rol","Roles"]])
 			
-         tituloItemMenu("Cuadrilla")  
-         subItemMenu([["cuadrilla","Cuadrillas"],
-                     ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"]])
+        tituloItemMenu("Cuadrilla")  
+        subItemMenu([["cuadrilla","Cuadrillas"],
+                ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"]])
 			
 	finishMainMenu()
     }
@@ -38,7 +39,12 @@ class MainMenuTagLib {
         datos.each { it ->    
             String controlador = it[0]
             String descripcion = it[1]
-            out << "<li>" + """${link(controller:"$controlador"){descripcion}}""" + "</li>"
+            if(it.size == 3){
+                String vista = it[2]
+                out << "<li>" + """${link(controller:"$controlador",action:"$vista"){descripcion}}""" + "</li>"
+            }else{
+                out << "<li>" + """${link(controller:"$controlador"){descripcion}}""" + "</li>"
+            }
         }
         out << "</ul>"
     }

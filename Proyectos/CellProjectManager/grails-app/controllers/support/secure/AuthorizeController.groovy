@@ -6,6 +6,18 @@ class AuthorizeController {
         //		redirect(action: "login")
     }
 	
+    def home = 
+    {
+        ["cuadrillaSelected",
+         "integranteCuadrillaSelected",
+         "documentacionIntegranteCuadrillaSelectedTF",
+         "historialCuadrillaSelectedTF"].each{ name ->
+            session.setAttribute(name , null)
+        }
+        
+        redirect(uri:"/")    
+    }
+    
     def login = {    if (session.usuario) {
             redirect(uri:"/")                    
         }
