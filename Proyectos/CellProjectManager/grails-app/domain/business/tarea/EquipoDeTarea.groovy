@@ -2,15 +2,15 @@ package business.tarea
 
 class EquipoDeTarea {
 
-    static belongsTo = [tipo: TipoEquipoDeTarea, tarea: Tarea]
+    static belongsTo = [tipo: TipoEquipoDeTarea, tareasPorSitio: TareasPorSitio]
     String numeroSerie
     String descripcion
     
     static constraints = {
         numeroSerie(blank: false, unique: true)
         descripcion(blank: false)
-        tarea()
         tipo()
+        tareasPorSitio()
     }
     
      @Override String toString() {

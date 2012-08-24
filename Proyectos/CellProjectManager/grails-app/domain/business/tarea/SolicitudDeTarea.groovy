@@ -1,24 +1,27 @@
 package business.tarea
 
+
 import business.core.Pago
 import business.core.PO
 import business.core.Proyecto
 import business.cuadrillas.Cuadrilla
+import business.herramienta.PrestamoHerramienta
 
 class SolicitudDeTarea {
 
-    static hasMany = [tareasPorSitio: TareasPorSitio, po: PO, cuadrilla: Cuadrilla]
-    static belongsTo = [pago: Pago, proyecto: Proyecto, estado: EstadoSolicitudTarea]
+    static hasMany = [pagos: Pago, tareasPorSitio: TareasPorSitio, pos: PO, prestamos: PrestamoHerramienta]
+    static belongsTo = [proyecto: Proyecto, estado: EstadoSolicitudTarea, cuadrilla: Cuadrilla]
     
     Date fechaAlta
     
     static constraints = {
         fechaAlta(blank:true)
-        tareasPorSitio()
-        po()
-        cuadrilla()
-        pago()
         proyecto()
+        cuadrilla()
         estado()
+        tareasPorSitio()
+        pos()        
+        pagos()                
+        prestamos()
     }
 }

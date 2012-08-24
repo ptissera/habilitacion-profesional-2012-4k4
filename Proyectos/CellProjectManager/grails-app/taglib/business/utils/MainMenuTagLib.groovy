@@ -9,7 +9,11 @@ class MainMenuTagLib {
 	subItemMenu([["cliente","Clientes"],                     
                 ["proyecto","Proyectos"],
                 ["proyecto","Seleccionar Proyectos","selectList"],
-                ["sitio","Sitios"]])
+                ["solicitudDeTarea","Listado de Solicitud de Tarea"],
+                ["solicitudDeTarea","Crear Solicitud de Tarea","create"],
+                ["tarea","Tareas"],
+                ["sitio","Sitios"],
+                ["provincia","Provincias"]])
                               	
 	tituloItemMenu("Soporte Usuarios")
         subItemMenu([["usuario","Usuarios"],

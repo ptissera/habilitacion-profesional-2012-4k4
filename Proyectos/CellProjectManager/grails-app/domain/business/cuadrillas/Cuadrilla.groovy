@@ -20,6 +20,28 @@ class Cuadrilla {
         historialDeCambios()
     }
     
+     
+     def checkDocumentacion(){
+        int codigo = 4
+        getOperarios().each{ it ->
+            if(it.checkDocumentacion()<codigo){
+                codigo=it.checkDocumentacion();
+            }
+        }        
+        return codigo
+    }
+    
+    def estadoDocumentacionIcon(){
+        switch (checkDocumentacion()){
+            case 1: return "/images/estados/rojo_1.png"
+            case 2: return "/images/estados/amarillo_1.png"
+            case 3: return "/images/estados/verde_1.png"
+            default: return ""
+        }
+    }
+   
+    
+    
     @Override String toString() {
 		return getNombre()
 	}

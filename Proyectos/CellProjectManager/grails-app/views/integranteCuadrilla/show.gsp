@@ -11,7 +11,7 @@
 		<a href="#show-integranteCuadrilla" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>				
+				 				
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -71,7 +71,7 @@
 				<li class="fieldcontain">
 					<span id="fechaAlta-label" class="property-label"><g:message code="integranteCuadrilla.fechaAlta.label" default="Fecha Alta" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaAlta-label"><g:formatDate date="${integranteCuadrillaInstance?.fechaAlta}" /></span>
+						<span class="property-value" aria-labelledby="fechaAlta-label"><g:formatDate format="dd/MM/yyyy" date="${integranteCuadrillaInstance?.fechaAlta}" /></span>
 					
 				</li>
 				</g:if>
@@ -80,7 +80,7 @@
 				<li class="fieldcontain">
 					<span id="fechaBaja-label" class="property-label"><g:message code="integranteCuadrilla.fechaBaja.label" default="Fecha Baja" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaBaja-label"><g:formatDate date="${integranteCuadrillaInstance?.fechaBaja}" /></span>
+						<span class="property-value" aria-labelledby="fechaBaja-label"><g:formatDate format="dd/MM/yyyy" date="${integranteCuadrillaInstance?.fechaBaja}" /></span>
 					
 				</li>
 				</g:if>
@@ -95,7 +95,7 @@
             <g:sortableColumn property="vigenciaDesde" title="${message(code: 'documentacionIntegranteCuadrilla.vigenciaDesde.label', default: 'Vigencia Desde')}" />					
             <g:sortableColumn property="vigenciaHasta" title="${message(code: 'documentacionIntegranteCuadrilla.vigenciaHasta.label', default: 'Vigencia Hasta')}" />					
             <g:sortableColumn property="descripcion" title="${message(code: 'documentacionIntegranteCuadrilla.descripcion.label', default: 'Descripcion')}" />								
-            <g:sortableColumn property="tipoDocumento" title="Estado del Documento" />								
+            <g:sortableColumn property="tipoDocumento" title="Estado" />								
             </tr>
             </thead>
             <tbody>
@@ -105,7 +105,7 @@
               <td><g:formatDate format="dd/MM/yyyy" date="${documentacionIntegranteCuadrillaInstance.vigenciaDesde}" /></td>					
               <td><g:formatDate format="dd/MM/yyyy" date="${documentacionIntegranteCuadrillaInstance.vigenciaHasta}" /></td>					
               <td>${fieldValue(bean: documentacionIntegranteCuadrillaInstance, field: "descripcion")}</td>
-              <td>${documentacionIntegranteCuadrillaInstance.estadoDocumento()}</td>
+              <td><g:img uri="${documentacionIntegranteCuadrillaInstance.estadoDocumentoIcon()}" /></td>
               </tr>
             </g:each>
             </tbody>

@@ -22,6 +22,26 @@ class IntegranteCuadrilla {
         fechaBaja(black:true, nullable:true)
     }
     
+     def checkDocumentacion(){
+        int codigo = 4
+        getDocumentacion().each{ it ->
+            if(it.checkVencimiento()<codigo){
+                codigo=it.checkVencimiento();
+            }
+        }        
+        return codigo
+    }
+    
+    def estadoDocumentacionIcon(){
+        switch (checkDocumentacion()){
+            case 1: return "/images/estados/rojo_1.png"
+            case 2: return "/images/estados/amarillo_1.png"
+            case 3: return "/images/estados/verde_1.png"
+            default: return ""
+        }
+    }
+   
+    
     @Override String toString() {
 		return getApellido() + ", " + getNombre()
 	}

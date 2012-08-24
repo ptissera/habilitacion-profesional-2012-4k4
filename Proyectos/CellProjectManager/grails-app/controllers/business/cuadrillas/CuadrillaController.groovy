@@ -78,10 +78,7 @@ class CuadrillaController {
             render(view: "edit", model: [cuadrillaInstance: cuadrillaInstance])
             return
         }
-        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: cuadrilaInstance)       
-        historial.setDescripcion(" Cuadrilla -- Modificada -- (cuadrilaInstance)")
-        historial.save()
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'cuadrilla.label', default: 'Cuadrilla'), cuadrillaInstance.id])
+     	flash.message = message(code: 'default.updated.message', args: [message(code: 'cuadrilla.label', default: 'Cuadrilla'), cuadrillaInstance.id])
         redirect(action: "show", id: cuadrillaInstance.id)
     }
 

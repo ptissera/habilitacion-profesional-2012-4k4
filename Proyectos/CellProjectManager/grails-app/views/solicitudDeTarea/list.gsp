@@ -11,7 +11,7 @@
 		<a href="#list-solicitudDeTarea" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				 
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -26,9 +26,9 @@
 					
 						<g:sortableColumn property="fechaAlta" title="${message(code: 'solicitudDeTarea.fechaAlta.label', default: 'Fecha Alta')}" />
 					
-						<th><g:message code="solicitudDeTarea.pago.label" default="Pago" /></th>
-					
 						<th><g:message code="solicitudDeTarea.proyecto.label" default="Proyecto" /></th>
+					
+						<th><g:message code="solicitudDeTarea.cuadrilla.label" default="Cuadrilla" /></th>
 					
 						<th><g:message code="solicitudDeTarea.estado.label" default="Estado" /></th>
 					
@@ -40,9 +40,9 @@
 					
 						<td><g:link action="show" id="${solicitudDeTareaInstance.id}">${fieldValue(bean: solicitudDeTareaInstance, field: "fechaAlta")}</g:link></td>
 					
-						<td>${fieldValue(bean: solicitudDeTareaInstance, field: "pago")}</td>
-					
 						<td>${fieldValue(bean: solicitudDeTareaInstance, field: "proyecto")}</td>
+					
+						<td>${fieldValue(bean: solicitudDeTareaInstance, field: "cuadrilla")}</td>
 					
 						<td>${fieldValue(bean: solicitudDeTareaInstance, field: "estado")}</td>
 					

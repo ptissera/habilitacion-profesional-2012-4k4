@@ -15,7 +15,7 @@
 		<g:message code="materialDeTarea.cantidad.label" default="Cantidad" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="number" name="cantidad" min="0" required="" value="${materialDeTareaInstance.cantidad}"/>
+	<g:field type="number" name="cantidad" min="1" required="" value="${materialDeTareaInstance.cantidad}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: materialDeTareaInstance, field: 'esDeCliente', 'error')} ">
@@ -34,11 +34,11 @@
 	<g:select id="unidad" name="unidad.id" from="${business.tarea.UnidadMedida.list()}" optionKey="id" required="" value="${materialDeTareaInstance?.unidad?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: materialDeTareaInstance, field: 'tarea', 'error')} required">
-	<label for="tarea">
-		<g:message code="materialDeTarea.tarea.label" default="Tarea" />
+<div class="fieldcontain ${hasErrors(bean: materialDeTareaInstance, field: 'tareasPorSitio', 'error')} required">
+	<label for="tareasPorSitio">
+		<g:message code="materialDeTarea.tareasPorSitio.label" default="Tareas Por Sitio" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="tarea" name="tarea.id" from="${business.tarea.Tarea.list()}" optionKey="id" required="" value="${materialDeTareaInstance?.tarea?.id}" class="many-to-one"/>
+	<g:select id="tareasPorSitio" name="tareasPorSitio.id" from="${business.tarea.TareasPorSitio.list()}" optionKey="id" required="" value="${materialDeTareaInstance?.tareasPorSitio?.id}" class="many-to-one"/>
 </div>
 

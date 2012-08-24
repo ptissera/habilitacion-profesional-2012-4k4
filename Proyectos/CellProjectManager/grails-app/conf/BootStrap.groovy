@@ -10,8 +10,8 @@ import business.tarea.EstadoSolicitudTarea
 import business.tarea.EstadoTarea
 import business.tarea.TipoEquipoDeTarea
 import business.tarea.TipoMaterialDeTarea
-import business.tarea.TipoTarea
 import business.documento.TipoDocumento
+import business.documento.EstadoDocumento
 
 class BootStrap {
     
@@ -92,6 +92,16 @@ class BootStrap {
             new TipoDocumentacionIntegranteCuadrilla(nombre: 'Apto medico', 
                 descripcion: 'Certificado Medico apto para trabajos en altura', 
                 diaAntesVencimiento: 7).save(flush: true, insert: true)
+        }
+        
+        if(!TipoDocumento.findByNombre('Protocolos')){
+            new TipoDocumento(nombre: 'Protocolos', 
+                descripcion: 'Protocolos contemplados en el trabajo').save(flush: true, insert: true)
+        }
+        
+        if(!TipoDocumento.findByNombre('CAO')){
+            new TipoDocumento(nombre: 'CAO', 
+                descripcion: 'Conformidad De Obra').save(flush: true, insert: true)
         }
         
     }
@@ -189,6 +199,30 @@ class BootStrap {
                 descripcion: 'Cerrado').save(flush: true, insert: true)
         }
         
+        if(!EstadoDocumento.findByNombre('Creado')){
+           new EstadoDocumento(nombre: 'Creado', 
+                descripcion: 'Creado').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoDocumento.findByNombre('Enviado')){
+           new EstadoDocumento(nombre: 'Enviado', 
+                descripcion: 'Enviado').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoDocumento.findByNombre('Aceptado')){
+           new EstadoDocumento(nombre: 'Aceptado', 
+                descripcion: 'Aceptado').save(flush: true, insert: true)
+        }                
+        
+        if(!EstadoDocumento.findByNombre('Rechazado')){
+           new EstadoDocumento(nombre: 'Rechazado', 
+                descripcion: 'Rechazado').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoDocumento.findByNombre('Incompleto')){
+           new EstadoDocumento(nombre: 'Incompleto', 
+                descripcion: 'Incompleto').save(flush: true, insert: true)
+        }        
     }
     
     def initCliente(){

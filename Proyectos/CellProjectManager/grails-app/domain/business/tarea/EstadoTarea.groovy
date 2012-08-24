@@ -2,14 +2,14 @@ package business.tarea
 
 class EstadoTarea {
 
-    static hasMany = [tareas: Tarea]
+    static hasMany = [tareasPorSitio: TareasPorSitio]
     String nombre
     String descripcion
     
     static constraints = {
         nombre(blank: false, unique: true)
         descripcion(blank: false)
-        tareas()
+        tareasPorSitio()
     }
     
     @Override String toString() {

@@ -34,20 +34,63 @@
 	<g:select id="tarea" name="tarea.id" from="${business.tarea.Tarea.list()}" optionKey="id" required="" value="${tareasPorSitioInstance?.tarea?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'solicitudDeTarea', 'error')} required">
-	<label for="solicitudDeTarea">
-		<g:message code="tareasPorSitio.solicitudDeTarea.label" default="Solicitud De Tarea" />
+<div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'estado', 'error')} required">
+	<label for="estado">
+		<g:message code="tareasPorSitio.estado.label" default="Estado" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="solicitudDeTarea" name="solicitudDeTarea.id" from="${business.tarea.SolicitudDeTarea.list()}" optionKey="id" required="" value="${tareasPorSitioInstance?.solicitudDeTarea?.id}" class="many-to-one"/>
+	<g:select id="estado" name="estado.id" from="${business.tarea.EstadoTarea.list()}" optionKey="id" required="" value="${tareasPorSitioInstance?.estado?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'herramientas', 'error')} ">
-	<label for="herramientas">
-		<g:message code="tareasPorSitio.herramientas.label" default="Herramientas" />
+<div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'documentos', 'error')} ">
+	<label for="documentos">
+		<g:message code="tareasPorSitio.documentos.label" default="Documentos" />
 		
 	</label>
-	<g:select name="herramientas" from="${business.herramienta.PrestamoHerramienta.list()}" multiple="multiple" optionKey="id" size="5" value="${tareasPorSitioInstance?.herramientas*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${tareasPorSitioInstance?.documentos?}" var="d">
+    <li><g:link controller="documento" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="documento" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'documento.label', default: 'Documento')])}</g:link>
+</li>
+</ul>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'materialDeTarea', 'error')} ">
+	<label for="materialDeTarea">
+		<g:message code="tareasPorSitio.materialDeTarea.label" default="Material De Tarea" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${tareasPorSitioInstance?.materialDeTarea?}" var="m">
+    <li><g:link controller="materialDeTarea" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="materialDeTarea" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea')])}</g:link>
+</li>
+</ul>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'equipoDeTarea', 'error')} ">
+	<label for="equipoDeTarea">
+		<g:message code="tareasPorSitio.equipoDeTarea.label" default="Equipo De Tarea" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${tareasPorSitioInstance?.equipoDeTarea?}" var="e">
+    <li><g:link controller="equipoDeTarea" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="equipoDeTarea" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'equipoDeTarea.label', default: 'EquipoDeTarea')])}</g:link>
+</li>
+</ul>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'permisos', 'error')} ">
@@ -55,6 +98,23 @@
 		<g:message code="tareasPorSitio.permisos.label" default="Permisos" />
 		
 	</label>
-	<g:select name="permisos" from="${business.core.PermisoAcceso.list()}" multiple="multiple" optionKey="id" size="5" value="${tareasPorSitioInstance?.permisos*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${tareasPorSitioInstance?.permisos?}" var="p">
+    <li><g:link controller="permisoAcceso" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="permisoAcceso" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso')])}</g:link>
+</li>
+</ul>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'observaciones', 'error')} ">
+	<label for="observaciones">
+		<g:message code="tareasPorSitio.observaciones.label" default="Observaciones" />
+		
+	</label>
+	<g:textField name="observaciones" value="${tareasPorSitioInstance?.observaciones}"/>
 </div>
 

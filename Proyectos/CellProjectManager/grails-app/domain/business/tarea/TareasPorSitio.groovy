@@ -2,22 +2,27 @@ package business.tarea
 import business.core.Sitio
 import business.core.PermisoAcceso
 import business.herramienta.PrestamoHerramienta
+import business.documento.Documento
 
 class TareasPorSitio {
 
-    static belongsTo = [ sitio: Sitio, solicitudDeTarea: SolicitudDeTarea, tarea: Tarea]
-    static hasMany = [ herramientas: PrestamoHerramienta, permisos: PermisoAcceso]
+    static belongsTo = [estado: EstadoTarea, sitio: Sitio, solicitudDeTarea: SolicitudDeTarea, tarea: Tarea]
+    static hasMany = [ documentos: Documento, permisos: PermisoAcceso, materialDeTarea: MaterialDeTarea, equipoDeTarea: EquipoDeTarea]
     
     int ordenEjecucion
     Date fechaInicio
+    String observaciones
     
     static constraints = {
         ordenEjecucion(min:1)
         fechaInicio(blank:false)
         sitio()
         tarea()
+        estado()
+        documentos()
         solicitudDeTarea()
-        herramientas()
+        materialDeTarea()
+        equipoDeTarea()
         permisos()
     }
     

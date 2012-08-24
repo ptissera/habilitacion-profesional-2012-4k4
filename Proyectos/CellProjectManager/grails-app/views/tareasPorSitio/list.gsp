@@ -11,7 +11,7 @@
 		<a href="#list-tareasPorSitio" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				 
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -32,6 +32,8 @@
 					
 						<th><g:message code="tareasPorSitio.tarea.label" default="Tarea" /></th>
 					
+						<th><g:message code="tareasPorSitio.estado.label" default="Estado" /></th>
+					
 						<th><g:message code="tareasPorSitio.solicitudDeTarea.label" default="Solicitud De Tarea" /></th>
 					
 					</tr>
@@ -47,6 +49,8 @@
 						<td>${fieldValue(bean: tareasPorSitioInstance, field: "sitio")}</td>
 					
 						<td>${fieldValue(bean: tareasPorSitioInstance, field: "tarea")}</td>
+					
+						<td>${fieldValue(bean: tareasPorSitioInstance, field: "estado")}</td>
 					
 						<td>${fieldValue(bean: tareasPorSitioInstance, field: "solicitudDeTarea")}</td>
 					

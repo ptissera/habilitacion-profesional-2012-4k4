@@ -11,7 +11,7 @@
 		<a href="#show-tareasPorSitio" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				 
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
@@ -59,6 +59,26 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${tareasPorSitioInstance?.estado}">
+				<li class="fieldcontain">
+					<span id="estado-label" class="property-label"><g:message code="tareasPorSitio.estado.label" default="Estado" /></span>
+					
+						<span class="property-value" aria-labelledby="estado-label"><g:link controller="estadoTarea" action="show" id="${tareasPorSitioInstance?.estado?.id}">${tareasPorSitioInstance?.estado?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${tareasPorSitioInstance?.documentos}">
+				<li class="fieldcontain">
+					<span id="documentos-label" class="property-label"><g:message code="tareasPorSitio.documentos.label" default="Documentos" /></span>
+					
+						<g:each in="${tareasPorSitioInstance.documentos}" var="d">
+						<span class="property-value" aria-labelledby="documentos-label"><g:link controller="documento" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${tareasPorSitioInstance?.solicitudDeTarea}">
 				<li class="fieldcontain">
 					<span id="solicitudDeTarea-label" class="property-label"><g:message code="tareasPorSitio.solicitudDeTarea.label" default="Solicitud De Tarea" /></span>
@@ -68,12 +88,23 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${tareasPorSitioInstance?.herramientas}">
+				<g:if test="${tareasPorSitioInstance?.materialDeTarea}">
 				<li class="fieldcontain">
-					<span id="herramientas-label" class="property-label"><g:message code="tareasPorSitio.herramientas.label" default="Herramientas" /></span>
+					<span id="materialDeTarea-label" class="property-label"><g:message code="tareasPorSitio.materialDeTarea.label" default="Material De Tarea" /></span>
 					
-						<g:each in="${tareasPorSitioInstance.herramientas}" var="h">
-						<span class="property-value" aria-labelledby="herramientas-label"><g:link controller="prestamoHerramienta" action="show" id="${h.id}">${h?.encodeAsHTML()}</g:link></span>
+						<g:each in="${tareasPorSitioInstance.materialDeTarea}" var="m">
+						<span class="property-value" aria-labelledby="materialDeTarea-label"><g:link controller="materialDeTarea" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${tareasPorSitioInstance?.equipoDeTarea}">
+				<li class="fieldcontain">
+					<span id="equipoDeTarea-label" class="property-label"><g:message code="tareasPorSitio.equipoDeTarea.label" default="Equipo De Tarea" /></span>
+					
+						<g:each in="${tareasPorSitioInstance.equipoDeTarea}" var="e">
+						<span class="property-value" aria-labelledby="equipoDeTarea-label"><g:link controller="equipoDeTarea" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -86,6 +117,15 @@
 						<g:each in="${tareasPorSitioInstance.permisos}" var="p">
 						<span class="property-value" aria-labelledby="permisos-label"><g:link controller="permisoAcceso" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
 						</g:each>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${tareasPorSitioInstance?.observaciones}">
+				<li class="fieldcontain">
+					<span id="observaciones-label" class="property-label"><g:message code="tareasPorSitio.observaciones.label" default="Observaciones" /></span>
+					
+						<span class="property-value" aria-labelledby="observaciones-label"><g:fieldValue bean="${tareasPorSitioInstance}" field="observaciones"/></span>
 					
 				</li>
 				</g:if>

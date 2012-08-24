@@ -28,7 +28,16 @@ class DocumentacionIntegranteCuadrilla {
         }
     }
     
+    def estadoDocumentoIcon(){
+        switch (checkVencimiento()){
+            case 1: return "/images/estados/rojo_1.png"
+            case 2: return "/images/estados/amarillo_1.png"
+            case 3: return "/images/estados/verde_1.png"
+            default: return ""
+        }
+    }
+    
     @Override String toString() {
-        return getTipoDocumento() +", "+ checkVencimiento()
+        return getTipoDocumento()
     }
 }

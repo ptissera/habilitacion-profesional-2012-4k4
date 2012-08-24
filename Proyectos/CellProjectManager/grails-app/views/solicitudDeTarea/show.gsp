@@ -11,7 +11,7 @@
 		<a href="#show-solicitudDeTarea" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				 
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
@@ -32,6 +32,33 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${solicitudDeTareaInstance?.proyecto}">
+				<li class="fieldcontain">
+					<span id="proyecto-label" class="property-label"><g:message code="solicitudDeTarea.proyecto.label" default="Proyecto" /></span>
+					
+						<span class="property-value" aria-labelledby="proyecto-label"><g:link controller="proyecto" action="show" id="${solicitudDeTareaInstance?.proyecto?.id}">${solicitudDeTareaInstance?.proyecto?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${solicitudDeTareaInstance?.cuadrilla}">
+				<li class="fieldcontain">
+					<span id="cuadrilla-label" class="property-label"><g:message code="solicitudDeTarea.cuadrilla.label" default="Cuadrilla" /></span>
+					
+						<span class="property-value" aria-labelledby="cuadrilla-label"><g:link controller="cuadrilla" action="show" id="${solicitudDeTareaInstance?.cuadrilla?.id}">${solicitudDeTareaInstance?.cuadrilla?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${solicitudDeTareaInstance?.estado}">
+				<li class="fieldcontain">
+					<span id="estado-label" class="property-label"><g:message code="solicitudDeTarea.estado.label" default="Estado" /></span>
+					
+						<span class="property-value" aria-labelledby="estado-label"><g:link controller="estadoSolicitudTarea" action="show" id="${solicitudDeTareaInstance?.estado?.id}">${solicitudDeTareaInstance?.estado?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${solicitudDeTareaInstance?.tareasPorSitio}">
 				<li class="fieldcontain">
 					<span id="tareasPorSitio-label" class="property-label"><g:message code="solicitudDeTarea.tareasPorSitio.label" default="Tareas Por Sitio" /></span>
@@ -43,51 +70,35 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${solicitudDeTareaInstance?.po}">
+				<g:if test="${solicitudDeTareaInstance?.pos}">
 				<li class="fieldcontain">
-					<span id="po-label" class="property-label"><g:message code="solicitudDeTarea.po.label" default="Po" /></span>
+					<span id="pos-label" class="property-label"><g:message code="solicitudDeTarea.pos.label" default="Pos" /></span>
 					
-						<g:each in="${solicitudDeTareaInstance.po}" var="p">
-						<span class="property-value" aria-labelledby="po-label"><g:link controller="PO" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						<g:each in="${solicitudDeTareaInstance.pos}" var="p">
+						<span class="property-value" aria-labelledby="pos-label"><g:link controller="PO" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${solicitudDeTareaInstance?.cuadrilla}">
+				<g:if test="${solicitudDeTareaInstance?.pagos}">
 				<li class="fieldcontain">
-					<span id="cuadrilla-label" class="property-label"><g:message code="solicitudDeTarea.cuadrilla.label" default="Cuadrilla" /></span>
+					<span id="pagos-label" class="property-label"><g:message code="solicitudDeTarea.pagos.label" default="Pagos" /></span>
 					
-						<g:each in="${solicitudDeTareaInstance.cuadrilla}" var="c">
-						<span class="property-value" aria-labelledby="cuadrilla-label"><g:link controller="cuadrilla" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						<g:each in="${solicitudDeTareaInstance.pagos}" var="p">
+						<span class="property-value" aria-labelledby="pagos-label"><g:link controller="pago" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${solicitudDeTareaInstance?.pago}">
+				<g:if test="${solicitudDeTareaInstance?.prestamos}">
 				<li class="fieldcontain">
-					<span id="pago-label" class="property-label"><g:message code="solicitudDeTarea.pago.label" default="Pago" /></span>
+					<span id="prestamos-label" class="property-label"><g:message code="solicitudDeTarea.prestamos.label" default="Prestamos" /></span>
 					
-						<span class="property-value" aria-labelledby="pago-label"><g:link controller="pago" action="show" id="${solicitudDeTareaInstance?.pago?.id}">${solicitudDeTareaInstance?.pago?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${solicitudDeTareaInstance?.proyecto}">
-				<li class="fieldcontain">
-					<span id="proyecto-label" class="property-label"><g:message code="solicitudDeTarea.proyecto.label" default="Proyecto" /></span>
-					
-						<span class="property-value" aria-labelledby="proyecto-label"><g:link controller="proyecto" action="show" id="${solicitudDeTareaInstance?.proyecto?.id}">${solicitudDeTareaInstance?.proyecto?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${solicitudDeTareaInstance?.estado}">
-				<li class="fieldcontain">
-					<span id="estado-label" class="property-label"><g:message code="solicitudDeTarea.estado.label" default="Estado" /></span>
-					
-						<span class="property-value" aria-labelledby="estado-label"><g:link controller="estadoSolicitudTarea" action="show" id="${solicitudDeTareaInstance?.estado?.id}">${solicitudDeTareaInstance?.estado?.encodeAsHTML()}</g:link></span>
+						<g:each in="${solicitudDeTareaInstance.prestamos}" var="p">
+						<span class="property-value" aria-labelledby="prestamos-label"><g:link controller="prestamoHerramienta" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>

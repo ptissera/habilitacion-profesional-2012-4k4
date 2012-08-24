@@ -3,21 +3,17 @@ import business.documento.*
 import business.herramienta.*
 class Tarea {
 
-    static belongsTo = [ estado: EstadoTarea, tipo: TipoTarea, tareaSitio: TareasPorSitio]
-    static hasMany = [ documentos:Documento, materiales: MaterialDeTarea, equipos: EquipoDeTarea]   
-    
+    static belongsTo = [ tareasPorSitio: TareasPorSitio]        
+    String nombre
     String descripcion
-    float monto
-    String observaciones
-    Date fechaAlta
     
     static constraints = {
-        descripcion(blank:false)
-        monto(blank:false)
-        observaciones(blank:true, nullable:true)
-        fechaAlta(blank:false)
-        estado()
-        tipo()
-        tareaSitio()
+        nombre(blank: false, unique: true)
+        descripcion(blank: false)
+        tareasPorSitio(nullable: true)
+    }
+    
+    @Override String toString() {
+	return getNombre()
     }
 }

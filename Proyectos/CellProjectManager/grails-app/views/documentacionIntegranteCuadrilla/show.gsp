@@ -11,7 +11,7 @@
 		<a href="#show-documentacionIntegranteCuadrilla" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>				
+				 				
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -33,7 +33,7 @@
 				<li class="fieldcontain">
 					<span id="vigenciaDesde-label" class="property-label"><g:message code="documentacionIntegranteCuadrilla.vigenciaDesde.label" default="Vigencia Desde" /></span>
 					
-						<span class="property-value" aria-labelledby="vigenciaDesde-label"><g:formatDate date="${documentacionIntegranteCuadrillaInstance?.vigenciaDesde}" /></span>
+						<span class="property-value" aria-labelledby="vigenciaDesde-label"><g:formatDate format="dd/MM/yyyy" date="${documentacionIntegranteCuadrillaInstance?.vigenciaDesde}" /></span>
 					
 				</li>
 				</g:if>
@@ -42,7 +42,7 @@
 				<li class="fieldcontain">
 					<span id="vigenciaHasta-label" class="property-label"><g:message code="documentacionIntegranteCuadrilla.vigenciaHasta.label" default="Vigencia Hasta" /></span>
 					
-						<span class="property-value" aria-labelledby="vigenciaHasta-label"><g:formatDate date="${documentacionIntegranteCuadrillaInstance?.vigenciaHasta}" /></span>
+						<span class="property-value" aria-labelledby="vigenciaHasta-label"><g:formatDate format="dd/MM/yyyy" date="${documentacionIntegranteCuadrillaInstance?.vigenciaHasta}" /></span>
 					
 				</li>
 				</g:if>

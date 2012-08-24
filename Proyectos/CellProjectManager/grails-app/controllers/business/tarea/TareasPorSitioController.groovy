@@ -21,13 +21,31 @@ class TareasPorSitioController {
 
     def save() {
         def tareasPorSitioInstance = new TareasPorSitio(params)
-        if (!tareasPorSitioInstance.save(flush: true)) {
-            render(view: "create", model: [tareasPorSitioInstance: tareasPorSitioInstance])
-            return
+        
+        def solicitudDeTareaCreate = session.getAttribute("solicitudDeTareaCreate")
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        if(solicitudDeTareaCreate){
+            tareasPorSitioInstance.setSolicitudDeTarea(solicitudDeTareaCreate)            
+            if (!tareasPorSitioInstance.validate()) {
+                render(view: "create", model: [tareasPorSitioInstance: tareasPorSitioInstance])
+                return
+            }
+        }else{
+            tareasPorSitioInstance.setSolicitudDeTarea(solicitudDeTareaSelected)            
+            
+            if (!tareasPorSitioInstance.save(flush: true)) {
+                render(view: "create", model: [tareasPorSitioInstance: tareasPorSitioInstance])
+                return
+            }
         }
-
 		flash.message = message(code: 'default.created.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), tareasPorSitioInstance.id])
-        redirect(action: "show", id: tareasPorSitioInstance.id)
+        if(solicitudDeTareaCreate){
+            solicitudDeTareaCreate.addToTareasPorSitio(tareasPorSitioInstance)
+            session.setAttribute("solicitudDeTareaCreate", solicitudDeTareaCreate)
+            redirect(controller: "solicitudDeTarea", action: "create")
+        }else{
+            redirect(controller: "solicitudDeTarea", action: "update", id: solicitudDeTareaSelected.id)
+        }
     }
 
     def show() {

@@ -11,7 +11,7 @@
 		<a href="#list-tarea" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				 
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -24,17 +24,9 @@
 				<thead>
 					<tr>
 					
+						<g:sortableColumn property="nombre" title="${message(code: 'tarea.nombre.label', default: 'Nombre')}" />
+					
 						<g:sortableColumn property="descripcion" title="${message(code: 'tarea.descripcion.label', default: 'Descripcion')}" />
-					
-						<g:sortableColumn property="monto" title="${message(code: 'tarea.monto.label', default: 'Monto')}" />
-					
-						<g:sortableColumn property="observaciones" title="${message(code: 'tarea.observaciones.label', default: 'Observaciones')}" />
-					
-						<g:sortableColumn property="fechaAlta" title="${message(code: 'tarea.fechaAlta.label', default: 'Fecha Alta')}" />
-					
-						<th><g:message code="tarea.estado.label" default="Estado" /></th>
-					
-						<th><g:message code="tarea.tipo.label" default="Tipo" /></th>
 					
 					</tr>
 				</thead>
@@ -42,18 +34,10 @@
 				<g:each in="${tareaInstanceList}" status="i" var="tareaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${tareaInstance.id}">${fieldValue(bean: tareaInstance, field: "descripcion")}</g:link></td>
+						<td><g:link action="show" id="${tareaInstance.id}">${fieldValue(bean: tareaInstance, field: "nombre")}</g:link></td>
 					
-						<td>${fieldValue(bean: tareaInstance, field: "monto")}</td>
-					
-						<td>${fieldValue(bean: tareaInstance, field: "observaciones")}</td>
-					
-						<td><g:formatDate date="${tareaInstance.fechaAlta}" /></td>
-					
-						<td>${fieldValue(bean: tareaInstance, field: "estado")}</td>
-					
-						<td>${fieldValue(bean: tareaInstance, field: "tipo")}</td>
-					
+						<td>${fieldValue(bean: tareaInstance, field: "descripcion")}</td>
+										
 					</tr>
 				</g:each>
 				</tbody>

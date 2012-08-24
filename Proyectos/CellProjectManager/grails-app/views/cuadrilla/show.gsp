@@ -45,7 +45,7 @@
 				<li class="fieldcontain">
 					<span id="propia-label" class="property-label"><g:message code="cuadrilla.propia.label" default="Propia" /></span>
 					
-						<span class="property-value" aria-labelledby="propia-label"><g:formatBoolean boolean="${cuadrillaInstance?.propia}" /></span>
+						<span class="property-value" aria-labelledby="propia-label"><g:checkBox name="propia" value="${cuadrillaInstance?.propia}"  style="display: block"/></span>
 					
 				</li>
 				</g:if>
@@ -69,6 +69,7 @@
                                                   <g:sortableColumn property="apellido" title="${message(code: 'empleado.apellido.label', default: 'Apellido')}" />					
                                                   <g:sortableColumn property="legajo" title="${message(code: 'empleado.legajo.label', default: 'Legajo')}" />					
                                                   <g:sortableColumn property="telefono" title="${message(code: 'empleado.telefono.label', default: 'Telefono')}" />					
+                                                  <g:sortableColumn property="telefono" title="Estado" />
                                           </tr>
                                   </thead>
                                   <tbody>
@@ -79,6 +80,7 @@
                                                   <td>${fieldValue(bean: integranteCuadrillaInstance, field: "apellido")}</td>					
                                                   <td>${fieldValue(bean: integranteCuadrillaInstance, field: "legajo")}</td>					
                                                   <td>${fieldValue(bean: integranteCuadrillaInstance, field: "telefono")}</td>					
+                                                  <td><g:img uri="${integranteCuadrillaInstance.estadoDocumentacionIcon()}" /></td>
                                           </tr>
                                   </g:each>
                                   </tbody>

@@ -30,6 +30,8 @@
 						<g:sortableColumn property="propia" title="${message(code: 'cuadrilla.propia.label', default: 'Propia')}" />
 					
 						<th><g:message code="cuadrilla.estadoCuadrilla.label" default="Estado Cuadrilla" /></th>
+                                                
+                                                <th><g:message code="cuadrilla.estadoCuadrilla.label" default="Estado Doc" /></th>
 					
 					</tr>
 				</thead>
@@ -44,6 +46,8 @@
 						<td><g:formatBoolean boolean="${cuadrillaInstance.propia}" /></td>
 					
 						<td>${fieldValue(bean: cuadrillaInstance, field: "estadoCuadrilla")}</td>
+                                                
+                                                <td><g:img uri="${cuadrillaInstance.estadoDocumentacionIcon()}" /></td>
 					
 					</tr>
 				</g:each>

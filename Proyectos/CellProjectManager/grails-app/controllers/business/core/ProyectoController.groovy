@@ -17,7 +17,14 @@ class ProyectoController {
 
     def selectedProject() {
         session.setAttribute("proyectoSelected", Proyecto.get(params.id))
-        redirect(uri:"/")
+        
+        if(session.getAttribute("aDondeVoy")) {            
+            def donde = session.getAttribute("aDondeVoy")            
+            session.setAttribute("aDondeVoy",null)            
+            redirect(controller: donde[0], action: donde[1])
+        } else {
+            redirect(uri:"/")
+        }
     }
     
     def selectList() {

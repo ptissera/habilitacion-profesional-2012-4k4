@@ -1,6 +1,7 @@
 package business.tarea
 
 import org.springframework.dao.DataIntegrityViolationException
+import business.core.Proyecto
 
 class SolicitudDeTareaController {
 
@@ -16,15 +17,37 @@ class SolicitudDeTareaController {
     }
 
     def create() {
-        [solicitudDeTareaInstance: new SolicitudDeTarea(params)]
+        Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
+        if(proyectoSelected){
+            def solicitudDeTareaInstance = session.getAttribute("solicitudDeTareaCreate")      
+            if(!solicitudDeTareaInstance){
+         solicitudDeTareaInstance   = new SolicitudDeTarea(params)
+         
+        }
+                       
+            session.setAttribute("solicitudDeTareaCreate",solicitudDeTareaInstance)            
+            [solicitudDeTareaInstance: solicitudDeTareaInstance]
+        }else{
+            session.setAttribute("aDondeVoy",["solicitudDeTarea","create"])
+            redirect(action: "selectList", controller: "proyecto")
+        }
     }
 
     def save() {
-        def solicitudDeTareaInstance = new SolicitudDeTarea(params)
+        Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
+        def solicitudDeTareaInstance = new SolicitudDeTarea(params)        
+        solicitudDeTareaInstance.setFechaAlta(new Date())
+        solicitudDeTareaInstance.setProyecto(proyectoSelected) 
+        def solicitudDeTareaCreateInstance = session.getAttribute("solicitudDeTareaCreate") 
         if (!solicitudDeTareaInstance.save(flush: true)) {
-            render(view: "create", model: [solicitudDeTareaInstance: solicitudDeTareaInstance])
+            render(view: "create", model: [solicitudDeTareaInstance: solicitudDeTareaCreateInstance])
             return
         }
+        
+        
+        solicitudDeTareaCreateInstance.getTareasPorSitio().each(  
+            it.setSolicitudDeTarea(solicitudDeTareaInstance)           
+        )
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'solicitudDeTarea.label', default: 'SolicitudDeTarea'), solicitudDeTareaInstance.id])
         redirect(action: "show", id: solicitudDeTareaInstance.id)

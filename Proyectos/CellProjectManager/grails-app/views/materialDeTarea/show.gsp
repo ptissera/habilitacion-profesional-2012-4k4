@@ -11,7 +11,7 @@
 		<a href="#show-materialDeTarea" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				 
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
@@ -59,11 +59,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${materialDeTareaInstance?.tarea}">
+				<g:if test="${materialDeTareaInstance?.tareasPorSitio}">
 				<li class="fieldcontain">
-					<span id="tarea-label" class="property-label"><g:message code="materialDeTarea.tarea.label" default="Tarea" /></span>
+					<span id="tareasPorSitio-label" class="property-label"><g:message code="materialDeTarea.tareasPorSitio.label" default="Tareas Por Sitio" /></span>
 					
-						<span class="property-value" aria-labelledby="tarea-label"><g:link controller="tarea" action="show" id="${materialDeTareaInstance?.tarea?.id}">${materialDeTareaInstance?.tarea?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="tareasPorSitio-label"><g:link controller="tareasPorSitio" action="show" id="${materialDeTareaInstance?.tareasPorSitio?.id}">${materialDeTareaInstance?.tareasPorSitio?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

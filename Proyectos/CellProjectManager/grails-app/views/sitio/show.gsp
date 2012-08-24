@@ -11,7 +11,7 @@
 		<a href="#show-sitio" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				 
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
@@ -77,17 +77,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${sitioInstance?.tareasPorSitio}">
-				<li class="fieldcontain">
-					<span id="tareasPorSitio-label" class="property-label"><g:message code="sitio.tareasPorSitio.label" default="Tareas Por Sitio" /></span>
-					
-						<g:each in="${sitioInstance.tareasPorSitio}" var="t">
-						<span class="property-value" aria-labelledby="tareasPorSitio-label"><g:link controller="tareasPorSitio" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
+				
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
