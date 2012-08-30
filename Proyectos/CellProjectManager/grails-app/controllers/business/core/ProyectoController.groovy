@@ -28,6 +28,10 @@ class ProyectoController {
     }
     
     def selectList() {
+        def solicitudDeTareaCreate = session.getAttribute("solicitudDeTareaCreate")
+        if (solicitudDeTareaCreate){
+            solicitudDeTareaCreate.delete(flush: true)
+        }
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [proyectoInstanceList: Proyecto.list(params), proyectoInstanceTotal: Proyecto.count()]
     }

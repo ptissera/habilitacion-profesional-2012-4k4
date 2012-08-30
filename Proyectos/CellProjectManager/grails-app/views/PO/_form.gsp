@@ -33,20 +33,3 @@
 	</label>
 	<input type="file" id="archivo" name="archivo" />
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: POInstance, field: 'cobro', 'error')} ">
-	<label for="cobro">
-		<g:message code="PO.cobro.label" default="Cobro" />
-		
-	</label>
-	<g:select id="cobro" name="cobro.id" from="${business.core.Cobro.list()}" optionKey="id" value="${POInstance?.cobro?.id}" class="many-to-one" noSelection="['null': '']"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: POInstance, field: 'solicitud', 'error')} ">
-	<label for="solicitud">
-		<g:message code="PO.solicitud.label" default="Solicitud" />
-		
-	</label>
-	<g:select id="solicitud" name="solicitud.id" from="${business.tarea.SolicitudDeTarea.list()}" optionKey="id" value="${POInstance?.solicitud?.id}" class="many-to-one" noSelection="['null': '']"/>
-</div>
-

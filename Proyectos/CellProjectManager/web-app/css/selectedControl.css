@@ -48,11 +48,12 @@
 	text-decoration: underline;
 }
 
-.selectedItem a.home, .selectedItem a.cuadrilla, .selectedItem a.proyecto, .selectedItem a.operario {
+.selectedItem a.home, .selectedItem a.cuadrilla, .selectedItem a.proyecto, 
+.selectedItem a.operario, .selectedItem a.tarea, .selectedItem a.solicitud {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
-	text-indent: 25px;
-        background-size: 20px 20px;
+	text-indent: 35px;
+        background-size: 30px 30px;
 }
 
 .selectedItem a.home {
@@ -69,4 +70,12 @@
 
 .selectedItem a.proyecto {
 	background-image: url(../images/taglib/proyecto_1.png);
+}
+
+.selectedItem a.tarea {
+	background-image: url(../images/taglib/tarea_3.png);
+}
+
+.selectedItem a.solicitud {
+	background-image: url(../images/taglib/solicitud_1.png);
 }

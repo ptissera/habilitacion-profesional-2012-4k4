@@ -16,35 +16,30 @@ class TareasPorSitioController {
     }
 
     def create() {
-        [tareasPorSitioInstance: new TareasPorSitio(params)]
+        def tareasPorSitioInstance = new TareasPorSitio(params)
+        session.setAttribute("tareaSelected",tareasPorSitioInstance)
+        [tareasPorSitioInstance: tareasPorSitioInstance]
     }
 
     def save() {
-        def tareasPorSitioInstance = new TareasPorSitio(params)
-        
-        def solicitudDeTareaCreate = session.getAttribute("solicitudDeTareaCreate")
-        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
-        if(solicitudDeTareaCreate){
-            tareasPorSitioInstance.setSolicitudDeTarea(solicitudDeTareaCreate)            
-            if (!tareasPorSitioInstance.validate()) {
-                render(view: "create", model: [tareasPorSitioInstance: tareasPorSitioInstance])
-                return
-            }
-        }else{
-            tareasPorSitioInstance.setSolicitudDeTarea(solicitudDeTareaSelected)            
-            
-            if (!tareasPorSitioInstance.save(flush: true)) {
-                render(view: "create", model: [tareasPorSitioInstance: tareasPorSitioInstance])
-                return
-            }
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+       }
+              
+        def tareasPorSitioInstance = new TareasPorSitio(solicitudDeTarea: solicitudDeTareaSelected) 
+        tareasPorSitioInstance.properties = params
+        if (!tareasPorSitioInstance.save(flush: true)) {
+            render(view: "create", model: [tareasPorSitioInstance: tareasPorSitioInstance])
+            return
         }
-		flash.message = message(code: 'default.created.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), tareasPorSitioInstance.id])
-        if(solicitudDeTareaCreate){
-            solicitudDeTareaCreate.addToTareasPorSitio(tareasPorSitioInstance)
-            session.setAttribute("solicitudDeTareaCreate", solicitudDeTareaCreate)
+       
+        if(isSolicitudCreate){ 
             redirect(controller: "solicitudDeTarea", action: "create")
         }else{
-            redirect(controller: "solicitudDeTarea", action: "update", id: solicitudDeTareaSelected.id)
+            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
         }
     }
 
@@ -55,7 +50,7 @@ class TareasPorSitioController {
             redirect(action: "list")
             return
         }
-
+session.setAttribute("tareaSelected",tareasPorSitioInstance)
         [tareasPorSitioInstance: tareasPorSitioInstance]
     }
 
@@ -66,11 +61,19 @@ class TareasPorSitioController {
             redirect(action: "list")
             return
         }
-
+session.setAttribute("tareaSelected",tareasPorSitioInstance)
         [tareasPorSitioInstance: tareasPorSitioInstance]
     }
 
     def update() {
+         
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+       }
+       
         def tareasPorSitioInstance = TareasPorSitio.get(params.id)
         if (!tareasPorSitioInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
@@ -97,10 +100,20 @@ class TareasPorSitioController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), tareasPorSitioInstance.id])
-        redirect(action: "show", id: tareasPorSitioInstance.id)
+        if(isSolicitudCreate){ 
+            redirect(controller: "solicitudDeTarea", action: "create")
+        }else{
+            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+        }
     }
 
     def delete() {
+         def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+       }
         def tareasPorSitioInstance = TareasPorSitio.get(params.id)
         if (!tareasPorSitioInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
@@ -111,7 +124,11 @@ class TareasPorSitioController {
         try {
             tareasPorSitioInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
-            redirect(action: "list")
+             if(isSolicitudCreate){ 
+            redirect(controller: "solicitudDeTarea", action: "create")
+        }else{
+            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+        }
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])

@@ -29,9 +29,7 @@
 						<g:sortableColumn property="monto" title="${message(code: 'PO.monto.label', default: 'Monto')}" />
 					
 						<g:sortableColumn property="esExtra" title="${message(code: 'PO.esExtra.label', default: 'Es Extra')}" />
-					
-						<g:sortableColumn property="nombreArchivo" title="${message(code: 'PO.nombreArchivo.label', default: 'Nombre Archivo')}" />
-					
+															
 						<g:sortableColumn property="archivo" title="${message(code: 'PO.archivo.label', default: 'Archivo')}" />
 					
 						<th><g:message code="PO.cobro.label" default="Cobro" /></th>
@@ -42,16 +40,14 @@
 				<g:each in="${POInstanceList}" status="i" var="POInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${POInstance.id}">${fieldValue(bean: POInstance, field: "fechaRecibida")}</g:link></td>
+						<td><g:link action="show" id="${POInstance.id}"><g:formatDate format="dd/MM/yyyy" date="${POInstance.fechaRecibida}" /></g:link></td>
 					
 						<td>${fieldValue(bean: POInstance, field: "monto")}</td>
 					
 						<td><g:formatBoolean boolean="${POInstance.esExtra}" /></td>
 					
 						<td>${fieldValue(bean: POInstance, field: "nombreArchivo")}</td>
-					
-						<td>${fieldValue(bean: POInstance, field: "archivo")}</td>
-					
+																
 						<td>${fieldValue(bean: POInstance, field: "cobro")}</td>
 					
 					</tr>

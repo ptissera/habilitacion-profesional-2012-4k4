@@ -10,8 +10,6 @@
 		<a href="#edit-tareasPorSitio" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				 
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -33,10 +31,17 @@
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
+                                <fieldset class="buttons_add">
+                                        <g:link class="add" controller="documento" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'documento.label', default: 'Documento')])}</g:link>
+                                        <g:link class="add" controller="materialDeTarea" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea')])}</g:link>
+                                        <g:link class="add" controller="equipoDeTarea" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'equipoDeTarea.label', default: 'EquipoDeTarea')])}</g:link>
+                                        <g:link class="add" controller="permisoAcceso" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso')])}</g:link>
+				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
+                                </fieldset>
+                                        
 			</g:form>
 		</div>
 	</body>

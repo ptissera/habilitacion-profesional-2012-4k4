@@ -18,7 +18,7 @@ class Documento {
         fechaEnviado(blank: true, nullable: true)
         fechaAprobado(blank: true, nullable: true)
         nombreArchivo(blank: true)
-        archivo(blank: true)        
+        archivo(maxSize: 50000000)        
         estado()
         
     }

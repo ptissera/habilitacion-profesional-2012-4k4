@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
-<title>Ingreso</title>
+<title>Coming SA</title>
 </head>
 <body>
 	<div class="content scaffold-create">

@@ -91,11 +91,13 @@
 			
 			</ol>
 			<g:form>
-				<fieldset class="buttons">					
+				<fieldset class="buttons_add">					
                                         <g:hiddenField name="id" value="${cuadrillaInstance?.id}" />
-                                        <g:link class="edit" action="edit" id="${cuadrillaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                                        <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                                         <g:link class="add" action="create" controller="integranteCuadrilla"><g:message code="default.add.label" args="[message(code: 'empleado.label', default: 'Operario')]"/></g:link>
+				</fieldset>
+                          <fieldset class="buttons">					                                       
+                                        <g:link class="edit" action="edit" id="${cuadrillaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                                        <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />                                        
 				</fieldset>
 			</g:form>
 		</div>

@@ -11,8 +11,6 @@
 		<a href="#show-tareasPorSitio" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				 
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -36,7 +34,7 @@
 				<li class="fieldcontain">
 					<span id="fechaInicio-label" class="property-label"><g:message code="tareasPorSitio.fechaInicio.label" default="Fecha Inicio" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaInicio-label"><g:formatDate date="${tareasPorSitioInstance?.fechaInicio}" /></span>
+						<span class="property-value" aria-labelledby="fechaInicio-label"><g:formatDate format="dd/MM/yyyy" date="${tareasPorSitioInstance?.fechaInicio}" /></span>
 					
 				</li>
 				</g:if>
@@ -45,7 +43,7 @@
 				<li class="fieldcontain">
 					<span id="sitio-label" class="property-label"><g:message code="tareasPorSitio.sitio.label" default="Sitio" /></span>
 					
-						<span class="property-value" aria-labelledby="sitio-label"><g:link controller="sitio" action="show" id="${tareasPorSitioInstance?.sitio?.id}">${tareasPorSitioInstance?.sitio?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="sitio-label">${tareasPorSitioInstance?.sitio?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
@@ -54,7 +52,7 @@
 				<li class="fieldcontain">
 					<span id="tarea-label" class="property-label"><g:message code="tareasPorSitio.tarea.label" default="Tarea" /></span>
 					
-						<span class="property-value" aria-labelledby="tarea-label"><g:link controller="tarea" action="show" id="${tareasPorSitioInstance?.tarea?.id}">${tareasPorSitioInstance?.tarea?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="tarea-label">${tareasPorSitioInstance?.tarea?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
@@ -63,7 +61,7 @@
 				<li class="fieldcontain">
 					<span id="estado-label" class="property-label"><g:message code="tareasPorSitio.estado.label" default="Estado" /></span>
 					
-						<span class="property-value" aria-labelledby="estado-label"><g:link controller="estadoTarea" action="show" id="${tareasPorSitioInstance?.estado?.id}">${tareasPorSitioInstance?.estado?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="estado-label">${tareasPorSitioInstance?.estado?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
@@ -78,16 +76,7 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${tareasPorSitioInstance?.solicitudDeTarea}">
-				<li class="fieldcontain">
-					<span id="solicitudDeTarea-label" class="property-label"><g:message code="tareasPorSitio.solicitudDeTarea.label" default="Solicitud De Tarea" /></span>
-					
-						<span class="property-value" aria-labelledby="solicitudDeTarea-label"><g:link controller="solicitudDeTarea" action="show" id="${tareasPorSitioInstance?.solicitudDeTarea?.id}">${tareasPorSitioInstance?.solicitudDeTarea?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
+							
 				<g:if test="${tareasPorSitioInstance?.materialDeTarea}">
 				<li class="fieldcontain">
 					<span id="materialDeTarea-label" class="property-label"><g:message code="tareasPorSitio.materialDeTarea.label" default="Material De Tarea" /></span>

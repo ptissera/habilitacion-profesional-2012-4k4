@@ -52,9 +52,6 @@
 <g:each in="${tareasPorSitioInstance?.documentos?}" var="d">
     <li><g:link controller="documento" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="documento" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'documento.label', default: 'Documento')])}</g:link>
-</li>
 </ul>
 
 </div>
@@ -69,9 +66,6 @@
 <g:each in="${tareasPorSitioInstance?.materialDeTarea?}" var="m">
     <li><g:link controller="materialDeTarea" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="materialDeTarea" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea')])}</g:link>
-</li>
 </ul>
 
 </div>
@@ -86,9 +80,6 @@
 <g:each in="${tareasPorSitioInstance?.equipoDeTarea?}" var="e">
     <li><g:link controller="equipoDeTarea" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="equipoDeTarea" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'equipoDeTarea.label', default: 'EquipoDeTarea')])}</g:link>
-</li>
 </ul>
 
 </div>
@@ -103,9 +94,6 @@
 <g:each in="${tareasPorSitioInstance?.permisos?}" var="p">
     <li><g:link controller="permisoAcceso" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="permisoAcceso" action="create" params="['tareasPorSitio.id': tareasPorSitioInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso')])}</g:link>
-</li>
 </ul>
 
 </div>

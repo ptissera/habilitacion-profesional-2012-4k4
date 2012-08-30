@@ -16,7 +16,7 @@ static belongsTo = [cobro: Cobro, solicitud: SolicitudDeTarea ]
         monto(blank: false)
         esExtra(blank: false)        
         nombreArchivo(blank: true)
-        archivo(blank: true)        
+        archivo(maxSize: 50000000)           
         cobro(blank: true, nullable: true)
         solicitud(blank: true, nullable: true)
     }

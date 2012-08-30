@@ -9,13 +9,25 @@ class AuthorizeController {
     def home = 
     {
         ["cuadrillaSelected",
+         "solicitudDeTareaCreate",
          "integranteCuadrillaSelected",
          "documentacionIntegranteCuadrillaSelectedTF",
          "historialCuadrillaSelectedTF",
-         "solicitudDeTareaCreate"].each{ name ->
+        "solicitudDeTareaSelected",
+        "tareaSelected",
+        "equipoDeTareaSelectedTF",
+        "materialDeTareaSelectedTF",
+        "permisoAccesoSelectedTF",
+        "documentoSelectedTF",
+        "poSelectedTF"].each{ name ->
             session.setAttribute(name , null)
         }
         
+        def solicitudDeTareaCreate = session.getAttribute("solicitudDeTareaCreate")
+        if (solicitudDeTareaCreate){
+            solicitudDeTareaCreate.delete(flush: true)
+        }
+        session.setAttribute("solicitudDeTareaCreate",null)
         redirect(uri:"/")    
     }
     
@@ -38,11 +50,13 @@ class AuthorizeController {
         session.usuario = null
         ["cuadrillaSelected",
          "proyectoSelected",
+         "solicitudDeTareaCreate",
          "integranteCuadrillaSelected",
          "documentacionIntegranteCuadrillaSelectedTF",
-         "historialCuadrillaSelectedTF"].each{ name ->
+         "historialCuadrillaSelectedTF",
+         "solicitudDeTareaCreate"].each{ name ->
             session.setAttribute(name , null)
-         }
+        }
         redirect(action: "login")
     }  
 }

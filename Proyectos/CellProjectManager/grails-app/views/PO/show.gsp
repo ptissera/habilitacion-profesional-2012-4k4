@@ -11,8 +11,6 @@
 		<a href="#show-PO" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -27,7 +25,7 @@
 				<li class="fieldcontain">
 					<span id="fechaRecibida-label" class="property-label"><g:message code="PO.fechaRecibida.label" default="Fecha Recibida" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaRecibida-label"><g:formatDate date="${POInstance?.fechaRecibida}" /></span>
+						<span class="property-value" aria-labelledby="fechaRecibida-label"><g:formatDate format="dd/MM/yyyy"  date="${POInstance?.fechaRecibida}" /></span>
 					
 				</li>
 				</g:if>
@@ -52,38 +50,18 @@
 			
 				<g:if test="${POInstance?.nombreArchivo}">
 				<li class="fieldcontain">
-					<span id="nombreArchivo-label" class="property-label"><g:message code="PO.nombreArchivo.label" default="Nombre Archivo" /></span>
+					<span id="nombreArchivo-label" class="property-label"><g:message code="PO.archivo.label" default="Archivo" /></span>
 					
-						<span class="property-value" aria-labelledby="nombreArchivo-label"><g:fieldValue bean="${POInstance}" field="nombreArchivo"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${POInstance?.archivo}">
-				<li class="fieldcontain">
-					<span id="archivo-label" class="property-label"><g:message code="PO.archivo.label" default="Archivo" /></span>
+						<span class="property-value" aria-labelledby="nombreArchivo-label">
+                                                  <g:link action="downloadFile" id="${POInstance?.id}"> <g:fieldValue bean="${POInstance}" field="nombreArchivo"/></g:link>
+                                                  
+                                                </span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${POInstance?.cobro}">
-				<li class="fieldcontain">
-					<span id="cobro-label" class="property-label"><g:message code="PO.cobro.label" default="Cobro" /></span>
-					
-						<span class="property-value" aria-labelledby="cobro-label"><g:link controller="cobro" action="show" id="${POInstance?.cobro?.id}">${POInstance?.cobro?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${POInstance?.solicitud}">
-				<li class="fieldcontain">
-					<span id="solicitud-label" class="property-label"><g:message code="PO.solicitud.label" default="Solicitud" /></span>
-					
-						<span class="property-value" aria-labelledby="solicitud-label"><g:link controller="solicitudDeTarea" action="show" id="${POInstance?.solicitud?.id}">${POInstance?.solicitud?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
+				
+									
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

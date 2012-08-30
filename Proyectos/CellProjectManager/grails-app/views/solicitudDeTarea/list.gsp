@@ -38,7 +38,7 @@
 				<g:each in="${solicitudDeTareaInstanceList}" status="i" var="solicitudDeTareaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${solicitudDeTareaInstance.id}">${fieldValue(bean: solicitudDeTareaInstance, field: "fechaAlta")}</g:link></td>
+						<td><g:link action="show" id="${solicitudDeTareaInstance.id}"><g:formatDate format="dd/MM/yyyy" date="${solicitudDeTareaInstance.fechaAlta}" /></g:link></td>
 					
 						<td>${fieldValue(bean: solicitudDeTareaInstance, field: "proyecto")}</td>
 					
