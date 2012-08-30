@@ -258,12 +258,14 @@ class BootStrap {
             cuadrilla.save(flush: true, insert: true)
         }
         
+        cuadrilla=Cuadrilla.findByNombre('Perez')
         if(!IntegranteCuadrilla.findByApellido('Perez')){
            new IntegranteCuadrilla(nombre: 'Juan', apellido: 'Perez',du: '345455534',
            legajo: '234', telefono: '23444434', fechaAlta: new Date(), 
            cuadrilla: cuadrilla).save(flush: true, insert: true)
         }
     }
+   
     def initProvincia(){
         
         if(!Provincia.findByNombre('CORDOBA')){
