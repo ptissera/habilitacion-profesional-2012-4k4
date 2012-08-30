@@ -2,7 +2,7 @@ package business.documento
 import business.tarea.TareasPorSitio
 class Documento {
 
-    static belongsTo = [estado: EstadoDocumento, tareasPorSitio: TareasPorSitio ]
+    static belongsTo = [estado: EstadoDocumento, tareasPorSitio: TareasPorSitio, tipo: TipoDocumento]
     String observaciones
     Date fechaRealizado
     Date fechaEnviado
@@ -13,6 +13,7 @@ class Documento {
     
     static constraints = {
         tareasPorSitio()
+        tipo()
         observaciones(blank: false)
         fechaRealizado(blank: true, nullable: true)
         fechaEnviado(blank: true, nullable: true)
@@ -24,8 +25,7 @@ class Documento {
     }
     
     
-    @Override String toString() {
-        
-	return  getTipo() == null ? getTipo() + " (" + getEstado() + ")" : ""
+    @Override String toString() {        
+	return  getTipo()
     }
 }

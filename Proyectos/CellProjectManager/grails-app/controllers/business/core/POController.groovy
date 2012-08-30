@@ -74,12 +74,7 @@ class POController {
     }
 
     def update() {
-        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
-        boolean isSolicitudCreate = true
-        if(!solicitudDeTareaSelected){
-            isSolicitudCreate = false
-            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
-        }
+        
         def POInstance = PO.get(params.id)
         
         if (!POInstance) {
@@ -111,6 +106,12 @@ class POController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'PO.label', default: 'PO'), POInstance.id])
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
         if(isSolicitudCreate){ 
             redirect(controller: "solicitudDeTarea", action: "create")
         }else{
@@ -119,12 +120,7 @@ class POController {
     }
 
     def delete() {
-        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
-        boolean isSolicitudCreate = true
-        if(!solicitudDeTareaSelected){
-            isSolicitudCreate = false
-            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
-        }
+        
         def POInstance = PO.get(params.id)
         if (!POInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'PO.label', default: 'PO'), params.id])
@@ -135,6 +131,12 @@ class POController {
         try {
             POInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'PO.label', default: 'PO'), params.id])
+            def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
             if(isSolicitudCreate){ 
                 redirect(controller: "solicitudDeTarea", action: "create")
             }else{

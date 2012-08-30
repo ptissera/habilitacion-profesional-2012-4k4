@@ -16,21 +16,34 @@ class PrestamoHerramientaController {
     }
 
     def create() {
+        session.setAttribute("prestamosSelectedTF",true)
         [prestamoHerramientaInstance: new PrestamoHerramienta(params)]
     }
 
     def save() {
-        def prestamoHerramientaInstance = new PrestamoHerramienta(params)
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+        def prestamoHerramientaInstance = new PrestamoHerramienta(solicitud: solicitudDeTareaSelected) 
+        prestamoHerramientaInstance.properties = params
         if (!prestamoHerramientaInstance.save(flush: true)) {
             render(view: "create", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
             return
         }
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), prestamoHerramientaInstance.id])
-        redirect(action: "show", id: prestamoHerramientaInstance.id)
+        if(isSolicitudCreate){ 
+            redirect(controller: "solicitudDeTarea", action: "create")
+        }else{
+            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+        }
     }
 
     def show() {
+        session.setAttribute("prestamosSelectedTF",true)
         def prestamoHerramientaInstance = PrestamoHerramienta.get(params.id)
         if (!prestamoHerramientaInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), params.id])
@@ -42,6 +55,7 @@ class PrestamoHerramientaController {
     }
 
     def edit() {
+        session.setAttribute("prestamosSelectedTF",true)
         def prestamoHerramientaInstance = PrestamoHerramienta.get(params.id)
         if (!prestamoHerramientaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), params.id])
@@ -78,8 +92,19 @@ class PrestamoHerramientaController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), prestamoHerramientaInstance.id])
-        redirect(action: "show", id: prestamoHerramientaInstance.id)
+	flash.message = message(code: 'default.updated.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), prestamoHerramientaInstance.id])
+        
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+        if(isSolicitudCreate){ 
+            redirect(controller: "solicitudDeTarea", action: "create")
+        }else{
+            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+        }
     }
 
     def delete() {
@@ -93,7 +118,17 @@ class PrestamoHerramientaController {
         try {
             prestamoHerramientaInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), params.id])
-            redirect(action: "list")
+              def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+            if(isSolicitudCreate){ 
+                redirect(controller: "solicitudDeTarea", action: "create")
+            }else{
+                redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+            }
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), params.id])

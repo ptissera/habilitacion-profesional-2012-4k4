@@ -19,6 +19,6 @@ class PrestamoHerramienta {
     }
     
     @Override String toString() {
-	return getCuadrilla() + " - " + getFechaPrestamo()
+	return getHerramienta()
     }
 }

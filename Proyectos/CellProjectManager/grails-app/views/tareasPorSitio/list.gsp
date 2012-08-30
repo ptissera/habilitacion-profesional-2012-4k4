@@ -44,7 +44,7 @@
 					
 						<td><g:link action="show" id="${tareasPorSitioInstance.id}">${fieldValue(bean: tareasPorSitioInstance, field: "ordenEjecucion")}</g:link></td>
 					
-						<td><g:formatDate date="${tareasPorSitioInstance.fechaInicio}" /></td>
+						<td><g:formatDate format="dd/MM/yyyy" date="${tareasPorSitioInstance.fechaInicio}" /></td>
 					
 						<td>${fieldValue(bean: tareasPorSitioInstance, field: "sitio")}</td>
 					

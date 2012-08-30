@@ -68,7 +68,7 @@
             <g:each in="${solicitudDeTareaInstance.tareasPorSitio}" status="i" var="tareasPorSitioInstance">
               <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
                 <td>${fieldValue(bean: tareasPorSitioInstance, field: "ordenEjecucion")}</td>					
-              <td><g:formatDate format="dd/MM/yyyy" date="${tareasPorSitioInstance.fechaInicio}" /></td>					
+                <td><g:formatDate format="dd/MM/yyyy" date="${tareasPorSitioInstance.fechaInicio}" /></td>					
               <td>${fieldValue(bean: tareasPorSitioInstance, field: "sitio")}</td>					
               <td>${fieldValue(bean: tareasPorSitioInstance, field: "tarea")}</td>					
               <td>${fieldValue(bean: tareasPorSitioInstance, field: "estado")}</td>
@@ -122,10 +122,24 @@
       <g:if test="${solicitudDeTareaInstance?.prestamos}">
         <li class="fieldcontain">
           <span id="prestamos-label" class="property-label"><g:message code="solicitudDeTarea.prestamos.label" default="Prestamos" /></span>
-
-        <g:each in="${solicitudDeTareaInstance.prestamos}" var="p">
-          <span class="property-value" aria-labelledby="prestamos-label"><g:link controller="prestamoHerramienta" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-        </g:each>
+          <table>
+            <thead>
+              <tr>
+            <g:sortableColumn property="fechaPrestamo" title="${message(code: 'prestamoHerramienta.fechaPrestamo.label', default: 'Fecha Prestamo')}" />      
+            <th><g:message code="prestamoHerramienta.herramienta.label" default="Herramienta" /></th>      
+            <g:sortableColumn property="descripcion" title="${message(code: 'prestamoHerramienta.descripcion.label', default: 'Descripcion')}" />
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${solicitudDeTareaInstance.prestamos}" status="i" var="prestamoHerramientaInstance">
+              <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                <td><g:formatDate format="dd/MM/yyyy" date="${prestamoHerramientaInstance.fechaPrestamo}" /></td>        
+              <td>${fieldValue(bean: prestamoHerramientaInstance, field: "herramienta")}</td>        
+              <td>${fieldValue(bean: prestamoHerramientaInstance, field: "descripcion")}</td>
+              </tr>
+            </g:each>
+            </tbody>
+          </table>
 
         </li>
       </g:if>

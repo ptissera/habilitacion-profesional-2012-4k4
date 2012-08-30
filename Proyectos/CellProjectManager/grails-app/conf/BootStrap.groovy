@@ -5,6 +5,7 @@ import business.cuadrillas.EstadoCuadrilla
 import business.cuadrillas.Cuadrilla
 import business.cuadrillas.IntegranteCuadrilla
 import business.herramienta.EstadoHerramienta
+import business.herramienta.Herramienta
 import business.core.EstadoProyecto
 import business.core.Provincia
 import business.core.Cliente
@@ -28,6 +29,7 @@ class BootStrap {
         initProvincia()
         initSitios()
         initTareas()
+        initHerramientas()
     }
     
     def initRolAndUsuarios(){
@@ -251,18 +253,17 @@ class BootStrap {
     }
     
     def initCuadrilla(){
-        def cuadrilla=Cuadrilla.findByNombre('Perez')
+        def cuadrilla = Cuadrilla.findByNombre('Perez')
         if(!cuadrilla){
             cuadrilla = new Cuadrilla(nombre: 'Perez', descripcion: 'Cuadrilla de Perez',
-                estadoCuadrilla: EstadoCuadrilla.findByNombre('Sin Asignacion'))
+                propia: true, estadoCuadrilla: EstadoCuadrilla.findByNombre('Sin Asignacion'))
             cuadrilla.save(flush: true, insert: true)
         }
-        
-        cuadrilla=Cuadrilla.findByNombre('Perez')
+                        
         if(!IntegranteCuadrilla.findByApellido('Perez')){
            new IntegranteCuadrilla(nombre: 'Juan', apellido: 'Perez',du: '345455534',
            legajo: '234', telefono: '23444434', fechaAlta: new Date(), 
-           cuadrilla: cuadrilla).save(flush: true, insert: true)
+           cuadrilla: Cuadrilla.findByNombre('Perez')).save(flush: true, insert: true)
         }
     }
    
@@ -326,6 +327,16 @@ class BootStrap {
         if(!Tarea.findByNombre('Montaje de BTS')){
             new Tarea(nombre: 'Montaje de BTS', descripcion: 'Montaje de BTS').save(flush: true, insert: true)
         }
+        
+    }
+    
+        def initHerramientas(){
+        
+        if(!Herramienta.findByNumeroDeSerie('NB23234443')){
+            new Herramienta(numeroDeSerie: 'NB23234443', nombre: 'Consola SONY', descripcion: 'consola monitor', 
+                estado: EstadoHerramienta.findByNombre('Libre')).save()
+        }
+        
         
     }
     

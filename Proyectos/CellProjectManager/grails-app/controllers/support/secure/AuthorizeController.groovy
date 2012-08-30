@@ -19,7 +19,8 @@ class AuthorizeController {
         "materialDeTareaSelectedTF",
         "permisoAccesoSelectedTF",
         "documentoSelectedTF",
-        "poSelectedTF"].each{ name ->
+        "poSelectedTF",
+        "prestamosSelectedTF"].each{ name ->
             session.setAttribute(name , null)
         }
         

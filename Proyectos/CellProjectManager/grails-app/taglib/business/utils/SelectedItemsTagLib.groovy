@@ -23,6 +23,7 @@ class SelectedItemsTagLib {
             Boolean permisoAccesoSelectedTF=(Boolean)session.getAttribute("permisoAccesoSelectedTF")
             Boolean materialDeTareaSelectedTF=(Boolean)session.getAttribute("materialDeTareaSelectedTF")
             Boolean equipoDeTareaSelectedTF=(Boolean)session.getAttribute("equipoDeTareaSelectedTF")
+            Boolean prestamosSelectedTF=(Boolean)session.getAttribute("prestamosSelectedTF")
             
             out << "<div class='selectedItem' role='navigation'><ul>"
             out << "<li><a class='home' href='${createLink(uri: '/')}'>Principal</a></li>"
@@ -31,7 +32,7 @@ class SelectedItemsTagLib {
                 out << """${link(class: "proyecto", action: "show", controller: "proyecto", id: proyectoSelected.id){proyectoSelected}}"""
                 out << "</li>"
             }
-            if((solicitudDeTareaSelected || solicitudDeTareaCreate) && (tareaSelected || poSelectedTF)){
+            if((solicitudDeTareaSelected || solicitudDeTareaCreate) && (tareaSelected || poSelectedTF || prestamosSelectedTF)){
                 if(solicitudDeTareaSelected){
                 out << "<li>"
                 out << """${link(class: "solicitud", action: "show", controller: "solicitudDeTarea", id: solicitudDeTareaSelected.id){'Solicitud de Tarea'}}"""

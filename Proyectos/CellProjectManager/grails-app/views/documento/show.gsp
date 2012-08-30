@@ -23,15 +23,16 @@
 			</g:if>
 			<ol class="property-list documento">
 			
-				<g:if test="${documentoInstance?.tarea}">
+                          <g:if test="${documentoInstance?.tipo}">
 				<li class="fieldcontain">
-					<span id="tarea-label" class="property-label"><g:message code="documento.tarea.label" default="Tarea" /></span>
+					<span id="tipo-label" class="property-label"><g:message code="documento.tipo.label" default="Tipo" /></span>
 					
-						<span class="property-value" aria-labelledby="tarea-label"><g:link controller="tareasPorSitio" action="show" id="${documentoInstance?.tarea?.id}">${documentoInstance?.tarea?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="tipo-label">${documentoInstance?.tipo?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
-			
+                          
+				
 				<g:if test="${documentoInstance?.observaciones}">
 				<li class="fieldcontain">
 					<span id="observaciones-label" class="property-label"><g:message code="documento.observaciones.label" default="Observaciones" /></span>
@@ -70,20 +71,15 @@
 			
 				<g:if test="${documentoInstance?.nombreArchivo}">
 				<li class="fieldcontain">
-					<span id="nombreArchivo-label" class="property-label"><g:message code="documento.nombreArchivo.label" default="Nombre Archivo" /></span>
-					
-						<span class="property-value" aria-labelledby="nombreArchivo-label"><g:fieldValue bean="${documentoInstance}" field="nombreArchivo"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${documentoInstance?.archivo}">
-				<li class="fieldcontain">
-					<span id="archivo-label" class="property-label"><g:message code="documento.archivo.label" default="Archivo" /></span>
+					<span id="nombreArchivo-label" class="property-label"><g:message code="documento.archivo.label" default="Archivo" /></span>
+                                            
+						<span class="property-value" aria-labelledby="nombreArchivo-label">
+                                                  <g:link action="downloadFile" id="${documentoInstance?.id}"> <g:fieldValue bean="${documentoInstance}" field="nombreArchivo"/></g:link>
+                                                </span>
 					
 				</li>
 				</g:if>
-			
+										
 				<g:if test="${documentoInstance?.estado}">
 				<li class="fieldcontain">
 					<span id="estado-label" class="property-label"><g:message code="documento.estado.label" default="Estado" /></span>

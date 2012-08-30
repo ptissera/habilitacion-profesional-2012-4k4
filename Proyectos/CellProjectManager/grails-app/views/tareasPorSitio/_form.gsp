@@ -42,12 +42,14 @@
 	<g:select id="estado" name="estado.id" from="${business.tarea.EstadoTarea.list()}" optionKey="id" required="" value="${tareasPorSitioInstance?.estado?.id}" class="many-to-one"/>
 </div>
 
+<g:if test="${tareasPorSitioInstance?.documentos}">
 <div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'documentos', 'error')} ">
 	<label for="documentos">
 		<g:message code="tareasPorSitio.documentos.label" default="Documentos" />
 		
 	</label>
-	
+
+
 <ul class="one-to-many">
 <g:each in="${tareasPorSitioInstance?.documentos?}" var="d">
     <li><g:link controller="documento" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></li>
@@ -55,7 +57,9 @@
 </ul>
 
 </div>
+</g:if>
 
+<g:if test="${tareasPorSitioInstance?.materialDeTarea}">
 <div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'materialDeTarea', 'error')} ">
 	<label for="materialDeTarea">
 		<g:message code="tareasPorSitio.materialDeTarea.label" default="Material De Tarea" />
@@ -69,7 +73,9 @@
 </ul>
 
 </div>
+</g:if>
 
+<g:if test="${tareasPorSitioInstance?.equipoDeTarea}">
 <div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'equipoDeTarea', 'error')} ">
 	<label for="equipoDeTarea">
 		<g:message code="tareasPorSitio.equipoDeTarea.label" default="Equipo De Tarea" />
@@ -83,7 +89,9 @@
 </ul>
 
 </div>
-
+</g:if>  
+  
+<g:if test="${tareasPorSitioInstance?.permisos}">
 <div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'permisos', 'error')} ">
 	<label for="permisos">
 		<g:message code="tareasPorSitio.permisos.label" default="Permisos" />
@@ -97,6 +105,7 @@
 </ul>
 
 </div>
+</g:if>
 
 <div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'observaciones', 'error')} ">
 	<label for="observaciones">

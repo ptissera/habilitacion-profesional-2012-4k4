@@ -23,6 +23,6 @@ class Sitio {
     }
     
     @Override String toString() {
-	return getNombre() +" - "+getDireccion()
+	return getNombre() +" - "+ getDireccion()
     }
 }

@@ -16,12 +16,15 @@ class DocumentoController {
     }
 
     def create() {
+        session.setAttribute("documentoSelectedTF",true)
         [documentoInstance: new Documento(params)]
     }
 
     def save() {
-        def documentoInstance = new Documento(params)
-        def f = request.getFile('nombreArchivo')
+        def tareaSelected = session.getAttribute("tareaSelected")
+        def documentoInstance = new Documento(tareasPorSitio: tareaSelected)
+        documentoInstance.properties = params
+        def f = request.getFile('archivo')
         if(!f.empty) {
             documentoInstance.nombreArchivo = f.getOriginalFilename()
             documentoInstance.archivo = f.inputStream.bytes
@@ -34,23 +37,11 @@ class DocumentoController {
         }
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'documento.label', default: 'Documento'), documentoInstance.id])
-        redirect(action: "show", id: documentoInstance.id)
+        redirect(controller: "tareaPorSitio", action: "edit", id: tareaSelected.id)
     }
     
-    def upload = {
-		def f = request.getFile('nombreArchivo')
-	    if(!f.empty) {
-	      flash.message = 'Your file has been uploaded'
-		  new File( grailsApplication.config.images.location.toString() ).mkdirs()
-		  f.transferTo( new File( grailsApplication.config.images.location.toString() + File.separatorChar + f.getOriginalFilename() ) )								             			     	
-		}    
-	    else {
-	       flash.message = 'file cannot be empty'
-	    }
-	
-	}
-
     def show() {
+        session.setAttribute("documentoSelectedTF",true)
         def documentoInstance = Documento.get(params.id)
         if (!documentoInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
@@ -62,6 +53,7 @@ class DocumentoController {
     }
 
     def edit() {
+        session.setAttribute("documentoSelectedTF",true)
         def documentoInstance = Documento.get(params.id)
         if (!documentoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
@@ -99,7 +91,8 @@ class DocumentoController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'documento.label', default: 'Documento'), documentoInstance.id])
-        redirect(action: "show", id: documentoInstance.id)
+        def tareaSelected = session.getAttribute("tareaSelected")
+        redirect(controller: "tareaPorSitio", action: "edit", id: tareaSelected.id)
     }
 
     def delete() {
@@ -113,7 +106,8 @@ class DocumentoController {
         try {
             documentoInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
-            redirect(action: "list")
+            def tareaSelected = session.getAttribute("tareaSelected")
+        redirect(controller: "tareaPorSitio", action: "edit", id: tareaSelected.id)
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])

@@ -1,13 +1,11 @@
 <%@ page import="business.documento.Documento" %>
 
-
-
-<div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'tarea', 'error')} required">
-	<label for="tarea">
-		<g:message code="documento.tarea.label" default="Tarea" />
+<div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'tipo', 'error')} required">
+	<label for="tipoDocumento">
+		<g:message code="documento.tipo.label" default="Tipo" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="tarea" name="tarea.id" from="${business.tarea.TareasPorSitio.list()}" optionKey="id" required="" value="${documentoInstance?.tarea?.id}" class="many-to-one"/>
+	<g:select id="tipoDocumento" name="tipo.id" from="${business.documento.TipoDocumento.list()}" optionKey="id" required="" value="${documentoInstance?.tipo?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'observaciones', 'error')} required">
@@ -40,14 +38,6 @@
 		
 	</label>
 	<g:datePicker name="fechaAprobado" precision="day"  value="${documentoInstance?.fechaAprobado}" default="none" noSelection="['': '']" />
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'nombreArchivo', 'error')} ">
-	<label for="nombreArchivo">
-		<g:message code="documento.nombreArchivo.label" default="Nombre Archivo" />
-		
-	</label>
-	<g:textField name="nombreArchivo" value="${documentoInstance?.nombreArchivo}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'archivo', 'error')} required">

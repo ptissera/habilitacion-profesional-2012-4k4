@@ -11,7 +11,7 @@
 		<a href="#list-documento" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				 
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -24,7 +24,9 @@
 				<thead>
 					<tr>
 					
-						<th><g:message code="documento.tarea.label" default="Tarea" /></th>
+						<th><g:message code="documento.tareasPorSitio.label" default="Tareas Por Sitio" /></th>
+					
+						<th><g:message code="documento.tipo.label" default="Tipo" /></th>
 					
 						<g:sortableColumn property="observaciones" title="${message(code: 'documento.observaciones.label', default: 'Observaciones')}" />
 					
@@ -34,15 +36,15 @@
 					
 						<g:sortableColumn property="fechaAprobado" title="${message(code: 'documento.fechaAprobado.label', default: 'Fecha Aprobado')}" />
 					
-						<g:sortableColumn property="nombreArchivo" title="${message(code: 'documento.nombreArchivo.label', default: 'Nombre Archivo')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${documentoInstanceList}" status="i" var="documentoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${documentoInstance.id}">${fieldValue(bean: documentoInstance, field: "tarea")}</g:link></td>
+						<td><g:link action="show" id="${documentoInstance.id}">${fieldValue(bean: documentoInstance, field: "tareasPorSitio")}</g:link></td>
+					
+						<td>${fieldValue(bean: documentoInstance, field: "tipo")}</td>
 					
 						<td>${fieldValue(bean: documentoInstance, field: "observaciones")}</td>
 					
@@ -51,8 +53,6 @@
 						<td><g:formatDate date="${documentoInstance.fechaEnviado}" /></td>
 					
 						<td><g:formatDate date="${documentoInstance.fechaAprobado}" /></td>
-					
-						<td>${fieldValue(bean: documentoInstance, field: "nombreArchivo")}</td>
 					
 					</tr>
 				</g:each>
