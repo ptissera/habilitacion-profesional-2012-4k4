@@ -29,7 +29,7 @@ class DocumentoController {
         }
         def documentoInstance = new Documento(solicitudDeTarea: solicitudDeTareaSelected)
         documentoInstance.properties = params
-        def f = request.getFile('archivo')
+        def f = request.getFile('uploadArchivo')
         if(!f.empty) {
             documentoInstance.nombreArchivo = f.getOriginalFilename()
             documentoInstance.archivo = f.inputStream.bytes
@@ -93,7 +93,13 @@ class DocumentoController {
         }
 
         documentoInstance.properties = params
-
+        def f = request.getFile('uploadArchivo')
+        if(!f.empty) {
+            documentoInstance.documentoDeIngenieria = f.getOriginalFilename()
+            documentoInstance.archivo = f.inputStream.bytes
+        }    else {
+            flash.message = 'file cannot be empty'          
+        }
         if (!documentoInstance.save(flush: true)) {
             render(view: "edit", model: [documentoInstance: documentoInstance])
             return

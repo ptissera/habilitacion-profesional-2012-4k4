@@ -37,7 +37,7 @@ class TareasPorSitioController {
               
         def tareasPorSitioInstance = new TareasPorSitio(solicitudDeTarea: solicitudDeTareaSelected) 
         tareasPorSitioInstance.properties = params
-        def f = request.getFile('archivo')
+        def f = request.getFile('uploadArchivo')
         if(!f.empty) {
             tareasPorSitioInstance.documentoDeIngenieria = f.getOriginalFilename()
             tareasPorSitioInstance.archivo = f.inputStream.bytes
@@ -108,7 +108,7 @@ class TareasPorSitioController {
         }
 
         tareasPorSitioInstance.properties = params
-        def f = request.getFile('archivo')
+        def f = request.getFile('uploadArchivo')
         if(!f.empty) {
             tareasPorSitioInstance.documentoDeIngenieria = f.getOriginalFilename()
             tareasPorSitioInstance.archivo = f.inputStream.bytes

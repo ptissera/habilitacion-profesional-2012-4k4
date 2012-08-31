@@ -24,7 +24,7 @@ class PermisoAccesoController {
         def tareaSelected = session.getAttribute("tareaSelected")
         def permisoAccesoInstance = new PermisoAcceso(tareasPorSitio: tareaSelected)
         permisoAccesoInstance.properties = params
-        def f = request.getFile('archivo')
+        def f = request.getFile('uploadArchivo')
         if(!f.empty) {
             permisoAccesoInstance.nombreArchivo = f.getOriginalFilename()
             permisoAccesoInstance.archivo = f.inputStream.bytes
@@ -84,7 +84,13 @@ class PermisoAccesoController {
         }
 
         permisoAccesoInstance.properties = params
-
+        def f = request.getFile('uploadArchivo')
+        if(!f.empty) {
+            permisoAccesoInstance.nombreArchivo = f.getOriginalFilename()
+            permisoAccesoInstance.archivo = f.inputStream.bytes
+        }    else {
+            flash.message = 'file cannot be empty'          
+        }
         if (!permisoAccesoInstance.save(flush: true)) {
             render(view: "edit", model: [permisoAccesoInstance: permisoAccesoInstance])
             return

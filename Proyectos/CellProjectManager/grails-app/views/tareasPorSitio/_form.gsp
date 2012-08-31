@@ -127,12 +127,21 @@
 </g:if>
 
 <div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'documentoDeIngenieria', 'error')} ">
-	<label for="archivo">
-		<g:message code="tareasPorSitio.archivo.label" default="Archivo" />
-		<span class="required-indicator">*</span>
-	</label>
-	<input type="file" id="archivo" name="archivo" />
+  <label for="archivo">
+    <g:message code="documento.documentoDeIngenieria.label" default="Documento De Ingenieria" />
+    <span class="required-indicator">*</span>
+  </label>
+  <input type="file" id="uploadArchivo" name="uploadArchivo" />
+  <g:if test="${tareasPorSitioInstance?.documentoDeIngenieria}">
+    <div> 
+      <label for="archivo"></label>
+      <g:link action="downloadFile" id="${tareasPorSitioInstance?.id}"> 
+        <g:fieldValue bean="${tareasPorSitioInstance}" field="documentoDeIngenieria"/>
+      </g:link>      
+    </div>
+  </g:if>
 </div>
+
 
 <div class="fieldcontain ${hasErrors(bean: tareasPorSitioInstance, field: 'observaciones', 'error')} ">
   <label for="observaciones">

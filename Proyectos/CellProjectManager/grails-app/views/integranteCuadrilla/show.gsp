@@ -116,11 +116,13 @@
 			
 			</ol>
 			<g:form>
+                          	<fieldset class="buttons_add">
+                                  <g:link class="add" controller="documentacionIntegranteCuadrilla" action="create" id="${integranteCuadrillaInstance?.id}"><g:message code="default.add.label" args="[message(code: 'documentacionIntegranteCuadrilla.label', default: 'Tipo Documentacion')]"/></g:link>
+				</fieldset>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${integranteCuadrillaInstance?.id}" />
 					<g:link class="edit" action="edit" id="${integranteCuadrillaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                        <g:link class="add" controller="documentacionIntegranteCuadrilla" action="create" id="${integranteCuadrillaInstance?.id}"><g:message code="default.add.label" args="[message(code: 'documentacionIntegranteCuadrilla.label', default: 'Tipo Documentacion')]"/></g:link>
+					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />                                        
 				</fieldset>
 			</g:form>
 		</div>
