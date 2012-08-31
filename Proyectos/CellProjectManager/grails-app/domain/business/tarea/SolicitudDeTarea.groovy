@@ -6,10 +6,11 @@ import business.core.PO
 import business.core.Proyecto
 import business.cuadrillas.Cuadrilla
 import business.herramienta.PrestamoHerramienta
+import business.documento.Documento
 
 class SolicitudDeTarea {
 
-    static hasMany = [pagos: Pago, tareasPorSitio: TareasPorSitio, pos: PO, prestamos: PrestamoHerramienta]
+    static hasMany = [pagos: Pago, tareasPorSitio: TareasPorSitio, pos: PO, prestamos: PrestamoHerramienta, documentos: Documento]
     static belongsTo = [proyecto: Proyecto, estado: EstadoSolicitudTarea, cuadrilla: Cuadrilla]
     
     Date fechaAlta
@@ -23,5 +24,6 @@ class SolicitudDeTarea {
         pos()        
         pagos()                
         prestamos()
+        documentos()
     }
 }

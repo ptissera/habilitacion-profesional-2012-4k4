@@ -1,8 +1,8 @@
 package business.documento
-import business.tarea.TareasPorSitio
+import business.tarea.SolicitudDeTarea
 class Documento {
 
-    static belongsTo = [estado: EstadoDocumento, tareasPorSitio: TareasPorSitio, tipo: TipoDocumento]
+    static belongsTo = [estado: EstadoDocumento, solicitudDeTarea: SolicitudDeTarea, tipo: TipoDocumento]
     String observaciones
     Date fechaRealizado
     Date fechaEnviado
@@ -12,7 +12,7 @@ class Documento {
     
     
     static constraints = {
-        tareasPorSitio()
+        solicitudDeTarea()
         tipo()
         observaciones(blank: false)
         fechaRealizado(blank: true, nullable: true)

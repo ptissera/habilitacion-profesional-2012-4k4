@@ -11,11 +11,13 @@ class IntegranteCuadrillaController {
     }
 
     def list() {
+        cleanSelected() 
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [integranteCuadrillaInstanceList: IntegranteCuadrilla.list(params), integranteCuadrillaInstanceTotal: IntegranteCuadrilla.count()]
     }
 
     def create() {
+        cleanSelected() 
         def integranteCuadrillaInstance=new IntegranteCuadrilla(params)        
         session.setAttribute("integranteCuadrillaSelected",integranteCuadrillaInstance);
         [integranteCuadrillaInstance: new IntegranteCuadrilla(params), cuadrilaInstance: session.getAttribute("cuadrillaSelected")]
@@ -38,18 +40,21 @@ class IntegranteCuadrillaController {
     }
 
     def show() {
+        cleanSelected() 
         def integranteCuadrillaInstance = IntegranteCuadrilla.get(params.id)
+        session.setAttribute("integranteCuadrillaSelected",integranteCuadrillaInstance);
         if (!integranteCuadrillaInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
             redirect(action: "list")
             return
         }
-        session.setAttribute("integranteCuadrillaSelected",integranteCuadrillaInstance);
-        session.setAttribute("documentacionIntegranteCuadrillaSelectedTF",null);
+        
+        
         [integranteCuadrillaInstance: integranteCuadrillaInstance]
     }
 
     def edit() {
+        cleanSelected() 
         def integranteCuadrillaInstance = IntegranteCuadrilla.get(params.id)
         if (!integranteCuadrillaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
@@ -110,6 +115,15 @@ class IntegranteCuadrillaController {
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
            redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
+        }
+    }
+    
+     def cleanSelected() 
+    {
+         [ "integranteCuadrillaSelected",
+        "documentacionIntegranteCuadrillaSelectedTF",
+        "historialCuadrillaSelectedTF"].each{ name ->
+            session.setAttribute(name , null)
         }
     }
 }

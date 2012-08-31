@@ -7,10 +7,12 @@ import business.documento.Documento
 class TareasPorSitio {
 
     static belongsTo = [estado: EstadoTarea, sitio: Sitio, solicitudDeTarea: SolicitudDeTarea, tarea: Tarea]
-    static hasMany = [ documentos: Documento, permisos: PermisoAcceso, materialDeTarea: MaterialDeTarea, equipoDeTarea: EquipoDeTarea]
+    static hasMany = [ permisos: PermisoAcceso, materialDeTarea: MaterialDeTarea, equipoDeTarea: EquipoDeTarea]
     
     int ordenEjecucion
     Date fechaInicio
+    String documentoDeIngenieria
+    byte[] archivo
     String observaciones
     
     static constraints = {
@@ -19,7 +21,8 @@ class TareasPorSitio {
         sitio()
         tarea()
         estado()
-        documentos()
+        documentoDeIngenieria(blank: true)
+        archivo(maxSize: 50000000)   
         solicitudDeTarea()
         materialDeTarea()
         equipoDeTarea()

@@ -16,24 +16,28 @@ class MaterialDeTareaController {
     }
 
     def create() {
+        session.setAttribute("materialDeTareaSelectedTF",true)
         [materialDeTareaInstance: new MaterialDeTarea(params)]
     }
 
     def save() {
-        def materialDeTareaInstance = new MaterialDeTarea(params)
+        def tareaSelected = session.getAttribute("tareaSelected")
+        def materialDeTareaInstance = new MaterialDeTarea(tareasPorSitio: tareaSelected)
+        materialDeTareaInstance.properties = params
         if (!materialDeTareaInstance.save(flush: true)) {
             render(view: "create", model: [materialDeTareaInstance: materialDeTareaInstance])
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), materialDeTareaInstance.id])
-        redirect(action: "show", id: materialDeTareaInstance.id)
+        flash.message = message(code: 'default.created.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), materialDeTareaInstance.id])        
+        redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
     }
 
     def show() {
+        session.setAttribute("materialDeTareaSelectedTF",true)
         def materialDeTareaInstance = MaterialDeTarea.get(params.id)
         if (!materialDeTareaInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
             redirect(action: "list")
             return
         }
@@ -42,6 +46,7 @@ class MaterialDeTareaController {
     }
 
     def edit() {
+        session.setAttribute("materialDeTareaSelectedTF",true)
         def materialDeTareaInstance = MaterialDeTarea.get(params.id)
         if (!materialDeTareaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
@@ -64,7 +69,7 @@ class MaterialDeTareaController {
             def version = params.version.toLong()
             if (materialDeTareaInstance.version > version) {
                 materialDeTareaInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea')] as Object[],
+                    [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea')] as Object[],
                           "Another user has updated this MaterialDeTarea while you were editing")
                 render(view: "edit", model: [materialDeTareaInstance: materialDeTareaInstance])
                 return
@@ -78,25 +83,27 @@ class MaterialDeTareaController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), materialDeTareaInstance.id])
-        redirect(action: "show", id: materialDeTareaInstance.id)
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), materialDeTareaInstance.id])
+        def tareaSelected = session.getAttribute("tareaSelected")
+        redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
     }
 
     def delete() {
         def materialDeTareaInstance = MaterialDeTarea.get(params.id)
         if (!materialDeTareaInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
             materialDeTareaInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
-            redirect(action: "list")
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
+            def tareaSelected = session.getAttribute("tareaSelected")
+            redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
             redirect(action: "show", id: params.id)
         }
     }

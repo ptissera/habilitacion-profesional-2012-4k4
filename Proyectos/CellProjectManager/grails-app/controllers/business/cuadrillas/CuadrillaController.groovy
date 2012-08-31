@@ -11,11 +11,13 @@ class CuadrillaController {
     }
 
     def list() {
+        cleanSelected() 
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [cuadrillaInstanceList: Cuadrilla.list(params), cuadrillaInstanceTotal: Cuadrilla.count()]
     }
 
     def create() {
+        cleanSelected() 
         [cuadrillaInstance: new Cuadrilla(params)]
     }
 
@@ -30,6 +32,7 @@ class CuadrillaController {
     }
 
     def show() {
+        cleanSelected() 
         def cuadrillaInstance = Cuadrilla.get(params.id)
         if (!cuadrillaInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'cuadrilla.label', default: 'Cuadrilla'), params.id])
@@ -43,6 +46,7 @@ class CuadrillaController {
     }
 
     def edit() {
+        cleanSelected() 
         def cuadrillaInstance = Cuadrilla.get(params.id)
         if (!cuadrillaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'cuadrilla.label', default: 'Cuadrilla'), params.id])
@@ -99,6 +103,15 @@ class CuadrillaController {
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'cuadrilla.label', default: 'Cuadrilla'), params.id])
             redirect(action: "show", id: params.id)
+        }
+    }
+    
+     def cleanSelected() 
+    {
+         [ "integranteCuadrillaSelected",
+        "documentacionIntegranteCuadrillaSelectedTF",
+        "historialCuadrillaSelectedTF"].each{ name ->
+            session.setAttribute(name , null)
         }
     }
 }

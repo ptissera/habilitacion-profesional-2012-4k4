@@ -21,30 +21,39 @@ class DocumentoController {
     }
 
     def save() {
-        def tareaSelected = session.getAttribute("tareaSelected")
-        def documentoInstance = new Documento(tareasPorSitio: tareaSelected)
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+        def documentoInstance = new Documento(solicitudDeTarea: solicitudDeTareaSelected)
         documentoInstance.properties = params
         def f = request.getFile('archivo')
         if(!f.empty) {
             documentoInstance.nombreArchivo = f.getOriginalFilename()
             documentoInstance.archivo = f.inputStream.bytes
         }    else {
-	       flash.message = 'file cannot be empty'          
-	    }
+            flash.message = 'file cannot be empty'          
+        }
         if (!documentoInstance.save(flush: true)) {
             render(view: "create", model: [documentoInstance: documentoInstance])
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'documento.label', default: 'Documento'), documentoInstance.id])
-        redirect(controller: "tareaPorSitio", action: "edit", id: tareaSelected.id)
+        flash.message = message(code: 'default.created.message', args: [message(code: 'documento.label', default: 'Documento'), documentoInstance.id])
+        if(isSolicitudCreate){ 
+            redirect(controller: "solicitudDeTarea", action: "create")
+        }else{
+            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+        }
     }
     
     def show() {
         session.setAttribute("documentoSelectedTF",true)
         def documentoInstance = Documento.get(params.id)
         if (!documentoInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
             redirect(action: "list")
             return
         }
@@ -76,7 +85,7 @@ class DocumentoController {
             def version = params.version.toLong()
             if (documentoInstance.version > version) {
                 documentoInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'documento.label', default: 'Documento')] as Object[],
+                    [message(code: 'documento.label', default: 'Documento')] as Object[],
                           "Another user has updated this Documento while you were editing")
                 render(view: "edit", model: [documentoInstance: documentoInstance])
                 return
@@ -90,28 +99,54 @@ class DocumentoController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'documento.label', default: 'Documento'), documentoInstance.id])
-        def tareaSelected = session.getAttribute("tareaSelected")
-        redirect(controller: "tareaPorSitio", action: "edit", id: tareaSelected.id)
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'documento.label', default: 'Documento'), documentoInstance.id])
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+        if(isSolicitudCreate){ 
+            redirect(controller: "solicitudDeTarea", action: "create")
+        }else{
+            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+        }
     }
 
     def delete() {
         def documentoInstance = Documento.get(params.id)
         if (!documentoInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
             documentoInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
-            def tareaSelected = session.getAttribute("tareaSelected")
-        redirect(controller: "tareaPorSitio", action: "edit", id: tareaSelected.id)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+            def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+            boolean isSolicitudCreate = true
+            if(!solicitudDeTareaSelected){
+                isSolicitudCreate = false
+                solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+            }
+            if(isSolicitudCreate){ 
+                redirect(controller: "solicitudDeTarea", action: "create")
+            }else{
+                redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+            }
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
             redirect(action: "show", id: params.id)
         }
+    }
+    def downloadFile(){
+        def documentoInstance = Documento.get(params.id)   
+
+        response.setContentType("application/octet-stream")
+        response.setHeader("Content-disposition", "filename=${documentoInstance.nombreArchivo}")
+        response.outputStream << documentoInstance.archivo
+   
     }
 }

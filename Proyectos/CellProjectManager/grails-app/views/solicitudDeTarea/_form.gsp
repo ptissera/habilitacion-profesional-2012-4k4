@@ -97,3 +97,35 @@
     </table>
   </div>
 </g:if>
+
+<g:if test="${solicitudDeTareaInstance?.documentos}">
+  <div class="fieldcontain ${hasErrors(bean: solicitudDeTareaInstance, field: 'documentos', 'error')} ">
+    <label for="documentos">
+      <g:message code="solicitudDeTarea.documentos.label" default="Documentos" />
+
+    </label>
+    <table>
+      <thead>
+        <tr>
+      <th><g:message code="documento.tipo.label" default="Tipo" /></th>
+      <g:sortableColumn property="observaciones" title="${message(code: 'documento.observaciones.label', default: 'Observaciones')}" />
+      <g:sortableColumn property="fechaRealizado" title="${message(code: 'documento.fechaRealizado.label', default: 'Fecha Realizado')}" />
+      <g:sortableColumn property="fechaEnviado" title="${message(code: 'documento.fechaEnviado.label', default: 'Fecha Enviado')}" />
+      <g:sortableColumn property="fechaAprobado" title="${message(code: 'documento.fechaAprobado.label', default: 'Fecha Aprobado')}" />
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${solicitudDeTareaInstance?.documentos}" status="i" var="documentoInstance">
+        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+        <td><g:link action="show" controller="documento" id="${documentoInstance.id}">${fieldValue(bean: documentoInstance, field: "tipo")}</g:link></td>
+        <td>${fieldValue(bean: documentoInstance, field: "observaciones")}</td>
+        <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaRealizado}" /></td>
+        <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaEnviado}" /></td>
+        <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaAprobado}" /></td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+
+  </div>
+</g:if>

@@ -47,6 +47,7 @@ class SolicitudDeTareaController {
     def save() {
         Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
         def solicitudDeTareaInstance = session.getAttribute("solicitudDeTareaCreate")  
+        solicitudDeTareaInstance = SolicitudDeTarea.get(solicitudDeTareaInstance.id)
         solicitudDeTareaInstance.properties = params
                 
         if (!solicitudDeTareaInstance.save(flush: true)) {

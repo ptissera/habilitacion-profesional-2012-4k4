@@ -15,6 +15,7 @@ import business.tarea.EstadoTarea
 import business.tarea.Tarea
 import business.tarea.TipoEquipoDeTarea
 import business.tarea.TipoMaterialDeTarea
+import business.tarea.UnidadMedida
 import business.documento.TipoDocumento
 import business.documento.EstadoDocumento
 
@@ -30,6 +31,7 @@ class BootStrap {
         initSitios()
         initTareas()
         initHerramientas()
+        initUnidadesMedida()
     }
     
     def initRolAndUsuarios(){
@@ -111,6 +113,31 @@ class BootStrap {
         if(!TipoDocumento.findByNombre('CAO')){
             new TipoDocumento(nombre: 'CAO', 
                 descripcion: 'Conformidad De Obra').save(flush: true, insert: true)
+        }
+        
+        if(!TipoEquipoDeTarea.findByNombre('Medicio')){
+            new TipoEquipoDeTarea(nombre: 'Medicio', 
+                descripcion: 'Medicio').save(flush: true, insert: true)
+        }
+        
+        if(!TipoEquipoDeTarea.findByNombre('Calibracion')){
+            new TipoEquipoDeTarea(nombre: 'Calibracion', 
+                descripcion: 'Calibracion').save(flush: true, insert: true)
+        }
+        
+        if(!TipoMaterialDeTarea.findByNombre('Coaxil 5mm')){
+            new TipoMaterialDeTarea(nombre: 'Coaxil 5mm', 
+                descripcion: 'Coaxil 5mm').save(flush: true, insert: true)
+        }
+        
+        if(!TipoMaterialDeTarea.findByNombre('Coaxil 9mm')){
+            new TipoMaterialDeTarea(nombre: 'Coaxil 9mm', 
+                descripcion: 'Coaxil 9mm').save(flush: true, insert: true)
+        }
+        
+        if(!TipoMaterialDeTarea.findByNombre('UTP cat5')){
+            new TipoMaterialDeTarea(nombre: 'UTP cat5', 
+                descripcion: 'UTP cat5').save(flush: true, insert: true)
         }
         
     }
@@ -261,9 +288,9 @@ class BootStrap {
         }
                         
         if(!IntegranteCuadrilla.findByApellido('Perez')){
-           new IntegranteCuadrilla(nombre: 'Juan', apellido: 'Perez',du: '345455534',
-           legajo: '234', telefono: '23444434', fechaAlta: new Date(), 
-           cuadrilla: Cuadrilla.findByNombre('Perez')).save(flush: true, insert: true)
+            new IntegranteCuadrilla(nombre: 'Juan', apellido: 'Perez',du: '345455534',
+                legajo: '234', telefono: '23444434', fechaAlta: new Date(), 
+                cuadrilla: Cuadrilla.findByNombre('Perez')).save(flush: true, insert: true)
         }
     }
    
@@ -296,8 +323,7 @@ class BootStrap {
         }
         
     }
-    
-    
+        
     def initSitios(){
         
         if(!Sitio.findByNombre('Golf villa Allende')){
@@ -330,13 +356,31 @@ class BootStrap {
         
     }
     
-        def initHerramientas(){
+    def initHerramientas(){
         
         if(!Herramienta.findByNumeroDeSerie('NB23234443')){
             new Herramienta(numeroDeSerie: 'NB23234443', nombre: 'Consola SONY', descripcion: 'consola monitor', 
                 estado: EstadoHerramienta.findByNombre('Libre')).save()
         }
+    }
         
+    def initUnidadesMedida() {
+            
+        if(!UnidadMedida.findByNombre('Metro')){
+            new UnidadMedida(nombre: 'Metro').save(flush: true, insert: true)
+        }
+        
+        if(!UnidadMedida.findByNombre('Unidad')){
+            new UnidadMedida(nombre: 'Unidad').save(flush: true, insert: true)
+        }
+        
+        if(!UnidadMedida.findByNombre('CM')){
+            new UnidadMedida(nombre: 'CM').save(flush: true, insert: true)
+        }
+        
+        if(!UnidadMedida.findByNombre('Gr')){
+            new UnidadMedida(nombre: 'Gr').save(flush: true, insert: true)
+        }
         
     }
     

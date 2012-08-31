@@ -1,29 +1,29 @@
-<%@ page import="business.tarea.MaterialDeTarea" %>
+<%@ page import="business.core.PermisoAcceso" %>
 <!doctype html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'materialDeTarea.label', default: 'MaterialDeTarea')}" />
+		<g:set var="entityName" value="${message(code: 'permisoAcceso.label', default: 'PermisoAcceso')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#create-materialDeTarea" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<a href="#create-permisoAcceso" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
-			
+		
 		</div>
-		<div id="create-materialDeTarea" class="content scaffold-create" role="main">
+		<div id="create-permisoAcceso" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<g:hasErrors bean="${materialDeTareaInstance}">
+			<g:hasErrors bean="${permisoAccesoInstance}">
 			<ul class="errors" role="alert">
-				<g:eachError bean="${materialDeTareaInstance}" var="error">
+				<g:eachError bean="${permisoAccesoInstance}" var="error">
 				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form action="save" >
+			<g:form action="save"  enctype="multipart/form-data">
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

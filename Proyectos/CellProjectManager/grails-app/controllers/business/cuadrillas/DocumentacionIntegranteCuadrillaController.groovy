@@ -33,7 +33,7 @@ class DocumentacionIntegranteCuadrillaController {
         }
         integranteCuadrillaInstance.addToDocumentacion(documentacionIntegranteCuadrillaInstance)
 	flash.message = message(code: 'default.created.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), documentacionIntegranteCuadrillaInstance.id])
-        redirect(action: "show",controller: "integranteCuadrilla", id: documentacionIntegranteCuadrillaInstance.id)
+        redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
     }
 
     def show() {
@@ -88,7 +88,7 @@ class DocumentacionIntegranteCuadrillaController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), documentacionIntegranteCuadrillaInstance.id])
-        redirect(action: "show",controller: "integranteCuadrilla", id: documentacionIntegranteCuadrillaInstance.id)
+        redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
     }
 
     def delete() {
@@ -102,11 +102,11 @@ class DocumentacionIntegranteCuadrillaController {
         try {
             documentacionIntegranteCuadrillaInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), params.id])
-            redirect(action: "show",controller: "integranteCuadrilla", id: documentacionIntegranteCuadrillaInstance.id)
+            redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), params.id])
-            redirect(action: "show",controller: "integranteCuadrilla", id: documentacionIntegranteCuadrillaInstance.id)
+            redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
         }
     }
 }

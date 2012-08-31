@@ -16,7 +16,13 @@ class TareasPorSitioController {
     }
 
     def create() {
+        cleanSelected()
         def tareasPorSitioInstance = new TareasPorSitio(params)
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")        
+        if(!solicitudDeTareaSelected){            
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+        tareasPorSitioInstance.ordenEjecucion = solicitudDeTareaSelected.tareasPorSitio.size() + 1
         session.setAttribute("tareaSelected",tareasPorSitioInstance)
         [tareasPorSitioInstance: tareasPorSitioInstance]
     }
@@ -27,10 +33,17 @@ class TareasPorSitioController {
         if(!solicitudDeTareaSelected){
             isSolicitudCreate = false
             solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
-       }
+        }
               
         def tareasPorSitioInstance = new TareasPorSitio(solicitudDeTarea: solicitudDeTareaSelected) 
         tareasPorSitioInstance.properties = params
+        def f = request.getFile('archivo')
+        if(!f.empty) {
+            tareasPorSitioInstance.documentoDeIngenieria = f.getOriginalFilename()
+            tareasPorSitioInstance.archivo = f.inputStream.bytes
+        }    else {
+            flash.message = 'file cannot be empty'          
+        }
         if (!tareasPorSitioInstance.save(flush: true)) {
             render(view: "create", model: [tareasPorSitioInstance: tareasPorSitioInstance])
             return
@@ -44,24 +57,26 @@ class TareasPorSitioController {
     }
 
     def show() {
-        def tareasPorSitioInstance = TareasPorSitio.get(params.id)
-        if (!tareasPorSitioInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
-            redirect(action: "list")
-            return
-        }
-session.setAttribute("tareaSelected",tareasPorSitioInstance)
-        [tareasPorSitioInstance: tareasPorSitioInstance]
-    }
-
-    def edit() {
+        cleanSelected()
         def tareasPorSitioInstance = TareasPorSitio.get(params.id)
         if (!tareasPorSitioInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
             redirect(action: "list")
             return
         }
-session.setAttribute("tareaSelected",tareasPorSitioInstance)
+        session.setAttribute("tareaSelected",tareasPorSitioInstance)
+        [tareasPorSitioInstance: tareasPorSitioInstance]
+    }
+
+    def edit() {
+        cleanSelected()
+        def tareasPorSitioInstance = TareasPorSitio.get(params.id)
+        if (!tareasPorSitioInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
+            redirect(action: "list")
+            return
+        }
+        session.setAttribute("tareaSelected",tareasPorSitioInstance)
         [tareasPorSitioInstance: tareasPorSitioInstance]
     }
 
@@ -72,7 +87,7 @@ session.setAttribute("tareaSelected",tareasPorSitioInstance)
         if(!solicitudDeTareaSelected){
             isSolicitudCreate = false
             solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
-       }
+        }
        
         def tareasPorSitioInstance = TareasPorSitio.get(params.id)
         if (!tareasPorSitioInstance) {
@@ -85,7 +100,7 @@ session.setAttribute("tareaSelected",tareasPorSitioInstance)
             def version = params.version.toLong()
             if (tareasPorSitioInstance.version > version) {
                 tareasPorSitioInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio')] as Object[],
+                    [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio')] as Object[],
                           "Another user has updated this TareasPorSitio while you were editing")
                 render(view: "edit", model: [tareasPorSitioInstance: tareasPorSitioInstance])
                 return
@@ -93,13 +108,19 @@ session.setAttribute("tareaSelected",tareasPorSitioInstance)
         }
 
         tareasPorSitioInstance.properties = params
-
+        def f = request.getFile('archivo')
+        if(!f.empty) {
+            tareasPorSitioInstance.documentoDeIngenieria = f.getOriginalFilename()
+            tareasPorSitioInstance.archivo = f.inputStream.bytes
+        }    else {
+            flash.message = 'file cannot be empty'          
+        }
         if (!tareasPorSitioInstance.save(flush: true)) {
             render(view: "edit", model: [tareasPorSitioInstance: tareasPorSitioInstance])
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), tareasPorSitioInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), tareasPorSitioInstance.id])
         if(isSolicitudCreate){ 
             redirect(controller: "solicitudDeTarea", action: "create")
         }else{
@@ -108,31 +129,51 @@ session.setAttribute("tareaSelected",tareasPorSitioInstance)
     }
 
     def delete() {
-         def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        cleanSelected()
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
         boolean isSolicitudCreate = true
         if(!solicitudDeTareaSelected){
             isSolicitudCreate = false
             solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
-       }
+        }
         def tareasPorSitioInstance = TareasPorSitio.get(params.id)
         if (!tareasPorSitioInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
             tareasPorSitioInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
-             if(isSolicitudCreate){ 
-            redirect(controller: "solicitudDeTarea", action: "create")
-        }else{
-            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
-        }
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
+            if(isSolicitudCreate){ 
+                redirect(controller: "solicitudDeTarea", action: "create")
+            }else{
+                redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+            }
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio'), params.id])
             redirect(action: "show", id: params.id)
         }
+    }
+    
+    def cleanSelected() 
+    {
+        [ 
+        "equipoDeTareaSelectedTF",
+        "materialDeTareaSelectedTF",
+        "permisoAccesoSelectedTF"].each{ name ->
+            session.setAttribute(name , null)
+        }
+    }
+    
+    def downloadFile(){
+        def tareasPorSitioInstance = TareasPorSitio.get(params.id)
+
+        response.setContentType("application/octet-stream")
+        response.setHeader("Content-disposition", "filename=${tareasPorSitioInstance.documentoDeIngenieria}")
+        response.outputStream << tareasPorSitioInstance.archivo
+   
     }
 }

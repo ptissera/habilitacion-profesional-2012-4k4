@@ -14,6 +14,6 @@ class EquipoDeTarea {
     }
     
      @Override String toString() {
-	return getTipo() +" - "+ getDescripcion()
+	return getDescripcion()
     }
 }

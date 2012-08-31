@@ -4,7 +4,7 @@ import business.tarea.TareasPorSitio
 
 class PermisoAcceso {
 
-    static belongsTo = [tarea: TareasPorSitio]
+    static belongsTo = [tareasPorSitio: TareasPorSitio]
     
     Date fechaDesde
     Date fechaHasta
@@ -15,6 +15,7 @@ class PermisoAcceso {
         fechaDesde(blank: false)
         fechaHasta(blank: false)
         nombreArchivo(blank: true)
-        archivo(blank: true)         
+        archivo(maxSize: 50000000)   
+        tareasPorSitio()
     }
 }
