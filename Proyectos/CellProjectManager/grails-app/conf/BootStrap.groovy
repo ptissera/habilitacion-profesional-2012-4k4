@@ -1,6 +1,7 @@
 import support.secure.*
 
 import business.cuadrillas.TipoDocumentacionIntegranteCuadrilla
+import business.cuadrillas.TipoDocumentoIdentificacion
 import business.cuadrillas.EstadoCuadrilla
 import business.cuadrillas.Cuadrilla
 import business.cuadrillas.IntegranteCuadrilla
@@ -140,6 +141,13 @@ class BootStrap {
                 descripcion: 'UTP cat5').save(flush: true, insert: true)
         }
         
+        if(!TipoDocumentoIdentificacion.findByNombre('DU')){
+            new TipoDocumentoIdentificacion(nombre: 'DU').save(flush: true, insert: true)
+        }
+        if(!TipoDocumentoIdentificacion.findByNombre('PASAPORTE')){
+            new TipoDocumentoIdentificacion(nombre: 'PASAPORTE').save(flush: true, insert: true)
+        }
+        
     }
     
     def initEstados(){        
@@ -180,9 +188,14 @@ class BootStrap {
                 descripcion: 'Activo').save(flush: true, insert: true)
         }
         
-        if(!EstadoProyecto.findByNombre('Resuelto')){
-            new EstadoProyecto(nombre: 'Resuelto', 
-                descripcion: 'Resuelto').save(flush: true, insert: true)
+        if(!EstadoProyecto.findByNombre('Cancelado')){
+            new EstadoProyecto(nombre: 'Cancelado', 
+                descripcion: 'Cancelado').save(flush: true, insert: true)
+        }
+         
+        if(!EstadoProyecto.findByNombre('Pendiente Cancelacion')){
+            new EstadoProyecto(nombre: 'Pendiente Cancelacion', 
+                descripcion: 'Pendiente Cancelacion').save(flush: true, insert: true)
         }
         
         if(!EstadoProyecto.findByNombre('Cerrado')){
@@ -190,34 +203,30 @@ class BootStrap {
                 descripcion: 'Cerrado').save(flush: true, insert: true)
         }
         
-        if(!EstadoProyecto.findByNombre('Cancelado')){
-            new EstadoProyecto(nombre: 'Cancelado', 
-                descripcion: 'Cancelado').save(flush: true, insert: true)
+       
+        if(!EstadoSolicitudTarea .findByNombre('Creada')){
+            new EstadoSolicitudTarea(nombre: 'Creada', 
+                descripcion: 'Creada').save(flush: true, insert: true)
         }
         
-        if(!EstadoSolicitudTarea .findByNombre('Pendiente')){
-            new EstadoSolicitudTarea(nombre: 'Pendiente', 
-                descripcion: 'Pendiente').save(flush: true, insert: true)
+        if(!EstadoSolicitudTarea.findByNombre('Pendiente Conformidad')){
+            new EstadoSolicitudTarea(nombre: 'Pendiente Conformidad', 
+                descripcion: 'Pendiente Conformidad').save(flush: true, insert: true)
         }
         
-        if(!EstadoSolicitudTarea.findByNombre('En Ejecucion')){
-            new EstadoSolicitudTarea(nombre: 'En Ejecucion', 
-                descripcion: 'En Ejecucion').save(flush: true, insert: true)
+        if(!EstadoSolicitudTarea.findByNombre('Cancelada')){
+            new EstadoSolicitudTarea(nombre: 'Cancelada', 
+                descripcion: 'Cancelada').save(flush: true, insert: true)
         }
         
-        if(!EstadoSolicitudTarea.findByNombre('Resuelto')){
-            new EstadoSolicitudTarea(nombre: 'Resuelto', 
-                descripcion: 'Resuelto').save(flush: true, insert: true)
+        if(!EstadoSolicitudTarea.findByNombre('Cerrada')){
+            new EstadoSolicitudTarea(nombre: 'Cerrada', 
+                descripcion: 'Cerrada').save(flush: true, insert: true)
         }
         
-        if(!EstadoSolicitudTarea.findByNombre('Cerrado')){
-            new EstadoSolicitudTarea(nombre: 'Cerrado', 
-                descripcion: 'Cerrado').save(flush: true, insert: true)
-        }
-        
-        if(!EstadoTarea.findByNombre('Pendiente')){
-            new EstadoTarea(nombre: 'Pendiente', 
-                descripcion: 'Pendiente').save(flush: true, insert: true)
+        if(!EstadoTarea.findByNombre('Suspendida')){
+            new EstadoTarea(nombre: 'Suspendida', 
+                descripcion: 'Suspendida').save(flush: true, insert: true)
         }
         
         if(!EstadoTarea.findByNombre('En Ejecucion')){
@@ -225,14 +234,19 @@ class BootStrap {
                 descripcion: 'En Ejecucion').save(flush: true, insert: true)
         }
         
-        if(!EstadoTarea.findByNombre('Resuelto')){
-            new EstadoTarea(nombre: 'Resuelto', 
-                descripcion: 'Resuelto').save(flush: true, insert: true)
+        if(!EstadoTarea.findByNombre('Creada')){
+            new EstadoTarea(nombre: 'Creada', 
+                descripcion: 'Creada').save(flush: true, insert: true)
         }
         
-        if(!EstadoTarea.findByNombre('Cerrado')){
-            new EstadoTarea(nombre: 'Cerrado', 
-                descripcion: 'Cerrado').save(flush: true, insert: true)
+        if(!EstadoTarea.findByNombre('Cancelada')){
+            new EstadoTarea(nombre: 'Cancelada', 
+                descripcion: 'Cancelada').save(flush: true, insert: true)
+        }
+        
+         if(!EstadoTarea.findByNombre('Resuelta')){
+            new EstadoTarea(nombre: 'Resuelta', 
+                descripcion: 'Resuelta').save(flush: true, insert: true)
         }
         
         if(!EstadoDocumento.findByNombre('Creado')){
@@ -288,7 +302,7 @@ class BootStrap {
         }
                         
         if(!IntegranteCuadrilla.findByApellido('Perez')){
-            new IntegranteCuadrilla(nombre: 'Juan', apellido: 'Perez',du: '345455534',
+            new IntegranteCuadrilla(nombre: 'Juan', apellido: 'Perez',documento: '345455534', tipoDocumento: TipoDocumentoIdentificacion.findByNombre('DU'),
                 legajo: '234', telefono: '23444434', fechaAlta: new Date(), 
                 cuadrilla: Cuadrilla.findByNombre('Perez')).save(flush: true, insert: true)
         }

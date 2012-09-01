@@ -21,9 +21,9 @@ class Proyecto {
         fechaCreacion(blank:false)
         fechaInicio(blank:true, nullable:true)
         fechaFin(blank:true, nullable:true)
-        estadoProyecto(blank:false)
+        estadoProyecto(blank:false, nullable:false)
         licitacion()
-        usuario(blank:true, nullable:true)
+        usuario(nullable:true)
         solicitudes()
     }
     

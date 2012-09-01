@@ -1,13 +1,21 @@
 <%@ page import="business.cuadrillas.IntegranteCuadrilla" %>
 
 
-
-<div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'du', 'error')} ">
-	<label for="du">
-		<g:message code="integranteCuadrilla.du.label" default="Du" />
+<div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'tipoDocumento', 'error')} ">
+	<label for="tipoDocumento">
+		<g:message code="integranteCuadrilla.tipoDocumento.label" default="Tipo Documento" />
 		
 	</label>
-	<g:textField name="du" value="${integranteCuadrillaInstance?.du}"/>
+	<g:select id="tipoDocumento" name="tipoDocumento.id" from="${business.cuadrillas.TipoDocumentoIdentificacion.list()}" optionKey="id" required="" value="${integranteCuadrillaInstance?.tipoDocumento?.id}" class="many-to-one"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'documento', 'error')} ">
+	<label for="documento">
+		<g:message code="integranteCuadrilla.documento.label" default="Documento" />
+		
+	</label>
+	<g:textField name="documento" value="${integranteCuadrillaInstance?.documento}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'nombre', 'error')} ">

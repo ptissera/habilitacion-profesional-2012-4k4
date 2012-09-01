@@ -32,7 +32,7 @@ class SolicitudDeTareaController {
             def solicitudDeTareaInstance = session.getAttribute("solicitudDeTareaCreate")      
             if(!solicitudDeTareaInstance){
                 solicitudDeTareaInstance   = new SolicitudDeTarea(fechaAlta: new Date(), proyecto: proyectoSelected, cuadrilla: Cuadrilla.findByNombre('Perez'),
-                estado: EstadoSolicitudTarea.findByNombre('Pendiente'))
+                estado: EstadoSolicitudTarea.findByNombre('Creada'))
                 solicitudDeTareaInstance.save(flush: true)          
                 session.setAttribute("solicitudDeTareaCreate",solicitudDeTareaInstance)            
             }

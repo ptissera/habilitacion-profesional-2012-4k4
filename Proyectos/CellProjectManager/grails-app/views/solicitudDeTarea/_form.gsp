@@ -8,14 +8,6 @@
   <g:select id="cuadrilla" name="cuadrilla.id" from="${business.cuadrillas.Cuadrilla.list()}" optionKey="id" required="" value="${solicitudDeTareaInstance?.cuadrilla?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: solicitudDeTareaInstance, field: 'estado', 'error')} required">
-  <label for="estado">
-    <g:message code="solicitudDeTarea.estado.label" default="Estado" />
-    <span class="required-indicator">*</span>
-  </label>
-  <g:select id="estado" name="estado.id" from="${business.tarea.EstadoSolicitudTarea.list()}" optionKey="id" required="" value="${solicitudDeTareaInstance?.estado?.id}" class="many-to-one"/>
-</div>
-
 <g:if test="${solicitudDeTareaInstance?.tareasPorSitio}">
   <div class="fieldcontain ${hasErrors(bean: solicitudDeTareaInstance, field: 'tareasPorSitio', 'error')} ">
     <label for="tareasPorSitio">

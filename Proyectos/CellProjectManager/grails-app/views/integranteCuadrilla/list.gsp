@@ -23,8 +23,9 @@
 			<table>
 				<thead>
 					<tr>
-					
-						<g:sortableColumn property="du" title="${message(code: 'integranteCuadrilla.du.label', default: 'Du')}" />
+					        <g:sortableColumn property="tipoDocumento" title="${message(code: 'integranteCuadrilla.tipoDocumento.label', default: 'Tipo Documento')}" />  
+                                            
+						<g:sortableColumn property="documento" title="${message(code: 'integranteCuadrilla.documento.label', default: 'Documento')}" />
 					
 						<g:sortableColumn property="nombre" title="${message(code: 'integranteCuadrilla.nombre.label', default: 'Nombre')}" />
 					

@@ -41,7 +41,8 @@ class ProyectoController {
     }
 
     def save() {
-        def proyectoInstance = new Proyecto(params)
+        def proyectoInstance = new Proyecto(estadoProyecto: EstadoProyecto.findByNombre("Creado"))
+        proyectoInstance.properties = params
         if (!proyectoInstance.save(flush: true)) {
             render(view: "create", model: [proyectoInstance: proyectoInstance])
             return

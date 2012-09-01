@@ -64,7 +64,10 @@
                                   <thead>
                                           <tr><g:message code="cuadrilla.operarios.label" default="Operarios" /></tr>
                                           <tr>					
-                                                  <g:sortableColumn property="du" title="${message(code: 'empleado.du.label', default: 'Du')}" />					
+                                                  <g:sortableColumn property="tipoDocumento" title="${message(code: 'empleado.tipoDocumento.label', default: 'Tipo')}" />  
+                                            
+						    <g:sortableColumn property="documento" title="${message(code: 'empleado.documento.label', default: 'Nro')}" />
+					
                                                   <g:sortableColumn property="nombre" title="${message(code: 'empleado.nombre.label', default: 'Nombre')}" />					
                                                   <g:sortableColumn property="apellido" title="${message(code: 'empleado.apellido.label', default: 'Apellido')}" />					
                                                   <g:sortableColumn property="legajo" title="${message(code: 'empleado.legajo.label', default: 'Legajo')}" />					
@@ -75,7 +78,8 @@
                                   <tbody>
                                   <g:each in="${cuadrillaInstance?.operarios}" status="i" var="integranteCuadrillaInstance">
                                           <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
-                                                  <td><g:link action="show" controller="integranteCuadrilla" id="${integranteCuadrillaInstance.id}">${fieldValue(bean: integranteCuadrillaInstance, field: "du")}</g:link></td>					
+                                                  <td><g:link action="show" controller="integranteCuadrilla" id="${integranteCuadrillaInstance.id}">${fieldValue(bean: integranteCuadrillaInstance, field: "tipoDocumento")}</g:link></td>					
+                                                  <td>${fieldValue(bean: integranteCuadrillaInstance, field: "documento")}</td>					
                                                   <td>${fieldValue(bean: integranteCuadrillaInstance, field: "nombre")}</td>					
                                                   <td>${fieldValue(bean: integranteCuadrillaInstance, field: "apellido")}</td>					
                                                   <td>${fieldValue(bean: integranteCuadrillaInstance, field: "legajo")}</td>					

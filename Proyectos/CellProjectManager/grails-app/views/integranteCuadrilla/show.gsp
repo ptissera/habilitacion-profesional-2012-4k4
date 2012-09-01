@@ -21,16 +21,25 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list integranteCuadrilla">
-			
-				<g:if test="${integranteCuadrillaInstance?.du}">
+			        
+                                <g:if test="${integranteCuadrillaInstance?.tipoDocumento}">
 				<li class="fieldcontain">
-					<span id="du-label" class="property-label"><g:message code="integranteCuadrilla.du.label" default="Du" /></span>
+					<span id="tipoDocumento-label" class="property-label"><g:message code="integranteCuadrilla.tipoDocumento.label" default="Tipo Documento" /></span>
 					
-						<span class="property-value" aria-labelledby="du-label"><g:fieldValue bean="${integranteCuadrillaInstance}" field="du"/></span>
+						<span class="property-value" aria-labelledby="tipoDocumento-label"><g:fieldValue bean="${integranteCuadrillaInstance}" field="tipoDocumento"/></span>
 					
 				</li>
 				</g:if>
-			
+                          
+				<g:if test="${integranteCuadrillaInstance?.documento}">
+				<li class="fieldcontain">
+					<span id="documento-label" class="property-label"><g:message code="integranteCuadrilla.documento.label" default="Documento" /></span>
+					
+						<span class="property-value" aria-labelledby="documento-label"><g:fieldValue bean="${integranteCuadrillaInstance}" field="documento"/></span>
+					
+				</li>
+				</g:if>
+                          
 				<g:if test="${integranteCuadrillaInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="integranteCuadrilla.nombre.label" default="Nombre" /></span>

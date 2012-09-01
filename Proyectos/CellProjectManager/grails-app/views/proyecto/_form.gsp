@@ -50,22 +50,6 @@
 	<g:datePicker name="fechaFin" precision="day"  value="${proyectoInstance?.fechaFin}" default="none" noSelection="['': '']" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'estadoProyecto', 'error')} required">
-	<label for="estadoProyecto">
-		<g:message code="proyecto.estadoProyecto.label" default="Estado Proyecto" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="estadoProyecto" name="estadoProyecto.id" from="${business.core.EstadoProyecto.list()}" optionKey="id" required="" value="${proyectoInstance?.estadoProyecto?.id}" class="many-to-one"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'usuario', 'error')} ">
-	<label for="usuario">
-		<g:message code="proyecto.usuario.label" default="Usuario" />
-		
-	</label>
-	<g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'cliente', 'error')} required">
 	<label for="cliente">
 		<g:message code="proyecto.cliente.label" default="Cliente" />

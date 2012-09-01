@@ -3,8 +3,8 @@ package business.cuadrillas
 class IntegranteCuadrilla {
     
     static hasMany = [ documentacion:DocumentacionIntegranteCuadrilla ]
-    static belongsTo = [cuadrilla:Cuadrilla]
-    String du
+    static belongsTo = [cuadrilla:Cuadrilla, tipoDocumento: TipoDocumentoIdentificacion]
+    String documento
     String nombre
     String apellido
     String legajo
@@ -13,13 +13,14 @@ class IntegranteCuadrilla {
     Date fechaBaja
     
     static constraints = {
-        du(black:false, unique:true)
-        nombre(black:false)
-        apellido(black:false)
-        legajo(black:false, unique:true)
-        telefono(black:false)        
-        fechaAlta(black: false)
-        fechaBaja(black:true, nullable:true)
+        tipoDocumento()
+        documento(blank:false, unique:true)
+        nombre(blank:false)
+        apellido(blank:false)
+        legajo(blank:false, unique:true)
+        telefono(blank:false)        
+        fechaAlta(blank: false)
+        fechaBaja(blank:true, nullable:true)
     }
     
      def checkDocumentacion(){
