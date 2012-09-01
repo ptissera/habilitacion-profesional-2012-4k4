@@ -22,7 +22,7 @@ class TareasPorSitioController {
         if(!solicitudDeTareaSelected){            
             solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
         }
-        tareasPorSitioInstance.ordenEjecucion = solicitudDeTareaSelected.tareasPorSitio.size() + 1
+        tareasPorSitioInstance.ordenEjecucion = solicitudDeTareaSelected.tareasPorSitio == null ? 1 : solicitudDeTareaSelected.tareasPorSitio.size() + 1
         session.setAttribute("tareaSelected",tareasPorSitioInstance)
         [tareasPorSitioInstance: tareasPorSitioInstance]
     }
