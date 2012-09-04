@@ -14,6 +14,7 @@ import business.core.Sitio
 import business.tarea.EstadoSolicitudTarea
 import business.tarea.EstadoTarea
 import business.tarea.Tarea
+import business.tarea.TipoTarea
 import business.tarea.TipoEquipoDeTarea
 import business.tarea.TipoMaterialDeTarea
 import business.tarea.UnidadMedida
@@ -354,18 +355,18 @@ class BootStrap {
     
     def initTareas(){
         
-        if(!Tarea.findByNombre('Swap Energía')){
-            new Tarea(nombre: 'Swap Energía', descripcion: 'Swap Energía').save()
+        if(!TipoTarea.findByNombre('Swap Energía')){
+            new TipoTarea(nombre: 'Swap Energía', descripcion: 'Swap Energía').save()
         }
-        if(!Tarea.findByNombre('Energía Generadores')){
-            new Tarea(nombre: 'Energía Generadores', descripcion: 'Energía Generadores').save()
+        if(!TipoTarea.findByNombre('Energía Generadores')){
+            new TipoTarea(nombre: 'Energía Generadores', descripcion: 'Energía Generadores').save()
         }
-        if(!Tarea.findByNombre('Expansiones')){
-            new Tarea(nombre: 'Expansiones', descripcion: 'Expansiones').save()
+        if(!TipoTarea.findByNombre('Expansiones')){
+            new TipoTarea(nombre: 'Expansiones', descripcion: 'Expansiones').save()
         }
     
-        if(!Tarea.findByNombre('Montaje de BTS')){
-            new Tarea(nombre: 'Montaje de BTS', descripcion: 'Montaje de BTS').save(flush: true, insert: true)
+        if(!TipoTarea.findByNombre('Montaje de BTS')){
+            new TipoTarea(nombre: 'Montaje de BTS', descripcion: 'Montaje de BTS').save(flush: true, insert: true)
         }
         
     }
