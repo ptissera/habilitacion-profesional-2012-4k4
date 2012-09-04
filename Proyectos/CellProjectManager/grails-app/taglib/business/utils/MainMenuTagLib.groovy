@@ -9,6 +9,7 @@ class MainMenuTagLib {
 	subItemMenu([["cliente","Clientes"],                     
                 ["proyecto","Proyectos"],
                 ["proyecto","Seleccionar Proyectos","selectList"],
+                ["proyecto","Asignar Proyectos","asignProject"],
                 ["solicitudDeTarea","Listado de Solicitud de Tarea"],
                 ["solicitudDeTarea","Crear Solicitud de Tarea","create"],
                 ["tarea","Tareas"],
