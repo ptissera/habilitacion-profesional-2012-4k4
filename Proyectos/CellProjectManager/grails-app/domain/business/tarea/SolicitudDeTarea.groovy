@@ -10,7 +10,7 @@ import business.documento.Documento
 
 class SolicitudDeTarea {
 
-    static hasMany = [pagos: Pago, tareasPorSitio: TareasPorSitio, pos: PO, prestamos: PrestamoHerramienta, documentos: Documento]
+    static hasMany = [pagos: Pago, tarea: Tarea, pos: PO, prestamos: PrestamoHerramienta, documentos: Documento]
     static belongsTo = [proyecto: Proyecto, estado: EstadoSolicitudTarea, cuadrilla: Cuadrilla]
     
     Date fechaAlta
@@ -20,7 +20,7 @@ class SolicitudDeTarea {
         proyecto()
         cuadrilla()
         estado()
-        tareasPorSitio()
+        tarea()
         pos()        
         pagos()                
         prestamos()

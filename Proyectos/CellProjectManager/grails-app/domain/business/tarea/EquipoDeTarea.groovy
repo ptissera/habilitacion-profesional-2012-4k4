@@ -2,7 +2,7 @@ package business.tarea
 
 class EquipoDeTarea {
 
-    static belongsTo = [tipo: TipoEquipoDeTarea, tareasPorSitio: TareasPorSitio]
+    static belongsTo = [tipo: TipoEquipoDeTarea, tarea: Tarea]
     String numeroSerie
     String descripcion
     
@@ -10,7 +10,7 @@ class EquipoDeTarea {
         numeroSerie(blank: false, unique: true)
         descripcion(blank: false)
         tipo()
-        tareasPorSitio()
+        tarea()
     }
     
      @Override String toString() {

@@ -32,7 +32,7 @@
 					
 						<g:sortableColumn property="archivo" title="${message(code: 'permisoAcceso.archivo.label', default: 'Archivo')}" />
 					
-						<th><g:message code="permisoAcceso.tareasPorSitio.label" default="Tareas Por Sitio" /></th>
+						<th><g:message code="permisoAcceso.tarea.label" default="Tareas Por Sitio" /></th>
 					
 					</tr>
 				</thead>
@@ -48,7 +48,7 @@
 					
 						<td>${fieldValue(bean: permisoAccesoInstance, field: "archivo")}</td>
 					
-						<td>${fieldValue(bean: permisoAccesoInstance, field: "tareasPorSitio")}</td>
+						<td>${fieldValue(bean: permisoAccesoInstance, field: "tarea")}</td>
 					
 					</tr>
 				</g:each>

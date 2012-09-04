@@ -22,7 +22,7 @@ class PermisoAccesoController {
 
     def save() {
         def tareaSelected = session.getAttribute("tareaSelected")
-        def permisoAccesoInstance = new PermisoAcceso(tareasPorSitio: tareaSelected)
+        def permisoAccesoInstance = new PermisoAcceso(tarea: tareaSelected)
         permisoAccesoInstance.properties = params
         def f = request.getFile('uploadArchivo')
         if(!f.empty) {
@@ -37,7 +37,7 @@ class PermisoAccesoController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso'), permisoAccesoInstance.id])
-        redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+        redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
     }
 
     def show() {
@@ -98,7 +98,7 @@ class PermisoAccesoController {
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso'), permisoAccesoInstance.id])
         def tareaSelected = session.getAttribute("tareaSelected")
-        redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+        redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
     }
 
     def delete() {
@@ -113,7 +113,7 @@ class PermisoAccesoController {
             permisoAccesoInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso'), params.id])
             def tareaSelected = session.getAttribute("tareaSelected")
-            redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+            redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso'), params.id])

@@ -34,7 +34,7 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons_add">
-					<g:link class="add" controller="tareasPorSitio" action="create" params="['solicitudDeTarea.id': solicitudDeTareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio')])}</g:link>                                        
+					<g:link class="add" controller="tarea" action="create" params="['solicitudDeTarea.id': solicitudDeTareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'tarea.label', default: 'Tarea')])}</g:link>                                        
                                         <g:link class="add" controller="PO" action="create" params="['solicitudDeTarea.id': solicitudDeTareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'PO.label', default: 'PO')])}</g:link>
                                         <g:link class="add" controller="prestamoHerramienta" action="create" params="['solicitudDeTarea.id': solicitudDeTareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta')])}</g:link>
                                         <g:link class="add" controller="documento" action="create" params="['solicitudDeTarea.id': solicitudDeTareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'documento.label', default: 'Documento')])}</g:link>

@@ -24,9 +24,17 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="nombre" title="${message(code: 'tarea.nombre.label', default: 'Nombre')}" />
+						<g:sortableColumn property="ordenEjecucion" title="${message(code: 'tarea.ordenEjecucion.label', default: 'Orden Ejecucion')}" />
 					
-						<g:sortableColumn property="descripcion" title="${message(code: 'tarea.descripcion.label', default: 'Descripcion')}" />
+						<g:sortableColumn property="fechaInicio" title="${message(code: 'tarea.fechaInicio.label', default: 'Fecha Inicio')}" />
+					
+						<th><g:message code="tarea.sitio.label" default="Sitio" /></th>
+					
+						<th><g:message code="tarea.tarea.label" default="Tarea" /></th>
+					
+						<th><g:message code="tarea.estado.label" default="Estado" /></th>
+					
+						<th><g:message code="tarea.solicitudDeTarea.label" default="Solicitud De Tarea" /></th>
 					
 					</tr>
 				</thead>
@@ -34,10 +42,18 @@
 				<g:each in="${tareaInstanceList}" status="i" var="tareaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${tareaInstance.id}">${fieldValue(bean: tareaInstance, field: "nombre")}</g:link></td>
+						<td><g:link action="show" id="${tareaInstance.id}">${fieldValue(bean: tareaInstance, field: "ordenEjecucion")}</g:link></td>
 					
-						<td>${fieldValue(bean: tareaInstance, field: "descripcion")}</td>
-										
+						<td><g:formatDate format="dd/MM/yyyy" date="${tareaInstance.fechaInicio}" /></td>
+					
+						<td>${fieldValue(bean: tareaInstance, field: "sitio")}</td>
+					
+						<td>${fieldValue(bean: tareaInstance, field: "tarea")}</td>
+					
+						<td>${fieldValue(bean: tareaInstance, field: "estado")}</td>
+					
+						<td>${fieldValue(bean: tareaInstance, field: "solicitudDeTarea")}</td>
+					
 					</tr>
 				</g:each>
 				</tbody>

@@ -26,10 +26,10 @@
 	
 <ul class="one-to-many">
 <g:each in="${estadoTareaInstance?.tarea?}" var="t">
-    <li><g:link controller="tareasPorSitio" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="tarea" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
-<g:link controller="tareasPorSitio" action="create" params="['estadoTarea.id': estadoTareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'tareasPorSitio.label', default: 'TareasPorSitio')])}</g:link>
+<g:link controller="tarea" action="create" params="['estadoTarea.id': estadoTareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'tarea.label', default: 'Tarea')])}</g:link>
 </li>
 </ul>
 

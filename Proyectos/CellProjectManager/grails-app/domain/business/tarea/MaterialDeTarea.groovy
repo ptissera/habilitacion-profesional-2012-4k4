@@ -2,7 +2,7 @@ package business.tarea
 
 class MaterialDeTarea {
 
-    static belongsTo = [ tareasPorSitio: TareasPorSitio, unidad: UnidadMedida]
+    static belongsTo = [ tarea: Tarea, unidad: UnidadMedida]
     int cantidad
     String descripcion
     boolean esDeCliente
@@ -12,7 +12,7 @@ class MaterialDeTarea {
         cantidad(min:1)  
         esDeCliente()        
         unidad()
-        tareasPorSitio()
+        tarea()
     }
     
     @Override String toString() {

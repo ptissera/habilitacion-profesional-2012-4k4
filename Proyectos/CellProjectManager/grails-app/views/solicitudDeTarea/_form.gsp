@@ -8,30 +8,30 @@
   <g:select id="cuadrilla" name="cuadrilla.id" from="${business.cuadrillas.Cuadrilla.list()}" optionKey="id" required="" value="${solicitudDeTareaInstance?.cuadrilla?.id}" class="many-to-one"/>
 </div>
 
-<g:if test="${solicitudDeTareaInstance?.tareasPorSitio}">
-  <div class="fieldcontain ${hasErrors(bean: solicitudDeTareaInstance, field: 'tareasPorSitio', 'error')} ">
-    <label for="tareasPorSitio">
-      <g:message code="solicitudDeTarea.tareasPorSitio.label" default="Tareas Por Sitio" />
+<g:if test="${solicitudDeTareaInstance?.tarea}">
+  <div class="fieldcontain ${hasErrors(bean: solicitudDeTareaInstance, field: 'tarea', 'error')} ">
+    <label for="tarea">
+      <g:message code="solicitudDeTarea.tarea.label" default="Tareas Por Sitio" />
 
     </label>
     <table>
       <thead>
         <tr>					
       <g:sortableColumn property="ordenEjecucion" title="Ord" />					
-      <g:sortableColumn property="fechaInicio" title="${message(code: 'tareasPorSitio.fechaInicio.label', default: 'Fecha Inicio')}" />					
-      <th><g:message code="tareasPorSitio.sitio.label" default="Sitio" /></th>					
-      <th><g:message code="tareasPorSitio.tarea.label" default="Tarea" /></th>					
-      <th><g:message code="tareasPorSitio.estado.label" default="Estado" /></th>				
+      <g:sortableColumn property="fechaInicio" title="${message(code: 'tarea.fechaInicio.label', default: 'Fecha Inicio')}" />					
+      <th><g:message code="tarea.sitio.label" default="Sitio" /></th>					
+      <th><g:message code="tarea.tarea.label" default="Tarea" /></th>					
+      <th><g:message code="tarea.estado.label" default="Estado" /></th>				
       </tr>
       </thead>
       <tbody>
-      <g:each in="${solicitudDeTareaInstance.tareasPorSitio}" status="i" var="tareasPorSitioInstance">
+      <g:each in="${solicitudDeTareaInstance.tarea}" status="i" var="tareaInstance">
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
-          <td><g:link action="show" controller="tareasPorSitio" id="${tareasPorSitioInstance.id}">${fieldValue(bean: tareasPorSitioInstance, field: "ordenEjecucion")}</g:link></td>					
-        <td><g:formatDate format="dd/MM/yyyy" date="${tareasPorSitioInstance.fechaInicio}" /></td>					
-        <td>${fieldValue(bean: tareasPorSitioInstance, field: "sitio")}</td>					
-        <td>${fieldValue(bean: tareasPorSitioInstance, field: "tarea")}</td>					
-        <td>${fieldValue(bean: tareasPorSitioInstance, field: "estado")}</td>
+          <td><g:link action="show" controller="tarea" id="${tareaInstance.id}">${fieldValue(bean: tareaInstance, field: "ordenEjecucion")}</g:link></td>					
+        <td><g:formatDate format="dd/MM/yyyy" date="${tareaInstance.fechaInicio}" /></td>					
+        <td>${fieldValue(bean: tareaInstance, field: "sitio")}</td>					
+        <td>${fieldValue(bean: tareaInstance, field: "tarea")}</td>					
+        <td>${fieldValue(bean: tareaInstance, field: "estado")}</td>
         </tr>
       </g:each>
       </tbody>

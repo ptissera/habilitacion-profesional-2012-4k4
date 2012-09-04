@@ -22,7 +22,7 @@ class MaterialDeTareaController {
 
     def save() {
         def tareaSelected = session.getAttribute("tareaSelected")
-        def materialDeTareaInstance = new MaterialDeTarea(tareasPorSitio: tareaSelected)
+        def materialDeTareaInstance = new MaterialDeTarea(tarea: tareaSelected)
         materialDeTareaInstance.properties = params
         if (!materialDeTareaInstance.save(flush: true)) {
             render(view: "create", model: [materialDeTareaInstance: materialDeTareaInstance])
@@ -30,7 +30,7 @@ class MaterialDeTareaController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), materialDeTareaInstance.id])        
-        redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+        redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
     }
 
     def show() {
@@ -85,7 +85,7 @@ class MaterialDeTareaController {
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), materialDeTareaInstance.id])
         def tareaSelected = session.getAttribute("tareaSelected")
-        redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+        redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
     }
 
     def delete() {
@@ -100,7 +100,7 @@ class MaterialDeTareaController {
             materialDeTareaInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])
             def tareaSelected = session.getAttribute("tareaSelected")
-            redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+            redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea'), params.id])

@@ -1,10 +1,10 @@
 package business.core
-import business.tarea.TareasPorSitio
+import business.tarea.Tarea
 
 class Sitio {
     
     static belongsTo = [provincia: Provincia]
-    static hasMany = [tareasPorSitio: TareasPorSitio]
+    static hasMany = [tarea: Tarea]
     
     String nombre
     String direccion
@@ -19,7 +19,7 @@ class Sitio {
         longitud(blank:true, nullable:true)
         observaciones(blank:true, nullable:true)
         provincia()
-        tareasPorSitio()
+        tarea()
     }
     
     @Override String toString() {

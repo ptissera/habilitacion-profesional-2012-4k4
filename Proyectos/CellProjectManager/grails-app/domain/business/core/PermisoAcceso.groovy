@@ -1,10 +1,10 @@
 package business.core
 
-import business.tarea.TareasPorSitio
+import business.tarea.Tarea
 
 class PermisoAcceso {
 
-    static belongsTo = [tareasPorSitio: TareasPorSitio]
+    static belongsTo = [tarea: Tarea]
     
     Date fechaDesde
     Date fechaHasta
@@ -16,6 +16,6 @@ class PermisoAcceso {
         fechaHasta(blank: false, min: new Date() )
         nombreArchivo(blank: true)
         archivo(maxSize: 50000000)   
-        tareasPorSitio()
+        tarea()
     }
 }

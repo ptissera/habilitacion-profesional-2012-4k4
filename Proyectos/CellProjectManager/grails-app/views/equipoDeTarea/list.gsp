@@ -30,7 +30,7 @@
 					
 						<th><g:message code="equipoDeTarea.tipo.label" default="Tipo" /></th>
 					
-						<th><g:message code="equipoDeTarea.tareasPorSitio.label" default="Tareas Por Sitio" /></th>
+						<th><g:message code="equipoDeTarea.tarea.label" default="Tareas Por Sitio" /></th>
 					
 					</tr>
 				</thead>
@@ -44,7 +44,7 @@
 					
 						<td>${fieldValue(bean: equipoDeTareaInstance, field: "tipo")}</td>
 					
-						<td>${fieldValue(bean: equipoDeTareaInstance, field: "tareasPorSitio")}</td>
+						<td>${fieldValue(bean: equipoDeTareaInstance, field: "tarea")}</td>
 					
 					</tr>
 				</g:each>

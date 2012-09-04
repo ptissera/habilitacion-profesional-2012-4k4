@@ -1,15 +1,16 @@
 package business.tarea
+import business.documento.*
+import business.herramienta.*
+class TipoTarea {
 
-class EstadoTarea {
-
-    static hasMany = [tarea: Tarea]
+    static belongsTo = [ tarea: Tarea]        
     String nombre
     String descripcion
     
     static constraints = {
         nombre(blank: false, unique: true)
         descripcion(blank: false)
-        tarea()
+        tarea(nullable: true)
     }
     
     @Override String toString() {

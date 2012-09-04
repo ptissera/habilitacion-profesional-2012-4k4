@@ -15,11 +15,12 @@
                       ${remoteFunction(controller:"proyecto", action:"userForProject", params:"'idUsuario=' + it.selectedIndex + '&idProyecto=' + idProyecto", onComplete:'updateMessage(XMLHttpRequest)')};
                     } else {
                       it.selectedIndex = idUsuario;
+                      $('#message').attr("style", "display:none");
                     }
                   }
                   
                   function updateMessage(resp){       
-                    $('#message').attr("style", "display:blocl");
+                    $('#message').attr("style", "display:block");
                     $('#message').text(resp.responseText);                    
                   }
                   
@@ -53,7 +54,7 @@
 						<td>${fieldValue(bean: proyectoInstance, field: "nombre")}</td>
 					
 						<td>
-                                                      <g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" onchange="seleccionarUsuario(this , ${proyectoInstance?.usuario?.id}, ${proyectoInstance?.id})" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>                                                
+                                                      <g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" onchange="seleccionarUsuario(this , this.selectedIndex, ${proyectoInstance?.id})" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>                                                
                                                       
                                                 </td>
 										

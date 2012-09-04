@@ -32,7 +32,7 @@
 					
 						<th><g:message code="materialDeTarea.unidad.label" default="Unidad" /></th>
 					
-						<th><g:message code="materialDeTarea.tareasPorSitio.label" default="Tareas Por Sitio" /></th>
+						<th><g:message code="materialDeTarea.tarea.label" default="Tareas Por Sitio" /></th>
 					
 					</tr>
 				</thead>
@@ -48,7 +48,7 @@
 					
 						<td>${fieldValue(bean: materialDeTareaInstance, field: "unidad")}</td>
 					
-						<td>${fieldValue(bean: materialDeTareaInstance, field: "tareasPorSitio")}</td>
+						<td>${fieldValue(bean: materialDeTareaInstance, field: "tarea")}</td>
 					
 					</tr>
 				</g:each>

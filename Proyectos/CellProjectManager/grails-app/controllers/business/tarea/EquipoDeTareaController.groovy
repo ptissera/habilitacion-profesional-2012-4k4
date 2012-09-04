@@ -22,7 +22,7 @@ class EquipoDeTareaController {
 
     def save() {
         def tareaSelected = session.getAttribute("tareaSelected")
-        def equipoDeTareaInstance = new EquipoDeTarea(tareasPorSitio: tareaSelected)
+        def equipoDeTareaInstance = new EquipoDeTarea(tarea: tareaSelected)
         equipoDeTareaInstance.properties = params
         if (!equipoDeTareaInstance.save(flush: true)) {
             render(view: "create", model: [equipoDeTareaInstance: equipoDeTareaInstance])
@@ -30,7 +30,7 @@ class EquipoDeTareaController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'equipoDeTarea.label', default: 'EquipoDeTarea'), equipoDeTareaInstance.id])
-        redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+        redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
     }
 
     def show() {
@@ -85,7 +85,7 @@ class EquipoDeTareaController {
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'equipoDeTarea.label', default: 'EquipoDeTarea'), equipoDeTareaInstance.id])
         def tareaSelected = session.getAttribute("tareaSelected")
-        redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+        redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
     }
 
     def delete() {
@@ -100,7 +100,7 @@ class EquipoDeTareaController {
             equipoDeTareaInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'equipoDeTarea.label', default: 'EquipoDeTarea'), params.id])
             def tareaSelected = session.getAttribute("tareaSelected")
-            redirect(controller: "tareasPorSitio", action: "edit", id: tareaSelected.id)
+            redirect(controller: "tarea", action: "edit", id: tareaSelected.id)
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'equipoDeTarea.label', default: 'EquipoDeTarea'), params.id])

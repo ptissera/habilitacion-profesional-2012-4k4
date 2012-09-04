@@ -50,28 +50,28 @@
         </li>
       </g:if>
 
-      <g:if test="${solicitudDeTareaInstance?.tareasPorSitio}">
+      <g:if test="${solicitudDeTareaInstance?.tarea}">
         <li class="fieldcontain">
 
-          <span id="tareasPorSitio-label" class="property-label"><g:message code="solicitudDeTarea.tareasPorSitio.label" default="Tareas Por Sitio" /></span>					
+          <span id="tarea-label" class="property-label"><g:message code="solicitudDeTarea.tarea.label" default="Tareas Por Sitio" /></span>					
           <table>
             <thead>
               <tr>					
             <g:sortableColumn property="ordenEjecucion" title="Ord" />					
-            <g:sortableColumn property="fechaInicio" title="${message(code: 'tareasPorSitio.fechaInicio.label', default: 'Fecha Inicio')}" />					
-            <th><g:message code="tareasPorSitio.sitio.label" default="Sitio" /></th>					
-            <th><g:message code="tareasPorSitio.tarea.label" default="Tarea" /></th>					
-            <th><g:message code="tareasPorSitio.estado.label" default="Estado" /></th>				
+            <g:sortableColumn property="fechaInicio" title="${message(code: 'tarea.fechaInicio.label', default: 'Fecha Inicio')}" />					
+            <th><g:message code="tarea.sitio.label" default="Sitio" /></th>					
+            <th><g:message code="tarea.tarea.label" default="Tarea" /></th>					
+            <th><g:message code="tarea.estado.label" default="Estado" /></th>				
             </tr>
             </thead>
             <tbody>
-            <g:each in="${solicitudDeTareaInstance.tareasPorSitio}" status="i" var="tareasPorSitioInstance">
+            <g:each in="${solicitudDeTareaInstance.tarea}" status="i" var="tareaInstance">
               <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
-                <td>${fieldValue(bean: tareasPorSitioInstance, field: "ordenEjecucion")}</td>					
-                <td><g:formatDate format="dd/MM/yyyy" date="${tareasPorSitioInstance.fechaInicio}" /></td>					
-              <td>${fieldValue(bean: tareasPorSitioInstance, field: "sitio")}</td>					
-              <td>${fieldValue(bean: tareasPorSitioInstance, field: "tarea")}</td>					
-              <td>${fieldValue(bean: tareasPorSitioInstance, field: "estado")}</td>
+                <td>${fieldValue(bean: tareaInstance, field: "ordenEjecucion")}</td>					
+                <td><g:formatDate format="dd/MM/yyyy" date="${tareaInstance.fechaInicio}" /></td>					
+              <td>${fieldValue(bean: tareaInstance, field: "sitio")}</td>					
+              <td>${fieldValue(bean: tareaInstance, field: "tarea")}</td>					
+              <td>${fieldValue(bean: tareaInstance, field: "estado")}</td>
               </tr>
             </g:each>
             </tbody>

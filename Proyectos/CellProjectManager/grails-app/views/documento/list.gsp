@@ -24,7 +24,7 @@
 				<thead>
 					<tr>
 					
-						<th><g:message code="documento.tareasPorSitio.label" default="Tareas Por Sitio" /></th>
+						<th><g:message code="documento.tarea.label" default="Tareas Por Sitio" /></th>
 					
 						<th><g:message code="documento.tipo.label" default="Tipo" /></th>
 					
@@ -42,7 +42,7 @@
 				<g:each in="${documentoInstanceList}" status="i" var="documentoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${documentoInstance.id}">${fieldValue(bean: documentoInstance, field: "tareasPorSitio")}</g:link></td>
+						<td><g:link action="show" id="${documentoInstance.id}">${fieldValue(bean: documentoInstance, field: "tarea")}</g:link></td>
 					
 						<td>${fieldValue(bean: documentoInstance, field: "tipo")}</td>
 					

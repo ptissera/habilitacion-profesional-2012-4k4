@@ -3,7 +3,7 @@ package business.utils
 import business.cuadrillas.*
 import business.core.Proyecto
 import business.tarea.SolicitudDeTarea
-import business.tarea.TareasPorSitio
+import business.tarea.Tarea
 
 class SelectedItemsTagLib {
     
@@ -13,7 +13,7 @@ class SelectedItemsTagLib {
             Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
             SolicitudDeTarea solicitudDeTareaSelected=(SolicitudDeTarea)session.getAttribute("solicitudDeTareaSelected")
             SolicitudDeTarea solicitudDeTareaCreate=(SolicitudDeTarea)session.getAttribute("solicitudDeTareaCreate")
-            TareasPorSitio tareaSelected=(TareasPorSitio)session.getAttribute("tareaSelected")
+            Tarea tareaSelected=(Tarea)session.getAttribute("tareaSelected")
             Cuadrilla cuadrillaSelected=(Cuadrilla)session.getAttribute("cuadrillaSelected")
             IntegranteCuadrilla integranteCuadrillaSelected=(IntegranteCuadrilla)session.getAttribute("integranteCuadrillaSelected")
             Boolean documentacionIntegranteCuadrillaSelectedTF=(Boolean)session.getAttribute("documentacionIntegranteCuadrillaSelectedTF")
@@ -45,7 +45,7 @@ class SelectedItemsTagLib {
             }
             if(tareaSelected &&(documentoSelectedTF || permisoAccesoSelectedTF || materialDeTareaSelectedTF || equipoDeTareaSelectedTF)){
                 out << "<li>"
-                out << """${link(class: "tarea", action: "show", controller: "tareasPorSitio", id: tareaSelected.id){tareaSelected}}"""
+                out << """${link(class: "tarea", action: "show", controller: "tarea", id: tareaSelected.id){tareaSelected}}"""
                 out << "</li>"
             }
             if(cuadrillaSelected && (integranteCuadrillaSelected || historialCuadrillaSelectedTF)){

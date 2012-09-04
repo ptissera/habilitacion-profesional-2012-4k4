@@ -46,7 +46,7 @@
 					<span id="tarea-label" class="property-label"><g:message code="estadoTarea.tarea.label" default="Tarea" /></span>
 					
 						<g:each in="${estadoTareaInstance.tarea}" var="t">
-						<span class="property-value" aria-labelledby="tarea-label"><g:link controller="tareasPorSitio" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="tarea-label"><g:link controller="tarea" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
