@@ -19,8 +19,8 @@ class IntegranteCuadrilla {
         apellido(blank:false)
         legajo(blank:false, unique:true)
         telefono(blank:false)        
-        fechaAlta(blank: false)
-        fechaBaja(blank:true, nullable:true)
+        fechaAlta(blank: false, min: new Date())
+        fechaBaja(blank:true, nullable:true, min: new Date())
     }
     
      def checkDocumentacion(){

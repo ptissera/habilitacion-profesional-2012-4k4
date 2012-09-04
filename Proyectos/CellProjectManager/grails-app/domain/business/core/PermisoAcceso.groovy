@@ -12,8 +12,8 @@ class PermisoAcceso {
     byte[] archivo
     
     static constraints = {        
-        fechaDesde(blank: false)
-        fechaHasta(blank: false)
+        fechaDesde(blank: false, min: new Date() )
+        fechaHasta(blank: false, min: new Date() )
         nombreArchivo(blank: true)
         archivo(maxSize: 50000000)   
         tareasPorSitio()

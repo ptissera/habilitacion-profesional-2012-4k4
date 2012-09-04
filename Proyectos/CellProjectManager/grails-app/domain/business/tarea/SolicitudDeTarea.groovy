@@ -16,7 +16,7 @@ class SolicitudDeTarea {
     Date fechaAlta
     
     static constraints = {
-        fechaAlta(blank:true)
+        fechaAlta(blank:true, min: new Date())
         proyecto()
         cuadrilla()
         estado()
