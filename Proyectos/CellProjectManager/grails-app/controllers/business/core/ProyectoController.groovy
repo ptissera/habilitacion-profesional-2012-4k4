@@ -1,5 +1,7 @@
 package business.core
 
+import support.secure.Usuario
+
 import org.springframework.dao.DataIntegrityViolationException
 
 class ProyectoController {
@@ -34,6 +36,23 @@ class ProyectoController {
         }
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [proyectoInstanceList: Proyecto.list(params), proyectoInstanceTotal: Proyecto.count()]
+    }
+    
+    def asignProject() {
+        def solicitudDeTareaCreate = session.getAttribute("solicitudDeTareaCreate")
+        if (solicitudDeTareaCreate){
+            solicitudDeTareaCreate.delete(flush: true)
+        }
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        [proyectoInstanceList: Proyecto.list(params), proyectoInstanceTotal: Proyecto.count()]
+        
+    }
+    
+    def userForProject = {
+	    def proyectoInstance = Proyecto.get(params.idProyecto)	
+        proyectoInstance.usuario = Usuario.get(params.idUsuario)    
+        proyectoInstance.save(flush: true)
+        render "Proyecto ${proyectoInstance} asignado a ${proyectoInstance.usuario}"        
     }
     
     def create() {
