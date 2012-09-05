@@ -51,6 +51,7 @@ class ProyectoController {
     def userForProject = {
 	    def proyectoInstance = Proyecto.get(params.idProyecto)	
         proyectoInstance.usuario = Usuario.get(params.idUsuario)    
+        proyectoInstance.estadoProyecto = EstadoProyecto.findByNombre('Activo')
         proyectoInstance.save(flush: true)
         render "Proyecto ${proyectoInstance} asignado a ${proyectoInstance.usuario}"        
     }

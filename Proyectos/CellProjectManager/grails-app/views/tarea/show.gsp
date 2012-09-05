@@ -48,11 +48,11 @@
         </li>
       </g:if>
 
-      <g:if test="${tareaInstance?.tarea}">
+      <g:if test="${tareaInstance?.tipoTarea}">
         <li class="fieldcontain">
-          <span id="tarea-label" class="property-label"><g:message code="tarea.tarea.label" default="Tarea" /></span>
+          <span id="tarea-label" class="property-label"><g:message code="tarea.tipoTarea.label" default="Tarea" /></span>
 
-          <span class="property-value" aria-labelledby="tarea-label">${tareaInstance?.tarea?.encodeAsHTML()}</span>
+          <span class="property-value" aria-labelledby="tarea-label">${tareaInstance?.tipoTarea?.encodeAsHTML()}</span>
 
         </li>
       </g:if>

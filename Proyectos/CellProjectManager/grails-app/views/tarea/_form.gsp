@@ -4,7 +4,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'ordenEjecucion', 'error')} required">
   <label for="ordenEjecucion">
-    <g:message code="tarea.ordenEjecucion.label" default="Orden Ejecucion" />
+    <g:message code="tarea.ordenEjecucion.label" default="Orden de Ejecucion" />
     <span class="required-indicator">*</span>
   </label>
   <g:field type="number" name="ordenEjecucion" min="1" required="" value="${tareaInstance.ordenEjecucion}"/>
@@ -28,19 +28,21 @@
 
 <div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'tipoTarea', 'error')} required">
   <label for="tipoTarea">
-    <g:message code="tarea.tIpoTarea.label" default="TIpoTarea" />
+    <g:message code="tarea.tIpoTarea.label" default="Tipo de Tarea" />
     <span class="required-indicator">*</span>
   </label>
   <g:select id="tipoTarea" name="tipoTarea.id" from="${business.tarea.TipoTarea.list()}" optionKey="id" required="" value="${tareaInstance?.tipoTarea?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'estado', 'error')} required">
-  <label for="estado">
-    <g:message code="tarea.estado.label" default="Estado" />
-    <span class="required-indicator">*</span>
-  </label>
-  <g:select id="estado" name="estado.id" from="${business.tarea.EstadoTarea.list()}" optionKey="id" required="" value="${tareaInstance?.estado?.id}" class="many-to-one"/>
-</div>
+<g:if test="${tareaInstance?.id}">
+  <div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'estado', 'error')} required">
+    <label for="estado">
+      <g:message code="tarea.estado.label" default="Estado" />
+      <span class="required-indicator">*</span>
+    </label>
+    <g:select id="estado" name="estado.id" from="${business.tarea.EstadoTarea.list()}" optionKey="id" required="" value="${tareaInstance?.estado?.id}" class="many-to-one"/>
+  </div>
+</g:if>
 
 <g:if test="${tareaInstance?.materialDeTarea}">
   <div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'materialDeTarea', 'error')} ">

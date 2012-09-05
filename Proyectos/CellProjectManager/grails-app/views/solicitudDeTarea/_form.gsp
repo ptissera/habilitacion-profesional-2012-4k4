@@ -30,7 +30,7 @@
           <td><g:link action="show" controller="tarea" id="${tareaInstance.id}">${fieldValue(bean: tareaInstance, field: "ordenEjecucion")}</g:link></td>					
         <td><g:formatDate format="dd/MM/yyyy" date="${tareaInstance.fechaInicio}" /></td>					
         <td>${fieldValue(bean: tareaInstance, field: "sitio")}</td>					
-        <td>${fieldValue(bean: tareaInstance, field: "tarea")}</td>					
+        <td>${fieldValue(bean: tareaInstance, field: "tipoTarea")}</td>					
         <td>${fieldValue(bean: tareaInstance, field: "estado")}</td>
         </tr>
       </g:each>

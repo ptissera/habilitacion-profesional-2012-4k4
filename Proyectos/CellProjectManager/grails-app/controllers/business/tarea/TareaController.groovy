@@ -37,6 +37,10 @@ class TareaController {
               
         def tareaInstance = new Tarea(solicitudDeTarea: solicitudDeTareaSelected) 
         tareaInstance.properties = params
+        if (tareaInstance.estado == null){ 
+            tareaInstance.estado = EstadoTarea.findByNombre('Creada')
+        }
+        
         def f = request.getFile('uploadArchivo')
         if(!f.empty) {
             tareaInstance.documentoDeIngenieria = f.getOriginalFilename()

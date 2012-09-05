@@ -70,7 +70,7 @@
                 <td>${fieldValue(bean: tareaInstance, field: "ordenEjecucion")}</td>					
                 <td><g:formatDate format="dd/MM/yyyy" date="${tareaInstance.fechaInicio}" /></td>					
               <td>${fieldValue(bean: tareaInstance, field: "sitio")}</td>					
-              <td>${fieldValue(bean: tareaInstance, field: "tarea")}</td>					
+              <td>${fieldValue(bean: tareaInstance, field: "tipoTarea")}</td>					
               <td>${fieldValue(bean: tareaInstance, field: "estado")}</td>
               </tr>
             </g:each>

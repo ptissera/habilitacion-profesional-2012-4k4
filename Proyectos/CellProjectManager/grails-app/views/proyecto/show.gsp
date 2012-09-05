@@ -96,7 +96,7 @@
 
       <g:if test="${proyectoInstance?.usuario}">
         <li class="fieldcontain">
-          <span id="usuario-label" class="property-label"><g:message code="proyecto.usuario.label" default="Usuario" /></span>
+          <span id="usuario-label" class="property-label"><g:message code="proyecto.usuario.label" default="Administrador" /></span>
 
           <span class="property-value" aria-labelledby="usuario-label">${proyectoInstance?.usuario?.encodeAsHTML()}</span>
 

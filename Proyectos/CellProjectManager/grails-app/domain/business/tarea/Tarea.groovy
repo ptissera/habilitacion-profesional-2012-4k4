@@ -17,7 +17,7 @@ class Tarea {
     
     static constraints = {
         ordenEjecucion(min:1)
-        fechaInicio(blank:false)
+        fechaInicio(blank:false, min: new Date())
         sitio()
         tipoTarea()
         estado()
