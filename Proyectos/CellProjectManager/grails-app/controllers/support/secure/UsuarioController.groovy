@@ -15,6 +15,40 @@ class UsuarioController {
         [usuarioInstanceList: Usuario.list(params), usuarioInstanceTotal: Usuario.count()]
     }
 
+    def changePassword() {        
+        [id: session.usuario.id]
+    }
+    
+    def updatePassword() {        
+        def usuarioInstance = Usuario.get(params.id)
+        if (!usuarioInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'usuario.label', default: 'Usuario'), params.id])
+            redirect("/")
+            return
+        }
+        
+        if(usuarioInstance.clave != params.clave){
+             flash.message = "La clave original es incorrecta!!"
+             redirect(action: "changePassword", id: usuarioInstance.id)
+             return
+        }
+        
+        if(params.newClave != params.reNewClave){
+             flash.message = "Las claves nuevas no coinciden!!"
+             redirect(action: "changePassword", id: usuarioInstance.id)
+             return
+        }
+        usuarioInstance.clave = params.newClave
+        
+        if (!usuarioInstance.save(flush: true)) {
+            redirect(action: "changePassword", id: usuarioInstance.id)
+            return
+        }
+
+        flash.message = "Clave cambiada con exito!!!"
+        redirect(uri:"/") 
+    }
+    
     def create() {
         [usuarioInstance: new Usuario(params)]
     }

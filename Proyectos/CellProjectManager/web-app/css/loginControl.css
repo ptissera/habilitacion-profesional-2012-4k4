@@ -39,6 +39,17 @@
 	-webkit-box-shadow: none;
 	        box-shadow: none;
 }
+#image a {	
+	border: 0;	
+	text-decoration: none;
+      
+	        
+}
+
+#image a:hover, #image a:focus {
+	background-color: #dfdfdf;
+	text-decoration: none;
+}
 
 .login div {
   float: right;
