@@ -26,14 +26,6 @@
 	<g:textField name="descripcion" value="${proyectoInstance?.descripcion}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'fechaCreacion', 'error')} required">
-	<label for="fechaCreacion">
-		<g:message code="proyecto.fechaCreacion.label" default="Fecha Creacion" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="fechaCreacion" precision="day"  value="${proyectoInstance?.fechaCreacion}"  />
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'fechaInicio', 'error')} ">
 	<label for="fechaInicio">
 		<g:message code="proyecto.fechaInicio.label" default="Fecha Inicio" />

@@ -63,6 +63,7 @@ class ProyectoController {
     def save() {
         def proyectoInstance = new Proyecto(estadoProyecto: EstadoProyecto.findByNombre("Creado"))
         proyectoInstance.properties = params
+        proyectoInstance.fechaCreacion = new Date()
         if (!proyectoInstance.save(flush: true)) {
             render(view: "create", model: [proyectoInstance: proyectoInstance])
             return
