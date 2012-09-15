@@ -31,7 +31,7 @@
 		<g:message code="proyecto.fechaInicio.label" default="Fecha Inicio" />
 		
 	</label>
-	<g:datePicker name="fechaInicio" precision="day"  value="${proyectoInstance?.fechaInicio}" default="none" noSelection="['': '']" />
+	<g:datePicker name="fechaInicio" precision="day"  value="${proyectoInstance?.fechaInicio}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'fechaFin', 'error')} ">
@@ -39,7 +39,7 @@
 		<g:message code="proyecto.fechaFin.label" default="Fecha Fin" />
 		
 	</label>
-	<g:datePicker name="fechaFin" precision="day"  value="${proyectoInstance?.fechaFin}" default="none" noSelection="['': '']" />
+	<g:datePicker name="fechaFin" precision="day"  value="${proyectoInstance?.fechaFin}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: proyectoInstance, field: 'cliente', 'error')} required">
