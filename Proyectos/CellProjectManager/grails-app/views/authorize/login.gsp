@@ -23,7 +23,7 @@
 				<div
 					class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'nombreUsuario', 'error')} required">
 					<label for="nombreUsuario"> <g:message
-							code="usuario.nombreUsuario.label" default="nombreUsuario" /> <span
+							code="usuario.nombreUsuario.label" default="Usuario" /> <span
 						class="required-indicator">*</span>
 					</label>
 					<g:field type="text" name="nombreUsuario" required=""

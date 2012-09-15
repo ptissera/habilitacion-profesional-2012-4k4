@@ -56,7 +56,7 @@
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
           <td><g:link action="show" controller="PO" id="${POInstance.id}"><g:formatDate format="dd/MM/yyyy" date="${POInstance.fechaRecibida}" /></g:link></td>					
         <td>${fieldValue(bean: POInstance, field: "monto")}</td>					
-        <td><g:formatBoolean boolean="${POInstance.esExtra}" /></td>					
+        <td><g:checkBox name="esExtra" value="${POInstance.esExtra}"  disabled="true"/></td>	       
         <td>${fieldValue(bean: POInstance, field: "nombreArchivo")}</td>											
         </tr>
       </g:each>

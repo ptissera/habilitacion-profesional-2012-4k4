@@ -3,9 +3,9 @@ import support.secure.Usuario
 import business.tarea.*
 
 class Proyecto {
-    
     static hasMany = [ solicitudes:SolicitudDeTarea]
     static belongsTo = [cliente: Cliente, usuario: Usuario, estadoProyecto: EstadoProyecto]
+    static fetchMode = [solicitudes:"eager"] 
     String licitacion
     String descripcion
     String nombre
@@ -18,9 +18,9 @@ class Proyecto {
         licitacion(blank:false, unique: true)        
         nombre(blank:false, unique: true)
         descripcion(blank:false)
-        fechaCreacion(blank:false, validator: {it - new Date() >= 0})
-        fechaInicio(blank:true, nullable:true, validator: {it==null?true:it - new Date() >= 0})
-        fechaFin(blank:true, nullable:true, validator: {it==null?true:it - new Date() >= 0} )
+        fechaCreacion(blank:false, validator: {date, obj -> obj.id ? true : date - new Date() >= 0})
+        fechaInicio(blank:true, nullable:true, validator: {date, obj -> obj.id ? true : (date!=null?date - obj.fechaCreacion >= 0:true)})
+        fechaFin(blank:true, nullable:true, validator: {date, obj -> obj.id ? true : (date!=null?date - obj.fechaInicio >= 0:true)} )
         estadoProyecto(blank:false, nullable:false)
         licitacion()
         usuario(nullable:true)
@@ -28,7 +28,7 @@ class Proyecto {
     }
     
     
-       @Override String toString() {
-		return getNombre()
-	}
+    @Override String toString() {
+        return getNombre()
+    }
 }

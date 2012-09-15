@@ -7,8 +7,8 @@ class DocumentacionIntegranteCuadrilla {
     String descripcion
     
     static constraints = {        
-        vigenciaDesde(black:false, min: new Date())
-        vigenciaHasta(black:false, min: new Date())
+        vigenciaDesde(black:false)
+        vigenciaHasta(black:false,validator: {date, obj -> obj.id ? true : date - obj.vigenciaDesde >= 0})
         descripcion(black:false)
         tipoDocumento()
         integrante()

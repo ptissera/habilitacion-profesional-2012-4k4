@@ -4,8 +4,7 @@
     <meta name="layout" content="main"/>
     <title>Coming SA</title>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'menu.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'selectedControl.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'buttonPro.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'selectedControl.css')}" type="text/css">    
   <g:javascript library="jquery" />
   <g:javascript>
     $("#accordion > li").click(function(){

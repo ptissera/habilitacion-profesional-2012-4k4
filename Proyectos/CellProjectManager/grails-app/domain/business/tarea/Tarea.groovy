@@ -11,13 +11,21 @@ class Tarea {
     
     int ordenEjecucion
     Date fechaInicio
+    Date fechaInicioReal
+    Date fechaFin
+    Date fechaFinReal
+    
     String documentoDeIngenieria
     byte[] archivo
     String observaciones
     
     static constraints = {
         ordenEjecucion(min:1)
-        fechaInicio(blank:false, min: new Date())
+        fechaInicio(blank:false, validator: {date, obj -> obj.id ? true : date - new Date() >= 0})        
+        fechaFin(blank: false, validator: {date, obj -> date!=null ? date - obj.fechaInicio >= 0 : true})
+        fechaInicioReal(blank:true, nullable: true)        
+        fechaFinReal(blank:true, nullable: true, validator: {date, obj -> date!=null ? date - obj.fechaInicioReal >= 0 : true})        
+        
         sitio()
         tipoTarea()
         estado()
@@ -30,6 +38,6 @@ class Tarea {
     }
     
     @Override String toString() {
-		return getSitio()
-	}
+        return getSitio()
+    }
 }

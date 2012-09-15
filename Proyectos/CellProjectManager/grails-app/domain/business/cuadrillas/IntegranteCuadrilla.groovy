@@ -19,8 +19,8 @@ class IntegranteCuadrilla {
         apellido(blank:false)
         legajo(blank:false, unique:true)
         telefono(blank:false)        
-        fechaAlta(blank: false, min: new Date())
-        fechaBaja(blank:true, nullable:true, min: new Date())
+        fechaAlta(blank: false, validator: {date, obj -> obj.id ? true : date - new Date() >= 0})
+        fechaBaja(blank:true, nullable:true, validator: {date, obj -> date!=null ? date - obj.fechaAlta >= 0 : true})
     }
     
      def checkDocumentacion(){

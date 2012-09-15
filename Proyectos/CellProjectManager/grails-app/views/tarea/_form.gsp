@@ -18,6 +18,30 @@
   <g:datePicker name="fechaInicio" precision="day"  value="${tareaInstance?.fechaInicio}"  />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'fechaInicioReal', 'error')} required">
+  <label for="fechaInicioReal">
+    <g:message code="tarea.fechaInicioReal.label" default="Fecha Inicio Real" />
+    <span class="required-indicator">*</span>
+  </label>
+  <g:datePicker name="fechaInicioReal" precision="day"  value="${tareaInstance?.fechaInicioReal}" default="none" noSelection="['': '']"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'fechaFin', 'error')} required">
+  <label for="fechaFin">
+    <g:message code="tarea.fechaFin.label" default="Fecha Fin" />
+    <span class="required-indicator">*</span>
+  </label>
+  <g:datePicker name="fechaFin" precision="day"  value="${tareaInstance?.fechaFin}"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'fechaFinReal', 'error')} required">
+  <label for="fechaFinReal">
+    <g:message code="tarea.fechaFinReal.label" default="Fecha Fin Real" />
+    <span class="required-indicator">*</span>
+  </label>
+  <g:datePicker name="fechaFinReal" precision="day"  value="${tareaInstance?.fechaFinReal}" default="none" noSelection="['': '']"  />
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'sitio', 'error')} required">
   <label for="sitio">
     <g:message code="tarea.sitio.label" default="Sitio" />

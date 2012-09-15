@@ -44,6 +44,34 @@ class BootStrap {
             rol.save(flush: true, insert: true)
         }
         
+         def rol_adminGral=Rol.findByNombre('ROLE_ADMIN_GENERAL')
+        if(!rol_adminGral){
+            rol_adminGral = new Rol(nombre: 'ROLE_ADMIN_GENERAL', descripcion: 'Administracion General')
+            rol_adminGral.save(flush: true, insert: true)
+        }
+        
+        def mariana=Usuario.findByNombreUsuario('mtissera')
+        if(!mariana){
+            mariana = new Usuario(nombreUsuario: 'mtissera', nombre: 'Mariana', apellido: 'Tissera', clave: '123',
+                enabled: true, email: 'mtissera@coming.com')
+            mariana.setRol(rol_adminGral)
+            mariana.save(flush: true, insert: true)
+        }
+        
+        def rol_adminProy=Rol.findByNombre('ROLE_ADMIN_PROYECTO')
+        if(!rol_adminProy){
+            rol_adminProy = new Rol(nombre: 'ROLE_ADMIN_PROYECTO', descripcion: 'Administracion Proyecto')
+            rol_adminProy.save(flush: true, insert: true)
+        }
+        
+         def sebastian=Usuario.findByNombreUsuario('shernandez')
+        if(!sebastian){
+            sebastian = new Usuario(nombreUsuario: 'shernandez', nombre: 'Sebastian', apellido: 'Hernandez', clave: '123',
+                enabled: true, email: 'shernandez@coming.com')
+            sebastian.setRol(rol_adminProy)
+            sebastian.save(flush: true, insert: true)
+        }
+        
         def pablo=Usuario.findByNombreUsuario('ptissera')
         if(!pablo){
             pablo = new Usuario(nombreUsuario: 'ptissera', nombre: 'Pablo', apellido: 'Tissera', clave: '123',

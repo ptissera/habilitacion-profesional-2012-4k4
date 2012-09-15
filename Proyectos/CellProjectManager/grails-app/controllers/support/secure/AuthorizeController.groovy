@@ -8,7 +8,7 @@ class AuthorizeController {
 	
     def home = 
     {
-        ["cuadrillaSelected",
+        [ "cuadrillaSelected",
          "solicitudDeTareaCreate",
          "integranteCuadrillaSelected",
          "documentacionIntegranteCuadrillaSelectedTF",
@@ -49,13 +49,21 @@ class AuthorizeController {
     def logout = {
         flash.message = "Adios ${session.usuario} !!"
         session.usuario = null
-        ["cuadrillaSelected",
+        ["solicitudDeTareaCreate",
          "proyectoSelected",
+         "cuadrillaSelected",
          "solicitudDeTareaCreate",
          "integranteCuadrillaSelected",
          "documentacionIntegranteCuadrillaSelectedTF",
          "historialCuadrillaSelectedTF",
-         "solicitudDeTareaCreate"].each{ name ->
+        "solicitudDeTareaSelected",
+        "tareaSelected",
+        "equipoDeTareaSelectedTF",
+        "materialDeTareaSelectedTF",
+        "permisoAccesoSelectedTF",
+        "documentoSelectedTF",
+        "poSelectedTF",
+        "prestamosSelectedTF"].each{ name ->
             session.setAttribute(name , null)
         }
         redirect(action: "login")

@@ -12,8 +12,8 @@ class PrestamoHerramienta {
     String descripcion
     
     static constraints = {
-        fechaPrestamo(blank: false, min: new Date())
-        fechaDevolucion(black:true, nullable:true, min: new Date()) 
+        fechaPrestamo(blank: false)
+        fechaDevolucion(black:true, validator: {date, obj -> date!=null ? date - obj.fechaPrestamo >= 0 : true}) 
         herramienta()
         cuadrilla()
     }

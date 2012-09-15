@@ -26,34 +26,36 @@ class SelectedItemsTagLib {
             Boolean prestamosSelectedTF=(Boolean)session.getAttribute("prestamosSelectedTF")
             
             out << "<div class='selectedItem' role='navigation'><ul>"
-            out << "<li><a class='home' href='${createLink(uri: '/')}'>Principal</a></li>"
-            if(proyectoSelected){
+            out << "<li>"
+            out << """${link(class: "home", action: "home", controller: "Authorize"){"Principal"}}"""
+            out << "</li>"
+            if(proyectoSelected!=null){
                 out << "<li>"
                 out << """${link(class: "proyecto", action: "show", controller: "proyecto", id: proyectoSelected.id){proyectoSelected}}"""
                 out << "</li>"
             }
-            if((solicitudDeTareaSelected || solicitudDeTareaCreate) && (tareaSelected || poSelectedTF || prestamosSelectedTF)){
-                if(solicitudDeTareaSelected){
-                out << "<li>"
-                out << """${link(class: "solicitud", action: "show", controller: "solicitudDeTarea", id: solicitudDeTareaSelected.id){'Solicitud de Tarea'}}"""
-                out << "</li>"
+            if((solicitudDeTareaSelected!=null || solicitudDeTareaCreate!=null) && (tareaSelected!=null || poSelectedTF || prestamosSelectedTF)){
+                if(solicitudDeTareaSelected!=null){
+                    out << "<li>"
+                    out << """${link(class: "solicitud", action: "show", controller: "solicitudDeTarea", id: solicitudDeTareaSelected.id){'Solicitud de Tarea'}}"""
+                    out << "</li>"
                 } else {
                     out << "<li>"
-                out << """${link(class: "solicitud", action: "create", controller: "solicitudDeTarea", id: solicitudDeTareaCreate.id){'Solicitud de Tarea'}}"""
-                out << "</li>"
+                    out << """${link(class: "solicitud", action: "create", controller: "solicitudDeTarea", id: solicitudDeTareaCreate.id){'Solicitud de Tarea'}}"""
+                    out << "</li>"
                 }
             }
-            if(tareaSelected &&(documentoSelectedTF || permisoAccesoSelectedTF || materialDeTareaSelectedTF || equipoDeTareaSelectedTF)){
+            if(tareaSelected!=null &&(documentoSelectedTF || permisoAccesoSelectedTF || materialDeTareaSelectedTF || equipoDeTareaSelectedTF)){
                 out << "<li>"
                 out << """${link(class: "tarea", action: "show", controller: "tarea", id: tareaSelected.id){tareaSelected}}"""
                 out << "</li>"
             }
-            if(cuadrillaSelected && (integranteCuadrillaSelected || historialCuadrillaSelectedTF)){
+            if(cuadrillaSelected!=null && (integranteCuadrillaSelected!=null || historialCuadrillaSelectedTF)){
                 out << "<li>"
                 out << """${link(class: "cuadrilla", action: "show", controller: "cuadrilla", id: cuadrillaSelected.id){cuadrillaSelected}}"""
                 out << "</li>"
             }
-            if(integranteCuadrillaSelected && documentacionIntegranteCuadrillaSelectedTF){
+            if(integranteCuadrillaSelected!=null && documentacionIntegranteCuadrillaSelectedTF){
                 out << "<li>"
                 out << """${link(class: "operario", action: "show", controller: "integranteCuadrilla", id: integranteCuadrillaSelected.id){integranteCuadrillaSelected}}"""
                 out << "</li>"                                        

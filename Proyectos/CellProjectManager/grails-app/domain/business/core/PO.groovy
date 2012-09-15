@@ -12,7 +12,7 @@ static belongsTo = [cobro: Cobro, solicitud: SolicitudDeTarea ]
     
     
     static constraints = {
-        fechaRecibida(blank: false, min: new Date() )
+        fechaRecibida(blank: false)
         monto(blank: false)
         esExtra(blank: false)        
         nombreArchivo(blank: true)

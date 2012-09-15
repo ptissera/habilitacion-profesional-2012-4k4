@@ -17,7 +17,8 @@ class SolicitudDeTareaController {
         Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
          if(proyectoSelected){
             params.max = Math.min(params.max ? params.int('max') : 10, 100)
-            [solicitudDeTareaInstanceList: proyectoSelected.getSolicitudes().list(params), solicitudDeTareaInstanceTotal: proyectoSelected.getSolicitudes().count()]
+            def solicitudDeTareaInstanceList = SolicitudDeTarea.findAllByProyecto(proyectoSelected)
+            [solicitudDeTareaInstanceList: solicitudDeTareaInstanceList, solicitudDeTareaInstanceTotal: 10]
         }else{
             session.setAttribute("aDondeVoy",["solicitudDeTarea","list"])
             redirect(action: "selectList", controller: "proyecto")

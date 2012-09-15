@@ -23,7 +23,7 @@
     <g:message code="PO.esExtra.label" default="Es Extra" />
 
   </label>
-  <g:checkBox name="esExtra" value="${POInstance?.esExtra}" />
+  <g:checkBox name="esExtra" value="${POInstance?.esExtra}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: POInstance, field: 'nombreArchivo', 'error')} ">

@@ -38,6 +38,33 @@
 
         </li>
       </g:if>
+      
+      <g:if test="${tareaInstance?.fechaInicioReal}">
+        <li class="fieldcontain">
+          <span id="fechaInicioReal-label" class="property-label"><g:message code="tarea.fechaInicioReal.label" default="Fecha Inicio Real" /></span>
+
+          <span class="property-value" aria-labelledby="fechaInicioReal-label"><g:formatDate format="dd/MM/yyyy" date="${tareaInstance?.fechaInicioReal}" /></span>
+
+        </li>
+      </g:if>
+      
+      <g:if test="${tareaInstance?.fechaFin}">
+        <li class="fieldcontain">
+          <span id="fechaFin-label" class="property-label"><g:message code="tarea.fechaFin.label" default="Fecha Fin" /></span>
+
+          <span class="property-value" aria-labelledby="fechaFin-label"><g:formatDate format="dd/MM/yyyy" date="${tareaInstance?.fechaFin}" /></span>
+
+        </li>
+      </g:if>
+      
+      <g:if test="${tareaInstance?.fechaFinReal}">
+        <li class="fieldcontain">
+          <span id="fechaFinReal-label" class="property-label"><g:message code="tarea.fechaFinReal.label" default="Fecha Fin Real" /></span>
+
+          <span class="property-value" aria-labelledby="fechaFinReal-label"><g:formatDate format="dd/MM/yyyy" date="${tareaInstance?.fechaFinReal}" /></span>
+
+        </li>
+      </g:if>
 
       <g:if test="${tareaInstance?.sitio}">
         <li class="fieldcontain">

@@ -15,9 +15,15 @@ class POController {
         [POInstanceList: PO.list(params), POInstanceTotal: PO.count()]
     }
 
-    def create() {
+    def create() {        
         session.setAttribute("poSelectedTF",true)
-        [POInstance: new PO(params)]
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")        
+        if(!solicitudDeTareaSelected){            
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+        PO POInstance = new PO(params)
+        POInstance.esExtra = solicitudDeTareaSelected.pos == null? false : solicitudDeTareaSelected.pos.size()>=1
+        [POInstance: POInstance]
     }
 
     def save() {
@@ -29,13 +35,11 @@ class POController {
         }
         def POInstance = new PO(solicitud: solicitudDeTareaSelected) 
         POInstance.properties = params
-        def f = request.getFile('archivo')
+        def f = request.getFile('uploadArchivo')
         if(!f.empty) {
             POInstance.nombreArchivo = f.getOriginalFilename()
             POInstance.archivo = f.inputStream.bytes
-        }    else {
-            flash.message = 'file cannot be empty'          
-        }
+        }   
         if (!POInstance.save(flush: true)) {
             render(view: "create", model: [POInstance: POInstance])
             return
@@ -95,7 +99,7 @@ class POController {
         }
 
         POInstance.properties = params
-        def f = request.getFile('archivo')
+        def f = request.getFile('uploadArchivo')
         if(!f.empty) {
             POInstance.nombreArchivo = f.getOriginalFilename()
             POInstance.archivo = f.inputStream.bytes
