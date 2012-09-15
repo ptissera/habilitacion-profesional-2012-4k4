@@ -40,6 +40,8 @@
 						<g:sortableColumn property="licitacion" title="${message(code: 'proyecto.licitacion.label', default: 'Licitacion')}" />
 					
 						<g:sortableColumn property="nombre" title="${message(code: 'proyecto.nombre.label', default: 'Nombre')}" />
+                                                
+                                                <g:sortableColumn property="cliente" title="${message(code: 'proyecto.cliente.label', default: 'Cliente')}" />
 					
 						<g:sortableColumn property="usuario" title="${message(code: 'proyecto.usuario.label', default: 'Usuario')}" />
 					
@@ -52,6 +54,8 @@
 						<td>${fieldValue(bean: proyectoInstance, field: "licitacion")}</td>
 					
 						<td>${fieldValue(bean: proyectoInstance, field: "nombre")}</td>
+                                                
+                                                <td>${fieldValue(bean: proyectoInstance, field: "cliente")}</td>
 					
 						<td>
                                                       <g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" onchange="seleccionarUsuario(this , ${proyectoInstance?.usuario?.id}, ${proyectoInstance?.id})" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>                                                

@@ -136,6 +136,7 @@
         <g:hiddenField name="id" value="${proyectoInstance?.id}" />
         <g:link class="edit" action="edit" id="${proyectoInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
         <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+        <g:actionSubmit class="cerrar" action="closeProject" value="${message(code: 'default.button.cerrarProyecto.label', default: 'Cerrar')}" onclick="return confirm('${message(code: 'default.button.cerrarProyecto.confirm.message', default: 'Esta seguro que desea cerrar el Proyecto?')}');" />
       </fieldset>
     </g:form>
   </div>

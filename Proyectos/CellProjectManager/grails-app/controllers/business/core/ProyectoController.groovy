@@ -47,7 +47,7 @@ class ProyectoController {
         [proyectoInstanceList: Proyecto.list(params), proyectoInstanceTotal: Proyecto.count()]
         
     }
-    
+            
     def userForProject = {
 	    def proyectoInstance = Proyecto.get(params.idProyecto)	
         proyectoInstance.usuario = Usuario.get(params.idUsuario)    
@@ -83,6 +83,44 @@ class ProyectoController {
 
         [proyectoInstance: proyectoInstance]
     }
+    
+    def closeProject() {
+         Proyecto proyectoInstance = Proyecto.get(params.id)
+        if (!proyectoInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'proyecto.label', default: 'Proyecto'), params.id])
+            redirect(action: "list")
+            return
+        }
+        
+        if(proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Creado')){
+            flash.message = "El proyecto debera estar en estado activo para que pueda ser cerrado"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        if(proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cerrado')){
+            flash.message = "El proyecto ya esta cerrado"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        
+        def estadoSolicitudInstance = EstadoSolicitudTarea.findByNombre('Cerrada')
+        boolean isOK = true
+        proyectoInstance.solicitudes.each( isOK = isOK && it.estado==estadoSolicitudInstance )
+        
+        if(isOK){
+            flash.message = "El proyecto paso a estado cerrado"
+            proyectoInstance.estadoProyecto = EstadoSolicitudTarea.findByNombre('Activo')
+            proyectoInstance.save(flush: true)
+            redirect(action: "show", id: params.id)
+            return
+        }else{
+            flash.message = "El proyecto aun tiene solicitudes de tareas no cerradas"
+        }
+       redirect(action: "show", id: params.id)
+        
+        
+    }
+    
 
     def edit() {
         def proyectoInstance = Proyecto.get(params.id)

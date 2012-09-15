@@ -657,7 +657,7 @@ th:hover, tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save, .buttons .add {
+.buttons .delete, .buttons .cerrar, .buttons .edit, .buttons .save, .buttons .add {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -669,6 +669,10 @@ th:hover, tr:hover {
 
 .buttons .delete {
 	background-image: url(../images/skin/database_delete.png);
+}
+
+.buttons .cerrar {
+	background-image: url(../images/taglib/cerrar_1.png);
 }
 
 .buttons .edit {
