@@ -28,8 +28,7 @@ class SolicitudDeTarea {
         documentos()
     }
     
-    def hasEstadoCreada(){      
-        return true
+    def hasEstadoCreada(){              
         return estado != null ? estado.getNombre() == "Creada" : false
     }
     

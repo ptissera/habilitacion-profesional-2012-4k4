@@ -31,22 +31,29 @@ class SolicitudDeTareaController {
         if(solicitudDeTareaInstance.tarea){
             solicitudDeTareaInstance.tarea.each{ tarea ->
                 if(tarea.permisos){
-                
+                    def isOK = false
+                    tarea.permisos.each{ permiso ->
+                        if(tarea.fechaInicio >= permiso.fechaDesde && tarea.fechaFin <= permiso.fechaHasta){
+                            isOK = true
+                        }
+                    }
+                    if(!isOK){
+                        flash.error = "La tarea ${tarea} contiene permisos de acceso fuera de limites del permiso de acceso"
+                    }
                 }else{
-                    flash.error = "La tarea ${tarea} no contiene permisos de acceso"
-                    redirect(action: "show", id: solicitudDeTareaInstance.id)
-                    return
+                    flash.error = "La tarea ${tarea} no contiene permisos de acceso"                        
                 }
             }
         }else{
-            flash.error = "La solicitud de tarea no contiene tareas aun!!"
-            redirect(action: "show", id: solicitudDeTareaInstance.id)
-            return
+            flash.error = "La solicitud de tarea no contiene tareas aun!!"            
         }
+        
+        if(flash.error){redirect(action: "show", id: solicitudDeTareaInstance.id)            }else{
         solicitudDeTareaInstance.estado = EstadoSolicitudTarea.findByNombre('En Ejecucion')
         solicitudDeTareaInstance.save(flush: true)
         flash.message = "Solicitud de Tarea En Ejecuacion"
         redirect(action: "show", id: solicitudDeTareaInstance.id)
+        }
     }
     
     def create() {
