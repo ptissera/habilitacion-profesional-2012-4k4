@@ -93,12 +93,12 @@ class ProyectoController {
         }
         
         if(proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Creado')){
-            flash.message = "El proyecto debera estar en estado activo para que pueda ser cerrado"
+            flash.error = "El proyecto debera estar en estado activo para que pueda ser cerrado"
             redirect(action: "show", id: params.id)
             return
         }
         if(proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cerrado')){
-            flash.message = "El proyecto ya esta cerrado"
+            flash.error = "El proyecto ya esta cerrado"
             redirect(action: "show", id: params.id)
             return
         }
@@ -114,7 +114,7 @@ class ProyectoController {
             redirect(action: "show", id: params.id)
             return
         }else{
-            flash.message = "El proyecto aun tiene solicitudes de tareas no cerradas"
+            flash.error = "El proyecto aun tiene solicitudes de tareas no cerradas"
         }
        redirect(action: "show", id: params.id)
         

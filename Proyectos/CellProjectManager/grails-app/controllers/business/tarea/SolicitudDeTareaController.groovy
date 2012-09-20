@@ -15,7 +15,7 @@ class SolicitudDeTareaController {
     def list() {
         cleanSelected()
         Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
-         if(proyectoSelected){
+        if(proyectoSelected){
             params.max = Math.min(params.max ? params.int('max') : 10, 100)
             def solicitudDeTareaInstanceList = SolicitudDeTarea.findAllByProyecto(proyectoSelected)
             [solicitudDeTareaInstanceList: solicitudDeTareaInstanceList, solicitudDeTareaInstanceTotal: 10]
@@ -25,6 +25,30 @@ class SolicitudDeTareaController {
         }
     }
 
+    def pasarEnEjecutacion(){      
+        def solicitudDeTareaInstance = SolicitudDeTarea.get(params.id)   
+                 
+        if(solicitudDeTareaInstance.tarea){
+            solicitudDeTareaInstance.tarea.each{ tarea ->
+                if(tarea.permisos){
+                
+                }else{
+                    flash.error = "La tarea ${tarea} no contiene permisos de acceso"
+                    redirect(action: "show", id: solicitudDeTareaInstance.id)
+                    return
+                }
+            }
+        }else{
+            flash.error = "La solicitud de tarea no contiene tareas aun!!"
+            redirect(action: "show", id: solicitudDeTareaInstance.id)
+            return
+        }
+        solicitudDeTareaInstance.estado = EstadoSolicitudTarea.findByNombre('En Ejecucion')
+        solicitudDeTareaInstance.save(flush: true)
+        flash.message = "Solicitud de Tarea En Ejecuacion"
+        redirect(action: "show", id: solicitudDeTareaInstance.id)
+    }
+    
     def create() {
         cleanSelected()
         Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
@@ -33,7 +57,7 @@ class SolicitudDeTareaController {
             def solicitudDeTareaInstance = session.getAttribute("solicitudDeTareaCreate")      
             if(!solicitudDeTareaInstance){
                 solicitudDeTareaInstance   = new SolicitudDeTarea(fechaAlta: new Date(), proyecto: proyectoSelected, cuadrilla: Cuadrilla.findByNombre('Perez'),
-                estado: EstadoSolicitudTarea.findByNombre('Creada'))
+                    estado: EstadoSolicitudTarea.findByNombre('Creada'))
                 solicitudDeTareaInstance.save(flush: true)          
                 session.setAttribute("solicitudDeTareaCreate",solicitudDeTareaInstance)            
             }
@@ -138,7 +162,7 @@ class SolicitudDeTareaController {
     
     def cleanSelected() 
     {
-         [ "tareaSelected",
+        [ "tareaSelected",
         "equipoDeTareaSelectedTF",
         "materialDeTareaSelectedTF",
         "permisoAccesoSelectedTF",

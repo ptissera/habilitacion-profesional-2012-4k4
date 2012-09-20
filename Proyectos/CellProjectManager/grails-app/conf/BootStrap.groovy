@@ -238,6 +238,11 @@ class BootStrap {
                 descripcion: 'Creada').save(flush: true, insert: true)
         }
         
+        if(!EstadoSolicitudTarea .findByNombre('En Ejecucion')){
+            new EstadoSolicitudTarea(nombre: 'En Ejecucion', 
+                descripcion: 'En Ejecucion').save(flush: true, insert: true)
+        }        
+        
         if(!EstadoSolicitudTarea.findByNombre('Pendiente Conformidad')){
             new EstadoSolicitudTarea(nombre: 'Pendiente Conformidad', 
                 descripcion: 'Pendiente Conformidad').save(flush: true, insert: true)

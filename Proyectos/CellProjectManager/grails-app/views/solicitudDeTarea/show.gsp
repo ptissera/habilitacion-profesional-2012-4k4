@@ -21,6 +21,9 @@
     <g:if test="${flash.message}">
       <div class="message" role="status">${flash.message}</div>
     </g:if>
+    <g:if test="${flash.error}">      
+      <ul class="errors" role="alert"><li>${flash.error}</li></ul>        
+    </g:if>
     <ol class="property-list solicitudDeTarea">
 
       <g:if test="${solicitudDeTareaInstance?.fechaAlta}">
@@ -143,39 +146,44 @@
 
         </li>
       </g:if>
-      
-            <g:if test="${solicitudDeTareaInstance?.documentos}">
+
+      <g:if test="${solicitudDeTareaInstance?.documentos}">
         <li class="fieldcontain">
           <span id="documentos-label" class="property-label"><g:message code="solicitudDeTarea.documentos.label" default="Documentos" /></span>
 
-       <table>
-      <thead>
-        <tr>
-      <th><g:message code="documento.tipo.label" default="Tipo" /></th>
-      <g:sortableColumn property="observaciones" title="${message(code: 'documento.observaciones.label', default: 'Observaciones')}" />
-      <g:sortableColumn property="fechaRealizado" title="${message(code: 'documento.fechaRealizado.label', default: 'Fecha Realizado')}" />
-      <g:sortableColumn property="fechaEnviado" title="${message(code: 'documento.fechaEnviado.label', default: 'Fecha Enviado')}" />
-      <g:sortableColumn property="fechaAprobado" title="${message(code: 'documento.fechaAprobado.label', default: 'Fecha Aprobado')}" />
-      </tr>
-      </thead>
-      <tbody>
-      <g:each in="${solicitudDeTareaInstance?.documentos}" status="i" var="documentoInstance">
-        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-        <td>${fieldValue(bean: documentoInstance, field: "tipo")}</td>
-        <td>${fieldValue(bean: documentoInstance, field: "observaciones")}</td>
-        <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaRealizado}" /></td>
-        <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaEnviado}" /></td>
-        <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaAprobado}" /></td>
-        </tr>
-      </g:each>
-      </tbody>
-    </table>
+          <table>
+            <thead>
+              <tr>
+                <th><g:message code="documento.tipo.label" default="Tipo" /></th>
+            <g:sortableColumn property="observaciones" title="${message(code: 'documento.observaciones.label', default: 'Observaciones')}" />
+            <g:sortableColumn property="fechaRealizado" title="${message(code: 'documento.fechaRealizado.label', default: 'Fecha Realizado')}" />
+            <g:sortableColumn property="fechaEnviado" title="${message(code: 'documento.fechaEnviado.label', default: 'Fecha Enviado')}" />
+            <g:sortableColumn property="fechaAprobado" title="${message(code: 'documento.fechaAprobado.label', default: 'Fecha Aprobado')}" />
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${solicitudDeTareaInstance?.documentos}" status="i" var="documentoInstance">
+              <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                <td>${fieldValue(bean: documentoInstance, field: "tipo")}</td>
+                <td>${fieldValue(bean: documentoInstance, field: "observaciones")}</td>
+                <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaRealizado}" /></td>
+              <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaEnviado}" /></td>
+              <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaAprobado}" /></td>
+              </tr>
+            </g:each>
+            </tbody>
+          </table>
 
         </li>
       </g:if>
 
     </ol>
     <g:form>
+      <g:if test="${solicitudDeTareaInstance.hasEstadoCreada()}">
+        <fieldset class="buttons_add">            
+          <g:link class="ejecutar" action="pasarEnEjecutacion"  id="${solicitudDeTareaInstance?.id}" >Pasar En Ejecucion</g:link>
+        </fieldset>
+      </g:if>
       <fieldset class="buttons">
         <g:hiddenField name="id" value="${solicitudDeTareaInstance?.id}" />
         <g:link class="edit" action="edit" id="${solicitudDeTareaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

@@ -20,6 +20,9 @@
     <g:if test="${flash.message}">
       <div class="message" role="status">${flash.message}</div>
     </g:if>
+    <g:if test="${flash.error}">      
+      <ul class="errors" role="alert"><li>${flash.error}</li></ul>        
+    </g:if>
     <ol class="property-list proyecto">
 
       <g:if test="${proyectoInstance?.cliente}">
@@ -132,11 +135,13 @@
 
     </ol>
     <g:form>
+      <fieldset class="buttons_add">
+        <g:actionSubmit class="cerrar" action="closeProject" value="${message(code: 'default.button.cerrarProyecto.label', default: 'Cerrar')}" onclick="return confirm('${message(code: 'default.button.cerrarProyecto.confirm.message', default: 'Esta seguro que desea cerrar el Proyecto?')}');" />
+      </fieldset>
       <fieldset class="buttons">
         <g:hiddenField name="id" value="${proyectoInstance?.id}" />
         <g:link class="edit" action="edit" id="${proyectoInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-        <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-        <g:actionSubmit class="cerrar" action="closeProject" value="${message(code: 'default.button.cerrarProyecto.label', default: 'Cerrar')}" onclick="return confirm('${message(code: 'default.button.cerrarProyecto.confirm.message', default: 'Esta seguro que desea cerrar el Proyecto?')}');" />
+        <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />       
       </fieldset>
     </g:form>
   </div>

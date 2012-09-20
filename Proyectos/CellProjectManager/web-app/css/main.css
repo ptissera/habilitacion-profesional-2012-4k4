@@ -657,8 +657,9 @@ th:hover, tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .cerrar, .buttons .edit, .buttons .save, .buttons .add {
+.buttons .delete, .buttons .cerrar, .buttons .ejecutar, .buttons .edit, .buttons .save, .buttons .add {
 	background-position: 0.7em center;
+        background-size: 16px 16px;
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
@@ -673,6 +674,10 @@ th:hover, tr:hover {
 
 .buttons .cerrar {
 	background-image: url(../images/taglib/cerrar_1.png);
+}
+
+.buttons .ejecutar {
+	background-image: url(../images/taglib/run_2.png);
 }
 
 .buttons .edit {
@@ -737,14 +742,23 @@ a.skip {
 	text-decoration: underline;
 }
 
- .buttons_add .add {
+ .buttons_add .add, .buttons_add .cerrar, .buttons_add .ejecutar {
 	background-position: 0.7em center;
+        background-size: 16px 16px;
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
 
 .buttons_add .add {
 	background-image: url(../images/skin/database_add.png);
+}
+
+.buttons_add .cerrar {
+	background-image: url(../images/taglib/cerrar_1.png);
+}
+
+.buttons_add .ejecutar {
+	background-image: url(../images/taglib/run_1.png);        
 }
 
 #status li {

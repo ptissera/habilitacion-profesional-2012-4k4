@@ -27,4 +27,10 @@ class SolicitudDeTarea {
         prestamos()
         documentos()
     }
+    
+    def hasEstadoCreada(){      
+        return true
+        return estado != null ? estado.getNombre() == "Creada" : false
+    }
+    
 }
