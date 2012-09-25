@@ -2,7 +2,7 @@ package business.core
 import business.tarea.SolicitudDeTarea
 
 class PO {
-static belongsTo = [cobro: Cobro, solicitud: SolicitudDeTarea ]
+static belongsTo = [solicitud: SolicitudDeTarea ]
     
     Date fechaRecibida
     Float monto
@@ -16,8 +16,7 @@ static belongsTo = [cobro: Cobro, solicitud: SolicitudDeTarea ]
         monto(blank: false)
         esExtra(blank: false)        
         nombreArchivo(blank: true)
-        archivo(maxSize: 50000000)           
-        cobro(blank: true, nullable: true)
+        archivo(maxSize: 50000000)          
         solicitud(blank: true, nullable: true)
     }
     

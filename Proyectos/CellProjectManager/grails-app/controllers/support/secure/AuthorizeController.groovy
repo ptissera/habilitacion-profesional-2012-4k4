@@ -20,7 +20,8 @@ class AuthorizeController {
         "permisoAccesoSelectedTF",
         "documentoSelectedTF",
         "poSelectedTF",
-        "prestamosSelectedTF"].each{ name ->
+        "prestamosSelectedTF",
+        "solicitudPagoCuadrillaSelectedTF"].each{ name ->
             session.setAttribute(name , null)
         }
         
@@ -63,7 +64,8 @@ class AuthorizeController {
         "permisoAccesoSelectedTF",
         "documentoSelectedTF",
         "poSelectedTF",
-        "prestamosSelectedTF"].each{ name ->
+        "prestamosSelectedTF",
+        "solicitudPagoCuadrillaSelectedTF"].each{ name ->
             session.setAttribute(name , null)
         }
         redirect(action: "login")

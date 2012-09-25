@@ -1,7 +1,8 @@
 package business.tarea
 
-
-import business.core.Pago
+import business.solicitud.CobroSolicitudDeTrabajo
+import business.solicitud.SolicitudDeViaticos
+import business.solicitud.SolicitudPagoCuadrilla
 import business.core.PO
 import business.core.Proyecto
 import business.cuadrillas.Cuadrilla
@@ -11,7 +12,8 @@ import business.documento.Documento
 class SolicitudDeTarea {
 
     
-    static hasMany = [pagos: Pago, tarea: Tarea, pos: PO, prestamos: PrestamoHerramienta, documentos: Documento]
+    static hasMany = [tarea: Tarea, pos: PO, prestamos: PrestamoHerramienta, documentos: Documento, 
+        viaticos: SolicitudDeViaticos, pagos: SolicitudPagoCuadrilla, cobros: CobroSolicitudDeTrabajo]
     static belongsTo = [proyecto: Proyecto, estado: EstadoSolicitudTarea, cuadrilla: Cuadrilla]
     static fetchMode = [cuadrilla:"eager"] 
     Date fechaAlta
@@ -22,10 +24,12 @@ class SolicitudDeTarea {
         cuadrilla()
         estado()
         tarea()
-        pos()        
-        pagos()                
+        pos()          
         prestamos()
         documentos()
+        viaticos()
+        pagos()
+        cobros()
     }
     
     def hasEstadoCreada(){              

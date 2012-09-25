@@ -20,6 +20,8 @@ import business.tarea.TipoMaterialDeTarea
 import business.tarea.UnidadMedida
 import business.documento.TipoDocumento
 import business.documento.EstadoDocumento
+import business.solicitud.EstadoSolicitudDeViaticos
+import business.solicitud.EstadoSolicitudPagoCuadrilla
 
 class BootStrap {
     
@@ -306,6 +308,36 @@ class BootStrap {
         if(!EstadoDocumento.findByNombre('Incompleto')){
             new EstadoDocumento(nombre: 'Incompleto', 
                 descripcion: 'Incompleto').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoSolicitudDeViaticos.findByNombre('Pendiente')){
+            new EstadoSolicitudDeViaticos(nombre: 'Pendiente', 
+                descripcion: 'Pendiente').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoSolicitudDeViaticos.findByNombre('Completa')){
+            new EstadoSolicitudDeViaticos(nombre: 'Completa', 
+                descripcion: 'Completa').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoSolicitudDeViaticos.findByNombre('Rechazada')){
+            new EstadoSolicitudDeViaticos(nombre: 'Rechazada', 
+                descripcion: 'Rechazada').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoSolicitudPagoCuadrilla.findByNombre('Pendiente')){
+            new EstadoSolicitudPagoCuadrilla(nombre: 'Pendiente', 
+                descripcion: 'Pendiente').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoSolicitudPagoCuadrilla.findByNombre('Completa')){
+            new EstadoSolicitudPagoCuadrilla(nombre: 'Completa', 
+                descripcion: 'Completa').save(flush: true, insert: true)
+        }        
+        
+        if(!EstadoSolicitudPagoCuadrilla.findByNombre('Rechazada')){
+            new EstadoSolicitudPagoCuadrilla(nombre: 'Rechazada', 
+                descripcion: 'Rechazada').save(flush: true, insert: true)
         }        
     }
     

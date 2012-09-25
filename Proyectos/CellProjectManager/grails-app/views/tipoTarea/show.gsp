@@ -40,6 +40,26 @@
 					
 				</li>
 				</g:if>
+                          
+                          
+				<li class="fieldcontain">
+					<span id="requierePermisoDeAcceso-label" class="property-label"><g:message code="tipoTarea.requierePermisoDeAcceso.label" default="Requiere Permiso De Acceso" /></span>
+					
+						<span class="property-value" aria-labelledby="requierePermisoDeAcceso-label">
+                                                  <g:checkBox name="requiereIngenieria" value="${tipoTareaInstance?.requierePermisoDeAcceso}"  /></span>
+					
+				</li>
+			
+                          
+                          
+				<li class="fieldcontain">
+					<span id="requiereIngenieria-label" class="property-label"><g:message code="tipoTarea.requiereIngenieria.label" default="Requiere Ingenieria" /></span>
+					
+						<span class="property-value" aria-labelledby="requiereIngenieria-label">
+                                                  <g:checkBox name="requiereIngenieria" value="${tipoTareaInstance?.requiereIngenieria}"  /></span>
+					
+				</li>
+			
 		
 			
 			</ol>

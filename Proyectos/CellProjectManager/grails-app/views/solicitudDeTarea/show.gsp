@@ -111,17 +111,6 @@
         </li>
       </g:if>
 
-      <g:if test="${solicitudDeTareaInstance?.pagos}">
-        <li class="fieldcontain">
-          <span id="pagos-label" class="property-label"><g:message code="solicitudDeTarea.pagos.label" default="Pagos" /></span>
-
-        <g:each in="${solicitudDeTareaInstance.pagos}" var="p">
-          <span class="property-value" aria-labelledby="pagos-label"><g:link controller="pago" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-        </g:each>
-
-        </li>
-      </g:if>
-
       <g:if test="${solicitudDeTareaInstance?.prestamos}">
         <li class="fieldcontain">
           <span id="prestamos-label" class="property-label"><g:message code="solicitudDeTarea.prestamos.label" default="Prestamos" /></span>
@@ -177,13 +166,75 @@
         </li>
       </g:if>
 
+      <g:if test="${solicitudDeTareaInstance?.viaticos}">
+        <li class="fieldcontain">
+          <span id="viaticos-label" class="property-label"><g:message code="solicitudDeTarea.viaticos.label" default="Solicitudes de viaticos" /></span>
+
+          <table>
+            <thead>
+              <tr>	
+            <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitudDeViaticos.fechaCreacion.label', default: 'Fecha Creacion')}" />					
+            <g:sortableColumn property="fechaPago" title="${message(code: 'solicitudDeViaticos.fechaPago.label', default: 'Fecha Pago')}" />					
+            <g:sortableColumn property="monto" title="${message(code: 'solicitudDeViaticos.monto.label', default: 'Monto')}" />					
+            <g:sortableColumn property="observaciones" title="${message(code: 'solicitudDeViaticos.observaciones.label', default: 'Observaciones')}" />					
+            <th><g:message code="solicitudDeViaticos.estado.label" default="Estado" /></th>					
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${solicitudDeTareaInstance.viaticos}" status="i" var="solicitudDeViaticosInstance">
+              <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">											
+                <td><g:formatDate format="dd/MM/yyyy" date="${solicitudDeViaticosInstance.fechaCreacion}" /></td>					
+              <td><g:formatDate format="dd/MM/yyyy" date="${solicitudDeViaticosInstance.fechaPago}" /></td>					
+              <td>${fieldValue(bean: solicitudDeViaticosInstance, field: "monto")}</td>					
+              <td>${fieldValue(bean: solicitudDeViaticosInstance, field: "observaciones")}</td>					
+              <td>${fieldValue(bean: solicitudDeViaticosInstance, field: "estado")}</td>
+
+              </tr>
+            </g:each>
+            </tbody>
+          </table>
+        </li>
+      </g:if>
+      <g:if test="${solicitudDeTareaInstance?.pagos}">
+        <li class="fieldcontain">
+          <span id="viaticos-label" class="property-label"><g:message code="solicitudDeTarea.viaticos.label" default="Solicitudes de pagos" /></span>      
+          <table>
+            <thead>
+              <tr>
+            <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitudPagoCuadrilla.fechaCreacion.label', default: 'Fecha Creacion')}" />					
+            <g:sortableColumn property="fechaPago" title="${message(code: 'solicitudPagoCuadrilla.fechaPago.label', default: 'Fecha Pago')}" />					
+            <g:sortableColumn property="porcentaje" title="${message(code: 'solicitudPagoCuadrilla.porcentaje.label', default: 'Porcentaje')}" />					
+            <g:sortableColumn property="monto" title="${message(code: 'solicitudPagoCuadrilla.monto.label', default: 'Monto')}" />					
+            <g:sortableColumn property="observaciones" title="${message(code: 'solicitudPagoCuadrilla.observaciones.label', default: 'Observaciones')}" />					
+            <th><g:message code="solicitudPagoCuadrilla.estado.label" default="Estado" /></th>	
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${solicitudDeTareaInstance.pagos}" status="i" var="solicitudPagoCuadrillaInstance">
+              <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                <td><g:formatDate format="dd/MM/yyyy" date="${solicitudPagoCuadrillaInstance.fechaCreacion}" /></td>					
+              <td><g:formatDate format="dd/MM/yyyy" date="${solicitudPagoCuadrillaInstance.fechaPago}" /></td>					
+              <td>${fieldValue(bean: solicitudPagoCuadrillaInstance, field: "porcentaje")}</td>					
+              <td>${fieldValue(bean: solicitudPagoCuadrillaInstance, field: "monto")}</td>					
+              <td>${fieldValue(bean: solicitudPagoCuadrillaInstance, field: "observaciones")}</td>					
+              <td>${fieldValue(bean: solicitudPagoCuadrillaInstance, field: "estado")}</td>
+              </tr>
+            </g:each>
+            </tbody>
+          </table>
+        </li>
+      </g:if>
     </ol>
     <g:form>
-      <g:if test="${solicitudDeTareaInstance.hasEstadoCreada()}">
-        <fieldset class="buttons_add">            
+
+      <fieldset class="buttons_add">            
+        <g:if test="${solicitudDeTareaInstance.hasEstadoCreada()}">
           <g:link class="ejecutar" action="pasarEnEjecutacion"  id="${solicitudDeTareaInstance?.id}" >Pasar En Ejecucion</g:link>
-        </fieldset>
-      </g:if>
+        </g:if>          
+        <g:actionSubmit class="viaticos" action="registrarSolicitudDeViaticos" value="Solicitar Viaticos" onclick="return confirm('Esta seguro de querer generar una nueva Solicitud de Viaticos?');" />
+        <g:link class="pagar" action="create" controller="solicitudPagoCuadrilla" >Solicitar Pago</g:link>          
+      </fieldset>
+
       <fieldset class="buttons">
         <g:hiddenField name="id" value="${solicitudDeTareaInstance?.id}" />
         <g:link class="edit" action="edit" id="${solicitudDeTareaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

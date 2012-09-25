@@ -27,6 +27,10 @@
 						<g:sortableColumn property="nombre" title="${message(code: 'tipoTarea.nombre.label', default: 'Nombre')}" />
 					
 						<g:sortableColumn property="descripcion" title="${message(code: 'tipoTarea.descripcion.label', default: 'Descripcion')}" />
+                                                
+                                                <g:sortableColumn property="descripcion" title="${message(code: 'tipoTarea.requierePermisoDeAcceso.label', default: 'Requiere Permiso De Acceso')}" />
+                                                
+                                                <g:sortableColumn property="descripcion" title="${message(code: 'tipoTarea.requiereIngenieria.label', default: 'Requiere Ingenieria')}" />
 					
 					</tr>
 				</thead>
@@ -37,6 +41,10 @@
 						<td><g:link action="show" id="${tipoTareaInstance.id}">${fieldValue(bean: tipoTareaInstance, field: "nombre")}</g:link></td>
 					
 						<td>${fieldValue(bean: tipoTareaInstance, field: "descripcion")}</td>
+                                                
+                                                <td><g:formatBoolean boolean="${tipoTareaInstance.requierePermisoDeAcceso}" /></td>
+                                                
+                                                <td><g:formatBoolean boolean="${tipoTareaInstance.requiereIngenieria}" /></td>
 										
 					</tr>
 				</g:each>

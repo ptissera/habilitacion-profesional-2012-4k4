@@ -3,6 +3,7 @@ package business.tarea
 import org.springframework.dao.DataIntegrityViolationException
 import business.core.Proyecto
 import business.cuadrillas.Cuadrilla
+import business.solicitud.*
 
 class SolicitudDeTareaController {
 
@@ -54,6 +55,14 @@ class SolicitudDeTareaController {
         flash.message = "Solicitud de Tarea En Ejecuacion"
         redirect(action: "show", id: solicitudDeTareaInstance.id)
         }
+    }
+    
+    def registrarSolicitudDeViaticos(){
+        def solicitudDeTareaInstance = SolicitudDeTarea.get(params.id) 
+        def solicitudDeViaticos = new SolicitudDeViaticos(fechaCreacion: new Date(), solicitud:solicitudDeTareaInstance , estado:EstadoSolicitudDeViaticos.findByNombre('Pendiente'))
+        solicitudDeViaticos.save(flush: true)        
+        flash.message = "Nueva Solicitud de Viaticos generada"
+        redirect(action: "show", id: solicitudDeTareaInstance.id)
     }
     
     def create() {
@@ -175,7 +184,8 @@ class SolicitudDeTareaController {
         "permisoAccesoSelectedTF",
         "documentoSelectedTF",
         "poSelectedTF",
-         "prestamosSelectedTF"].each{ name ->
+         "prestamosSelectedTF", 
+        "solicitudPagoCuadrillaSelectedTF"].each{ name ->
             session.setAttribute(name , null)
         }
     }

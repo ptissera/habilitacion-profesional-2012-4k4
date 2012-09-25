@@ -742,7 +742,8 @@ a.skip {
 	text-decoration: underline;
 }
 
- .buttons_add .add, .buttons_add .cerrar, .buttons_add .ejecutar {
+ .buttons_add .add, .buttons_add .cerrar, .buttons_add .ejecutar, 
+ .buttons_add .viaticos, .buttons_add .cobrar, .buttons_add .pagar {
 	background-position: 0.7em center;
         background-size: 16px 16px;
 	background-repeat: no-repeat;
@@ -759,6 +760,18 @@ a.skip {
 
 .buttons_add .ejecutar {
 	background-image: url(../images/taglib/run_1.png);        
+}
+
+.buttons_add .viaticos {
+	background-image: url(../images/taglib/cobro_3.png);        
+}
+
+.buttons_add .pagar {
+	background-image: url(../images/taglib/pago_2.png);        
+}
+
+.buttons_add .cobrar {
+	background-image: url(../images/taglib/cobro_1.png);        
 }
 
 #status li {

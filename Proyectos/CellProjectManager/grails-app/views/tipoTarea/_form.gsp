@@ -18,5 +18,21 @@
 	<g:textField name="descripcion" required="" value="${tipoTareaInstance?.descripcion}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: tipoTareaInstance, field: 'requierePermisoDeAcceso', 'error')} ">
+  <label for="requierePermisoDeAcceso">
+    <g:message code="tipoTarea.requierePermisoDeAcceso.label" default="Requiere Permiso De Acceso" />
+
+  </label>
+  <g:checkBox name="requierePermisoDeAcceso" value="${tipoTareaInstance?.requierePermisoDeAcceso}"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: POInstance, field: 'requiereIngenieria', 'error')} ">
+  <label for="requiereIngenieria">
+    <g:message code="tipoTarea.requiereIngenieria.label" default="Requiere Ingenieria" />
+
+  </label>
+  <g:checkBox name="requiereIngenieria" value="${tipoTareaInstance?.requiereIngenieria}"  />
+</div>
+
 
 

@@ -18,7 +18,7 @@ class MainMenuTagLib {
         
         tituloItemMenu("Soporte Sitio", false)
 	subItemMenu([["cliente","Clientes"],              
-                ["tarea","Tareas"],
+                ["tipoTarea","Tipo De Tarea"],
                 ["sitio","Sitios"],
                 ["provincia","Provincias"]])
         

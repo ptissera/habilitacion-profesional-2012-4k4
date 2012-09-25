@@ -54,7 +54,7 @@ class TipoTareaController {
 
     def update() {
         def tipoTareaInstance = TipoTarea.get(params.id)
-        if (!tareaInstance) {
+        if (!tipoTareaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'tipoTarea.label', default: 'TipoTarea'), params.id])
             redirect(action: "list")
             return
