@@ -42,6 +42,7 @@ class AuthorizeController {
         def usuario = Usuario.findByNombreUsuarioAndClave(params.nombreUsuario, params.clave)
         if(usuario){
             session.usuario = usuario                  
+            session.usuario.rol = usuario.rol                  
         }else{
             flash.message = "Lo sentimos, ${params.nombreUsuario}. Intente de nuevo por favor."     
         }

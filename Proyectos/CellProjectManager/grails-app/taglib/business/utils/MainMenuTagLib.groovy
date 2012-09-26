@@ -3,30 +3,39 @@ package business.utils
 class MainMenuTagLib {
 
     def menuPrincipal = {
-        startMainMenu()
-        
-        tituloItemMenu("Proyectos & Tareas", true)  
-	subItemMenu([["proyecto","Gestor de Proyectos"],
-                ["proyecto","Seleccionar Proyectos","selectList"],
-                ["proyecto","Asignar Proyectos","asignProject"],
-                ["solicitudDeTarea","Gestor de solicitud de tarea"],
-                ["solicitudDeTarea","Crear Solicitud de Tarea","create"]])
+        if(session.usuario){
+            
+            startMainMenu()
+            if(session.usuario.isSuperUser()){
+                tituloItemMenu("Proyectos & Tareas", true)  
+                subItemMenu([["proyecto","Gestor de Proyectos"],
+                        ["proyecto","Seleccionar Proyectos","selectList"],
+                        ["proyecto","Asignar Proyectos","asignProject"],
+                        ["solicitudDeTarea","Gestor de solicitud de tarea"],
+                        ["solicitudDeTarea","Crear Solicitud de Tarea","create"]])
                               	
-	tituloItemMenu("Soporte Usuarios", false)
-        subItemMenu([["usuario","Usuarios"],
-                ["rol","Roles"]])
+                tituloItemMenu("Soporte Usuarios", false)
+                subItemMenu([["usuario","Usuarios"],
+                        ["rol","Roles"]])
         
-        tituloItemMenu("Soporte Sitio", false)
-	subItemMenu([["cliente","Clientes"],              
-                ["tipoTarea","Tipo De Tarea"],
-                ["sitio","Sitios"],
-                ["provincia","Provincias"]])
+                tituloItemMenu("Soporte Sitio", false)
+                subItemMenu([["cliente","Clientes"],              
+                        ["tipoTarea","Tipo De Tarea"],
+                        ["sitio","Sitios"],
+                        ["provincia","Provincias"]])
         
-        tituloItemMenu("Cuadrilla", false)  
-        subItemMenu([["cuadrilla","Cuadrillas"],
-                ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"]])
-			
-	finishMainMenu()
+                tituloItemMenu("Cuadrilla", false)  
+                subItemMenu([["cuadrilla","Cuadrillas"],
+                        ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"]])
+            }
+            if(session.usuario.isSuperUser() || session.usuario.isAdminGeneral()){    
+                tituloItemMenu("Finanzas", false)  
+                subItemMenu([["cobroSolicitudDeTrabajo","Cobros"],
+                        ["solicitudDeViaticos","Solicitudes De Viaticos"],
+                        ["solicitudPagoCuadrilla","Solicitudes De Pagos"]])
+            }
+            finishMainMenu()
+        }
     }
     
     def startMainMenu(){
