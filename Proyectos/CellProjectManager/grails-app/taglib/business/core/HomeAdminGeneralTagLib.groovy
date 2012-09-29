@@ -45,14 +45,16 @@ class HomeAdminGeneralTagLib {
         out << "    <tbody>"
         def documentacionIntegranteCuadrillaInstanceList = DocumentacionIntegranteCuadrilla.list()
         documentacionIntegranteCuadrillaInstanceList.eachWithIndex() { documentacionIntegranteCuadrillaInstance, i ->
-            out << """<tr class="${(i % 2) == 0 ? 'even' : 'odd'}"  style='padding: 0px; spacing: 0px; margin: 0px;'>"""
-            out <<   "<td>${documentacionIntegranteCuadrillaInstance.vigenciaDesde.format('dd/MM/yyyy')}</td>"
-            out <<   "<td>${documentacionIntegranteCuadrillaInstance.vigenciaHasta.format('dd/MM/yyyy')}</td>"
-            out <<   "<td>${documentacionIntegranteCuadrillaInstance.descripcion}</td>"
-            out <<   "<td>${documentacionIntegranteCuadrillaInstance.tipoDocumento}</td>"
-            out <<   "<td>${documentacionIntegranteCuadrillaInstance.integrante}</td>"
-            out <<   "<td><img src=${createLinkTo(dir: "", file: documentacionIntegranteCuadrillaInstance.estadoDocumentoIcon())} width='20px' /></td>"					
-            out << "</tr>"
+            if(documentacionIntegranteCuadrillaInstance.checkVencimiento()<3){
+                out << """<tr class="${(i % 2) == 0 ? 'even' : 'odd'}"  style='padding: 0px; spacing: 0px; margin: 0px;'>"""
+                out <<   "<td>${documentacionIntegranteCuadrillaInstance.vigenciaDesde.format('dd/MM/yyyy')}</td>"
+                out <<   "<td>${documentacionIntegranteCuadrillaInstance.vigenciaHasta.format('dd/MM/yyyy')}</td>"
+                out <<   "<td>${documentacionIntegranteCuadrillaInstance.descripcion}</td>"
+                out <<   "<td>${documentacionIntegranteCuadrillaInstance.tipoDocumento}</td>"
+                out <<   "<td>${documentacionIntegranteCuadrillaInstance.integrante}</td>"
+                out <<   "<td><img src=${createLinkTo(dir: "", file: documentacionIntegranteCuadrillaInstance.estadoDocumentoIcon())} width='20px' /></td>"					
+                out << "</tr>"
+            }
         }			
 	out << "   </tbody>"
         out << "</table>"	
