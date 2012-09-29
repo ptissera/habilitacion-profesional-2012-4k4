@@ -4,6 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import business.core.Proyecto
 import business.cuadrillas.Cuadrilla
 import business.solicitud.*
+import support.tool.ParametrosDelSistema
 
 class SolicitudDeTareaController {
 
@@ -50,18 +51,38 @@ class SolicitudDeTareaController {
         }
         
         if(flash.error){redirect(action: "show", id: solicitudDeTareaInstance.id)            }else{
-        solicitudDeTareaInstance.estado = EstadoSolicitudTarea.findByNombre('En Ejecucion')
-        solicitudDeTareaInstance.save(flush: true)
-        flash.message = "Solicitud de Tarea En Ejecuacion"
-        redirect(action: "show", id: solicitudDeTareaInstance.id)
+            solicitudDeTareaInstance.estado = EstadoSolicitudTarea.findByNombre('En Ejecucion')
+            solicitudDeTareaInstance.save(flush: true)
+            flash.message = "Solicitud de Tarea En Ejecuacion"
+            redirect(action: "show", id: solicitudDeTareaInstance.id)
         }
     }
     
     def registrarSolicitudDeViaticos(){
         def solicitudDeTareaInstance = SolicitudDeTarea.get(params.id) 
-        def solicitudDeViaticos = new SolicitudDeViaticos(fechaCreacion: new Date(), solicitud:solicitudDeTareaInstance , estado:EstadoSolicitudDeViaticos.findByNombre('Pendiente'))
-        solicitudDeViaticos.save(flush: true)        
-        flash.message = "Nueva Solicitud de Viaticos generada"
+        
+        if(!solicitudDeTareaInstance.tarea){
+            flash.message = "No se puede crear la Solicitud de Viaticos. La solicitud de tareas no contiene tareas aun!"
+        }else{
+            def parametroViaticos = ParametrosDelSistema.findByNombre('PROM_VIATICO_DIA_OPERARIO')
+            def minDate 
+            def maxDate 
+            solicitudDeTareaInstance.tarea.each{
+                if(!minDate || minDate>it.fechaInicio){
+                    minDate = it.fechaInicio
+                }
+                if(!maxDate || maxDate<it.fechaFin){
+                    maxDate = it.fechaFin
+                }
+            }
+            def monto = (maxDate - minDate + 1) * Float.valueOf(parametroViaticos.valor) * solicitudDeTareaInstance.cuadrilla.operarios.size()
+            def solicitudDeViaticos = new SolicitudDeViaticos(fechaCreacion: new Date(), 
+                solicitud:solicitudDeTareaInstance , 
+                monto: monto, 
+                estado:EstadoSolicitudDeViaticos.findByNombre('Pendiente'))
+            solicitudDeViaticos.save(flush: true)        
+            flash.message = "Nueva Solicitud de Viaticos generada"
+        }
         redirect(action: "show", id: solicitudDeTareaInstance.id)
     }
     

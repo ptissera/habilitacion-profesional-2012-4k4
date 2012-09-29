@@ -33,6 +33,9 @@ class MainMenuTagLib {
                 subItemMenu([["cobroSolicitudDeTrabajo","Cobros"],
                         ["solicitudDeViaticos","Solicitudes De Viaticos"],
                         ["solicitudPagoCuadrilla","Solicitudes De Pagos"]])
+                
+                tituloItemMenu("Parametros Del Sitio", false)  
+                subItemMenu([["parametrosDelSistema","Parametrizaciones"]])
             }
             finishMainMenu()
         }

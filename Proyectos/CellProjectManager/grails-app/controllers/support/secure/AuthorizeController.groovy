@@ -30,7 +30,11 @@ class AuthorizeController {
             solicitudDeTareaCreate.delete(flush: true)
         }
         session.setAttribute("solicitudDeTareaCreate",null)
-        redirect(uri:"/")    
+        if (session.usuario){
+            redirect(uri:"/")   
+        } else {
+            flash.message = "La session a caducado!"
+        }
     }
     
     def login = {    if (session.usuario) {

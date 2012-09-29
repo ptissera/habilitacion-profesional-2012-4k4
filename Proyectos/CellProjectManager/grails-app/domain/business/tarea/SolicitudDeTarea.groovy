@@ -15,7 +15,7 @@ class SolicitudDeTarea {
     static hasMany = [tarea: Tarea, pos: PO, prestamos: PrestamoHerramienta, documentos: Documento, 
         viaticos: SolicitudDeViaticos, pagos: SolicitudPagoCuadrilla, cobros: CobroSolicitudDeTrabajo]
     static belongsTo = [proyecto: Proyecto, estado: EstadoSolicitudTarea, cuadrilla: Cuadrilla]
-    static fetchMode = [cuadrilla:"eager"] 
+    static fetchMode = [cuadrilla:"eager", proyecto: "eager"] 
     Date fechaAlta
     
     static constraints = {
@@ -30,6 +30,10 @@ class SolicitudDeTarea {
         viaticos()
         pagos()
         cobros()
+    }
+     
+    @Override String toString() {
+        return getId() + " - " + getProyecto()
     }
     
     def hasEstadoCreada(){              

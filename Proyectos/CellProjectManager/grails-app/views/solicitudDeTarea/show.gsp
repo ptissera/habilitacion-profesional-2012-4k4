@@ -231,7 +231,7 @@
         <g:if test="${solicitudDeTareaInstance.hasEstadoCreada()}">
           <g:link class="ejecutar" action="pasarEnEjecutacion"  id="${solicitudDeTareaInstance?.id}" >Pasar En Ejecucion</g:link>
         </g:if>          
-        <g:actionSubmit class="viaticos" action="registrarSolicitudDeViaticos" value="Solicitar Viaticos" onclick="return confirm('Esta seguro de querer generar una nueva Solicitud de Viaticos?');" />
+        <g:link class="viaticos" controller="solicitudDeViaticos" action="create">Solicitar Viaticos</g:link>
         <g:link class="pagar" action="create" controller="solicitudPagoCuadrilla" >Solicitar Pago</g:link>          
       </fieldset>
 

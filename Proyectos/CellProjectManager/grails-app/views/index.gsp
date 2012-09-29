@@ -27,7 +27,7 @@
   <g:if test="${flash.message}">
     <div class="message" role="status">${flash.message}</div>
   </g:if>
-  <g:vencimientos />
+  <g:homeAdminGeneral />
 </div>
 </body>
 </html>

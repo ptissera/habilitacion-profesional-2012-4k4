@@ -1,4 +1,5 @@
 import support.secure.*
+import support.tool.ParametrosDelSistema
 
 import business.cuadrillas.TipoDocumentacionIntegranteCuadrilla
 import business.cuadrillas.TipoDocumentoIdentificacion
@@ -36,6 +37,7 @@ class BootStrap {
         initTareas()
         initHerramientas()
         initUnidadesMedida()
+        iniParametros()
     }
     
     def initRolAndUsuarios(){
@@ -315,9 +317,9 @@ class BootStrap {
                 descripcion: 'Pendiente').save(flush: true, insert: true)
         }        
         
-        if(!EstadoSolicitudDeViaticos.findByNombre('Completa')){
-            new EstadoSolicitudDeViaticos(nombre: 'Completa', 
-                descripcion: 'Completa').save(flush: true, insert: true)
+        if(!EstadoSolicitudDeViaticos.findByNombre('Aprobada')){
+            new EstadoSolicitudDeViaticos(nombre: 'Aprobada', 
+                descripcion: 'Aprobada').save(flush: true, insert: true)
         }        
         
         if(!EstadoSolicitudDeViaticos.findByNombre('Rechazada')){
@@ -330,9 +332,9 @@ class BootStrap {
                 descripcion: 'Pendiente').save(flush: true, insert: true)
         }        
         
-        if(!EstadoSolicitudPagoCuadrilla.findByNombre('Completa')){
-            new EstadoSolicitudPagoCuadrilla(nombre: 'Completa', 
-                descripcion: 'Completa').save(flush: true, insert: true)
+        if(!EstadoSolicitudPagoCuadrilla.findByNombre('Aprobada')){
+            new EstadoSolicitudPagoCuadrilla(nombre: 'Aprobada', 
+                descripcion: 'Aprobada').save(flush: true, insert: true)
         }        
         
         if(!EstadoSolicitudPagoCuadrilla.findByNombre('Rechazada')){
@@ -462,6 +464,14 @@ class BootStrap {
             new UnidadMedida(nombre: 'Gr').save(flush: true, insert: true)
         }
         
+    }
+    
+    def iniParametros() {
+        if(!ParametrosDelSistema.findByNombre('PROM_VIATICO_DIA_OPERARIO')){
+            new ParametrosDelSistema(nombre: 'PROM_VIATICO_DIA_OPERARIO', 
+                descripcion: 'Promedio asignadacion para viaticos por dia y por integrante cuadrilla',
+                valor: '50').save(flush: true, insert: true)
+        }  
     }
     
     def destroy = {

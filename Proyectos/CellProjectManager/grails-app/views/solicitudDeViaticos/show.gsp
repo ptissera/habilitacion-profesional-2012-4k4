@@ -11,9 +11,7 @@
 		<a href="#show-solicitudDeViaticos" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-solicitudDeViaticos" class="content scaffold-show" role="main">
@@ -27,7 +25,7 @@
 				<li class="fieldcontain">
 					<span id="solicitud-label" class="property-label"><g:message code="solicitudDeViaticos.solicitud.label" default="Solicitud" /></span>
 					
-						<span class="property-value" aria-labelledby="solicitud-label"><g:link controller="solicitudDeTarea" action="show" id="${solicitudDeViaticosInstance?.solicitud?.id}">${solicitudDeViaticosInstance?.solicitud?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="solicitud-label">${solicitudDeViaticosInstance?.solicitud?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
@@ -36,7 +34,7 @@
 				<li class="fieldcontain">
 					<span id="fechaCreacion-label" class="property-label"><g:message code="solicitudDeViaticos.fechaCreacion.label" default="Fecha Creacion" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaCreacion-label"><g:formatDate date="${solicitudDeViaticosInstance?.fechaCreacion}" /></span>
+						<span class="property-value" aria-labelledby="fechaCreacion-label"><g:formatDate format="dd/MM/yyyy" date="${solicitudDeViaticosInstance?.fechaCreacion}" /></span>
 					
 				</li>
 				</g:if>
@@ -45,7 +43,7 @@
 				<li class="fieldcontain">
 					<span id="fechaPago-label" class="property-label"><g:message code="solicitudDeViaticos.fechaPago.label" default="Fecha Pago" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaPago-label"><g:formatDate date="${solicitudDeViaticosInstance?.fechaPago}" /></span>
+						<span class="property-value" aria-labelledby="fechaPago-label"><g:formatDate format="dd/MM/yyyy" date="${solicitudDeViaticosInstance?.fechaPago}" /></span>
 					
 				</li>
 				</g:if>
@@ -72,7 +70,7 @@
 				<li class="fieldcontain">
 					<span id="estado-label" class="property-label"><g:message code="solicitudDeViaticos.estado.label" default="Estado" /></span>
 					
-						<span class="property-value" aria-labelledby="estado-label"><g:link controller="estadoSolicitudDeViaticos" action="show" id="${solicitudDeViaticosInstance?.estado?.id}">${solicitudDeViaticosInstance?.estado?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="estado-label">${solicitudDeViaticosInstance?.estado?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
@@ -81,8 +79,7 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${solicitudDeViaticosInstance?.id}" />
-					<g:link class="edit" action="edit" id="${solicitudDeViaticosInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:link class="edit" action="edit" id="${solicitudDeViaticosInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>					
 				</fieldset>
 			</g:form>
 		</div>
