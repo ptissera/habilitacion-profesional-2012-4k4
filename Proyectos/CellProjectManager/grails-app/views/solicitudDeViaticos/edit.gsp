@@ -27,7 +27,7 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="updateAceptar" value="Aceptar" />
+					<g:actionSubmit class="save" action="updateAceptar" value="Aprobar" />
 					<g:actionSubmit class="delete" action="updateRechazar" value="Rechazar" />
 				</fieldset>
 			</g:form>
