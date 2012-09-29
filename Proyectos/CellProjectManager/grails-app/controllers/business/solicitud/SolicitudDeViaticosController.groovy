@@ -79,7 +79,7 @@ class SolicitudDeViaticosController {
             redirect(action: "list")
             return
         }
-
+        solicitudDeViaticosInstance.fechaPago = new Date()
         [solicitudDeViaticosInstance: solicitudDeViaticosInstance]
     }
 
@@ -105,7 +105,7 @@ class SolicitudDeViaticosController {
 
         solicitudDeViaticosInstance.properties = params
         solicitudDeViaticosInstance.estado=EstadoSolicitudDeViaticos.findByNombre('Aprobada')
-        solicitudDeViaticosInstance.fechaPago= new Date()
+        
         if (!solicitudDeViaticosInstance.save(flush: true)) {
             render(view: "edit", model: [solicitudDeViaticosInstance: solicitudDeViaticosInstance])
             return

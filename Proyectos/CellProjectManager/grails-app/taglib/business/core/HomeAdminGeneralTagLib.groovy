@@ -126,10 +126,10 @@ class HomeAdminGeneralTagLib {
         out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;'>"
         out << "<table style='padding: 0px; spacing: 0px; margin: 0px;'>"
         out << "    <tbody>"
-        def solicitudPagoCuadrillaInstanceList = SolicitudPagoCuadrilla.list()
+        def solicitudPagoCuadrillaInstanceList = EstadoSolicitudPagoCuadrilla.findByNombre('Pendiente').solicitudPagoCuadrilla
         solicitudPagoCuadrillaInstanceList.eachWithIndex() { solicitudPagoCuadrillaInstance, i ->
-            out << """<tr class="${(i % 2) == 0 ? 'even' : 'odd'}"  style='padding: 0px; spacing: 0px; margin: 0px;'>"""
-            out <<   "<td width='40%'>${solicitudPagoCuadrillaInstance.solicitud}</td>"
+            out << """<tr class="${(i % 2) == 0 ? 'even' : 'odd'}"  style='padding: 0px; spacing: 0px; margin: 0px;'>"""            
+            out <<   "<td width='40%'>" + """${link(controller:"solicitudPagoCuadrilla",action:"show",id: solicitudPagoCuadrillaInstance.id){solicitudPagoCuadrillaInstance.solicitud}}""" + "</td>"
             out <<   "<td width='20%'>${solicitudPagoCuadrillaInstance.solicitud.cuadrilla}</td>"
             out <<   "<td width='20%'>${solicitudPagoCuadrillaInstance.fechaCreacion.format('dd/MM/yyyy')}</td>"   
             out << "</tr>"

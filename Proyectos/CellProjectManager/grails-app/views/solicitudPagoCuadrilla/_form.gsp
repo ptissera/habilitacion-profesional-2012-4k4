@@ -9,16 +9,23 @@
 		
 	</label>
 	
-        <calendar:datePicker name="fechaPago"/>
+        <calendar:datePicker name="fechaPago" defaultValue="${solicitudPagoCuadrillaInstance.fechaPago}"/>
 </div>
 </g:if>
 
 <div class="fieldcontain ${hasErrors(bean: solicitudPagoCuadrillaInstance, field: 'porcentaje', 'error')} required">
 	<label for="porcentaje">
-		<g:message code="solicitudPagoCuadrilla.porcentaje.label" default="Porcentaje" />
-		<span class="required-indicator">*</span>
+		<g:message code="solicitudPagoCuadrilla.porcentaje.label" default="Porcentaje" />	
 	</label>
+        <g:if test="${!solicitudPagoCuadrillaInstance?.id}">
+        
 	<g:select name="porcentaje" from="${0..100}" class="range" required="" value="${fieldValue(bean: solicitudPagoCuadrillaInstance, field: 'porcentaje')}"/>
+        </g:if>
+  <g:if test="${solicitudPagoCuadrillaInstance?.id}">
+        
+	<g:fieldValue bean="${solicitudPagoCuadrillaInstance}" field="porcentaje"/>
+        </g:if>
+        %
 </div>
 
 <g:if test="${solicitudPagoCuadrillaInstance?.id}">

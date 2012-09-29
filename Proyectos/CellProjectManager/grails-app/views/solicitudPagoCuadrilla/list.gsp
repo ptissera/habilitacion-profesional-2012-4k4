@@ -9,12 +9,6 @@
 	</head>
 	<body>
 		<a href="#list-solicitudPagoCuadrilla" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 		<div id="list-solicitudPagoCuadrilla" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -44,9 +38,9 @@
 					
 						<td><g:link action="show" id="${solicitudPagoCuadrillaInstance.id}">${fieldValue(bean: solicitudPagoCuadrillaInstance, field: "solicitud")}</g:link></td>
 					
-						<td><g:formatDate date="${solicitudPagoCuadrillaInstance.fechaCreacion}" /></td>
+						<td><g:formatDate format="dd/MM/yyyy" date="${solicitudPagoCuadrillaInstance.fechaCreacion}" /></td>
 					
-						<td><g:formatDate date="${solicitudPagoCuadrillaInstance.fechaPago}" /></td>
+						<td><g:formatDate format="dd/MM/yyyy" date="${solicitudPagoCuadrillaInstance.fechaPago}" /></td>
 					
 						<td>${fieldValue(bean: solicitudPagoCuadrillaInstance, field: "porcentaje")}</td>
 					

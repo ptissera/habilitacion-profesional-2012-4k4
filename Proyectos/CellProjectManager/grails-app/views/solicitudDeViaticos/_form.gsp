@@ -1,6 +1,16 @@
 <%@ page import="business.solicitud.SolicitudDeViaticos" %>
 
 
+<g:if test="${solicitudDeViaticosInstance?.id}">
+<div class="fieldcontain ${hasErrors(bean: solicitudDeViaticosInstance, field: 'fechaPago', 'error')} ">
+	<label for="fechaPago">
+		<g:message code="solicitudDeViaticos.fechaPago.label" default="Fecha Pago" />
+		
+	</label>
+	
+        <calendar:datePicker name="fechaPago" defaultValue="${solicitudDeViaticosInstance.fechaPago}"/>
+</div>
+</g:if>
 
 <div class="fieldcontain ${hasErrors(bean: solicitudDeViaticosInstance, field: 'solicitud', 'error')} required">
 	<label for="solicitud">
