@@ -1,7 +1,6 @@
 package business.core
 import business.cuadrillas.DocumentacionIntegranteCuadrilla
-import business.solicitud.SolicitudDeViaticos
-import business.solicitud.SolicitudPagoCuadrilla
+import business.solicitud.*
 
 class HomeAdminGeneralTagLib {
     
@@ -87,7 +86,7 @@ class HomeAdminGeneralTagLib {
         out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;'>"
         out << "<table style='padding: 0px; spacing: 0px; margin: 0px;'>"
         out << "    <tbody>"
-        def solicitudDeViaticosInstanceList = SolicitudDeViaticos.list()
+        def solicitudDeViaticosInstanceList = EstadoSolicitudDeViaticos.findByNombre('Pendiente').solicitudDeViaticos
         solicitudDeViaticosInstanceList.eachWithIndex() { solicitudDeViaticosInstance, i ->
             out << """<tr class="${(i % 2) == 0 ? 'even' : 'odd'}"  style='padding: 0px; spacing: 0px; margin: 0px;'>"""
             out <<   "<td width='40%'>" + """${link(controller:"solicitudDeViaticos",action:"show",id: solicitudDeViaticosInstance.id){solicitudDeViaticosInstance.solicitud}}""" + "</td>"
