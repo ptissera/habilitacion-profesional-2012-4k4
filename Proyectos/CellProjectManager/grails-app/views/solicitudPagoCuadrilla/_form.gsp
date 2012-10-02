@@ -1,7 +1,5 @@
 <%@ page import="business.solicitud.SolicitudPagoCuadrilla" %>
 
-<calendar:resources lang="es" theme="aqua"/>
-
 <g:if test="${solicitudPagoCuadrillaInstance?.id}">
 <div class="fieldcontain ${hasErrors(bean: solicitudPagoCuadrillaInstance, field: 'fechaPago', 'error')} ">
 	<label for="fechaPago">
@@ -9,7 +7,7 @@
 		
 	</label>
 	
-        <calendar:datePicker name="fechaPago" defaultValue="${solicitudPagoCuadrillaInstance.fechaPago}"/>
+        <g:fecha name="fechaPago" defaultValue="${solicitudPagoCuadrillaInstance.fechaPago}"/>
 </div>
 </g:if>
 

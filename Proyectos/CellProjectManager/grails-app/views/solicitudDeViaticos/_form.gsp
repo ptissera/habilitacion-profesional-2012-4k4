@@ -1,14 +1,21 @@
 <%@ page import="business.solicitud.SolicitudDeViaticos" %>
 
-
+<g:javascript library="jquery" />
+    <jqui:resources theme="ui-lightness" />
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+          $("#fechaPago").datepicker({dateFormat: 'dd/mm/yy'});
+        })
+    </script>
 <g:if test="${solicitudDeViaticosInstance?.id}">
 <div class="fieldcontain ${hasErrors(bean: solicitudDeViaticosInstance, field: 'fechaPago', 'error')} ">
 	<label for="fechaPago">
 		<g:message code="solicitudDeViaticos.fechaPago.label" default="Fecha Pago" />
 		
 	</label>
-	
-        <calendar:datePicker name="fechaPago" defaultValue="${solicitudDeViaticosInstance.fechaPago}"/>
+	<g:fecha name="fechaPago" defaultValue="${solicitudDeViaticosInstance.fechaPago}"/>
+   
 </div>
 </g:if>
 
@@ -33,7 +40,7 @@
 		<g:message code="solicitudDeViaticos.monto.label" default="Monto" />
 		
 	</label>
-	<g:field type="number" name="monto" step="any" value="${solicitudDeViaticosInstance.monto}"/>
+	<g:field type="number" name="monto" step="any" format="#,##" value="${solicitudDeViaticosInstance.monto}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: solicitudDeViaticosInstance, field: 'observaciones', 'error')} ">

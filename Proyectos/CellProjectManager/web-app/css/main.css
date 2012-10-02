@@ -53,12 +53,13 @@ body {
 				padding: 1em;
 				width: 12em;
 				float: left;
+                                position: absolute;
 				-moz-box-shadow: 0px 0px 1.25em #ccc;
 				-webkit-box-shadow: 0px 0px 1.25em #ccc;
 				box-shadow: 0px 0px 1.25em #ccc;
 				-moz-border-radius: 0.6em;
 				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
+				border-radius: 0.6em;                                
 			}
 
 			.ie6 #status {
@@ -460,7 +461,7 @@ fieldset.embedded legend {
 /* form fields with errors */
 
 .error input, .error select, .error textarea {
-	background: #fff3f3;
+	background-color: #fff3f3;
 	border-color: #ffaaaa;
 	color: #cc0000;
 }
@@ -810,4 +811,11 @@ a {
 	background-color: transparent;
 	color: #444444;
 	text-decoration: underline;
+}
+
+.hasDatepicker {
+    background-image: url(../images/skin/calendar.png);      
+    background-size: 24px 24px;
+    background-repeat:no-repeat;
+    padding-left:28px;
 }

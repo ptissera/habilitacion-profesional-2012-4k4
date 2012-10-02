@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'selectedControl.css')}" type="text/css">
   <g:layoutHead/>
   <r:layoutResources />
+  <g:resourcesCalendar lang="es"/>
 </head>
 <body>
   <div id="grailsLogo" role="banner" style="width: 100%; height: 90px;"><img src="${resource(dir: 'images', file: 'celltower.png')}" style="padding: 10px 10px; width: 100px;height: 100px;  position:absolute;z-index: 1"/></div>
