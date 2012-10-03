@@ -206,7 +206,8 @@ class SolicitudDeTareaController {
         "documentoSelectedTF",
         "poSelectedTF",
          "prestamosSelectedTF", 
-        "solicitudPagoCuadrillaSelectedTF"].each{ name ->
+        "solicitudPagoCuadrillaSelectedTF",
+        "solicitudViaticosSelectedTF"].each{ name ->
             session.setAttribute(name , null)
         }
     }

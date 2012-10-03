@@ -26,6 +26,7 @@ class SelectedItemsTagLib {
             Boolean equipoDeTareaSelectedTF=(Boolean)session.getAttribute("equipoDeTareaSelectedTF")
             Boolean prestamosSelectedTF=(Boolean)session.getAttribute("prestamosSelectedTF")
             Boolean solicitudPagoCuadrillaSelectedTF=(Boolean)session.getAttribute("solicitudPagoCuadrillaSelectedTF")
+            Boolean solicitudViaticosSelectedTF=(Boolean)session.getAttribute("solicitudViaticosSelectedTF")
             
             out << "<div class='selectedItem' role='navigation'><ul>"
             out << "<li>"
@@ -36,7 +37,7 @@ class SelectedItemsTagLib {
                 out << """${link(class: "proyecto", action: "show", controller: "proyecto", id: proyectoSelected.id){proyectoSelected}}"""
                 out << "</li>"
             }
-            if((solicitudDeTareaSelected!=null || solicitudDeTareaCreate!=null) && (tareaSelected!=null || poSelectedTF || prestamosSelectedTF || solicitudPagoCuadrillaSelectedTF)){
+            if((solicitudDeTareaSelected!=null || solicitudDeTareaCreate!=null) && (tareaSelected!=null || poSelectedTF || prestamosSelectedTF || solicitudPagoCuadrillaSelectedTF || solicitudViaticosSelectedTF)){
                 if(solicitudDeTareaSelected!=null){
                     out << "<li>"
                     out << """${link(class: "solicitud", action: "show", controller: "solicitudDeTarea", id: solicitudDeTareaSelected.id){'Solicitud de Tarea'}}"""

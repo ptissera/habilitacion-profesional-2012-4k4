@@ -15,7 +15,7 @@
 		<g:message code="cobroSolicitudDeTrabajo.fechaCobro.label" default="Fecha Cobro" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaCobro" precision="day"  value="${cobroSolicitudDeTrabajoInstance?.fechaCobro}"  />
+	<g:fecha name="fechaCobro" precision="day"  value="${cobroSolicitudDeTrabajoInstance?.fechaCobro}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: cobroSolicitudDeTrabajoInstance, field: 'monto', 'error')} ">

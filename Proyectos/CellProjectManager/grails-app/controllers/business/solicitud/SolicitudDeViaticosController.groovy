@@ -18,6 +18,7 @@ class SolicitudDeViaticosController {
     }
 
     def create() {
+        session.setAttribute("solicitudViaticosSelectedTF",true)       
         def solicitudDeTareaInstance = session.getAttribute("solicitudDeTareaSelected")
         solicitudDeTareaInstance = SolicitudDeTarea.get(solicitudDeTareaInstance.id)
         if(!solicitudDeTareaInstance.tarea){

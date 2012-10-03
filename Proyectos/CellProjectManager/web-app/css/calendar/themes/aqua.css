@@ -108,7 +108,8 @@ div.calendar {
   background: url("../../../images/skin/aqua/rowhover-bg.gif");
 }
 
-.calendar tbody td.today { font-weight: bold; /* background: url("today-bg.gif") no-repeat 70% 50%; */ }
+.calendar tbody td.today { font-weight: bold; 
+        background: url("../../../images/skin/aqua/today-bg.gif") no-repeat 70% 50%; }
 
 .calendar tbody td.hilite { /* Hovered cells <TD> */
   background: url("../../../images/skin/aqua/hover-bg.gif");

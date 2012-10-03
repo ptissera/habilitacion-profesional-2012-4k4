@@ -7,7 +7,7 @@
 		<g:message code="permisoAcceso.fechaDesde.label" default="Fecha Desde" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaDesde" precision="day"  value="${permisoAccesoInstance?.fechaDesde}"  />
+	<g:fecha name="fechaDesde" precision="day"  value="${permisoAccesoInstance?.fechaDesde}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: permisoAccesoInstance, field: 'fechaHasta', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="permisoAcceso.fechaHasta.label" default="Fecha Hasta" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaHasta" precision="day"  value="${permisoAccesoInstance?.fechaHasta}"  />
+	<g:fecha name="fechaHasta" precision="day"  value="${permisoAccesoInstance?.fechaHasta}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: permisoAccesoInstance, field: 'archivo', 'error')} required">

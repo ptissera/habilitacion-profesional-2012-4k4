@@ -6,8 +6,7 @@
 		<g:message code="solicitudPagoCuadrilla.fechaPago.label" default="Fecha Pago" />
 		
 	</label>
-	
-        <g:fecha name="fechaPago" defaultValue="${solicitudPagoCuadrillaInstance.fechaPago}"/>
+        <g:fecha name="fechaPago" value="${solicitudPagoCuadrillaInstance.fechaPago}"/>
 </div>
 </g:if>
 
@@ -17,7 +16,7 @@
 	</label>
         <g:if test="${!solicitudPagoCuadrillaInstance?.id}">
         
-	<g:select name="porcentaje" from="${0..100}" class="range" required="" value="${fieldValue(bean: solicitudPagoCuadrillaInstance, field: 'porcentaje')}"/>
+	<g:select name="porcentaje" from="${0..solicitudPagoCuadrillaInstance.porcentaje}" class="range" required="" value="${fieldValue(bean: solicitudPagoCuadrillaInstance, field: 'porcentaje')}"/>
         </g:if>
   <g:if test="${solicitudPagoCuadrillaInstance?.id}">
         
@@ -32,7 +31,7 @@
 		<g:message code="solicitudPagoCuadrilla.monto.label" default="Monto" />
 		
 	</label>
-	<g:field type="number" name="monto" step="any" value="${solicitudPagoCuadrillaInstance.monto}"/>
+	<g:field type="number" name="monto" step="any" value="${solicitudPagoCuadrillaInstance.monto.toString().replace('.',',')}"/>
 </div>
 </g:if>
 <div class="fieldcontain ${hasErrors(bean: solicitudPagoCuadrillaInstance, field: 'observaciones', 'error')} ">

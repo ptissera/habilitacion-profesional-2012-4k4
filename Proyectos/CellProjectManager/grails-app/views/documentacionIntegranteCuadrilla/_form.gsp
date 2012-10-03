@@ -7,7 +7,7 @@
 		<g:message code="documentacionIntegranteCuadrilla.vigenciaDesde.label" default="Vigencia Desde" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="vigenciaDesde" precision="day"  value="${documentacionIntegranteCuadrillaInstance?.vigenciaDesde}"  />
+	<g:fecha name="vigenciaDesde" precision="day"  value="${documentacionIntegranteCuadrillaInstance?.vigenciaDesde}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: documentacionIntegranteCuadrillaInstance, field: 'vigenciaHasta', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="documentacionIntegranteCuadrilla.vigenciaHasta.label" default="Vigencia Hasta" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="vigenciaHasta" precision="day"  value="${documentacionIntegranteCuadrillaInstance?.vigenciaHasta}"  />
+	<g:fecha name="vigenciaHasta" precision="day"  value="${documentacionIntegranteCuadrillaInstance?.vigenciaHasta}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: documentacionIntegranteCuadrillaInstance, field: 'descripcion', 'error')} ">

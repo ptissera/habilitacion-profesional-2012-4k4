@@ -7,7 +7,7 @@
 		<g:message code="historialCuadrilla.fecha.label" default="Fecha" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fecha" precision="day"  value="${historialCuadrillaInstance?.fecha}"  />
+	<g:fecha name="fecha" precision="day"  value="${historialCuadrillaInstance?.fecha}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: historialCuadrillaInstance, field: 'descripcion', 'error')} required">

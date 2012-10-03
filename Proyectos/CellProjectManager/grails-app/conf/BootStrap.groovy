@@ -423,17 +423,21 @@ class BootStrap {
     def initTareas(){
         
         if(!TipoTarea.findByNombre('Swap Energía')){
-            new TipoTarea(nombre: 'Swap Energía', descripcion: 'Swap Energía').save()
+            new TipoTarea(nombre: 'Swap Energía', descripcion: 'Swap Energía', requierePermisoDeAcceso: true, requiereIngenieria: true).save()
         }
         if(!TipoTarea.findByNombre('Energía Generadores')){
-            new TipoTarea(nombre: 'Energía Generadores', descripcion: 'Energía Generadores').save()
+            new TipoTarea(nombre: 'Energía Generadores', descripcion: 'Energía Generadores', requierePermisoDeAcceso: true, requiereIngenieria: true).save()
         }
         if(!TipoTarea.findByNombre('Expansiones')){
-            new TipoTarea(nombre: 'Expansiones', descripcion: 'Expansiones').save()
+            new TipoTarea(nombre: 'Expansiones', descripcion: 'Expansiones', requierePermisoDeAcceso: true, requiereIngenieria: true).save()
         }
     
         if(!TipoTarea.findByNombre('Montaje de BTS')){
-            new TipoTarea(nombre: 'Montaje de BTS', descripcion: 'Montaje de BTS').save(flush: true, insert: true)
+            new TipoTarea(nombre: 'Montaje de BTS', descripcion: 'Montaje de BTS', requierePermisoDeAcceso: true, requiereIngenieria: true).save(flush: true, insert: true)
+        }
+                
+        if(!TipoTarea.findByNombre('Ingenieria')){
+            new TipoTarea(nombre: 'Ingenieria', descripcion: 'Actividades para hacer la Ingenieria', requierePermisoDeAcceso: true, requiereIngenieria: false).save(flush: true, insert: true)
         }
         
     }
@@ -471,6 +475,11 @@ class BootStrap {
             new ParametrosDelSistema(nombre: 'PROM_VIATICO_DIA_OPERARIO', 
                 descripcion: 'Promedio asignadacion para viaticos por dia y por integrante cuadrilla',
                 valor: '50').save(flush: true, insert: true)
+        }  
+        if(!ParametrosDelSistema.findByNombre('PORCENTAJE_TAREA')){
+            new ParametrosDelSistema(nombre: 'PORCENTAJE_TAREA', 
+                descripcion: 'Porcentaje a cobrar del total de cada PO',
+                valor: '60').save(flush: true, insert: true)
         }  
     }
     

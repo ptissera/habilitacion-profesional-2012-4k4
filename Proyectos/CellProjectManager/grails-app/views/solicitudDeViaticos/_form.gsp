@@ -5,7 +5,7 @@
     <script type="text/javascript">
         $(document).ready(function()
         {
-          $("#fechaPago").datepicker({dateFormat: 'dd/mm/yy'});
+          $("#fechaPago").fecha({dateFormat: 'dd/mm/yy'});
         })
     </script>
 <g:if test="${solicitudDeViaticosInstance?.id}">
@@ -14,7 +14,7 @@
 		<g:message code="solicitudDeViaticos.fechaPago.label" default="Fecha Pago" />
 		
 	</label>
-	<g:fecha name="fechaPago" defaultValue="${solicitudDeViaticosInstance.fechaPago}"/>
+	<g:fecha name="fechaPago" value="${solicitudDeViaticosInstance.fechaPago}"/>
    
 </div>
 </g:if>
@@ -40,7 +40,7 @@
 		<g:message code="solicitudDeViaticos.monto.label" default="Monto" />
 		
 	</label>
-	<g:field type="number" name="monto" step="any" format="#,##" value="${solicitudDeViaticosInstance.monto}"/>
+	<g:field type="number" name="monto" step="any" format="#,##" value="${solicitudDeViaticosInstance.monto.toString().replace('.',',')}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: solicitudDeViaticosInstance, field: 'observaciones', 'error')} ">

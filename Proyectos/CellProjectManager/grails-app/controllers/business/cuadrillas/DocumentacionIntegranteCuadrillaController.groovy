@@ -59,6 +59,17 @@ class DocumentacionIntegranteCuadrillaController {
 
         [documentacionIntegranteCuadrillaInstance: documentacionIntegranteCuadrillaInstance, integranteCuadrillaInstance: integranteCuadrillaInstance]
     }
+    
+    def editFromHome() {        
+        def documentacionIntegranteCuadrillaInstance = DocumentacionIntegranteCuadrilla.get(params.id)
+        if (!documentacionIntegranteCuadrillaInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), params.id])
+            redirect(action: "show",controller: "integranteCuadrilla", id: documentacionIntegranteCuadrillaInstance.id)
+            return
+        }
+
+        [documentacionIntegranteCuadrillaInstance: documentacionIntegranteCuadrillaInstance]
+    }
 
     def update() {
         def integranteCuadrillaInstance=(IntegranteCuadrilla)session.getAttribute("integranteCuadrillaSelected") 
@@ -89,6 +100,36 @@ class DocumentacionIntegranteCuadrillaController {
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), documentacionIntegranteCuadrillaInstance.id])
         redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
+    }
+    
+    def updateFromHome() {        
+        def documentacionIntegranteCuadrillaInstance = DocumentacionIntegranteCuadrilla.get(params.id)
+        if (!documentacionIntegranteCuadrillaInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), params.id])
+            redirect(action: "show",controller: "integranteCuadrilla", id: documentacionIntegranteCuadrillaInstance.id)
+            return
+        }
+
+        if (params.version) {
+            def version = params.version.toLong()
+            if (documentacionIntegranteCuadrillaInstance.version > version) {
+                documentacionIntegranteCuadrillaInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla')] as Object[],
+                          "Another user has updated this DocumentacionIntegranteCuadrilla while you were editing")
+                render(view: "editFromHome", model: [documentacionIntegranteCuadrillaInstance: documentacionIntegranteCuadrillaInstance, integranteCuadrillaInstance: integranteCuadrillaInstance])
+                return
+            }
+        }
+
+        documentacionIntegranteCuadrillaInstance.properties = params
+
+        if (!documentacionIntegranteCuadrillaInstance.save(flush: true)) {
+            render(view: "editFromHome", model: [documentacionIntegranteCuadrillaInstance: documentacionIntegranteCuadrillaInstance])
+            return
+        }
+
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'documentacionIntegranteCuadrilla.label', default: 'DocumentacionIntegranteCuadrilla'), documentacionIntegranteCuadrillaInstance.id])
+        redirect(uri: "/")
     }
 
     def delete() {

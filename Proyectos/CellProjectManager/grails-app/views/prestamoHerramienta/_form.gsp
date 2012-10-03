@@ -7,7 +7,7 @@
 		<g:message code="prestamoHerramienta.fechaPrestamo.label" default="Fecha Prestamo" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaPrestamo" precision="day"  value="${prestamoHerramientaInstance?.fechaPrestamo}"  />
+	<g:fecha name="fechaPrestamo" precision="day"  value="${prestamoHerramientaInstance?.fechaPrestamo}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: prestamoHerramientaInstance, field: 'fechaDevolucion', 'error')} ">
@@ -15,7 +15,7 @@
 		<g:message code="prestamoHerramienta.fechaDevolucion.label" default="Fecha Devolucion" />
 		
 	</label>
-	<g:datePicker name="fechaDevolucion" precision="day"  value="${prestamoHerramientaInstance?.fechaDevolucion}" default="none" noSelection="['': '']" />
+	<g:fecha name="fechaDevolucion" precision="day"  value="${prestamoHerramientaInstance?.fechaDevolucion}" default="none" noSelection="['': '']" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: prestamoHerramientaInstance, field: 'herramienta', 'error')} required">

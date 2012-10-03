@@ -7,7 +7,7 @@
     <g:message code="PO.fechaRecibida.label" default="Fecha Recibida" />
     <span class="required-indicator">*</span>
   </label>
-  <g:datePicker name="fechaRecibida" precision="day"  value="${POInstance?.fechaRecibida}"  />
+  <g:fecha name="fechaRecibida" precision="day"  value="${POInstance?.fechaRecibida}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: POInstance, field: 'monto', 'error')} required">

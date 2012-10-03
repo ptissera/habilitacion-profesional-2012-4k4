@@ -21,7 +21,7 @@
     <g:message code="documento.fechaRealizado.label" default="Fecha Realizado" />
 
   </label>
-  <g:datePicker name="fechaRealizado" precision="day"  value="${documentoInstance?.fechaRealizado}" default="none" noSelection="['': '']" />
+  <g:fecha name="fechaRealizado" precision="day"  value="${documentoInstance?.fechaRealizado}" default="none" noSelection="['': '']" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'fechaEnviado', 'error')} ">
@@ -29,7 +29,7 @@
     <g:message code="documento.fechaEnviado.label" default="Fecha Enviado" />
 
   </label>
-  <g:datePicker name="fechaEnviado" precision="day"  value="${documentoInstance?.fechaEnviado}" default="none" noSelection="['': '']" />
+  <g:fecha name="fechaEnviado" precision="day"  value="${documentoInstance?.fechaEnviado}" default="none" noSelection="['': '']" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'fechaAprobado', 'error')} ">
@@ -37,7 +37,7 @@
     <g:message code="documento.fechaAprobado.label" default="Fecha Aprobado" />
 
   </label>
-  <g:datePicker name="fechaAprobado" precision="day"  value="${documentoInstance?.fechaAprobado}" default="none" noSelection="['': '']" />
+  <g:fecha name="fechaAprobado" precision="day"  value="${documentoInstance?.fechaAprobado}" default="none" noSelection="['': '']" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'archivo', 'error')} required">
