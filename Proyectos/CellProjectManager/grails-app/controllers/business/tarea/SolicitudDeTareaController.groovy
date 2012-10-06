@@ -32,22 +32,33 @@ class SolicitudDeTareaController {
                  
         if(solicitudDeTareaInstance.tarea){
             solicitudDeTareaInstance.tarea.each{ tarea ->
-                if(tarea.permisos){
-                    def isOK = false
-                    tarea.permisos.each{ permiso ->
-                        if(tarea.fechaInicio >= permiso.fechaDesde && tarea.fechaFin <= permiso.fechaHasta){
-                            isOK = true
+                if(tarea.tipoTarea.requierePermisoDeAcceso){
+                    if(tarea.permisos){
+                        def isOK = false
+                        tarea.permisos.each{ permiso ->
+                            if(tarea.fechaInicio >= permiso.fechaDesde && tarea.fechaFin <= permiso.fechaHasta){
+                                isOK = true
+                            }
                         }
+                        if(!isOK){
+                            flash.error = "La tarea ${tarea} contiene permisos de acceso fuera de limites del permiso de acceso"
+                        }
+                    }else{
+                        flash.error = "La tarea ${tarea} no contiene permisos de acceso"                        
                     }
-                    if(!isOK){
-                        flash.error = "La tarea ${tarea} contiene permisos de acceso fuera de limites del permiso de acceso"
+                }
+                if(tarea.tipoTarea.requiereIngenieria){
+                    if(!tarea.documentoDeIngenieria){
+                         flash.error = "La tarea ${tarea} no contiene documento de Ingenieria"  
                     }
-                }else{
-                    flash.error = "La tarea ${tarea} no contiene permisos de acceso"                        
                 }
             }
         }else{
             flash.error = "La solicitud de tarea no contiene tareas aun!!"            
+        }
+        
+        if(!solicitudDeTareaInstance.pos){
+            flash.error = "La solicitud de tarea no PO aun!!"
         }
         
         if(flash.error){redirect(action: "show", id: solicitudDeTareaInstance.id)            }else{

@@ -40,4 +40,27 @@ class SolicitudDeTarea {
         return estado != null ? estado.getNombre() == "Creada" : false
     }
     
+    def totalPorCobrar(){              
+         
+        Float totalACobrar = 0
+        if(estado != null ? estado.getNombre() == "Pendiente Cobro" : false){
+                        
+            Float totalPOs = 0
+            Float totalCobros = 0            
+            
+            pos.each{
+                totalPOs += it.monto
+            }
+            
+            if(cobros){
+                cobros.each{
+                    totalCobros += it.monto
+                }
+            }
+            
+            totalACobrar = totalPOs - totalCobros            
+        }
+        return totalACobrar
+    }
+    
 }

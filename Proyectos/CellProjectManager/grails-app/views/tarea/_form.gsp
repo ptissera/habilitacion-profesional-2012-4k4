@@ -49,9 +49,9 @@
   <div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'estado', 'error')} required">
     <label for="estado">
       <g:message code="tarea.estado.label" default="Estado" />
-      <span class="required-indicator">*</span>
+      
     </label>
-    <g:select id="estado" name="estado.id" from="${business.tarea.EstadoTarea.list()}" optionKey="id" required="" value="${tareaInstance?.estado?.id}" class="many-to-one"/>
+    ${tareaInstance?.estado}
   </div>
 </g:if>
 

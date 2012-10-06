@@ -1,6 +1,7 @@
 package business.core
 import business.cuadrillas.DocumentacionIntegranteCuadrilla
 import business.solicitud.*
+import business.tarea.SolicitudDeTarea
 
 class HomeAdminGeneralTagLib {
     
@@ -8,28 +9,38 @@ class HomeAdminGeneralTagLib {
         def solicitudDeViaticosInstanceList = EstadoSolicitudDeViaticos.findByNombre('Pendiente').solicitudDeViaticos        
         def solicitudPagoCuadrillaInstanceList = EstadoSolicitudPagoCuadrilla.findByNombre('Pendiente').solicitudPagoCuadrilla
         def documentacionIntegranteCuadrillaInstanceList = DocumentacionIntegranteCuadrilla.list()
+        def solicitudDeTareaInstanceList = SolicitudDeTarea.list()
+        
         def documentacionIntegranteCuadrillaAuxList = []
         documentacionIntegranteCuadrillaInstanceList.each{
             if(it.checkVencimiento()<3){
                 documentacionIntegranteCuadrillaAuxList << it
             }
         }
+        
+        def solicitudDeTareaInstanceAuxList = []
+        solicitudDeTareaInstanceList.each{
+            if(it.totalPorCobrar()>0){
+                solicitudDeTareaInstanceAuxList << it
+            }
+        }
+        
         def masLargo = false
-        if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList){
-            out << "<table style='border: 0px;'>"
+        if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList || solicitudDeTareaInstanceAuxList){
+            out << "<table style='border: 0px; background-color: white;' class='none;'>"
             if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList){
                 if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
-                    out << "<tr><td>"
+                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
                     viaticos(solicitudDeViaticosInstanceList)
                     out << "</td><td>"
                     pagos(solicitudPagoCuadrillaInstanceList)
                     out << "</td></tr>"
                 } else if(solicitudDeViaticosInstanceList){
-                    out << "<tr><td>"
+                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
                     viaticos(solicitudDeViaticosInstanceList)
                     out << "</td></tr>"
                 } else {
-                    out << "<tr><td>"
+                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
                     pagos(solicitudPagoCuadrillaInstanceList)
                     out << "</td></tr>"
                 }
@@ -40,15 +51,29 @@ class HomeAdminGeneralTagLib {
             if(documentacionIntegranteCuadrillaAuxList){
                 
                 if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
-                    out << "<tr><td colspan='2'>"
+                    out << "<tr style='background-color: white;' ><td colspan='2' style='background-color: white;'>"
                 } else {
-                    out << "<tr><td>"
+                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
                 }
                 vencimientos(documentacionIntegranteCuadrillaAuxList)
                 out << "</td></tr>"
             }else{
                 masLargo = true   
             }
+            
+            if(solicitudDeTareaInstanceAuxList){
+                
+                if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
+                    out << "<tr style='background-color: white;'><td colspan='2' style='background-color: white;'>"
+                } else {
+                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                }
+                cobros(solicitudDeTareaInstanceAuxList)
+                out << "</td></tr>"
+            }else{
+                masLargo = true   
+            }
+            
             out <<"</table>"
         } else {
             out << "<div style='height: 300px;'></div>"
@@ -185,4 +210,45 @@ class HomeAdminGeneralTagLib {
         out << "</div>"
         out << "</td></tr></table>"
     }
+
+
+    def cobros(solicitudDeTareaInstanceList) {
+         out << "<table cellspacing='0' cellpadding='0' style='padding: 0px; spacing: 0px; margin: 10px 0px 0px 0px;'>"
+        out << "<tr> <td style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "<div style='height: 25px; width: 100%; text-align: center; padding: 0px; spacing: 10px; margin: 0px; border-collapse: collapse;"
+        out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;background-color: #CFDF78; font-weight: bold;'>"
+        out << "Cobros de Solicitud de Trabjos"
+        out << "</div>"
+        out << "</td></tr><tr><td  style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "<tr> <td style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "<div style='height: 25px; width: 100%; padding: 0px; spacing: 0px; margin: 0px;border-collapse: collapse;"
+        out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;'>"
+        out << "<table  style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "    <thead>"
+        out << "       <tr>"
+        out << "           <th width='80%'> Solicitud De tarea </th>"
+        out << "           <th width='10%'> Monto </th>"
+        
+        out << "       </tr>"
+        out << "    </thead>"
+        out << "</table>"
+        out << "</div>"
+        out << "</td></tr><tr><td  style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "<div style='overflow: auto;height: 150px; width: 100%; padding: 0px; spacing: 0px; margin: 0px;border-collapse: collapse;"
+        out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;'>"
+        out << "<table style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "    <tbody>"
+        
+        solicitudDeTareaInstanceList.eachWithIndex() { solicitudDeTareaInstance, i ->
+            out << """<tr class="${(i % 2) == 0 ? 'even' : 'odd'}"  style='padding: 0px; spacing: 0px; margin: 0px;'>"""            
+            out <<   "<td width='80%'>" + """${link(controller:"cobroSolicitudDeTrabajo",action:"create",id: solicitudDeTareaInstance.id){solicitudDeTareaInstance}}""" + "</td>"
+            out <<   "<td width='10%'>${solicitudDeTareaInstance.totalPorCobrar()}</td>"
+            out << "</tr>"
+        }			
+	out << "   </tbody>"
+        out << "</table>"	
+        out << "</div>"
+        out << "</td></tr></table>"
+    }
+   
 }

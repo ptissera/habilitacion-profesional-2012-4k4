@@ -252,6 +252,11 @@ class BootStrap {
                 descripcion: 'Pendiente Conformidad').save(flush: true, insert: true)
         }
         
+         if(!EstadoSolicitudTarea.findByNombre('Pendiente Cobro')){
+            new EstadoSolicitudTarea(nombre: 'Pendiente Cobro', 
+                descripcion: 'Pendiente Cobro').save(flush: true, insert: true)
+        }
+        
         if(!EstadoSolicitudTarea.findByNombre('Cancelada')){
             new EstadoSolicitudTarea(nombre: 'Cancelada', 
                 descripcion: 'Cancelada').save(flush: true, insert: true)

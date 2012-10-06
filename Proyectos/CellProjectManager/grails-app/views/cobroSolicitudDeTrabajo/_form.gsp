@@ -4,10 +4,9 @@
 
 <div class="fieldcontain ${hasErrors(bean: cobroSolicitudDeTrabajoInstance, field: 'solicitud', 'error')} required">
 	<label for="solicitud">
-		<g:message code="cobroSolicitudDeTrabajo.solicitud.label" default="Solicitud" />
-		<span class="required-indicator">*</span>
+		<g:message code="cobroSolicitudDeTrabajo.solicitud.label" default="Solicitud" />		
 	</label>
-	<g:select id="solicitud" name="solicitud.id" from="${business.tarea.SolicitudDeTarea.list()}" optionKey="id" required="" value="${cobroSolicitudDeTrabajoInstance?.solicitud?.id}" class="many-to-one"/>
+	${cobroSolicitudDeTrabajoInstance?.solicitud}
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: cobroSolicitudDeTrabajoInstance, field: 'fechaCobro', 'error')} required">
@@ -23,7 +22,7 @@
 		<g:message code="cobroSolicitudDeTrabajo.monto.label" default="Monto" />
 		
 	</label>
-	<g:field type="number" name="monto" step="any" value="${cobroSolicitudDeTrabajoInstance.monto}"/>
+	<g:field type="number" name="monto" step="any" value="${cobroSolicitudDeTrabajoInstance.monto.toString().replace('.',',')}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: cobroSolicitudDeTrabajoInstance, field: 'observaciones', 'error')} ">
