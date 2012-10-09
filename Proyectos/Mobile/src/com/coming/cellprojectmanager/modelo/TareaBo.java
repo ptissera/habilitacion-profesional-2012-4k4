@@ -15,6 +15,9 @@ public class TareaBo implements Serializable {
 	private TareaDto dto;
 	
 	public static List<TareaBo> listaDesdeDtos(List<TareaDto> dtos) {
+		if(dtos == null) {
+			return new ArrayList<TareaBo>();
+		}
 		List<TareaBo> result = new ArrayList<TareaBo>(dtos.size());
 		for(TareaDto dto : dtos) {
 			TareaBo entity = new TareaBo(dto);
@@ -114,7 +117,12 @@ public class TareaBo implements Serializable {
 			return false;
 		}
 		
-		return (((TareaBo)o).dto.equals(dto));
+		return (((TareaBo)o).dto.id.equals(dto.id));
+	}
+	
+	@Override
+	public int hashCode() {
+		return dto.id.hashCode();
 	}
 	
 	private boolean transicionValida(String nuevoEstado) {

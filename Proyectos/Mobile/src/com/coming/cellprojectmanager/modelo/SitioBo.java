@@ -12,6 +12,9 @@ public class SitioBo implements Serializable {
 	private float radioEnMts;
 
 	public static List<SitioBo> listaDesdeDtos(List<SitioDto> dtos) {
+		if(dtos == null) {
+			return new ArrayList<SitioBo>();
+		}
 		List<SitioBo> result = new ArrayList<SitioBo>(dtos.size());
 		for(SitioDto dto : dtos) {
 			SitioBo entity = new SitioBo(dto);

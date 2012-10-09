@@ -1,16 +1,20 @@
 <resources>
 
     <string name="app_name">Coming SA</string>
-    <string name="title_activity_main">Coming SA</string>    
-    <string name="title_activity_actualizar_progreso_tarea">Actualizar progreso de tarea</string>
+    <string name="title_activity_gestionar_tareas">Tareas</string>    
+    <string name="title_activity_gestionar_acontecimientos">Acontecimientos</string>
     <string name="title_activity_seleccionar_sitio">Seleccionar un sitio</string>
-	<string name="title_activity_seleccionar_estado">Seleccione un estado</string>    
+	<string name="title_activity_seleccionar_estado">Seleccione un estado</string> 
+	<string name="title_activity_opciones_de_tareas">Opciones</string>
     <string name="nombre_sitio_hint">Seleccione un sitio</string>
     <string name="seleccionar_sitio">Seleccionar sitio</string>
     <string name="aceptar">Aceptar</string>
     <string name="buscando_sitios">Buscando sitios</string>
-    <string name="seleccione_un_sitio">Seleccione un sitio</string>
     <string name="buscando_tareas">Buscando tareas</string>
+    <string name="buscando_tipos_acontecimientos">Buscando tipos acontecimientos</string>
+    <string name="buscando_treansiciones_tarea">Buscando transiciones de tareas</string>
+    <string name="buscando_acontecimientos">Buscando acontecimientos</string>    
+    <string name="seleccione_un_sitio">Seleccione un sitio</string>
 	<string name="fechas_estimadas">Fechas estimadas:</string>
 	<string name="fechas_reales">Fechas reales:</string>
 	<string name="sin_datos">(sin datos)</string>
@@ -18,5 +22,13 @@
 	<string name="en_ejecucion">En ejecucion</string>
 	<string name="suspendida">Suspendida</string>
 	<string name="resuelta">Resuelta</string>
+	<string name="nuevo">Nuevo</string>
+	<string name="creado_el">Creado el</string>
+	<string name="tipo_de_acontecimientos">Tipo de acontecimiento</string>
+	<string name="descripcion">Descripción</string>
+	<string name="toast_falta_descripcion">Debe ingresar una descripción para el acontecimiento.</string>
+	<string name="registrando_acontecimiento">Registrando acontecimiento</string>
+	<string name="registro_acontecimiento_exito">Acontecimiento registrado con éxito.</string>
+	<string name="registro_acontecimiento_fallo">No se pudo registrar el acontecimiento. Intente nuevamente.</string>
 	
 </resources>

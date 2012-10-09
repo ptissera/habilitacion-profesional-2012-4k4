@@ -3,9 +3,10 @@ package com.coming.cellprojectmanager.actividades;
 import java.util.List;
 
 import com.coming.cellprojectmanager.R;
+import com.coming.cellprojectmanager.modelo.SesionBo;
 import com.coming.cellprojectmanager.modelo.SitioBo;
-import com.coming.cellprojectmanager.ws.SitiosWs;
-import com.coming.cellprojectmanager.ws.SitiosWsResponse;
+import com.coming.cellprojectmanager.ws.GetSitiosWs;
+import com.coming.cellprojectmanager.ws.GetSitiosWsResponse;
 import com.coming.cellprojectmanager.ws.WsObserver;
 
 import android.os.Bundle;
@@ -13,7 +14,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +26,7 @@ import android.widget.TextView;
 public class SeleccionarSitio extends Activity implements WsObserver {
 	private ListView listView;
 	private SitiosListAdapter listAdapter;
-	private SitiosWs sitiosWs;
+	private GetSitiosWs sitiosWs;
 	private ProgressDialog progressDialog;
 	
     @Override
@@ -57,13 +57,12 @@ public class SeleccionarSitio extends Activity implements WsObserver {
     }
 
     private void habilitarPantalla() {
-    	SharedPreferences pref = this.getSharedPreferences("cellprojectmanagermobile", MODE_PRIVATE);
-        String nombreUsuario = pref.getString("nombreUsuario", "");
+    	String usuario = SesionBo.getUsuario(this);
         if(sitiosWs != null) {
         	sitiosWs.cancel(true);
         }
-        sitiosWs = new SitiosWs(this);        
-    	sitiosWs.execute(this, nombreUsuario);    	
+        sitiosWs = new GetSitiosWs(this);        
+    	sitiosWs.execute(this, usuario);    	
     }
     
 	public void notifiyPreExecute() {
@@ -75,7 +74,7 @@ public class SeleccionarSitio extends Activity implements WsObserver {
 	}
 
 	public void notifiyPosExecute(String result) {
-		SitiosWsResponse resp = SitiosWsResponse.fromJSon(result);
+		GetSitiosWsResponse resp = GetSitiosWsResponse.fromJSon(result);
         List<SitioBo> sitios = SitioBo.listaDesdeDtos(resp.sitios);
         listAdapter.sitios = sitios;
         listAdapter.notifyDataSetChanged();

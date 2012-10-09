@@ -8,7 +8,6 @@ import java.security.InvalidParameterException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.params.HttpConnectionParams;
 
 import android.content.Context;
@@ -28,9 +27,11 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 		context = ctx;
 	}
 	
-	protected abstract boolean checkParams(String... params);
+	protected abstract boolean checkParamsOk(String... params);
 	protected abstract String doFakeCall(String... params);
 	protected abstract String buildUrl(String... params);
+	protected abstract HttpResponse doCall(AndroidHttpClient httpClient,
+			String url, String... params);
 	
 	public void execute(WsObserver observer, String... params) {
 		this.observer = observer;
@@ -46,7 +47,7 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 		
 	@Override
 	protected String doInBackground(String... params) {
-		if(checkParams(params)) {
+		if(!checkParamsOk(params)) {
 			throw new InvalidParameterException("Ws Invalid parameters: " + params.toString());
 		}
 		String result = null;
@@ -57,13 +58,7 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 		AndroidHttpClient httpClient = AndroidHttpClient.newInstance("projectcellmanagermobile-v" + getAppVersion());
 		HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), 5000);
 		HttpConnectionParams.setSoTimeout(httpClient.getParams(), 10000);
-		HttpGet httpGet = new HttpGet(Uri.encode(url));
-		HttpResponse response = null;
-		try {
-			response = httpClient.execute(httpGet);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		HttpResponse response = doCall(httpClient, Uri.encode(url), params);
 		int responseStatusCode = -1;
 		if(response != null) {
 			response.getStatusLine().getStatusCode();
@@ -94,6 +89,7 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 				}
 			}
 		}			
+		httpClient.close();
 		return result;
 	}
 	

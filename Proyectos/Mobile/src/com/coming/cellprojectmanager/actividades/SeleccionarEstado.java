@@ -13,28 +13,31 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SeleccionarEstado extends ListActivity {
-	private TareaBo tarea;
+	private TareaBo tareaSeleccionada;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+        	tareaSeleccionada = (TareaBo)extras.getSerializable(Common.EXTRAS_KEY_TAREA);
+        	String title = getTitle() + " " + tareaSeleccionada.getId().toString() 
+        			+ " " + tareaSeleccionada.getNombreTipoTarea();
+        	setTitle(title);        	
+        	List<String> estados = tareaSeleccionada.getTransicionesValidas(false);
+        	setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, estados));        	
+        }        
         getListView().setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapterView, View view, int position,
 					long ind) {
 				String estado = (String)getListAdapter().getItem(position);
-		        tarea.setEstado(estado);
+				tareaSeleccionada.setEstado(estado);
 				Intent data = new Intent();
 				Bundle extras = new Bundle();
-				extras.putSerializable(Common.EXTRAS_KEY_TAREA, tarea);
+				extras.putSerializable(Common.EXTRAS_KEY_TAREA, tareaSeleccionada);
 		        data.putExtras(extras);
 		        SeleccionarEstado.this.setResult(RESULT_OK, data);
 		        SeleccionarEstado.this.finish();
 			}
 		});
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-        	tarea = (TareaBo)extras.getSerializable(Common.EXTRAS_KEY_TAREA);
-        	List<String> estados = tarea.getTransicionesValidas(false);
-        	setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, estados));        	
-        }
     }
 }

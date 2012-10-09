@@ -31,6 +31,9 @@ public class Utils {
 	}
 
 	public static Date fechaFromBackendStringToDate(String fecha) {
+		if(fecha == null || fecha.isEmpty()) {
+			return null;
+		}
 		Date date = null;
 		try {
 			date = backendDateFormat.parse(fecha);

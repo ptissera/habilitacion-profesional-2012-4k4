@@ -1,6 +1,7 @@
 package com.coming.cellprojectmanager.actividades;
 
 public class Common {
-	public static String EXTRAS_KEY_SITIO = "sitio";
-	public static String EXTRAS_KEY_TAREA = "tarea";
+	protected static final String EXTRAS_KEY_ACONTECIMIENTO = "acontecimiento";
+	protected static final String EXTRAS_KEY_SITIO = "sitio";
+	protected static final String EXTRAS_KEY_TAREA = "tarea";
 }
