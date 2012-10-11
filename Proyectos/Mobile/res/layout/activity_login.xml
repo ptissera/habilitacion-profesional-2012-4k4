@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal"
+    android:paddingBottom="4dp"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp"
+    android:paddingTop="4dp" >
+
+    <EditText
+        android:id="@+id/nombreEditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="nombre de usuario"
+        android:maxLines="1"
+        android:singleLine="true" >
+
+        <requestFocus />
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/pwdEditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombreEditText"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="contraseña"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:singleLine="true" >
+    </EditText>
+
+    <Button
+        android:id="@+id/aceptarButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pwdEditText"
+        android:layout_centerHorizontal="true"
+        android:text="@string/aceptar" />
+
+</RelativeLayout>
