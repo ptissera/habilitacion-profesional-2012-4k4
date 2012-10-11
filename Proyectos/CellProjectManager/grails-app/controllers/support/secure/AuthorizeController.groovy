@@ -1,4 +1,5 @@
 package support.secure
+import grails.converters.JSON
 
 class AuthorizeController {
 
@@ -77,4 +78,52 @@ class AuthorizeController {
         }
         redirect(action: "login")
     }  
+    
+    def restLogin = {
+        switch(request.method)
+        {
+            case 'GET':
+                doGetRestLogin(params)
+                break;
+        }
+    }
+    
+    private void doGetRestLogin(params)
+    {   if (!session.usuario) 
+        {
+            this.authenticate()
+            if(session.usuario){
+                render session.usuario as JSON
+            }else{
+                response.status=500
+                render JSON.parse("{ error: 'Ingreso incorrecto' }") as JSON
+            }
+        } 
+        else
+        {
+             
+        }
+    }
+    
+    
+   def restLogout = {
+        switch(request.method)
+        {
+            case 'GET':
+                doGetRestLogout(params)
+                break;
+        }
+    }
+    
+    private void doGetRestLogout(params)
+    {   if (session.usuario) 
+        {
+                session.usuario = null
+                response.status=200
+                render JSON.parse("{ error: 0 ; descripcion: 'Logout OK' }") as JSON
+            
+        } 
+    }
+    
+   
 }
