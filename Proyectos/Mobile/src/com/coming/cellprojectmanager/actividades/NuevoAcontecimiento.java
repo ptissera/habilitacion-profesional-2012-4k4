@@ -42,8 +42,8 @@ public class NuevoAcontecimiento extends Activity {
 		public void notifiyPreExecute() {
 	    	if(progressDialog == null) {
 	    		progressDialog = new ProgressDialog(NuevoAcontecimiento.this);
-	    		progressDialog.setMessage(getString(R.string.buscando_tipos_acontecimientos));
 	    	}
+	    	progressDialog.setMessage(getString(R.string.buscando_tipos_acontecimientos));
 	    	progressDialog.show();
 		}
 
@@ -72,8 +72,9 @@ public class NuevoAcontecimiento extends Activity {
 		public void notifiyPreExecute() {
 	    	if(progressDialog == null) {
 	    		progressDialog = new ProgressDialog(NuevoAcontecimiento.this);
-	    		progressDialog.setMessage(getString(R.string.registrando_acontecimiento));
+	    		
 	    	}
+	    	progressDialog.setMessage(getString(R.string.registrando_acontecimiento));
 	    	progressDialog.show();
 		}
 

@@ -5,8 +5,15 @@
     <string name="title_activity_gestionar_acontecimientos">Acontecimientos</string>
     <string name="title_activity_seleccionar_sitio">Seleccionar un sitio</string>
 	<string name="title_activity_seleccionar_estado">Seleccione un estado</string> 
-	<string name="title_activity_opciones_de_tareas">Opciones</string>
-    <string name="nombre_sitio_hint">Seleccione un sitio</string>
+	<string name="title_activity_opciones_de_tareas">Opciones de tarea</string>
+	<string name="title_activity_opciones_de_acontecimiento">Opciones de acontecimiento</string>
+	<string name="title_activity_ver_tarea">Descricption de tarea</string>
+	<string name="title_activity_ver_acontecimiento">Acontecimiento</string>
+	<string name="title_activity_nuevo_acontecimiento">Nuevo Acontecimiento</string>
+	<string name="title_activity_login">Login</string>
+    <string name="nombre_sitio_hint">seleccione un sitio</string>
+	<string name="nombre_usuario_hint">nombre de usuario</string>
+	<string name="pwd_hint">contraseña</string>
     <string name="seleccionar_sitio">Seleccionar sitio</string>
     <string name="aceptar">Aceptar</string>
     <string name="buscando_sitios">Buscando sitios</string>
@@ -30,5 +37,11 @@
 	<string name="registrando_acontecimiento">Registrando acontecimiento</string>
 	<string name="registro_acontecimiento_exito">Acontecimiento registrado con éxito.</string>
 	<string name="registro_acontecimiento_fallo">No se pudo registrar el acontecimiento. Intente nuevamente.</string>
-	
+	<string name="iniciando_sesion">Iniciando sesion</string>
+	<string name="iniciando_sesion_fallo">No se pudo inicar sesion. Compruebe los datos ingresados e intente nuevamente.</string>
+	<string name="ingrese_nombre_usuario">Debe ingresar su nombre de usuario.</string>
+	<string name="ingrese_pwd">Debe ingresar su contraseña.</string>
+	<string name="registro_tarea_fallo">No se pudo acutalizar la tarea. Intente nuevamente.</string>
+	<string name="registro_tarea_exito">Tarea actualizada con exito.</string>
+	<string name="registrando_tarea">Actualizando tarea</string>
 </resources>

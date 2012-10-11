@@ -25,20 +25,20 @@ public class GetTareasWs extends GetWsBase {
 		if(sitioId.equalsIgnoreCase("1")) {
 			return "{" +
 					"\"error\":{\"codigo\":0,\"descripcion\":\"Exito\"}," +
-					"\"tareas\":[{\"id\":1,\"nombreTipoTarea\":\"Tipo tarea 1\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"\",\"fechaFinReal\":\"\",\"estado\":\"Creada\"}," +
-					"{\"id\":2,\"nombreTipoTarea\":\"Tipo tarea 2\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"\",\"estado\":\"En Ejecucion\"}," +
-					"{\"id\":3,\"nombreTipoTarea\":\"Tipo tarea 3\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"\",\"estado\":\"Suspendida\"}," +
-					"{\"id\":4,\"nombreTipoTarea\":\"Tipo tarea 4\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"02122012\",\"estado\":\"Resuelta\"}]" +
+					"\"tareas\":[{\"id\":1,\"nombreTipoTarea\":\"Tipo tarea 1\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"\",\"fechaFinReal\":\"\",\"estado\":\"Creada\",\"descripcion\":\"Saltar sobre el pie de la antena hasta que se caiga. Saltar sobre el pie de la antena hasta que se caiga. Saltar sobre el pie de la antena hasta que se caiga. Saltar sobre el pie de la antena hasta que se caiga. Saltar sobre el pie de la antena hasta que se caiga. Saltar sobre el pie de la antena hasta que se caiga.\"}," +
+					"{\"id\":2,\"nombreTipoTarea\":\"Tipo tarea 2\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"\",\"estado\":\"En Ejecucion\",\"descripcion\":\"Ver sistema de cableado sobre tapia derecha.\"}," +
+					"{\"id\":3,\"nombreTipoTarea\":\"Tipo tarea 3\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"\",\"estado\":\"Suspendida\",\"descripcion\":\"Reemplazo de conductores apocrifos.\"}," +
+					"{\"id\":4,\"nombreTipoTarea\":\"Tipo tarea 4\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"02122012\",\"estado\":\"Resuelta\",\"descripcion\":\"\"}]" +
 					"}";			
 		} else if(sitioId.equalsIgnoreCase("2")) {
 			return "{" +
 					"\"error\":{\"codigo\":0,\"descripcion\":\"Exito\"}," +
-					"\"tareas\":[{\"id\":1,\"nombreTipoTarea\":\"Tipo tarea 1\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"\",\"fechaFinReal\":\"\",\"estado\":\"Creada\"}," +
-					"{\"id\":2,\"nombreTipoTarea\":\"Tipo tarea 2\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"\",\"estado\":\"En Ejecucion\"}," +
-					"{\"id\":3,\"nombreTipoTarea\":\"Tipo tarea 3\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"\",\"estado\":\"Suspendida\"}," +
-					"{\"id\":4,\"nombreTipoTarea\":\"Tipo tarea 4\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"02122012\",\"estado\":\"Resuelta\"}," +
-					"{\"id\":5,\"nombreTipoTarea\":\"Tipo tarea 2\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"02122012\",\"estado\":\"Resuelta\"}," +
-					"{\"id\":6,\"nombreTipoTarea\":\"Tipo tarea 3\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"02122012\",\"estado\":\"Resuelta\"}]" +
+					"\"tareas\":[{\"id\":1,\"nombreTipoTarea\":\"Tipo tarea 1\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"\",\"fechaFinReal\":\"\",\"estado\":\"Creada\",\"descripcion\":\"Saltar sobre el pie de la antena hasta que se caiga.\"}," +
+					"{\"id\":2,\"nombreTipoTarea\":\"Tipo tarea 2\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"\",\"estado\":\"En Ejecucion\",\"descripcion\":\"Saltar sobre el pie de la antena hasta que se caiga.\"}," +
+					"{\"id\":3,\"nombreTipoTarea\":\"Tipo tarea 3\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"\",\"estado\":\"Suspendida\",\"descripcion\":\"Saltar sobre el pie de la antena hasta que se caiga.\"}," +
+					"{\"id\":4,\"nombreTipoTarea\":\"Tipo tarea 4\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"02122012\",\"estado\":\"Resuelta\",\"descripcion\":\"Saltar sobre el pie de la antena hasta que se caiga.\"}," +
+					"{\"id\":5,\"nombreTipoTarea\":\"Tipo tarea 2\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"02122012\",\"estado\":\"Resuelta\",\"descripcion\":\"Saltar sobre el pie de la antena hasta que se caiga.\"}," +
+					"{\"id\":6,\"nombreTipoTarea\":\"Tipo tarea 3\",\"fechaInicioEstimada\":\"01122012\",\"fechaFinEstimada\":\"02122012\",\"fechaInicioReal\":\"01122012\",\"fechaFinReal\":\"02122012\",\"estado\":\"Resuelta\",\"descripcion\":\"Saltar sobre el pie de la antena hasta que se caiga.\"}]" +
 					"}";			
 		} else {
 			return "{" +

@@ -26,9 +26,6 @@ public class OpcionesDeAcontecimiento extends ListActivity {
         if(extras != null) {
         	tareaSeleccionada = (TareaBo)extras.getSerializable(Common.EXTRAS_KEY_TAREA);
         	acontecimientoSeleccionado = (AcontecimientoBo)extras.getSerializable(Common.EXTRAS_KEY_ACONTECIMIENTO);
-        	String title = getTitle() + " " + acontecimientoSeleccionado.getId().toString() 
-        			+ " " + acontecimientoSeleccionado.getNombreTipoAcontecimiento();
-        	setTitle(title);
         }	
         getListView().setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapterView, View view, int position,

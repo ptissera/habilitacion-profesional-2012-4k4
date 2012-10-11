@@ -50,9 +50,6 @@ public class GestionarAcontecimientos extends Activity implements WsObserver {
         if(extras != null) {
         	tareaSeleccionada = (TareaBo)extras.getSerializable(Common.EXTRAS_KEY_TAREA);
         	if(tareaSeleccionada != null) {
-            	String title = getTitle() + " " + tareaSeleccionada.getId().toString() 
-            			+ " " + tareaSeleccionada.getNombreTipoTarea();
-            	setTitle(title);        		
         		obtenerDatos();
         	}
         }
@@ -102,16 +99,7 @@ public class GestionarAcontecimientos extends Activity implements WsObserver {
     	case REQUEST_CODE_NUEVO_ACONTECIMIENTO:
     	case REQUEST_CODE_OPCIONES_ACONTECIMIENTO:	
     		if(resultCode == RESULT_OK) {
-    			if(data != null) {
-        			Bundle extras = data.getExtras();
-        			if(extras != null) {
-        				AcontecimientoBo acontecimiento = (AcontecimientoBo)extras.getSerializable(Common.EXTRAS_KEY_ACONTECIMIENTO);
-        				if(acontecimiento != null) {
-        					listAdapter.acontecimientos.add(acontecimiento);
-        					listAdapter.notifyDataSetChanged();
-        				}
-        			}
-    			}
+    			obtenerDatos();
     		}
     		break;
     	case REQUEST_CODE_VER_ACONTECIMIENTO:

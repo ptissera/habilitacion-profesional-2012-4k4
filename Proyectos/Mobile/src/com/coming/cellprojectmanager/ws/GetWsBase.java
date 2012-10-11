@@ -6,7 +6,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 
 import android.content.Context;
-import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 
 public abstract class GetWsBase extends WsBase {

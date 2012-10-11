@@ -6,11 +6,9 @@ import android.widget.TextView;
 
 import com.coming.cellprojectmanager.R;
 import com.coming.cellprojectmanager.modelo.AcontecimientoBo;
-import com.coming.cellprojectmanager.modelo.TareaBo;
 import com.coming.cellprojectmanager.utils.Utils;
 
 public class VerAcontecimiento extends Activity {
-	private TareaBo tareaSeleccionada;
 	private AcontecimientoBo acontecimientoSeleccionado;
 	private TextView idTextView;
 	private TextView tipoTextView;
@@ -23,10 +21,6 @@ public class VerAcontecimiento extends Activity {
         setContentView(R.layout.activity_ver_acontecimiento);
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-        	tareaSeleccionada = (TareaBo)extras.getSerializable(Common.EXTRAS_KEY_TAREA);
-        	String title = getTitle() + " " + tareaSeleccionada.getId().toString() 
-        			+ " " + tareaSeleccionada.getNombreTipoTarea();
-        	setTitle(title); 
         	acontecimientoSeleccionado = (AcontecimientoBo)extras.getSerializable(Common.EXTRAS_KEY_ACONTECIMIENTO);        	
         }
         idTextView = (TextView)findViewById(R.id.idAcontecimientoTextView);

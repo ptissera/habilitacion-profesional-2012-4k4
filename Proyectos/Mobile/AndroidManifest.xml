@@ -12,13 +12,18 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".actividades.GestionarTareas"
-            android:label="@string/title_activity_gestionar_tareas"
+            android:name=".actividades.Login"
+            android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".actividades.GestionarTareas"
+            android:label="@string/title_activity_gestionar_tareas"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".actividades.GestionarAcontecimientos"
@@ -37,7 +42,7 @@
         </activity>
         <activity
             android:name=".actividades.OpcionesDeAcontecimiento"
-            android:label="@string/title_activity_opciones_de_tareas"
+            android:label="@string/title_activity_opciones_de_acontecimiento"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -47,17 +52,17 @@
         </activity>
         <activity
             android:name=".actividades.VerAcontecimiento"
-            android:label="@string/title_activity_opciones_de_tareas"
+            android:label="@string/title_activity_ver_acontecimiento"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".actividades.NuevoAcontecimiento"
-            android:label="@string/title_activity_opciones_de_tareas"
+            android:label="@string/title_activity_nuevo_acontecimiento"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".actividades.VerTarea"
-            android:label="@string/title_activity_opciones_de_tareas"
+            android:name=".actividades.VerDetalleTarea"
+            android:label="@string/title_activity_ver_tarea"
             android:screenOrientation="portrait" >
         </activity>
         

@@ -85,6 +85,10 @@ public class TareaBo implements Serializable {
 			setFechaFinReal(Calendar.getInstance().getTime());
 		}
 	}
+
+	public String getDescripcion() {
+		return dto.descripcion;
+	}
 	
 	public List<String> getTransicionesValidas(boolean incluirEsadoActual) {
 		List<String> result = new ArrayList<String>();
@@ -106,7 +110,12 @@ public class TareaBo implements Serializable {
 		}
 		return result;
 	}
-	
+
+	private boolean transicionValida(String nuevoEstado) {
+		List<String> transicionesValidas = getTransicionesValidas(false);
+		return transicionesValidas.contains(nuevoEstado);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if(o == this) {
@@ -125,8 +134,8 @@ public class TareaBo implements Serializable {
 		return dto.id.hashCode();
 	}
 	
-	private boolean transicionValida(String nuevoEstado) {
-		List<String> transicionesValidas = getTransicionesValidas(false);
-		return transicionesValidas.contains(nuevoEstado);
+	public String toJSon() {
+		return dto.toJSon();		
 	}
+
 }

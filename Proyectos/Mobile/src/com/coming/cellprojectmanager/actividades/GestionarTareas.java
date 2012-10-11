@@ -73,7 +73,7 @@ public class GestionarTareas extends Activity implements WsObserver {
 			public void onItemClick(AdapterView<?> adapterView, View view, int position,
 					long ind) {
 				tareaSeleccionada = (TareaBo)adapterView.getItemAtPosition(position);
-				Intent intent = new Intent(GestionarTareas.this, VerTarea.class);
+				Intent intent = new Intent(GestionarTareas.this, VerDetalleTarea.class);
 				Bundle extras = new Bundle();
 				extras.putSerializable(Common.EXTRAS_KEY_TAREA, tareaSeleccionada);
 				intent.putExtras(extras);
@@ -121,14 +121,7 @@ public class GestionarTareas extends Activity implements WsObserver {
     		break;    		
     	case REQUEST_CODE_OPCIONES:
     		if(resultCode == RESULT_OK) {
-    			if(data != null) {
-        			Bundle extras = data.getExtras();
-        			if(extras != null) {
-            			TareaBo tarea = (TareaBo)data.getExtras().getSerializable("tarea");
-            			tareaSeleccionada.setEstado(tarea.getEstado());
-            			listAdapter.notifyDataSetChanged();
-        			}
-    			}
+    			obtenerDatos();
     		}
     		break;    		
     	default:
@@ -172,11 +165,11 @@ public class GestionarTareas extends Activity implements WsObserver {
     }
 
     private void obtenerDatos() {
-    	String usuario = SesionBo.getUsuario(this);
     	if(tareasWs != null) {
 			tareasWs.cancel(true);
 		}
-        tareasWs = new GetTareasWs(this);    		
+        tareasWs = new GetTareasWs(this);
+    	String usuario = SesionBo.getUsuario(this);
 		tareasWs.execute(this, usuario, sitioSeleccionado.getId().toString());        	        		
 	}
 

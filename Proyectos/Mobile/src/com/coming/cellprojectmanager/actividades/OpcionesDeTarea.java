@@ -24,9 +24,6 @@ public class OpcionesDeTarea extends ListActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
         	tareaSeleccionada = (TareaBo)extras.getSerializable(Common.EXTRAS_KEY_TAREA);
-        	String title = getTitle() + " " + tareaSeleccionada.getId().toString() 
-        			+ " " + tareaSeleccionada.getNombreTipoTarea();
-        	setTitle(title);
         }	
         getListView().setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapterView, View view, int position,
@@ -43,7 +40,7 @@ public class OpcionesDeTarea extends ListActivity {
 				}
 				case 1: // Ver detalles
 				{
-					Intent intent = new Intent(OpcionesDeTarea.this, VerTarea.class);
+					Intent intent = new Intent(OpcionesDeTarea.this, VerDetalleTarea.class);
 					Bundle extras = new Bundle();
 					extras.putSerializable(Common.EXTRAS_KEY_TAREA, tareaSeleccionada);
 					intent.putExtras(extras);

@@ -13,6 +13,7 @@ public class TareaDto  implements Serializable {
 	public String fechaInicioReal;
 	public String fechaFinReal;
 	public String estado;
+	public String descripcion;
 	
 	public static TareaDto fromJSon(String json) {
 		TareaDto tarea = null;

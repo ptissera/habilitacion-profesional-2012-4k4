@@ -21,7 +21,6 @@ public class PostAcontecimientoWs extends PostWsBase {
 
 	@Override
 	protected String doFakeCall(String... params) {
-		// TODO Auto-generated method stub
 		return "{" +
 				"\"error\":{\"codigo\":0,\"descripcion\":\"Exito\"}" +
 				"}";
@@ -29,8 +28,10 @@ public class PostAcontecimientoWs extends PostWsBase {
 
 	@Override
 	protected String buildUrl(String... params) {
-		String url = "http://localhost/projectcellmanager/webservices/acontecimiento";
-		return url;
+		StringBuilder builder = new StringBuilder();
+		builder.append(Common.WS_URL);
+		builder.append(Common.WS_ACONTECIMIENTO);
+		return builder.toString();
 	}
 
 }
