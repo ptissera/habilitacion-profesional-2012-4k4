@@ -18,7 +18,7 @@ public class VerDetalleTarea extends Activity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
         	tareaSeleccionada = (TareaBo)extras.getSerializable(Common.EXTRAS_KEY_TAREA);
-        	String detalle = tareaSeleccionada.getDescripcion();
+        	String detalle = tareaSeleccionada.getObservaciones();
         	if(detalle == null || detalle.isEmpty()) {
         		detalle = getString(R.string.sin_datos);
         	}

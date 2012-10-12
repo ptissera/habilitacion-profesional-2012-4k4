@@ -86,8 +86,8 @@ public class TareaBo implements Serializable {
 		}
 	}
 
-	public String getDescripcion() {
-		return dto.descripcion;
+	public String getObservaciones() {
+		return dto.observaciones;
 	}
 	
 	public List<String> getTransicionesValidas(boolean incluirEsadoActual) {
