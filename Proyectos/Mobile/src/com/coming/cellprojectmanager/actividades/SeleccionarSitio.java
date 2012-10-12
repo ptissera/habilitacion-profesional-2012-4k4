@@ -57,7 +57,7 @@ public class SeleccionarSitio extends Activity implements WsObserver {
     }
 
     private void habilitarPantalla() {
-    	String usuario = SesionBo.getUsuario(this);
+    	String usuario = SesionBo.getUsuarioId(this).toString();;
         if(sitiosWs != null) {
         	sitiosWs.cancel(true);
         }

@@ -22,7 +22,8 @@ public class GetLoginWs extends GetWsBase {
 	@Override
 	protected String doFakeCall(String... params) {
 		return "{" +
-				"\"error\":{\"codigo\":0,\"descripcion\":\"Exito.\"}" +
+				"\"error\":{\"codigo\":0,\"descripcion\":\"Exito.\"}," +
+				"\"usuario\":{\"id\":1,\"nombre\":\"guillen\"}" +
 				"}";
 	}
 

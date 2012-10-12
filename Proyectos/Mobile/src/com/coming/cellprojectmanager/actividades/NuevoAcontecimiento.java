@@ -50,22 +50,10 @@ public class NuevoAcontecimiento extends Activity {
 		public void notifiyPosExecute(String result) {
 			GetTiposAcontecimientosWsResponse resp = GetTiposAcontecimientosWsResponse.fromJSon(result); 
 	        List<TipoAcontecimientoBo> tipos = TipoAcontecimientoBo.listaDesdeDtos(resp.tipos);
-	        List<String> nombreTipos = new ArrayList<String>();
-	        for(TipoAcontecimientoBo tipo : tipos) {
-	        	nombreTipos.add(tipo.getNombre());
-	        }
-	        tipoSpinner.setAdapter(new ArrayAdapter<String>(NuevoAcontecimiento.this, 
-	        		android.R.layout.simple_spinner_item, nombreTipos));
-	        if(acontecimiento != null) {
-	        	// es una modificacion de uno seleccionado previamente
-	        	int position = tipos.indexOf(acontecimiento.getDescripcion());
-	        	if(position > -1) {
-	        		tipoSpinner.setSelection(position);
-	        	}
-	        	descripcionEditText.setText(acontecimiento.getDescripcion());
-	        }
+	        acutalizarTipoSpinner(tipos);
 			progressDialog.dismiss();
-		}			
+		}
+
 	};
 
 	private WsObserver postAcontecimientosWsObserver = new WsObserver() {
@@ -139,14 +127,31 @@ public class NuevoAcontecimiento extends Activity {
 		if(acontecimiento == null) {
 			// es un nuevo acontecimiento, no hubo una seleccion previa
 			acontecimiento = new AcontecimientoBo();
+	    	String usuario = SesionBo.getUsuarioId(this).toString();;
+			acontecimiento.setUsuarioId(usuario);
+			acontecimiento.setFechaCreacion(Calendar.getInstance().getTime());
 		}
-    	String usuario = SesionBo.getUsuario(this);
-		acontecimiento.setCradoPor(usuario);
 		String tipo = (String)tipoSpinner.getSelectedItem();	
 		acontecimiento.setNombreTipoAcontecimeinto(tipo);
 		acontecimiento.setDescripcion(desc);
-		acontecimiento.setFechaCreacion(Calendar.getInstance().getTime());
 		acontecimiento.setTareaId(tareaSeleccionada.getId());
 		return true;
 	}
+	
+	private void acutalizarTipoSpinner( List<TipoAcontecimientoBo> tipos) {
+		List<String> nombreTipos = new ArrayList<String>();
+        for(TipoAcontecimientoBo tipo : tipos) {
+        	nombreTipos.add(tipo.getNombre());
+        }
+        tipoSpinner.setAdapter(new ArrayAdapter<String>(NuevoAcontecimiento.this, 
+        		android.R.layout.simple_spinner_dropdown_item, nombreTipos));
+        if(acontecimiento != null) {
+        	// es una modificacion de uno seleccionado previamente
+        	int position = tipos.indexOf(acontecimiento.getNombreTipoAcontecimiento());
+        	if(position > -1) {
+        		tipoSpinner.setSelection(position);
+        	}
+        	descripcionEditText.setText(acontecimiento.getDescripcion());
+        }
+	}	
 }

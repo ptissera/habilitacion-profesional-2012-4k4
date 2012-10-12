@@ -169,7 +169,7 @@ public class GestionarTareas extends Activity implements WsObserver {
 			tareasWs.cancel(true);
 		}
         tareasWs = new GetTareasWs(this);
-    	String usuario = SesionBo.getUsuario(this);
+    	String usuario = SesionBo.getUsuarioId(this).toString();;
 		tareasWs.execute(this, usuario, sitioSeleccionado.getId().toString());        	        		
 	}
 

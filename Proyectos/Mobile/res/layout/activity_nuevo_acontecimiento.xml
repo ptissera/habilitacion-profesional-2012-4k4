@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:text="@string/tipo_de_acontecimientos"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <Spinner
         android:id="@+id/acontecimientoTiposSpinner"
         android:layout_width="fill_parent"

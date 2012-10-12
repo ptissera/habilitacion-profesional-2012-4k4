@@ -9,7 +9,7 @@ public class AcontecimientoDto implements Serializable {
 	public Long id;
 	public Long tareaId;
 	public String nombreTipo;
-	public String creadoPor;
+	public String usuarioId;
 	public String fechaCreacion;
 	public String descripcion;
 	

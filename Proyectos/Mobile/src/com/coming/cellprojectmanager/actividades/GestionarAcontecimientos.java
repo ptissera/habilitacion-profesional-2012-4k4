@@ -142,7 +142,7 @@ public class GestionarAcontecimientos extends Activity implements WsObserver {
     }
 
     private void obtenerDatos() {
-    	String usuario = SesionBo.getUsuario(this);    	    		
+    	String usuario = SesionBo.getUsuarioId(this).toString();    	    		
 		if(acontecimientosWs != null) {
 			acontecimientosWs.cancel(true);
 		}

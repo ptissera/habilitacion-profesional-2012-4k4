@@ -62,11 +62,10 @@ public class Login extends Activity implements WsObserver {
 	public void notifiyPosExecute(String result) {
 		GetLoginWsResponse resp = GetLoginWsResponse.fromJSon(result);
 		if(resp.error.codigo != 0) {
-			SesionBo.setUsuario(Login.this, "");
+			SesionBo.setUsuario(Login.this, -1L, "");
 			return;
 		}
-		String usu = nombreEditText.getText().toString();
-		SesionBo.setUsuario(Login.this, usu);
+		SesionBo.setUsuario(Login.this, resp.usuario.id, resp.usuario.nombre);
 		Intent intent = new Intent(Login.this, GestionarTareas.class);
 		startActivity(intent);
 		progressDialog.dismiss();
