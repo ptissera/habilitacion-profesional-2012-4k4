@@ -161,13 +161,36 @@
             <g:each in="${tareaInstance.permisos}" status="i" var="permisoAccesoInstance">
               <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
                 <td><g:formatDate format="dd/MM/yyyy" date="${permisoAccesoInstance.fechaDesde}" /></td>					
-              <td><g:formatDate format="dd/MM/yyyy" date="${permisoAccesoInstance.fechaHasta}" /></td>					
+                <td><g:formatDate format="dd/MM/yyyy" date="${permisoAccesoInstance.fechaHasta}" /></td>					
               <td>${fieldValue(bean: permisoAccesoInstance, field: "nombreArchivo")}</td>					
               </tr>
             </g:each>
             </tbody>
           </table>
 
+        </li>
+      </g:if>
+      
+       <g:if test="${tareaInstance?.acontecimientos}">
+        <li class="fieldcontain">
+          <span id="acontecimientos-label" class="property-label"><g:message code="tarea.acontecimientos.label" default="Acontecimientos" /></span>
+
+          <table>
+            <thead>
+              <tr>					
+            <g:sortableColumn property="fechaCreacion" title="${message(code: 'acontecimiento.fechaCreacion.label', default: 'Fecha Creacion')}" />					
+            <g:sortableColumn property="descripcion" title="${message(code: 'acontecimientos.descripcion.label', default: 'Descripcion')}" />					
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${tareaInstance.acontecimientos}" status="i" var="acontecimientoInstance">
+              <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
+                <td><g:formatDate format="dd/MM/yyyy" date="${acontecimientoInstance.fechaCreacion}" /></td>					
+                <td>${fieldValue(bean: acontecimientoInstance, field: "descripcion")}</td>
+              </tr>
+            </g:each>
+            </tbody>
+          </table>
         </li>
       </g:if>
 

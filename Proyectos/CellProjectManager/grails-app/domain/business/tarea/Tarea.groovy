@@ -7,7 +7,7 @@ import business.documento.Documento
 class Tarea {
 
     static belongsTo = [estado: EstadoTarea, sitio: Sitio, solicitudDeTarea: SolicitudDeTarea, tipoTarea: TipoTarea]
-    static hasMany = [ permisos: PermisoAcceso, materialDeTarea: MaterialDeTarea, equipoDeTarea: EquipoDeTarea]
+    static hasMany = [ permisos: PermisoAcceso, materialDeTarea: MaterialDeTarea, equipoDeTarea: EquipoDeTarea, acontecimientos: Acontecimiento]
     
     int ordenEjecucion
     Date fechaInicio
@@ -35,6 +35,7 @@ class Tarea {
         materialDeTarea()
         equipoDeTarea()
         permisos()
+        acontecimientos()
     }
     
     @Override String toString() {

@@ -1,6 +1,7 @@
 package business.tarea
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
 
 class TareaController {
 
@@ -179,5 +180,49 @@ class TareaController {
         response.setHeader("Content-disposition", "filename=${tareaInstance.documentoDeIngenieria}")
         response.outputStream << tareaInstance.archivo
    
+    }
+    
+    def rest(){
+         switch(request.method)
+        {
+            case 'GET':
+                doGetRest(params)
+                break;
+            case 'PUT':
+                doPutRest(params)
+                break;     
+        }  
+        
+    }
+    
+    private void doGetRest(params)
+    {   def tareas = Tarea.get(params.id)
+      //  def tareas = Tarea.executeQuery("select t.id, t.sitio_id, s.id from tarea t, solicitud_de_tarea s where t.solicitud_de_tarea_id = s.id and t.sitio_id = 1 and s.cuadrilla_id = 1; ")
+        
+        if (tareas) {
+                response.status =200
+                render  JSON.parse("{id: $tareas.id, fecha: '$tareas.fechaInicio'}") as JSON
+            }
+        else{
+                response.status=200
+                render tareas as JSON
+            }
+            
+    }
+    
+    private void doPutRest(params)
+    {   def t = Tarea.get(params.id)
+            t.properties = params.tarea
+      
+        if (t.save(flush: true)) {
+                render  JSON.parse("{ error: 0 ; descripcion: 'Exito' }") as JSON
+                
+            }
+        else{
+                response.status=200
+                render params as JSON
+                //render JSON.parse("{ error: 1 ; descripcion: 'Fallo' }") as JSON
+            }
+            
     }
 }

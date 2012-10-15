@@ -1,11 +1,9 @@
 class UrlMappings {
 
 	static mappings = {
-		"/$controller/$action?/$id?"{
-			constraints {
-				// apply constraints here
-            }
-        }
+		"/$controller/$action?/$id?"{  constraints {  
+            } } 
+        
         /* Mapping para login mobile*/
         "/$controller/$action/$nombreUsuario/$clave"{
             

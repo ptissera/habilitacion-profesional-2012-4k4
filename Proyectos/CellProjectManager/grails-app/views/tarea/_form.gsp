@@ -139,6 +139,32 @@
   </div>
 </g:if>
 
+
+<g:if test="${tareaInstance?.acontecimientos}">
+  <div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'acontecimientos', 'error')} ">
+    <label for="acontecimientos">
+      <g:message code="tarea.permisos.label" default="Acontecimientos" />
+    </label>
+    <table>
+      <thead>
+        <tr>					
+      <g:sortableColumn property="fechaCreacion" title="${message(code: 'acontecimiento.fechaCreacion.label', default: 'Fecha Creacion')}" />					
+      <g:sortableColumn property="descripcion" title="${message(code: 'acontecimiento.descripcion.label', default: 'Descripcion')}" />					
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${tareaInstance.acontecimientos}" status="i" var="acontecimientoInstance">
+        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
+          <td><g:link action="show" controller="acontecimiento" id="${acontecimientoInstance.id}"><g:formatDate format="dd/MM/yyyy" date="${acontecimientoInstance.fechaCreacion}" /></g:link></td>					
+          <td>${fieldValue(bean: acontecimientoInstance, field: "descripcion")}</td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+  </div>
+</g:if>
+
+
 <div class="fieldcontain ${hasErrors(bean: tareaInstance, field: 'documentoDeIngenieria', 'error')} ">
   <label for="archivo">
     <g:message code="documento.documentoDeIngenieria.label" default="Documento De Ingenieria" />

@@ -22,7 +22,8 @@ class MainMenuTagLib {
                 subItemMenu([["cliente","Clientes"],              
                         ["tipoTarea","Tipo De Tarea"],
                         ["sitio","Sitios"],
-                        ["provincia","Provincias"]])
+                        ["provincia","Provincias"],
+                        ["tipoAcontecimiento","Tipo de Acontecimiento"]])
         
                 tituloItemMenu("Cuadrilla", false)  
                 subItemMenu([["cuadrilla","Cuadrillas"],

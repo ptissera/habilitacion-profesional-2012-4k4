@@ -93,16 +93,14 @@ class AuthorizeController {
         {
             this.authenticate()
             if(session.usuario){
-                render session.usuario as JSON
-            }else{
-                response.status=500
-                render JSON.parse("{ error: 'Ingreso incorrecto' }") as JSON
+                response.status =200
+                render JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, usuario: { id: $session.usuario.id , nombre: '$session.usuario.nombreUsuario'} }") as JSON
             }
-        } 
-        else
-        {
-             
-        }
+            else{
+                response.status=500
+                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+            }
+        }    
     }
     
     
