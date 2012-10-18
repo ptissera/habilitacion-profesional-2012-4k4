@@ -60,14 +60,19 @@ public class Login extends Activity implements WsObserver {
 	}
 
 	public void notifiyPosExecute(String result) {
+		progressDialog.dismiss();
 		GetLoginWsResponse resp = GetLoginWsResponse.fromJSon(result);
 		if(resp.error.codigo != 0) {
 			SesionBo.setUsuario(Login.this, -1L, "");
+			if(resp.error.codigo == 1) {
+				Toast.makeText(this, R.string.error_en_login, Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(this, R.string.error_en_coneccion, Toast.LENGTH_SHORT).show();
+			}
 			return;
 		}
 		SesionBo.setUsuario(Login.this, resp.usuario.id, resp.usuario.nombre);
 		Intent intent = new Intent(Login.this, GestionarTareas.class);
 		startActivity(intent);
-		progressDialog.dismiss();
 	}    
 }

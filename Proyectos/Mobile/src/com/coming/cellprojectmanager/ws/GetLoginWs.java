@@ -34,9 +34,8 @@ public class GetLoginWs extends GetWsBase {
 		StringBuilder builder = new StringBuilder();
 		builder.append(Common.WS_URL);
 		builder.append(Common.WS_LOGIN);
-		builder.append("/usuario/");
 		builder.append(nombreUsuario);
-		builder.append("/pwd/");
+		builder.append("/");
 		builder.append(pwd);		
 		return builder.toString();
 	}

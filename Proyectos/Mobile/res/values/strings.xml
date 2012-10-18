@@ -44,4 +44,6 @@
 	<string name="registro_tarea_fallo">No se pudo acutalizar la tarea. Intente nuevamente.</string>
 	<string name="registro_tarea_exito">Tarea actualizada con exito.</string>
 	<string name="registrando_tarea">Actualizando tarea</string>
+	<string name="error_en_coneccion">Hubo un error en la coneccion, intente mas tarde.</string>
+	<string name="error_en_login">Nombre de usuario o contraseña invalidos.</string>
 </resources>

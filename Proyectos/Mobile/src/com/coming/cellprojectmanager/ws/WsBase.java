@@ -14,12 +14,12 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.util.Log;
 
 public abstract class WsBase extends AsyncTask<String, Void, String> {
-	private static boolean fakeWs = true;
+	private static boolean fakeWs = false;
 	private WsObserver observer;
 	protected Context context;
 	
@@ -55,13 +55,14 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 			return doFakeCall(params);
 		}
 		String url = buildUrl(params);
+		Log.i("WsBase", url);
 		AndroidHttpClient httpClient = AndroidHttpClient.newInstance("projectcellmanagermobile-v" + getAppVersion());
-		HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), 5000);
-		HttpConnectionParams.setSoTimeout(httpClient.getParams(), 10000);
-		HttpResponse response = doCall(httpClient, Uri.encode(url), params);
+		HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), 120000);
+		HttpConnectionParams.setSoTimeout(httpClient.getParams(), 120000);
+		HttpResponse response = doCall(httpClient, url, params);
 		int responseStatusCode = -1;
 		if(response != null) {
-			response.getStatusLine().getStatusCode();
+			responseStatusCode = response.getStatusLine().getStatusCode();
 		}
 		if(responseStatusCode == 200) {
 			StringBuilder builder = new StringBuilder();
@@ -70,6 +71,7 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 			HttpEntity entity = response.getEntity();
 			if(entity != null) {
 				try { 
+					is = entity.getContent();
 					reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 					String line = null;
 					while((line = reader.readLine()) != null) {
@@ -90,6 +92,12 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 			}
 		}			
 		httpClient.close();
+		
+		if(result == null || result.isEmpty()) {
+			result = "{\"error\":{\"codigo\":-1,\"descripcion\":\"Error en la coneccion.\"}}";
+		}
+		Log.i("WsBase", responseStatusCode + " " + result);
+		
 		return result;
 	}
 	
