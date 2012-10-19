@@ -3,6 +3,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:paddingBottom="4dp"
     android:paddingTop="4dp" >
 
@@ -10,15 +11,17 @@
         android:id="@+id/seleccionarSitioLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         layout="@layout/seleccionar_sitio" />
 
     <ListView
         android:id="@+id/tareasListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/seleccionarSitioLayout"
-        android:layout_marginTop="10dp" >
+        android:layout_below="@id/seleccionarSitioLayout" >
 
     </ListView>
 

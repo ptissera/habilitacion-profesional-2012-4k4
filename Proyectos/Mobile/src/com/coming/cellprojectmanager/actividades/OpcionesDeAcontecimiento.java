@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.coming.cellprojectmanager.R;
 import com.coming.cellprojectmanager.modelo.AcontecimientoBo;
 import com.coming.cellprojectmanager.modelo.TareaBo;
 
@@ -57,6 +58,7 @@ public class OpcionesDeAcontecimiento extends ListActivity {
 			}
 		});
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, opciones));
+        getListView().setBackgroundColor(getResources().getColor(R.color.background));
 	}
 	
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

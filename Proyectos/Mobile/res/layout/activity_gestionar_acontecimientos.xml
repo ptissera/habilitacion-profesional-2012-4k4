@@ -2,25 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:paddingBottom="4dp"
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
     android:paddingTop="4dp" >
-
+
     <Button
         android:id="@+id/nuevoButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/nuevo" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/boton"
+        android:text="@string/nuevo"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:textColor="@color/texto_boton" />
 
     <ListView
         android:id="@+id/acontecimientosListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/nuevoButton"
-        android:layout_below="@+id/nuevoButton" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/nuevoButton" >
 
     </ListView>
 

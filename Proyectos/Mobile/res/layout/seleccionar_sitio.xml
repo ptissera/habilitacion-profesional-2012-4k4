@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:paddingBottom="4dp"
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
@@ -13,7 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="@string/seleccionar_sitio" />
+        android:background="@drawable/boton"
+        android:text="@string/seleccionar_sitio"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:textColor="@color/texto_boton" />
 
     <TextView
         android:id="@+id/itemListaSitiosNombreTextView"

@@ -19,7 +19,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public abstract class WsBase extends AsyncTask<String, Void, String> {
-	private static boolean fakeWs = false;
+	private static boolean fakeWs = true;
 	private WsObserver observer;
 	protected Context context;
 	

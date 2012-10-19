@@ -1,5 +1,6 @@
 package com.coming.cellprojectmanager.actividades;
 
+import com.coming.cellprojectmanager.R;
 import com.coming.cellprojectmanager.modelo.TareaBo;
 
 import android.app.ListActivity;
@@ -62,6 +63,7 @@ public class OpcionesDeTarea extends ListActivity {
 			}
 		});
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, opciones));
+        getListView().setBackgroundColor(getResources().getColor(R.color.background));
 	}
 	
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

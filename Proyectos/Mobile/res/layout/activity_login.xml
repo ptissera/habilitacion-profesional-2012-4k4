@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical|center_horizontal"
@@ -15,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:hint="nombre de usuario"
+        android:hint="@string/nombre_usuario_hint"
         android:maxLines="1"
         android:singleLine="true" >
 
@@ -30,18 +31,23 @@
         android:layout_below="@+id/nombreEditText"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:hint="contraseña"
+        android:hint="@string/pwd_hint"
         android:inputType="textPassword"
         android:maxLines="1"
         android:singleLine="true" >
     </EditText>
-
+
     <Button
         android:id="@+id/aceptarButton"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pwdEditText"
         android:layout_centerHorizontal="true"
-        android:text="@string/aceptar" />
+        android:background="@drawable/boton"
+        android:text="@string/aceptar"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:textColor="@color/texto_boton" >
+
+    </Button>
 
 </RelativeLayout>
