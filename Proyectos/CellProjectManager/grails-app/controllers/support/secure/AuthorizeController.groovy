@@ -92,13 +92,17 @@ class AuthorizeController {
     {   if (!session.usuario) 
         {
             this.authenticate()
-            //falta el rol
             if(session.usuario){
-                response.status =200
+              if (session.usuario.isJefeCuadrilla())
+               {
                 render JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, usuario: { id: $session.usuario.id , nombre: '$session.usuario.nombreUsuario'} }") as JSON
+               }
+               else
+               {
+                   render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+               }
             }
             else{
-                response.status=500
                 render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
             }
         }    
