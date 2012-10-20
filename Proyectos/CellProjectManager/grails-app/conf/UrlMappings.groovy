@@ -15,22 +15,17 @@ class UrlMappings {
             action="restLogout"
         }
         
-        "/tareas/$idCuadrilla/$idSitio"{
+        "/mobile/tareas/$id"{
             controller = "tarea"
             action="rest"
         }
         
-        "/tareas/$id"{
-            controller = "tarea"
-            action="rest"
-        }
-        
-         "/sitios/"{
+         "/mobile/sitios/"{
             controller = "sitio"
             action="rest"
         }
         
-        "/tipoAcontecimiento/"{
+        "/mobile/tipoAcontecimiento/"{
             controller = "tipoAcontecimiento"
             action="rest"
         }
