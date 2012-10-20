@@ -93,6 +93,14 @@
 					
 				</li>
 				</g:if>
+
+                                <g:if test="${integranteCuadrillaInstance?.esJefeCuadrilla}">
+				<li class="fieldcontain">
+					<span id="esJefeCuadrilla-label" class="property-label"><g:message code="integranteCuadrilla.esJefeCuadrilla.label" default="Jefe de Cuadrilla" /></span>
+						<span class="property-value" aria-labelledby="propia-label"><g:checkBox name="esJefeCuadrilla" value="${integranteCuadrillaInstance?.esJefeCuadrilla}"  style="display: block"/></span>
+				</li>
+				</g:if>
+                          
 				<g:if test="${integranteCuadrillaInstance?.documentacion}">
         <li class="fieldcontain">
           

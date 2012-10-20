@@ -1,4 +1,5 @@
 <%@ page import="business.cuadrillas.IntegranteCuadrilla" %>
+<%@ page import="support.secure.Usuario" %>
 <!doctype html>
 <html>
 	<head>

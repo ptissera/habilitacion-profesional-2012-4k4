@@ -1,9 +1,10 @@
 package business.cuadrillas
+import support.secure.Usuario
 
 class IntegranteCuadrilla {
     
     static hasMany = [ documentacion:DocumentacionIntegranteCuadrilla ]
-    static belongsTo = [cuadrilla:Cuadrilla, tipoDocumento: TipoDocumentoIdentificacion]
+    static belongsTo = [cuadrilla:Cuadrilla, tipoDocumento: TipoDocumentoIdentificacion, usuario: Usuario]
     String documento
     String nombre
     String apellido
@@ -11,6 +12,7 @@ class IntegranteCuadrilla {
     String telefono
     Date fechaAlta
     Date fechaBaja
+    Boolean esJefeCuadrilla
     
     static constraints = {
         tipoDocumento()
@@ -21,6 +23,9 @@ class IntegranteCuadrilla {
         telefono(blank:false)        
         fechaAlta(blank: false, validator: {date, obj -> obj.id ? true : date - new Date() >= 0})
         fechaBaja(blank:true, nullable:true, validator: {date, obj -> date!=null ? date - obj.fechaAlta >= 0 : true})
+        esJefeCuadrilla()
+        // falta verificar que si es el jefe de cuadrilla, debe asignarse un usuario del sistema
+        usuario()
     }
     
      def checkDocumentacion(){

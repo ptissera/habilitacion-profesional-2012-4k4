@@ -1,8 +1,9 @@
 package support.secure
+import business.cuadrillas.IntegranteCuadrilla
 
 class Usuario {
     
-    static belongsTo = [rol: Rol]
+    static belongsTo = [rol: Rol, integranteCuadrilla: IntegranteCuadrilla]
     static fetchMode = [rol:"eager"] 
     String nombreUsuario
     String nombre
@@ -20,6 +21,7 @@ class Usuario {
         email(email:true, blank: false)
         rol()
         habilitado()
+        integranteCuadrilla()
     }     
      
     def isSuperUser(){
@@ -32,6 +34,10 @@ class Usuario {
    
     def isAdminProyecto(){
         return rol != null ? rol.getNombre() == "ROLE_ADMIN_PROYECTO" : false
+    }
+    
+    def isJefeCuadrilla(){
+        return rol != null ? rol.getNombre() == "ROLE_JEFE_CUADRILLA" : false
     }
 
     @Override String toString() {

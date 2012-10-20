@@ -92,6 +92,7 @@ class AuthorizeController {
     {   if (!session.usuario) 
         {
             this.authenticate()
+            //falta el rol
             if(session.usuario){
                 response.status =200
                 render JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, usuario: { id: $session.usuario.id , nombre: '$session.usuario.nombreUsuario'} }") as JSON
@@ -118,7 +119,7 @@ class AuthorizeController {
         {
                 session.usuario = null
                 response.status=200
-                render JSON.parse("{ error: 0 ; descripcion: 'Logout OK' }") as JSON
+                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
             
         } 
     }

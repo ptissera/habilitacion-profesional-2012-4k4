@@ -1,5 +1,6 @@
 package business.tarea
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
 
 class TipoAcontecimientoController {
       static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -97,6 +98,30 @@ class TipoAcontecimientoController {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'TipoAcontecimiento.label', default: 'TipoAcontecimiento'), params.id])
             redirect(action: "show", id: params.id)
         }
+    }
+    
+    def rest(){
+         switch(request.method)
+        {
+            case 'GET':
+                doGetRest()
+                break;
+        }  
+        
+    }
+    
+    def doGetRest (){
+        def tipoAcontecimiento = TipoAcontecimiento.getAll()
+      
+        if (tipoAcontecimiento) {
+                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'acontecimientos': $tipoAcontecimiento}") as JSON
+                
+            }
+        else{
+                response.status=200
+                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+            }
+        
     }
 }
 

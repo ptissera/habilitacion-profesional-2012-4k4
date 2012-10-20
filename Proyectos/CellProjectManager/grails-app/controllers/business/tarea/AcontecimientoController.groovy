@@ -1,5 +1,6 @@
 package business.tarea
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
 
 class AcontecimientoController {
 
@@ -140,4 +141,45 @@ class AcontecimientoController {
         }
     }
     
+     def rest(){
+         switch(request.method)
+        {
+            case 'GET':
+                doGetRest(params)
+                break;
+                
+              case 'POST':
+                doPostRest(params)
+                break;
+        }  
+        
+    }
+    
+    def doGetRest (params){
+        def tarea = Tarea.findById(params.id)
+        def acontecimientoInstance = tarea ? Acontecimiento.findAllByTarea(tarea) : []
+        
+        if (acontecimientoInstance) {
+                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'acontecimientos': $acontecimientoInstance}") as JSON
+                
+            }
+        else{
+                response.status=200
+                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+            }
+        
+    }
+    
+    def doPostRest (params){
+        def acontecimientoInstance = Acontecimiento.findById(params.id)
+        acontecimientoInstance.properties= request.JSON
+        if (acontecimientoInstance.save(flush:true)) {
+                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
+                
+            }
+        else{
+                response.status=200
+                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+            }
+    }
 }

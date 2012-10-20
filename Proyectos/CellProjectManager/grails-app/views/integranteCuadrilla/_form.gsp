@@ -1,4 +1,5 @@
 <%@ page import="business.cuadrillas.IntegranteCuadrilla" %>
+<%@ page import="support.secure.Usuario" %>
 
 
 <div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'tipoDocumento', 'error')} ">
@@ -50,6 +51,23 @@
 	<g:textField name="telefono" value="${integranteCuadrillaInstance?.telefono}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'esJefeCuadrilla', 'error')} ">
+	<label for="esJefeCuadrilla">
+		<g:message code="integranteCuadrilla.esJefeCuadrilla.label" default="Jefe de Cuadrilla" />
+		
+	</label>
+	<g:checkBox name="esJefeCuadrilla"  value="${integranteCuadrillaInstance?.esJefeCuadrilla}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'usuario', 'error')} required">
+          <label for="usuario">
+                  <g:message code="integranteCuadrilla.usuario.label" default="Usuario" />
+                  <span class="required-indicator">*</span>
+          </label>
+          <g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" optionKey="id" required="" value="" class="many-to-one"/>
+</div>
+
+
 <div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'documentacion', 'error')} ">			
          <table>
             <thead>
@@ -72,5 +90,6 @@
             </g:each>
             </tbody>
           </table>
-	
 </div>
+
+

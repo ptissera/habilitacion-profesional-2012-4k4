@@ -1,6 +1,7 @@
 package business.core
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
 
 class SitioController {
 
@@ -99,5 +100,30 @@ class SitioController {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'sitio.label', default: 'Sitio'), params.id])
             redirect(action: "show", id: params.id)
         }
+    }
+    
+        
+    def rest(){
+         switch(request.method)
+        {
+            case 'GET':
+                doGetRest()
+                break;
+        }  
+        
+    }
+    
+    def doGetRest (){
+        def sitios = Sitio.getAll()
+      
+        if (sitios) {
+                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'sitios': $sitios}") as JSON
+                
+            }
+        else{
+                response.status=200
+                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+            }
+        
     }
 }
