@@ -4,6 +4,7 @@ import grails.converters.JSON
 import support.secure.*
 import business.cuadrillas.*
 import business.core.Sitio
+import java.text.SimpleDateFormat
 
 class TareaController {
 
@@ -185,68 +186,61 @@ class TareaController {
     }
     
     def rest(){
-         switch(request.method)
+        switch(request.method)
         {
             case 'GET':
-                doGetRest(params)
-                break;
+            doGetRest(params)
+            break;
             case 'POST':
-                doPostRest(params)
-                break;     
+            doPostRest(params)
+            break;     
         }  
         
     }
     
     private void doGetRest(params)
-    {   //def tareas = Tarea.get(params.id)
-      //  def tareas = Tarea.executeQuery("select t.id, t.sitio_id, s.id from tarea t, solicitud_de_tarea s where t.solicitud_de_tarea_id = s.id and t.sitio_id = 1 and s.cuadrilla_id = 1; ")
-        
-        def usuario = Usuario.findById(params.idCuadrilla)
-        if (usuario.isJefeCuadrilla())
-        {
-            def integranteCuadrilla = usuario ? IntegranteCuadrilla.findByUsuario(usuario) : []
-            def cuadrilla = integranteCuadrilla.cuadrilla.id ? Cuadrilla.findById(integranteCuadrilla.cuadrilla.id) : []
-            def solicitudesTareas = cuadrilla ? SolicitudDeTarea.findAllByCuadrilla(cuadrilla) : []
-            // por cada solicitud que este en ejecucion
-            def tareas = solicitudesTareas ? Tarea.findAllBySolicitudDeTarea(solicitudesTareas) : []
-            def sitio = Sitio.findById(params.idSitio)
-            def respuesta = sitio ? tareas.findAllBySitio(sitio) : []
-            /*
-            for( i in tareas ) {  
-             respuesta = respuesta + "${i.findBySitio(sitio)}  "  
-            } */
+    {   def usuario = Usuario.findById(params.id)
+        def integranteCuadrilla = usuario ? IntegranteCuadrilla.findByUsuario(usuario) : []
+        def cuadrilla = integranteCuadrilla.cuadrilla.id ? Cuadrilla.findById(integranteCuadrilla.cuadrilla.id) : []
+        def estadoSolicitud = EstadoSolicitudTarea.findByNombre('En ejecucion')
+        def tareas = SolicitudDeTarea.findAllByEstadoAndCuadrilla(estadoSolicitud,cuadrilla).tarea
             
-                       //respuesta = respuesta + sitio ? tareas[i].findBySitio(sitio) : []
+        def respuesta
+        boolean esPrimetasLinea = true
+        tareas.each{
+                def id = it.id[0]
+                def tipoTarea = it.tipoTarea[0].nombre
+                def fechaInicioEstimada = it.fechaInicio[0].format("dd/MM/yyyy")
+                def fechaFinEstimada = it.fechaFin[0].format("dd/MM/yyyy")
+                def fechaInicioReal =  it.fechaInicioReal ? "" : it.fechaInicioReal[0].format("dd/MM/yyyy")                
+                def fechaFinReal = it.fechaFinReal ? "" : it.fechaFinReal[0].format("dd/MM/yyyy")
+                def estado= it.estado[0].nombre
+                def observaciones = it.observaciones[0]
+                respuesta = (esPrimetasLinea ? "": respuesta + ", ") + "{ id: $id, nombreTipoTarea: '$tipoTarea', fechaInicioEstimada: '$fechaInicioEstimada', fechaFinEstimada: '$fechaFinEstimada', fechaInicioReal: '$fechaInicioReal', fechaFinReal: '$fechaFinReal', estado: '$estado', observaciones: '$observaciones' } "
+                esPrimetasLinea=false
+            }
             
-             
-            render respuesta as JSON
-            if (respuesta) {
-                    response.status =200
-                    render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
-                }
+        if (respuesta) {
+                response.status =200
+                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, tareas:[$respuesta]}") as JSON
+            }
             else{
-                    response.status=200
-                    render  JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
-                }
-        }
-        else
-        {
-            response.status =200
-            render  JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON 
-        }
+                response.status=200
+                render  JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+            }
     }
     
     private void doPostRest(params)
     {   def tarea = Tarea.get(params.id)
-            tarea.properties = request.JSON
+        tarea.properties = request.JSON
       
         if (tarea.save(flush: true)) {
-                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
+            render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
                 
-            }
+        }
         else{
-                response.status=200
-                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
-            }
+            response.status=200
+            render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+        }
     }
 }
