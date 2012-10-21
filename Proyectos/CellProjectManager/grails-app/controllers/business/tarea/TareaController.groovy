@@ -204,43 +204,62 @@ class TareaController {
         def cuadrilla = integranteCuadrilla.cuadrilla.id ? Cuadrilla.findById(integranteCuadrilla.cuadrilla.id) : []
         def estadoSolicitud = EstadoSolicitudTarea.findByNombre('En ejecucion')
         def tareas = SolicitudDeTarea.findAllByEstadoAndCuadrilla(estadoSolicitud,cuadrilla).tarea
-            
+        boolean finLista = false            
         def respuesta
+        def i=0
         boolean esPrimetasLinea = true
+        def id 
+        def tipoTarea
+        def fechaInicioEstimada
+        def fechaFinEstimada        
+        def fechaInicioReal
+        def fechaFinReal
+        def estado
+        def observaciones        
         tareas.each{
-                def id = it.id[0]
-                def tipoTarea = it.tipoTarea[0].nombre
-                def fechaInicioEstimada = it.fechaInicio[0].format("dd/MM/yyyy")
-                def fechaFinEstimada = it.fechaFin[0].format("dd/MM/yyyy")
-                def fechaInicioReal =  it.fechaInicioReal ? "" : it.fechaInicioReal[0].format("dd/MM/yyyy")                
-                def fechaFinReal = it.fechaFinReal ? "" : it.fechaFinReal[0].format("dd/MM/yyyy")
-                def estado= it.estado[0].nombre
-                def observaciones = it.observaciones[0]
+              while (!finLista)              
+              {
+                id = it.id[i]
+                tipoTarea = it.tipoTarea[i].nombre
+                fechaInicioEstimada = it.fechaInicio[i].format("ddMMyyyy")
+                fechaFinEstimada = it.fechaFin[i].format("ddMMyyyy")
+                fechaInicioReal =  it.fechaInicioReal ? "" : it.fechaInicioReal[i].format("ddMMyyyy")                
+                fechaFinReal = it.fechaFinReal ? "" : it.fechaFinReal[i].format("ddMMyyyy")
+                estado= it.estado[i].nombre
+                observaciones = it.observaciones[i]
                 respuesta = (esPrimetasLinea ? "": respuesta + ", ") + "{ id: $id, nombreTipoTarea: '$tipoTarea', fechaInicioEstimada: '$fechaInicioEstimada', fechaFinEstimada: '$fechaFinEstimada', fechaInicioReal: '$fechaInicioReal', fechaFinReal: '$fechaFinReal', estado: '$estado', observaciones: '$observaciones' } "
                 esPrimetasLinea=false
+                i++
+                if (it.id[i] == null)
+                 finLista = true
+              }  
             }
             
         if (respuesta) {
                 response.status =200
                 render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, tareas:[$respuesta]}") as JSON
             }
-            else{
-                response.status=200
-                render  JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
-            }
+     response.status=200
+     render  JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
     }
     
     private void doPostRest(params)
     {   def tarea = Tarea.get(params.id)
-        tarea.properties = request.JSON
-      
+        
+        def objetoJSON = request.JSON
+                
+        tarea.observaciones = objetoJSON.observaciones
+        tarea.estado = EstadoTarea.findByNombre(objetoJSON.estado)
+        if (objetoJSON.fechaFinReal != "")
+            tarea.fechaFinReal = new Date().parse("ddMMyyyy", objetoJSON.fechaFinReal) 
+        if (objetoJSON.fechaInicioReal != "")            
+            tarea.fechaInicioReal = new Date().parse("ddMMyyyy", objetoJSON.fechaInicioReal) 
+        tarea.tipoTarea = TipoTarea.findByNombre(objetoJSON.nombreTipoTarea)
         if (tarea.save(flush: true)) {
             render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
                 
         }
-        else{
-            response.status=200
-            render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
-        }
+        response.status=200
+        render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
     }
 }

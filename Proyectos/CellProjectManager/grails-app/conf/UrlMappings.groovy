@@ -25,12 +25,12 @@ class UrlMappings {
             action="rest"
         }
         
-        "/mobile/tipoAcontecimiento/"{
+        "/mobile/tipoAcontecimientos/"{
             controller = "tipoAcontecimiento"
             action="rest"
         }
         
-        "/acontecimientos/$id"{
+        "/mobile/acontecimientos/$id"{
             controller = "acontecimiento"
             action="rest"
         }

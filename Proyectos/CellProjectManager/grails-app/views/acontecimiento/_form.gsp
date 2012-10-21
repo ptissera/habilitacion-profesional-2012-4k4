@@ -7,7 +7,7 @@
 		<g:message code="acontecimiento.fechaCreacion.label" default="Fecha Creacion" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaCreacion" precision="day"  value="${acontecimientoInstance?.fechaCreacion}"  />
+	<g:fecha name="fechaCreacion" value="${acontecimientoInstance?.fechaCreacion}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: acontecimientoInstance, field: 'descripcion', 'error')} required">
@@ -26,3 +26,10 @@
 	<g:select id="tipoAcontecimiento" name="tipoAcontecimiento.id" from="${business.tarea.TipoAcontecimiento.list()}" optionKey="id" required="" value="${acontecimientoInstance?.tipoAcontecimiento?.id}" class="many-to-one"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: acontecimientoInstance, field: 'creador', 'error')} required">
+          <label for="creador">
+                  <g:message code="acontecimiento.creador.label" default="Creador" />
+                  <span class="required-indicator">*</span>
+          </label>
+          <g:select id="creador" name="creador.id" from="${support.secure.Usuario.list()}" optionKey="id" required="" value="" class="many-to-one"/>
+</div>

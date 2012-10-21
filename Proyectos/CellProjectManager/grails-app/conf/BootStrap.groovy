@@ -54,6 +54,12 @@ class BootStrap {
             rol_adminGral.save(flush: true, insert: true)
         }
         
+        def rol_jefeCuadrilla=Rol.findByNombre('ROLE_JEFE_CUADRILLA')
+        if(!rol_jefeCuadrilla){
+            rol_jefeCuadrilla = new Rol(nombre: 'ROLE_JEFE_CUADRILLA', descripcion: 'Jefe Cuadrilla')
+            rol_jefeCuadrilla.save(flush: true, insert: true)
+        }
+        
         def mariana=Usuario.findByNombreUsuario('mtissera')
         if(!mariana){
             mariana = new Usuario(nombreUsuario: 'mtissera', nombre: 'Mariana', apellido: 'Tissera', clave: '123',

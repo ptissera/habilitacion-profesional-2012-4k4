@@ -1,7 +1,8 @@
 package business.tarea
+import support.secure.Usuario
 
 class Acontecimiento {
-    static belongsTo = [ tipoAcontecimiento: TipoAcontecimiento, tarea: Tarea]        
+    static belongsTo = [ tipoAcontecimiento: TipoAcontecimiento, tarea: Tarea, creador: Usuario]        
     Date  fechaCreacion
     String descripcion
     
@@ -10,6 +11,7 @@ class Acontecimiento {
         descripcion(blank: false)
         tipoAcontecimiento(nullable: false)
         tarea()
+        creador()
     }
     
     @Override String toString() {

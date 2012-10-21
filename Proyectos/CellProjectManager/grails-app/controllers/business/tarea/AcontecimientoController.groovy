@@ -1,6 +1,7 @@
 package business.tarea
 import org.springframework.dao.DataIntegrityViolationException
 import grails.converters.JSON
+import support.secure.Usuario
 
 class AcontecimientoController {
 
@@ -148,32 +149,80 @@ class AcontecimientoController {
                 doGetRest(params)
                 break;
                 
-              case 'POST':
+            case 'POST':
                 doPostRest(params)
                 break;
+
+            case 'PUT':
+                doPutRest(params)
+                break;
+                
         }  
         
     }
     
     def doGetRest (params){
-        def tarea = Tarea.findById(params.id)
-        def acontecimientoInstance = tarea ? Acontecimiento.findAllByTarea(tarea) : []
+        def acontecimientos = Tarea.findAllById(params.id).acontecimientos
+        def respuesta
+        def id
+        def nombreTipo        
+        def creador
+        def fechaCreacion
+        def descripcion
+        def i=0
+        boolean esPrimetasLinea = true
+        acontecimientos.each{
+                   boolean finLista = false
+                   while (!finLista)              
+                   {
+                    id = it.id[i]
+                    nombreTipo = it.tipoAcontecimiento[i].nombre
+                    creador = it.creador[i].nombreUsuario
+                    fechaCreacion = it.fechaCreacion[i].format("ddMMyyyy")
+                    descripcion = it.descripcion[i]
+                    if (esPrimetasLinea)
+                    respuesta = "{ id: $id, nombreTipo: '$nombreTipo', creadorPor: '$creador', fechaCreacion: '$fechaCreacion', descripcion: '$descripcion' } "
+                    else
+                    respuesta = respuesta +  " , " + "{ id: $id, nombreTipo: '$nombreTipo', creadoPor: '$creador', fechaCreacion: '$fechaCreacion', descripcion: '$descripcion' } "               
+                    esPrimetasLinea=false
+                    i++
+                    if (it.id[i] == null)
+                      finLista = true
+                   }
+
+            }
+            
+       if (respuesta) {
+                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'acontecimientos': [$respuesta]}") as JSON
+                
+         }
+        response.status=200
+        render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
         
-        if (acontecimientoInstance) {
-                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'acontecimientos': $acontecimientoInstance}") as JSON
+    }
+    
+    def doPutRest (params){
+        def acontecimientoInstance = Acontecimiento.findById(params.id)
+        def objetoJSON = request.JSON
+        acontecimientoInstance.descripcion = objetoJSON.descripcion
+        acontecimientoInstance.tipoAcontecimiento = TipoAcontecimiento.findByNombre(objetoJSON.nombreTipo)
+        acontecimientoInstance.creador = Usuario.findByNombreUsuario(objetoJSON.creadoPor)
+        if (objetoJSON.fechaCreacion != "")
+         acontecimientoInstance.fechaCreacion = new Date().parse("ddMMyyyy", objetoJSON.fechaCreacion) 
+        
+        if (acontecimientoInstance.save(flush:true)) {
+                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
                 
             }
         else{
                 response.status=200
                 render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
             }
-        
     }
     
     def doPostRest (params){
-        def acontecimientoInstance = Acontecimiento.findById(params.id)
-        acontecimientoInstance.properties= request.JSON
-        if (acontecimientoInstance.save(flush:true)) {
+        def objetoJSON = request.JSON
+        if (new Acontecimiento(tarea: Tarea.findById(params.id), descripcion: objetoJSON.descripcion, tipoAcontecimiento: TipoAcontecimiento.findByNombre(objetoJSON.nombreTipo), creador: Usuario.findByNombreUsuario(objetoJSON.creadoPor), fechaCreacion: new Date().parse("ddMMyyyy", objetoJSON.fechaCreacion)).save(flush:true)) {
                 render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
                 
             }
