@@ -19,7 +19,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public abstract class WsBase extends AsyncTask<String, Void, String> {
-	private static boolean fakeWs = true;
+	private static boolean fakeWs = false;
 	private WsObserver observer;
 	protected Context context;
 	
@@ -32,6 +32,7 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 	protected abstract String buildUrl(String... params);
 	protected abstract HttpResponse doCall(AndroidHttpClient httpClient,
 			String url, String... params);
+	protected abstract boolean validResponseCode(int responseCode);
 	
 	public void execute(WsObserver observer, String... params) {
 		this.observer = observer;
@@ -64,7 +65,7 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 		if(response != null) {
 			responseStatusCode = response.getStatusLine().getStatusCode();
 		}
-		if(responseStatusCode == 200) {
+		if(validResponseCode(responseStatusCode)) {
 			StringBuilder builder = new StringBuilder();
 			InputStream is = null;
 			BufferedReader reader = null;

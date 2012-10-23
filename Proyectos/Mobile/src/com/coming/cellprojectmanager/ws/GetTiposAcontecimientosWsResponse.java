@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 
 public class GetTiposAcontecimientosWsResponse {
 	public WsError error;
-	public List<TipoAcontecimientoDto> tipos;
+	public List<TipoAcontecimientoDto> tipoAcontecimientos;
 	
 	public static GetTiposAcontecimientosWsResponse fromJSon(String json) {
 		Gson gson = new Gson();

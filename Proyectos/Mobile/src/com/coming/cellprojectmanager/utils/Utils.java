@@ -6,11 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Utils {
-	public static DateFormat backendDateFormat;
-	public static DateFormat frontendDateFormat;
+	private static DateFormat backendDateFormat;
+	private static DateFormat frontendDateFormat;
 
 	static {
-		backendDateFormat = new SimpleDateFormat("DDMMyyyy");
+		backendDateFormat = new SimpleDateFormat("ddMMyyyy");
 		frontendDateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
 	}
 

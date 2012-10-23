@@ -13,6 +13,8 @@ import com.coming.cellprojectmanager.ws.GetTiposAcontecimientosWs;
 import com.coming.cellprojectmanager.ws.GetTiposAcontecimientosWsResponse;
 import com.coming.cellprojectmanager.ws.PostAcontecimientoWs;
 import com.coming.cellprojectmanager.ws.PostAcontecimientoWsResponse;
+import com.coming.cellprojectmanager.ws.PutAcontecimientoWs;
+import com.coming.cellprojectmanager.ws.PutAcontecimientoWsResponse;
 import com.coming.cellprojectmanager.ws.WsObserver;
 
 import android.app.Activity;
@@ -37,6 +39,8 @@ public class NuevoAcontecimiento extends Activity {
 	private AcontecimientoBo acontecimiento;
 	private GetTiposAcontecimientosWs tipoAcontecimientosWs;
 	private PostAcontecimientoWs postAcontecimientoWs;
+	private PutAcontecimientoWs putAcontecimientoWs;
+	private boolean esNuevoAcontecimiento;
 	
 	private WsObserver getTipoAcontecimientosWsObserver = new WsObserver() {
 		public void notifiyPreExecute() {
@@ -49,7 +53,7 @@ public class NuevoAcontecimiento extends Activity {
 
 		public void notifiyPosExecute(String result) {
 			GetTiposAcontecimientosWsResponse resp = GetTiposAcontecimientosWsResponse.fromJSon(result); 
-	        List<TipoAcontecimientoBo> tipos = TipoAcontecimientoBo.listaDesdeDtos(resp.tipos);
+	        List<TipoAcontecimientoBo> tipos = TipoAcontecimientoBo.listaDesdeDtos(resp.tipoAcontecimientos);
 	        acutalizarTipoSpinner(tipos);
 			progressDialog.dismiss();
 		}
@@ -69,6 +73,33 @@ public class NuevoAcontecimiento extends Activity {
 		public void notifiyPosExecute(String result) {
 			progressDialog.dismiss();
 			PostAcontecimientoWsResponse resp = PostAcontecimientoWsResponse.fromJSon(result);			
+			if(resp.error.codigo != 0) {
+				Toast.makeText(NuevoAcontecimiento.this, getString(R.string.registro_acontecimiento_fallo),
+						Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(NuevoAcontecimiento.this, getString(R.string.registro_acontecimiento_exito),
+						Toast.LENGTH_SHORT).show();
+				Intent data = new Intent();
+				data.putExtra(Common.EXTRAS_KEY_ACONTECIMIENTO, acontecimiento);
+				setResult(RESULT_OK, data);
+				finish();				
+			}
+		}			
+	};
+
+	private WsObserver putAcontecimientosWsObserver = new WsObserver() {
+		public void notifiyPreExecute() {
+	    	if(progressDialog == null) {
+	    		progressDialog = new ProgressDialog(NuevoAcontecimiento.this);
+	    		
+	    	}
+	    	progressDialog.setMessage(getString(R.string.registrando_acontecimiento));
+	    	progressDialog.show();
+		}
+
+		public void notifiyPosExecute(String result) {
+			progressDialog.dismiss();
+			PutAcontecimientoWsResponse resp = PutAcontecimientoWsResponse.fromJSon(result);			
 			if(resp.error.codigo != 0) {
 				Toast.makeText(NuevoAcontecimiento.this, getString(R.string.registro_acontecimiento_fallo),
 						Toast.LENGTH_SHORT).show();
@@ -102,8 +133,16 @@ public class NuevoAcontecimiento extends Activity {
 					return;
 				}
 				Log.d("", acontecimiento.toJSon());
-				postAcontecimientoWs = new PostAcontecimientoWs(NuevoAcontecimiento.this);
-				postAcontecimientoWs.execute(postAcontecimientosWsObserver, acontecimiento.toJSon());
+				if(!esNuevoAcontecimiento) {
+					putAcontecimientoWs = new PutAcontecimientoWs(NuevoAcontecimiento.this);
+					putAcontecimientoWs.execute(putAcontecimientosWsObserver, acontecimiento.toJSon(),
+							acontecimiento.getId().toString());
+				} else {
+					postAcontecimientoWs = new PostAcontecimientoWs(NuevoAcontecimiento.this);
+					postAcontecimientoWs.execute(postAcontecimientosWsObserver, acontecimiento.toJSon(),
+							tareaSeleccionada.getId().toString());
+				}
+				
 			}
 		});
         obtenerDatos();
@@ -118,6 +157,7 @@ public class NuevoAcontecimiento extends Activity {
 	}
 
 	private boolean crearAcontecimiento() {
+		esNuevoAcontecimiento = false;
 		String desc = descripcionEditText.getText().toString();
 		if(desc.isEmpty()) {
 			Toast.makeText(this, getString(R.string.toast_falta_descripcion),
@@ -126,6 +166,7 @@ public class NuevoAcontecimiento extends Activity {
 		}
 		if(acontecimiento == null) {
 			// es un nuevo acontecimiento, no hubo una seleccion previa
+			esNuevoAcontecimiento = true;
 			acontecimiento = new AcontecimientoBo();
 	    	String usuario = SesionBo.getUsuarioId(this).toString();;
 			acontecimiento.setUsuarioId(usuario);

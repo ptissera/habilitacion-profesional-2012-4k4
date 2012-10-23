@@ -11,9 +11,9 @@ public class PostTareaWs extends PostWsBase {
 
 	@Override
 	protected boolean checkParamsOk(String... params) {
-		boolean paramsAreOk = (params.length == 1);
+		boolean paramsAreOk = (params.length == 2);
 		if(paramsAreOk == false) {
-			String msg = "Parametros invalidos. Deben ser [0]: tarea en json a postear.";
+			String msg = "Parametros invalidos. Deben ser [0]: tarea en json a postear, [1]: tarea id.";
 			Log.e("PostTareaWs", msg);
 		}
 		return paramsAreOk;
@@ -31,8 +31,14 @@ public class PostTareaWs extends PostWsBase {
 	protected String buildUrl(String... params) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(Common.WS_URL);
-		builder.append(Common.WS_TAREA);
+		builder.append(Common.WS_TAREAS);
+		builder.append(params[1]);
 		return builder.toString();
+	}
+
+	@Override
+	protected boolean validResponseCode(int responseCode) {
+		return (responseCode >= 200 && responseCode < 400);
 	}
 
 }

@@ -39,9 +39,11 @@ public class SeleccionarEstado extends ListActivity implements WsObserver {
 				tareaSeleccionada.setEstado(estado);
 				Log.d("", tareaSeleccionada.toJSon());
 				postTareaWs = new PostTareaWs(SeleccionarEstado.this);
-				postTareaWs.execute(SeleccionarEstado.this, tareaSeleccionada.toJSon());				
+				postTareaWs.execute(SeleccionarEstado.this, tareaSeleccionada.toJSon(),
+						tareaSeleccionada.getId().toString());				
 			}
 		});
+        getListView().setBackgroundColor(getResources().getColor(R.color.background));
     }
 
 	public void notifiyPreExecute() {

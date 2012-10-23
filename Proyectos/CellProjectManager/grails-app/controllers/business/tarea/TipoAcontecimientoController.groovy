@@ -111,10 +111,19 @@ class TipoAcontecimientoController {
     }
     
     def doGetRest (){
-        def tipoAcontecimiento = TipoAcontecimiento.getAll()
+        def tipoAcontecimientos = TipoAcontecimiento.getAll()          
+        def respuesta
+        def i=0
+        boolean esPrimetasLinea = true
+        def nombre        
+        tipoAcontecimientos.each{
+            nombre = it.nombre
+            respuesta = (esPrimetasLinea ? "" : respuesta + ", ") + "{ nombre: '$nombre' } "            
+            esPrimetasLinea = false
+        }
       
-        if (tipoAcontecimiento) {
-                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'acontecimientos': $tipoAcontecimiento}") as JSON
+        if (tipoAcontecimientos) {
+                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'tipoAcontecimientos': [$respuesta]}") as JSON
                 
             }
         else{

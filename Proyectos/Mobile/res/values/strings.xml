@@ -46,4 +46,6 @@
 	<string name="registrando_tarea">Actualizando tarea</string>
 	<string name="error_en_coneccion">Hubo un error en la coneccion, intente mas tarde.</string>
 	<string name="error_en_login">Nombre de usuario o contraseña invalidos.</string>
+	<string name="no_hay_tareas">No hay tareas a realizar.</string>
+	<string name="no_hay_acontecimientos">No hay acontecimientos para la tarea.</string>
 </resources>

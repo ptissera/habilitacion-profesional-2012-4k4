@@ -11,9 +11,9 @@ public class PostAcontecimientoWs extends PostWsBase {
 
 	@Override
 	protected boolean checkParamsOk(String... params) {
-		boolean paramsAreOk = (params.length == 1);
+		boolean paramsAreOk = (params.length == 2);
 		if(paramsAreOk == false) {
-			String msg = "Parametros invalidos. Deben ser [0]: acontecimeinto en json a postear.";
+			String msg = "Parametros invalidos. Deben ser [0]: acontecimeinto en json a postear, [1]: tarea id.";
 			Log.e("PostAcontecimientoWs", msg);
 		}
 		return paramsAreOk;
@@ -30,8 +30,14 @@ public class PostAcontecimientoWs extends PostWsBase {
 	protected String buildUrl(String... params) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(Common.WS_URL);
-		builder.append(Common.WS_ACONTECIMIENTO);
+		builder.append(Common.WS_ACONTECIMIENTOS);
+		builder.append(params[1]);
 		return builder.toString();
+	}
+
+	@Override
+	protected boolean validResponseCode(int responseCode) {
+		return (responseCode >= 200 && responseCode < 400);
 	}
 
 }

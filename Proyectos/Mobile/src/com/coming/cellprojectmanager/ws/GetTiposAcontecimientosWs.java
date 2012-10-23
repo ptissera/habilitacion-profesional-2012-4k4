@@ -31,4 +31,9 @@ public class GetTiposAcontecimientosWs extends GetWsBase {
 		builder.append(Common.WS_TIPOS_ACONTECIMIENTOS);
 		return builder.toString();
 	}
+
+	@Override
+	protected boolean validResponseCode(int responseCode) {
+		return (responseCode >= 200 && responseCode < 400);
+	}
 }

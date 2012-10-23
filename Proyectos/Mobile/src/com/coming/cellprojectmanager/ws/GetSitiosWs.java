@@ -37,4 +37,9 @@ public class GetSitiosWs extends GetWsBase {
 		builder.append(nombreUsuario);
 		return builder.toString();
 	}
+
+	@Override
+	protected boolean validResponseCode(int responseCode) {
+		return (responseCode == 200);
+	}
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.coming.cellprojectmanager.R;
 import com.coming.cellprojectmanager.modelo.AcontecimientoBo;
-import com.coming.cellprojectmanager.modelo.SesionBo;
 import com.coming.cellprojectmanager.modelo.TareaBo;
 import com.coming.cellprojectmanager.utils.Utils;
 import com.coming.cellprojectmanager.ws.GetAcontecimientosWs;
@@ -90,7 +89,7 @@ public class GestionarAcontecimientos extends Activity implements WsObserver {
 			}
 		});
         listAdapter = new AcontecimientosListAdapter(this);        
-        listView.setAdapter(listAdapter);        
+        listView.setAdapter(listAdapter);
     }
 
 	@Override
@@ -141,13 +140,12 @@ public class GestionarAcontecimientos extends Activity implements WsObserver {
         progressDialog.dismiss();
     }
 
-    private void obtenerDatos() {
-    	String usuario = SesionBo.getUsuarioId(this).toString();    	    		
+    private void obtenerDatos() {    	    		
 		if(acontecimientosWs != null) {
 			acontecimientosWs.cancel(true);
 		}
 		acontecimientosWs = new GetAcontecimientosWs(this);    		
-		acontecimientosWs.execute(this, usuario, tareaSeleccionada.getId().toString());        	        		
+		acontecimientosWs.execute(this, tareaSeleccionada.getId().toString());        	        		
 	}
 
     private static class AcontecimientosListAdapter extends BaseAdapter {

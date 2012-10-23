@@ -40,12 +40,12 @@ public class TipoAcontecimientoBo {
 			return false;
 		}
 		
-		return (((TipoAcontecimientoBo)o).dto.id.equals(dto.id));
+		return (((TipoAcontecimientoBo)o).dto.nombre.equals(dto.nombre));
 	}
 	
 	@Override
 	public int hashCode() {
-		return dto.id.hashCode();
+		return dto.nombre.hashCode();
 	}
 	
 	public String toString() {

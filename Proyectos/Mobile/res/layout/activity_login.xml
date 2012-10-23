@@ -8,7 +8,6 @@
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
     android:paddingTop="4dp" >
-
     <EditText
         android:id="@+id/nombreEditText"
         android:layout_width="fill_parent"
@@ -19,11 +18,9 @@
         android:hint="@string/nombre_usuario_hint"
         android:maxLines="1"
         android:singleLine="true" >
-
         <requestFocus />
-
     </EditText>
-
+
     <EditText
         android:id="@+id/pwdEditText"
         android:layout_width="fill_parent"

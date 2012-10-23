@@ -3,7 +3,6 @@ package com.coming.cellprojectmanager.modelo;
 import com.google.gson.Gson;
 
 public class TipoAcontecimientoDto {
-	public Long id;
 	public String nombre;
 	
 	public static TipoAcontecimientoDto fromJSon(String json) {

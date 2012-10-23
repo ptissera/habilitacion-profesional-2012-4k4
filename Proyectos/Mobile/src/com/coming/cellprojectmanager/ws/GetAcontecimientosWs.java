@@ -11,9 +11,9 @@ public class GetAcontecimientosWs extends GetWsBase {
 
 	@Override
 	protected boolean checkParamsOk(String... params) {
-		boolean paramsAreOk = (params.length == 2);
+		boolean paramsAreOk = (params.length == 1);
 		if(paramsAreOk == false) {
-			String msg = "Parametros invalidos. Deben ser [0]: nombre usuario, [1]: tarea id";
+			String msg = "Parametros invalidos. Deben ser [0]: tarea id";
 			Log.e("TareasWs", msg);
 		}
 		return paramsAreOk;
@@ -38,16 +38,17 @@ public class GetAcontecimientosWs extends GetWsBase {
 
 	@Override
 	protected String buildUrl(String... params) {
-		String nombreUsuario = params[0];
-		String tareaId = params[1];
+		String tareaId = params[0];
 		StringBuilder builder = new StringBuilder();
 		builder.append(Common.WS_URL);
 		builder.append(Common.WS_ACONTECIMIENTOS);
-		builder.append("/nombreUsuario/");
-		builder.append(nombreUsuario);
-		builder.append("/tareaId/");
 		builder.append(tareaId);
 		return builder.toString();
+	}
+
+	@Override
+	protected boolean validResponseCode(int responseCode) {
+		return (responseCode == 200);
 	}
 
 }

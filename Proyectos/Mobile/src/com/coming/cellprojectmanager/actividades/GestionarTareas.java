@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.coming.cellprojectmanager.R;
 import com.coming.cellprojectmanager.modelo.SesionBo;
-import com.coming.cellprojectmanager.modelo.SitioBo;
 import com.coming.cellprojectmanager.modelo.TareaBo;
 import com.coming.cellprojectmanager.utils.Utils;
 import com.coming.cellprojectmanager.ws.GetTareasWs;
@@ -20,54 +19,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class GestionarTareas extends Activity implements WsObserver {
 	private ListView listView;
-	private TextView sitioNombreTextView;
-	private Button buscarSitioButton;
 	private TareasListAdapter listAdapter;
 	private GetTareasWs tareasWs;
 	private ProgressDialog progressDialog;
-	private SitioBo sitioSeleccionado;
 	private TareaBo tareaSeleccionada;
 	
-	private static final int REQUEST_CODE_SITIO = 0;
-	private static final int REQUEST_CODE_VER_TAREA = 1;
-	private static final int REQUEST_CODE_OPCIONES = 2;
+	private static final int REQUEST_CODE_VER_TAREA = 0;
+	private static final int REQUEST_CODE_OPCIONES = 1;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestionar_tareas);
-        sitioNombreTextView = (TextView)findViewById(R.id.itemListaSitiosNombreTextView);
-        sitioNombreTextView.setHint(R.string.nombre_sitio_hint);
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-        	sitioSeleccionado = (SitioBo)extras.getSerializable(Common.EXTRAS_KEY_SITIO);
-        	sitioNombreTextView.setText("");
-        	if(sitioSeleccionado != null) {
-        		sitioNombreTextView.setText(sitioSeleccionado.getNombre());
-        		obtenerDatos();
-        	}
-        } else {
-        	sitioNombreTextView.setText("");
-        }
-        buscarSitioButton = (Button)findViewById(R.id.buscarSitiosButton);
-        buscarSitioButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(GestionarTareas.this, SeleccionarSitio.class);
-				startActivityForResult(intent, REQUEST_CODE_SITIO);
-			}
-		});
         listView = (ListView)findViewById(R.id.tareasListView);
         listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapterView, View view, int position,
@@ -93,30 +67,19 @@ public class GestionarTareas extends Activity implements WsObserver {
 			}
 		});
         listAdapter = new TareasListAdapter(this);        
-        listView.setAdapter(listAdapter);        
+        listView.setAdapter(listAdapter);
+        WeakReference<LayoutInflater> inflater = new WeakReference<LayoutInflater>(LayoutInflater.from(this));
+        View emptyView = inflater.get().inflate(R.layout.sin_datos, null);
+        TextView msg = (TextView)emptyView.findViewById(R.id.sinDatosTextView);
+        msg.setText(getString(R.string.no_hay_tareas));
+        addContentView(emptyView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        listView.setEmptyView(emptyView);
+        obtenerDatos();
     }
 
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	switch(requestCode) {
-    	case REQUEST_CODE_SITIO:
-    		if(resultCode == RESULT_OK) {
-    			if(data != null) {
-        			Bundle extras = data.getExtras();
-        			if(extras != null) {
-            			sitioSeleccionado = (SitioBo)extras.getSerializable(Common.EXTRAS_KEY_SITIO);
-            			if(sitioSeleccionado == null) {
-            	            sitioNombreTextView.setText("");
-            	            listAdapter.tareas.clear();
-            	            listAdapter.notifyDataSetChanged();
-            	    	} else {
-            	        	sitioNombreTextView.setText(sitioSeleccionado.getNombre());
-                	    	obtenerDatos();    	    		
-            	    	}    			
-        			}
-    			}
-    		}
-    		break;    		
     	case REQUEST_CODE_VER_TAREA:
     		break;    		
     	case REQUEST_CODE_OPCIONES:
@@ -141,9 +104,6 @@ public class GestionarTareas extends Activity implements WsObserver {
     
     @Override
     public void onBackPressed() {
-    	Intent intent = new Intent();
-    	intent.putExtra(Common.EXTRAS_KEY_SITIO, sitioSeleccionado);
-    	setResult(RESULT_OK, intent);
     	super.onBackPressed();
     }
     
@@ -169,8 +129,8 @@ public class GestionarTareas extends Activity implements WsObserver {
 			tareasWs.cancel(true);
 		}
         tareasWs = new GetTareasWs(this);
-    	String usuario = SesionBo.getUsuarioId(this).toString();;
-		tareasWs.execute(this, usuario, sitioSeleccionado.getId().toString());        	        		
+    	String usuarioId = SesionBo.getUsuarioId(this).toString();;
+		tareasWs.execute(this, usuarioId);        	        		
 	}
 
     private static class TareasListAdapter extends BaseAdapter {
