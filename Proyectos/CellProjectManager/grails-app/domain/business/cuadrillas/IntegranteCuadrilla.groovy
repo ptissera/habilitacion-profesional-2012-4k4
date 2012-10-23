@@ -25,7 +25,7 @@ class IntegranteCuadrilla {
         fechaBaja(blank:true, nullable:true, validator: {date, obj -> date!=null ? date - obj.fechaAlta >= 0 : true})
         esJefeCuadrilla()
         // falta verificar que si es el jefe de cuadrilla, debe asignarse un usuario del sistema
-        usuario()
+        usuario(blank:true, nullable:true, validator:{usuario, obj -> obj.esJefeCuadrilla ? usuario!=null : true })
     }
     
      def checkDocumentacion(){

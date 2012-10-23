@@ -35,6 +35,10 @@ class MainMenuTagLib {
                         ["solicitudDeViaticos","Solicitudes De Viaticos"],
                         ["solicitudPagoCuadrilla","Solicitudes De Pagos"]])
                 
+                tituloItemMenu("Reportes", false)  
+                subItemMenu([["reporteDocumentacionIntegranteCuadrilla","Documentacion Operarios"]
+                        ])
+                
                 tituloItemMenu("Parametros Del Sitio", false)  
                 subItemMenu([["parametrosDelSistema","Parametrizaciones"]])
             }

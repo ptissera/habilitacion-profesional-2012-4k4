@@ -658,7 +658,8 @@ th:hover, tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .cerrar, .buttons .ejecutar, .buttons .edit, .buttons .save, .buttons .add {
+.buttons .delete, .buttons .cerrar, .buttons .ejecutar, .buttons .edit, .buttons .save, .buttons .add, 
+.buttons .siguiente, .buttons .buscar {
 	background-position: 0.7em center;
         background-size: 16px 16px;
 	background-repeat: no-repeat;
@@ -687,6 +688,14 @@ th:hover, tr:hover {
 
 .buttons .save {
 	background-image: url(../images/skin/database_save.png);
+}
+
+.buttons .siguiente{
+	background-image: url(../images/skin/next_1.png);
+}
+
+.buttons .buscar{
+	background-image: url(../images/skin/buscar_1.png);
 }
 
 a.skip {

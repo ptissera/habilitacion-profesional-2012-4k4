@@ -21,7 +21,7 @@ class Usuario {
         email(email:true, blank: false)
         rol()
         habilitado()
-        integranteCuadrilla(nullable:true)
+        integranteCuadrilla(blank: true, nullable: true)
     }     
      
     def isSuperUser(){
