@@ -48,7 +48,7 @@ public class GetAcontecimientosWs extends GetWsBase {
 
 	@Override
 	protected boolean validResponseCode(int responseCode) {
-		return (responseCode == 200);
+		return (responseCode >= 200 && responseCode < 400);
 	}
 
 }

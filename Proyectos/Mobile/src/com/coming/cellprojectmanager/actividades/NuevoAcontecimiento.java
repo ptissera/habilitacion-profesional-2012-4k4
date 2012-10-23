@@ -76,6 +76,8 @@ public class NuevoAcontecimiento extends Activity {
 			if(resp.error.codigo != 0) {
 				Toast.makeText(NuevoAcontecimiento.this, getString(R.string.registro_acontecimiento_fallo),
 						Toast.LENGTH_SHORT).show();
+				acontecimiento = null;
+				esNuevoAcontecimiento = false;
 			} else {
 				Toast.makeText(NuevoAcontecimiento.this, getString(R.string.registro_acontecimiento_exito),
 						Toast.LENGTH_SHORT).show();
