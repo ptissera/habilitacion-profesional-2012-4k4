@@ -223,8 +223,8 @@ class TareaController {
                 tipoTarea = it.tipoTarea[i].nombre
                 fechaInicioEstimada = it.fechaInicio[i].format("ddMMyyyy")
                 fechaFinEstimada = it.fechaFin[i].format("ddMMyyyy")
-                fechaInicioReal =  it.fechaInicioReal ? "" : it.fechaInicioReal[i].format("ddMMyyyy")                
-                fechaFinReal = it.fechaFinReal ? "" : it.fechaFinReal[i].format("ddMMyyyy")
+                fechaInicioReal =  it.fechaInicioReal[i] ? it.fechaInicioReal[i].format("ddMMyyyy") : ""
+                fechaFinReal = it.fechaFinReal[i] ? it.fechaFinReal[i].format("ddMMyyyy") : ""
                 estado= it.estado[i].nombre
                 observaciones = it.observaciones[i]
                 respuesta = (esPrimetasLinea ? "": respuesta + ", ") + "{ id: $id, nombreTipoTarea: '$tipoTarea', fechaInicioEstimada: '$fechaInicioEstimada', fechaFinEstimada: '$fechaFinEstimada', fechaInicioReal: '$fechaInicioReal', fechaFinReal: '$fechaFinReal', estado: '$estado', observaciones: '$observaciones' } "
