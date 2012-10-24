@@ -53,6 +53,7 @@
         android:layout_below="@id/acontecimientoDescripcionEditText"
         android:text="@string/aceptar"
         android:textColor="@color/texto_boton"
-        android:background="@drawable/boton" />
+        android:background="@drawable/boton"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
 
 </RelativeLayout>
