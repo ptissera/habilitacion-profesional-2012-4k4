@@ -252,6 +252,8 @@ class TareaController {
         tarea.estado = EstadoTarea.findByNombre(objetoJSON.estado)
         if (objetoJSON.fechaFinReal != "")
             tarea.fechaFinReal = new Date().parse("ddMMyyyy", objetoJSON.fechaFinReal) 
+        else 
+            tarea.fechaFinReal = null;
         if (objetoJSON.fechaInicioReal != "")            
             tarea.fechaInicioReal = new Date().parse("ddMMyyyy", objetoJSON.fechaInicioReal) 
         tarea.tipoTarea = TipoTarea.findByNombre(objetoJSON.nombreTipoTarea)
