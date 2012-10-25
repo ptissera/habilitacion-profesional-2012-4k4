@@ -170,7 +170,7 @@ public class NuevoAcontecimiento extends Activity {
 			// es un nuevo acontecimiento, no hubo una seleccion previa
 			esNuevoAcontecimiento = true;
 			acontecimiento = new AcontecimientoBo();
-	    	String usuario = SesionBo.getUsuarioId(this).toString();;
+	    	Long usuario = SesionBo.getUsuarioId(this);
 			acontecimiento.setUsuarioId(usuario);
 			acontecimiento.setFechaCreacion(Calendar.getInstance().getTime());
 		}

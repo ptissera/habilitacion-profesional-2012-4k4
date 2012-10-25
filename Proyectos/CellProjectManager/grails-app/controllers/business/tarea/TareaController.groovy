@@ -227,7 +227,7 @@ class TareaController {
                 fechaFinReal = it.fechaFinReal[i] ? it.fechaFinReal[i].format("ddMMyyyy") : ""
                 estado= it.estado[i].nombre
                 observaciones = it.observaciones[i]
-                respuesta = (esPrimetasLinea ? "": respuesta + ", ") + "{ id: $id, nombreTipoTarea: '$tipoTarea', fechaInicioEstimada: '$fechaInicioEstimada', fechaFinEstimada: '$fechaFinEstimada', fechaInicioReal: '$fechaInicioReal', fechaFinReal: '$fechaFinReal', estado: '$estado', observaciones: '$observaciones' } "
+                respuesta = (esPrimetasLinea ? "": respuesta + ", ") + "{ \"id\": $id, \"nombreTipoTarea\": \"$tipoTarea\", \"fechaInicioEstimada\": \"$fechaInicioEstimada\", \"fechaFinEstimada\": \"$fechaFinEstimada\", \"fechaInicioReal\": \"$fechaInicioReal\", \"fechaFinReal\": \"$fechaFinReal\", \"estado\": \"$estado\", \"observaciones\": \"$observaciones\" } "
                 esPrimetasLinea=false
                 i++
                 if (it.id[i] == null)
@@ -237,10 +237,10 @@ class TareaController {
             
         if (respuesta) {
                 response.status =200
-                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, tareas:[$respuesta]}") as JSON
+                render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }, \"tareas\":[$respuesta]}") as JSON
             }
      response.status=200
-     render  JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+     render  JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
     }
     
     private void doPostRest(params)
@@ -258,10 +258,10 @@ class TareaController {
             tarea.fechaInicioReal = new Date().parse("ddMMyyyy", objetoJSON.fechaInicioReal) 
         tarea.tipoTarea = TipoTarea.findByNombre(objetoJSON.nombreTipoTarea)
         if (tarea.save(flush: true)) {
-            render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
+            render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }}") as JSON
                 
         }
         response.status=200
-        render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+        render JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
     }
 }

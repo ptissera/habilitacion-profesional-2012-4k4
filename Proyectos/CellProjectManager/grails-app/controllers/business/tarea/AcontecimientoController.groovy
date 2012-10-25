@@ -181,9 +181,9 @@ class AcontecimientoController {
                     fechaCreacion = it.fechaCreacion[i].format("ddMMyyyy")
                     descripcion = it.descripcion[i]
                     if (esPrimetasLinea)
-                    respuesta = "{ id: $id, nombreTipo: '$nombreTipo', usuarioId: '$creador', fechaCreacion: '$fechaCreacion', descripcion: '$descripcion' } "
+                    respuesta = "{ \"id\": $id, \"nombreTipo\": \"$nombreTipo\", \"usuarioId\": $creador, \"fechaCreacion\": \"$fechaCreacion\", \"descripcion\": \"$descripcion\" } "
                     else
-                    respuesta = respuesta +  " , " + "{ id: $id, nombreTipo: '$nombreTipo', usuarioId: '$creador', fechaCreacion: '$fechaCreacion', descripcion: '$descripcion' } "               
+                    respuesta = respuesta +  " , " + "{ \"id\": $id, \"nombreTipo\": \"$nombreTipo\", \"usuarioId\": $creador, \"fechaCreacion\": \"$fechaCreacion\", \"descripcion\": \"$descripcion\" } "               
                     esPrimetasLinea=false
                     i++
                     if (it.id[i] == null)
@@ -193,11 +193,11 @@ class AcontecimientoController {
             }
             
        if (respuesta) {
-                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'acontecimientos': [$respuesta]}") as JSON
+                render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }, \"acontecimientos\": [$respuesta] }") as JSON
                 
          }
         response.status=200
-        render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+        render JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
         
     }
     
@@ -211,24 +211,24 @@ class AcontecimientoController {
          acontecimientoInstance.fechaCreacion = new Date().parse("ddMMyyyy", objetoJSON.fechaCreacion) 
         
         if (acontecimientoInstance.save(flush:true)) {
-                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
+                render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }}") as JSON
                 
             }
         else{
                 response.status=200
-                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+                render JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
             }
     }
     
     def doPostRest (params){
         def objetoJSON = request.JSON
         if (new Acontecimiento(tarea: Tarea.findById(params.id), descripcion: objetoJSON.descripcion, tipoAcontecimiento: TipoAcontecimiento.findByNombre(objetoJSON.nombreTipo), creador: Usuario.findById(objetoJSON.usuarioId), fechaCreacion: new Date().parse("ddMMyyyy", objetoJSON.fechaCreacion)).save(flush:true)) {
-                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }}") as JSON
+                render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }}") as JSON
                 
             }
         else{
                 response.status=200
-                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+                render JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
             }
     }
 }

@@ -60,11 +60,11 @@ public class AcontecimientoBo implements Serializable {
 		dto.fechaCreacion = fecha;
 	}
 	
-	public String getUsuarioId() {
+	public Long getUsuarioId() {
 		return dto.usuarioId;
 	}
 	
-	public void setUsuarioId(String usuarioId) {
+	public void setUsuarioId(Long usuarioId) {
 		dto.usuarioId = usuarioId;
 	}
 	

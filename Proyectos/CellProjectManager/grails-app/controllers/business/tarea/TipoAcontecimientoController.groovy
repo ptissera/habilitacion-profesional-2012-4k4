@@ -118,17 +118,17 @@ class TipoAcontecimientoController {
         def nombre        
         tipoAcontecimientos.each{
             nombre = it.nombre
-            respuesta = (esPrimetasLinea ? "" : respuesta + ", ") + "{ nombre: '$nombre' } "            
+            respuesta = (esPrimetasLinea ? "" : respuesta + ", ") + "{ \"nombre\": \"$nombre\" } "            
             esPrimetasLinea = false
         }
       
         if (tipoAcontecimientos) {
-                render  JSON.parse("{ error: { codigo: 0, descripcion: 'Exito' }, 'tipoAcontecimientos': [$respuesta]}") as JSON
+                render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }, \"tipoAcontecimientos\": [$respuesta]}") as JSON
                 
             }
         else{
                 response.status=200
-                render JSON.parse("{ error: { codigo: 1, descripcion: 'Fallo' }}") as JSON
+                render JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
             }
         
     }
