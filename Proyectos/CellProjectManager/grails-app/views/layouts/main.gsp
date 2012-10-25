@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'loginControl.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'selectedControl.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'checkboxList.css')}" type="text/css">
   <g:layoutHead/>
   <r:layoutResources />
   <g:resourcesCalendar lang="es"/>

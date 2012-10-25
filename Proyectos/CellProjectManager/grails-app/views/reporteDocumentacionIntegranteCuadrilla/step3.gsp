@@ -4,19 +4,7 @@
 <html>
   <head>
     <meta name="layout" content="main">		
-    <title>Reporte</title>
-    <style type="text/css">
-      .CheckBoxList {
-        height: 100px; overflow: auto; overflow-x: hidden; width: 200px; border: 0px solid #000;
-        list-style-type: none; margin: 0; padding:0px
-      }
-      .CheckBoxList li  {
-        padding:2px
-      }
-      .CheckBoxList li input[type='checkbox']  {
-        margin-right: 12px;
-      }
-    </style>
+    <title>Reporte</title>    
   </head>
   <body>
     
@@ -26,13 +14,13 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-  <g:form action="step1" >
+  <g:form action="step4" >
     <ol class="property-list">
       <li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="provincia.nombre.label" default="Seleccione Tipo de Documento" /></span>
 					
 						<span class="property-value" aria-labelledby="nombre-label">
-                                                  <g:checkBoxList name="integrantesCuadrillasIds" from="${TipoDocumentacionIntegranteCuadrilla.list()}" value="${TipoDocumentacionIntegranteCuadrilla.list()}" optionKey="id"/>
+                                                  <g:checkBoxList name="tiposDocumentosIds" from="${TipoDocumentacionIntegranteCuadrilla.list()}" value="${TipoDocumentacionIntegranteCuadrilla.list()}" optionKey="id"/>
                                                   
                                                 </span>
 					

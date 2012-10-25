@@ -1,0 +1,12 @@
+.CheckBoxList {
+    height: 100px; overflow: auto; overflow-x: hidden; width: 200px; border: 0px solid #000;
+    list-style-type: none; margin: 0; padding:0px
+}
+
+.CheckBoxList li  {
+    padding:2px
+}
+
+.CheckBoxList li input[type='checkbox']  {
+    margin-right: 12px;
+}
