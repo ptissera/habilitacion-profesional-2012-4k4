@@ -258,10 +258,51 @@ class TareaController {
             tarea.fechaInicioReal = new Date().parse("ddMMyyyy", objetoJSON.fechaInicioReal) 
         tarea.tipoTarea = TipoTarea.findByNombre(objetoJSON.nombreTipoTarea)
         if (tarea.save(flush: true)) {
+            verificarSolicitudTarea(tarea)
             render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }}") as JSON
                 
         }
         response.status=200
         render JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
     }
+    
+ def verificarSolicitudTarea(tarea)   
+ {
+     def solicitud = SolicitudDeTarea.findById(tarea.solicitudDeTarea.id)
+     def tareas = Tarea.findAllBySolicitudDeTarea(tarea.solicitudDeTarea)
+     boolean finLista = false
+     boolean tieneTareaActiva = false
+     def i=0
+     tareas.each{
+                if (it.estado.nombre == "En Ejecucion")
+                 tieneTareaActiva = true
+            }
+     if (!tieneTareaActiva){
+         finLista = false
+         boolean tieneTareaResuelta = true
+          tareas.each{
+                // puede llegar a estar alguna tarea suspendida, en ese caso la ST esta En ejecucion
+                if (it.estado.nombre != "Resuelta")
+                 tieneTareaResuelta = false
+            }
+         if (!tieneTareaResuelta) {
+           solicitud.estado = EstadoSolicitudTarea.findByNombre("En Ejecucion")
+           solicitud.save(flush:true)
+         }  else {
+           solicitud.estado = EstadoSolicitudTarea.findByNombre('Pendiente Conformidad')
+           solicitud.save(flush:true)
+         }
+         
+            
+     }     
+     else{
+         solicitud.estado = EstadoSolicitudTarea.findByNombre("En Ejecucion")
+         solicitud.save(flush:true)
+     }
+        
+     
+ }
+    
 }
+
+
