@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/background" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/itemListaTareaIdTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/itemListaTareaNombreTipoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/itemListaTareaIdTextView"
+        android:id="@+id/itemListaTareaSitioTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/itemListaTareaNombreTipoTextView"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@id/linearLayout"
         android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    <TextView
-        android:id="@+id/itemListaTareaNombreTipoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="2dp"
-        android:layout_toRightOf="@+id/itemListaTareaIdTextView"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
     <TextView
         android:id="@+id/itemListaTareaEstadoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/itemListaTareaIdTextView"
+        android:layout_below="@+id/itemListaTareaSitioTextView"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
     <TextView
         android:id="@+id/itemListaTareaFechasEstimadasTextView"
         android:layout_width="wrap_content"
@@ -34,8 +49,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/itemListaTareaEstadoTextView"
         android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="9dp" />
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
     <TextView
         android:id="@+id/itemListaTareaFechasRealesTextView"
         android:layout_width="wrap_content"
@@ -43,14 +58,13 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/itemListaTareaFechasEstimadasTextView"
         android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="9dp" />
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/tareaDescriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemListaTareaFechasRealesTextView"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:id="@+id/tareaDescriptionTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/itemListaTareaFechasRealesTextView"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-    
 </RelativeLayout>

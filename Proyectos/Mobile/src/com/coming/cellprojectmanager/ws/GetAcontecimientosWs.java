@@ -21,19 +21,11 @@ public class GetAcontecimientosWs extends GetWsBase {
 
 	@Override
 	protected String doFakeCall(String... params) {
-		String tareaId = params[1];
-		if(tareaId.equalsIgnoreCase("1")) {
-			return "{" +
-					"\"error\":{\"codigo\":0,\"descripcion\":\"Exito\"}," +
-					"\"acontecimientos\":[{\"id\":1,\"nombreTipo\":\"Tipo 1\",\"usuarioId\":1,\"fechaCreacion\":\"01122012\",\"descripcion\":\"Guardia sitio no esta presente, no podemos acceder. Ya es la quinta vez que no esta el guardia en el sitio.\"}," +
-					"{\"id\":2,\"nombreTipo\":\"Tipo 2\",\"usuarioId\":1,\"fechaCreacion\":\"01122012\",\"descripcion\":\"Materiales no han llegado. Nos retiramos hasta mañana.\"}]" +
-					"}";			
-		} else {
-			return "{" +
-					"\"error\":{\"codigo\":1,\"descripcion\":\"No hay acontecimientos para la tarea.\"}" +
-					"}";			
-		}
-
+		return "{" +
+				"\"error\":{\"codigo\":0,\"descripcion\":\"Exito\"}," +
+				"\"acontecimientos\":[{\"id\":1,\"nombreTipo\":\"Tipo 1 acontecimiento en sitio debido a malas.\",\"usuarioId\":1,\"fechaCreacion\":\"01122012\",\"descripcion\":\"Guardia sitio no esta presente, no podemos acceder. Ya es la quinta vez que no esta el guardia en el sitio.\"}," +
+				"{\"id\":2,\"nombreTipo\":\"Tipo 2\",\"usuarioId\":1,\"fechaCreacion\":\"01122012\",\"descripcion\":\"Materiales no han llegado. Nos retiramos hasta mañana.\"}]" +
+				"}";			
 	}
 
 	@Override

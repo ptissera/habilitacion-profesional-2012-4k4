@@ -8,6 +8,7 @@ public class TareaDto  implements Serializable {
 	private static final long serialVersionUID = -5398815335363693889L;
 	public Long id;
 	public String nombreTipoTarea;
+	public String nombreSitio;
 	public String fechaInicioEstimada;
 	public String fechaFinEstimada;
 	public String fechaInicioReal;

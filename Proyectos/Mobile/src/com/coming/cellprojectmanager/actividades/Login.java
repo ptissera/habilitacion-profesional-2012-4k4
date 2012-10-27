@@ -35,7 +35,7 @@ public class Login extends Activity implements WsObserver {
 			}
 		});
     }
-	
+    
     private void login() {
     	String usu = nombreEditText.getText().toString();
     	String pwd = pwdEditText.getText().toString();

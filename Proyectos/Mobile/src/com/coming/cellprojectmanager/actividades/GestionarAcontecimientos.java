@@ -17,6 +17,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -25,6 +27,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
@@ -92,6 +95,24 @@ public class GestionarAcontecimientos extends Activity implements WsObserver {
         listView.setAdapter(listAdapter);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	menu.add(getString(R.string.actualizar));
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()) {
+    	case 0:
+    		obtenerDatos();
+    		break;
+    	default:
+    		break;
+    	}
+    	return super.onOptionsItemSelected(item);
+    }
+
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	switch(requestCode) {
@@ -134,6 +155,12 @@ public class GestionarAcontecimientos extends Activity implements WsObserver {
 
     public void notifiyPosExecute(String result) {
     	GetAcontecimientosWsResponse resp = GetAcontecimientosWsResponse.fromJSon(result);
+    	if(resp.error.codigo != 0) {
+			Toast.makeText(this, getString(R.string.obtener_acontecimientos_fallo),
+					Toast.LENGTH_SHORT).show();
+	        progressDialog.dismiss();
+    		return;
+    	}
         List<AcontecimientoBo> acontecimientos = AcontecimientoBo.listaDesdeDtos(resp.acontecimientos);
         listAdapter.acontecimientos = acontecimientos;
         listAdapter.notifyDataSetChanged();

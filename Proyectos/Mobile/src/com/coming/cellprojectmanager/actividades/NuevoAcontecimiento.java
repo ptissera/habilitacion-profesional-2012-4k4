@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import com.coming.cellprojectmanager.R;
 import com.coming.cellprojectmanager.modelo.AcontecimientoBo;
 import com.coming.cellprojectmanager.modelo.SesionBo;
@@ -176,7 +178,9 @@ public class NuevoAcontecimiento extends Activity {
 		}
 		String tipo = (String)tipoSpinner.getSelectedItem();	
 		acontecimiento.setNombreTipoAcontecimeinto(tipo);
-		acontecimiento.setDescripcion(desc);
+		Log.d("", desc);
+		Log.d("", JSONObject.quote(desc));
+		acontecimiento.setDescripcion(JSONObject.quote(desc));
 		acontecimiento.setTareaId(tareaSeleccionada.getId());
 		return true;
 	}

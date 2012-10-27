@@ -216,6 +216,7 @@ class TareaController {
         def fechaFinReal
         def estado
         def observaciones        
+        def elsitio
         tareas.each{
               while (!finLista)              
               {
@@ -227,7 +228,8 @@ class TareaController {
                 fechaFinReal = it.fechaFinReal[i] ? it.fechaFinReal[i].format("ddMMyyyy") : ""
                 estado= it.estado[i].nombre
                 observaciones = it.observaciones[i]
-                respuesta = (esPrimetasLinea ? "": respuesta + ", ") + "{ \"id\": $id, \"nombreTipoTarea\": \"$tipoTarea\", \"fechaInicioEstimada\": \"$fechaInicioEstimada\", \"fechaFinEstimada\": \"$fechaFinEstimada\", \"fechaInicioReal\": \"$fechaInicioReal\", \"fechaFinReal\": \"$fechaFinReal\", \"estado\": \"$estado\", \"observaciones\": \"$observaciones\" } "
+                elsitio = it.sitio[i].nombre
+                respuesta = (esPrimetasLinea ? "": respuesta + ", ") + "{ \"id\": $id, \"nombreSitio\": \"$elsitio\", \"nombreTipoTarea\": \"$tipoTarea\", \"fechaInicioEstimada\": \"$fechaInicioEstimada\", \"fechaFinEstimada\": \"$fechaFinEstimada\", \"fechaInicioReal\": \"$fechaInicioReal\", \"fechaFinReal\": \"$fechaFinReal\", \"estado\": \"$estado\", \"observaciones\": \"$observaciones\" } "
                 esPrimetasLinea=false
                 i++
                 if (it.id[i] == null)

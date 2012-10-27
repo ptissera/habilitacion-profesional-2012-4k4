@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class VerDetalleTarea extends Activity {
 	private TextView idTextView;
+	private TextView nombreSitioTextView;
     private TextView nombreTipoTextView;
     private TextView estadoTextView;
     private TextView fechasEstimadasTextView;
@@ -21,6 +22,7 @@ public class VerDetalleTarea extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ver_detalle_tarea);
         idTextView = (TextView) findViewById(R.id.itemListaTareaIdTextView);
+        nombreSitioTextView = (TextView) findViewById(R.id.itemListaTareaSitioTextView);
         nombreTipoTextView = (TextView) findViewById(R.id.itemListaTareaNombreTipoTextView);
         estadoTextView = (TextView) findViewById(R.id.itemListaTareaEstadoTextView);
         fechasEstimadasTextView = (TextView) findViewById(R.id.itemListaTareaFechasEstimadasTextView);
@@ -30,6 +32,7 @@ public class VerDetalleTarea extends Activity {
         if(extras != null) {
         	tareaSeleccionada = (TareaBo)extras.getSerializable(Common.EXTRAS_KEY_TAREA);
             idTextView.setText(tareaSeleccionada.getId().toString());
+            nombreSitioTextView.setText(tareaSeleccionada.getNombreSitio());
             nombreTipoTextView.setText(tareaSeleccionada.getNombreTipoTarea());
             estadoTextView.setText(tareaSeleccionada.getEstado());
             String inicioEstimado = Utils.fechaToFrontendString(tareaSeleccionada.getFechaInicioEstimada());
@@ -57,7 +60,7 @@ public class VerDetalleTarea extends Activity {
         	if(detalle == null || detalle.isEmpty()) {
         		detalle = getString(R.string.sin_datos);
         	}
-        	observaciones.setText(detalle);
+        	observaciones.setText(getString(R.string.observaciones) + ":\n" + detalle);
         }
 	}
 }

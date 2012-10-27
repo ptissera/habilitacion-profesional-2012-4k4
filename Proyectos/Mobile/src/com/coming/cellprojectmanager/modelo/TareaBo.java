@@ -89,6 +89,10 @@ public class TareaBo implements Serializable {
 	public String getObservaciones() {
 		return dto.observaciones;
 	}
+
+	public String getNombreSitio() {
+		return dto.nombreSitio;
+	}
 	
 	public List<String> getTransicionesValidas(boolean incluirEsadoActual) {
 		List<String> result = new ArrayList<String>();

@@ -48,4 +48,8 @@
 	<string name="error_en_login">Nombre de usuario o contraseña invalidos.</string>
 	<string name="no_hay_tareas">No hay tareas a realizar.</string>
 	<string name="no_hay_acontecimientos">No hay acontecimientos para la tarea.</string>
+	<string name="actualizar">Actualizar</string>
+	<string name="obtener_acontecimientos_fallo">No se pudo obtener los acontecimientos. Intente nuevamente.</string>
+	<string name="obtener_tareas_fallo">No se pudieron obtener las tareas. Intente nuevamente.</string>
+	<string name="observaciones">Observaciones</string>
 </resources>

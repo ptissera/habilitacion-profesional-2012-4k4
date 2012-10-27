@@ -32,13 +32,14 @@ public class VerAcontecimiento extends Activity {
         	tipoTextView.setText(acontecimientoSeleccionado.getNombreTipoAcontecimiento());
         	String fecha = Utils.fechaToFrontendString(acontecimientoSeleccionado.getFechaCreacion());
         	fechaCreacion.setText(getString(R.string.creado_el) + " " + fecha);
-        	descripcion.setText(acontecimientoSeleccionado.getDescripcion());
+        	descripcion.setText(getString(R.string.descripcion) + ":\n" + 
+        			acontecimientoSeleccionado.getDescripcion());
         } else {
         	String sinDatos = getString(R.string.sin_datos);
         	idTextView.setText(sinDatos);
         	tipoTextView.setText(sinDatos);
-        	fechaCreacion.setText(sinDatos);
-        	descripcion.setText(sinDatos);
+        	fechaCreacion.setText(getString(R.string.creado_el) + " " + sinDatos);
+        	descripcion.setText(getString(R.string.descripcion) + ":\n" +sinDatos);
         }
     }
 	

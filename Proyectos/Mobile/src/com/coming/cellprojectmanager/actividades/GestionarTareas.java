@@ -18,6 +18,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
@@ -26,6 +28,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class GestionarTareas extends Activity implements WsObserver {
@@ -77,6 +80,24 @@ public class GestionarTareas extends Activity implements WsObserver {
         obtenerDatos();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	menu.add(getString(R.string.actualizar));
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()) {
+    	case 0:
+    		obtenerDatos();
+    		break;
+    	default:
+    		break;
+    	}
+    	return super.onOptionsItemSelected(item);
+    }
+    
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	switch(requestCode) {
@@ -118,6 +139,12 @@ public class GestionarTareas extends Activity implements WsObserver {
 
     public void notifiyPosExecute(String result) {
     	GetTareasWsResponse resp = GetTareasWsResponse.fromJSon(result);
+    	if(resp.error.codigo != 0) {
+			Toast.makeText(this, getString(R.string.obtener_tareas_fallo),
+					Toast.LENGTH_SHORT).show();
+	        progressDialog.dismiss();
+    		return;
+    	}
         List<TareaBo> tareas = TareaBo.listaDesdeDtos(resp.tareas);
         listAdapter.tareas = tareas;
         listAdapter.notifyDataSetChanged();
@@ -161,6 +188,7 @@ public class GestionarTareas extends Activity implements WsObserver {
                 convertView = inflater.get().inflate(R.layout.item_tarea, null);
                 holder = new ViewHolder();
                 holder.idTextView = (TextView) convertView.findViewById(R.id.itemListaTareaIdTextView);
+                holder.nombreSitioTextView = (TextView) convertView.findViewById(R.id.itemListaTareaSitioTextView);
                 holder.nombreTipoTextView = (TextView) convertView.findViewById(R.id.itemListaTareaNombreTipoTextView);
                 holder.estadoTextView = (TextView) convertView.findViewById(R.id.itemListaTareaEstadoTextView);
                 holder.fechasEstimadasTextView = (TextView) convertView.findViewById(R.id.itemListaTareaFechasEstimadasTextView);
@@ -171,6 +199,7 @@ public class GestionarTareas extends Activity implements WsObserver {
             }
             
             holder.idTextView.setText(tarea.getId().toString());
+            holder.nombreSitioTextView.setText(tarea.getNombreSitio());
             holder.nombreTipoTextView.setText(tarea.getNombreTipoTarea());
             holder.estadoTextView.setText(tarea.getEstado());
 
@@ -204,6 +233,7 @@ public class GestionarTareas extends Activity implements WsObserver {
         static class ViewHolder {
         	private TextView idTextView;
             private TextView nombreTipoTextView;
+            private TextView nombreSitioTextView;
             private TextView estadoTextView;
             private TextView fechasEstimadasTextView;
             private TextView fechasRealesTextView;
