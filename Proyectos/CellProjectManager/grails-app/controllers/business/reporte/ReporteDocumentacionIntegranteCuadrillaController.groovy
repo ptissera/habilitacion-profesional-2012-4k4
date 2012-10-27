@@ -2,6 +2,7 @@ package business.reporte
 
 import business.cuadrillas.*
 
+
 class ReporteDocumentacionIntegranteCuadrillaController {
 
     def index() {      
@@ -9,7 +10,7 @@ class ReporteDocumentacionIntegranteCuadrillaController {
     }
     
     def step1(){
-        [cuadrillasListInstance: Cuadrilla.getAll()]
+        [cuadrillasListInstance: Cuadrilla.list()]
     }
     
     def step2(){
@@ -48,27 +49,35 @@ class ReporteDocumentacionIntegranteCuadrillaController {
         }else{
             def integrantesCuadrillaListSelectedInstance = session.integrantesCuadrillaListSelectedInstance
             def resultReport = []
+            def datos = [] 
+            def vigenciaDesde_mayorQue = params.vigenciaDesde_mayorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaDesde_mayorQue_value):null
+            def vigenciaDesde_menorQue = params.vigenciaDesde_menorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaDesde_menorQue_value): null
+            def vigenciaHasta_mayorQue = params.vigenciaHasta_mayorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaHasta_mayorQue_value):null
+            def vigenciaHasta_menorQue = params.vigenciaHasta_menorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaHasta_menorQue_value):null
+            
             integrantesCuadrillaListSelectedInstance.each{ intCuad-> 
                 IntegranteCuadrilla.get(intCuad.id).documentacion.each{doc->                     
-                        tiposDocumentosListSelectedInstance.each{
-                            if(it==doc.tipoDocumento){
-                                resultReport << doc
-                            }
+                    tiposDocumentosListSelectedInstance.each{                            
+                        if(it==doc.tipoDocumento 
+                            && (vigenciaDesde_mayorQue !=null ? vigenciaDesde_mayorQue <= doc.vigenciaDesde : true)
+                            && (vigenciaDesde_menorQue !=null ? vigenciaDesde_menorQue >= doc.vigenciaDesde : true)
+                            && (vigenciaHasta_mayorQue !=null ? vigenciaHasta_mayorQue <= doc.vigenciaHasta : true)
+                            && (vigenciaHasta_menorQue !=null ? vigenciaHasta_menorQue >= doc.vigenciaHasta : true)){                            
+                            resultReport << doc
+                            datos << [integrante: doc.integrante, tipoDocumento: doc.tipoDocumento, vigenciaDesde: doc.vigenciaDesde, vigenciaHasta: doc.vigenciaHasta]
                         }
-                    
+                    }
                 }
-            }
+            }            
             
+            session.resultReport = datos
             [documentacionIntegranteCuadrillaInstanceList: resultReport]
         }
     }
     
     def reporte={
-        def datos = []    
-        DocumentacionIntegranteCuadrilla.list().each{ doc->
-            datos << [integrante: doc.integrante, tipoDocumento: doc.tipoDocumento, vigenciaDesde: doc.vigenciaDesde, vigenciaHasta: doc.vigenciaHasta]}
-    
-        chain(controller: "jasper", action: "index", model: [data: DocumentacionIntegranteCuadrilla.list()], params:params)
+        def datos = session.resultReport            
+        chain(controller: "jasper", action: "index", model: [data: datos], params:params)
     }
     
 

@@ -49,7 +49,7 @@ class SolicitudDeTareaController {
                 }
                 if(tarea.tipoTarea.requiereIngenieria){
                     if(!tarea.documentoDeIngenieria){
-                         flash.error = "La tarea ${tarea} no contiene documento de Ingenieria"  
+                        flash.error = "La tarea ${tarea} no contiene documento de Ingenieria"  
                     }
                 }
             }
@@ -61,8 +61,17 @@ class SolicitudDeTareaController {
             flash.error = "La solicitud de tarea no PO aun!!"
         }
         
-        if(flash.error){redirect(action: "show", id: solicitudDeTareaInstance.id)            }else{
-            solicitudDeTareaInstance.estado = EstadoSolicitudTarea.findByNombre('En Ejecucion')
+        Cuadrilla cuadrilla = Cuadrilla.get(solicitudDeTareaInstance.cuadrilla.id)
+        EstadoSolicitudTarea estadoEnEjecucion = EstadoSolicitudTarea.findByNombre('En Ejecucion')
+        def solicitudEnEjecucion = SolicitudDeTarea.findAllByEstadoAndCuadrilla(estadoEnEjecucion, cuadrilla);
+        if(solicitudEnEjecucion.size()>0){
+            flash.error = "La cuadrilla ${cuadrilla} ya tiene una solicitud de tarea en ejecucion"
+        }
+        
+        if(flash.error){
+            redirect(action: "show", id: solicitudDeTareaInstance.id)            
+        }else{
+            solicitudDeTareaInstance.estado = estadoEnEjecucion
             solicitudDeTareaInstance.save(flush: true)
             flash.message = "Solicitud de Tarea En Ejecuacion"
             redirect(action: "show", id: solicitudDeTareaInstance.id)
