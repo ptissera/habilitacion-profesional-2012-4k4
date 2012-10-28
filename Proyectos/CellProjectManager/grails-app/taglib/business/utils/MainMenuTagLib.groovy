@@ -36,7 +36,9 @@ class MainMenuTagLib {
                         ["solicitudPagoCuadrilla","Solicitudes De Pagos"]])
                 
                 tituloItemMenu("Reportes", false)  
-                subItemMenu([["reporteDocumentacionIntegranteCuadrilla","Documentacion Operarios"]
+                subItemMenu([["reporteDocumentacionIntegranteCuadrilla","Documentacion Operarios"],
+                             ["reporteProyecto","Proyectos"],
+                             ["reporteTarea","Tareas"]
                         ])
                 
                 tituloItemMenu("Parametros Del Sitio", false)  
