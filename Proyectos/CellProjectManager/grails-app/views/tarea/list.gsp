@@ -30,7 +30,7 @@
 					
 						<th><g:message code="tarea.sitio.label" default="Sitio" /></th>
 					
-						<th><g:message code="tarea.tarea.label" default="Tarea" /></th>
+						<th><g:message code="tarea.tarea.label" default="Tipo Tarea" /></th>
 					
 						<th><g:message code="tarea.estado.label" default="Estado" /></th>
 					
@@ -48,7 +48,7 @@
 					
 						<td>${fieldValue(bean: tareaInstance, field: "sitio")}</td>
 					
-						<td>${fieldValue(bean: tareaInstance, field: "tarea")}</td>
+						<td>${fieldValue(bean: tareaInstance, field: "tipoTarea")}</td>
 					
 						<td>${fieldValue(bean: tareaInstance, field: "estado")}</td>
 					
