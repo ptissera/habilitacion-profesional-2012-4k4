@@ -37,7 +37,7 @@ class SolicitudDeTarea {
     }
     
     def hasEstadoCreada(){              
-        return estado != null ? estado.getNombre() == "Creada" : false
+        return estado != null ? estado.getNombre() == "Creada" || estado.getNombre() == "Pendiente Conformidad" : false
     }
     
     def totalPorCobrar(){              
