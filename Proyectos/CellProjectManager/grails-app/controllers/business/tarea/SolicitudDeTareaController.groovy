@@ -73,7 +73,7 @@ class SolicitudDeTareaController {
         }else{
             solicitudDeTareaInstance.estado = estadoEnEjecucion
             solicitudDeTareaInstance.save(flush: true)
-            flash.message = "Solicitud de Tarea En Ejecuacion"
+            flash.message = "Solicitud de Tarea En Ejecucion"
             redirect(action: "show", id: solicitudDeTareaInstance.id)
         }
     }
@@ -115,7 +115,7 @@ class SolicitudDeTareaController {
             if(!solicitudDeTareaInstance){
                 solicitudDeTareaInstance   = new SolicitudDeTarea(fechaAlta: new Date(), proyecto: proyectoSelected, cuadrilla: Cuadrilla.findByNombre('Perez'),
                     estado: EstadoSolicitudTarea.findByNombre('Creada'))
-                solicitudDeTareaInstance.save(flush: true)          
+                //solicitudDeTareaInstance.save(flush: true)          
                 session.setAttribute("solicitudDeTareaCreate",solicitudDeTareaInstance)            
             }
             solicitudDeTareaInstance = SolicitudDeTarea.get(solicitudDeTareaInstance.id)
