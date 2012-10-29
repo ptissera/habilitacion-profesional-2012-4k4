@@ -7,41 +7,45 @@ class MainMenuTagLib {
             
             startMainMenu()
             if(session.usuario.isSuperUser()){
-                tituloItemMenu("Proyectos & Tareas", true)  
+                tituloItemMenu("Proyectos & Tareas")  
                 subItemMenu([["proyecto","Gestor de Proyectos"],
                         ["proyecto","Seleccionar Proyectos","selectList"],
                         ["proyecto","Asignar Proyectos","asignProject"],
                         ["solicitudDeTarea","Gestor de solicitud de tarea"],
                         ["solicitudDeTarea","Crear Solicitud de Tarea","create"]])
                               	
-                tituloItemMenu("Soporte Usuarios", false)
+                tituloItemMenu("Soporte Usuarios")
                 subItemMenu([["usuario","Usuarios"],
                         ["rol","Roles"]])
         
-                tituloItemMenu("Soporte Sitio", false)
+                tituloItemMenu("Soporte Sitio")
                 subItemMenu([["cliente","Clientes"],              
                         ["tipoTarea","Tipo De Tarea"],
                         ["sitio","Sitios"],
                         ["provincia","Provincias"],
                         ["tipoAcontecimiento","Tipo de Acontecimiento"]])
         
-                tituloItemMenu("Cuadrilla", false)  
+                tituloItemMenu("Cuadrilla")  
                 subItemMenu([["cuadrilla","Cuadrillas"],
                         ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"]])
             }
             if(session.usuario.isSuperUser() || session.usuario.isAdminGeneral()){    
-                tituloItemMenu("Finanzas", false)  
+                tituloItemMenu("Finanzas")  
                 subItemMenu([["cobroSolicitudDeTrabajo","Cobros"],
                         ["solicitudDeViaticos","Solicitudes De Viaticos"],
                         ["solicitudPagoCuadrilla","Solicitudes De Pagos"]])
                 
-                tituloItemMenu("Reportes", false)  
+                tituloItemMenu("Reportes")  
                 subItemMenu([["reporteDocumentacionIntegranteCuadrilla","Documentacion Operarios"],
                              ["reporteProyecto","Proyectos"],
                              ["reporteTarea","Tareas"]
                         ])
                 
-                tituloItemMenu("Parametros Del Sitio", false)  
+                tituloItemMenu("Informes")  
+                subItemMenu([["informeDeTareasDesviadasPorFacturacion","Tareas desviadas por Facturacion"]
+                        ])
+                
+                tituloItemMenu("Parametros Del Sitio")  
                 subItemMenu([["parametrosDelSistema","Parametrizaciones"]])
             }
             finishMainMenu()
@@ -60,7 +64,7 @@ class MainMenuTagLib {
      
     }
     
-    def tituloItemMenu(titulo,isFirst){
+    def tituloItemMenu(titulo){
         out << " <li>$titulo</li>\n"     
     }
     

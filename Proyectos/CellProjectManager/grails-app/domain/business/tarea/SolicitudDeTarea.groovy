@@ -63,4 +63,14 @@ class SolicitudDeTarea {
         return totalACobrar
     }
     
+    def totalPOs(){              
+                    
+        Float totalPOs = 0            
+        pos.each{
+            totalPOs += it.monto
+        }
+        
+        return totalPOs
+    }
+    
 }
