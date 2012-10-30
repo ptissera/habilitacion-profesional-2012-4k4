@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<field name="estado" class="java.lang.Object"/>
+	<field name="sitio" class="java.lang.Object"/>
+	<field name="tipo" class="java.lang.Object"/>
+	<field name="fechaInicioEstimada" class="java.util.Date"/>
+	<field name="fechaFinEstimada" class="java.util.Date"/>
+	<field name="fechaInicioReal" class="java.util.Date"/>
+	<field name="fechaFinReal" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="33" y="14" width="500" height="38"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Tareas]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="452d971c-fe32-40dc-98ef-d599a5e568ff" x="485" y="-6" width="73" height="66"/>
+				<imageExpression><![CDATA["http://localhost:8080/CellProjectManager/images/celltower.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4744a5c4-eeaf-4295-8376-2c7a50ed6f52" x="0" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9cd659a4-cf5c-4658-9f20-8e5a40091023" x="79" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sitio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e306f02d-4069-42bf-afa9-9687a460d680" x="158" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="651b8731-72b5-4460-a390-944dc43841da" x="237" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Inicio Est]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4799c741-eab7-4543-9e0c-10a6f0b77983" x="316" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fin Est]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbff4077-672a-4e1d-8b1b-5f63d72a43ae" x="395" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Inicio real]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d070a57c-db75-4695-8faf-0e98322940b5" x="474" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fin Real]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="b86688c2-431e-4b03-b0be-9abf80ba61ab" mode="Transparent" x="-3" y="-1" width="556" height="18"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<line>
+				<reportElement uuid="dde105b4-4566-4aeb-bd9c-bfc7ca8dab04" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="0234034b-591f-41ec-8e00-c18dbd5e9406" x="0" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""+$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f8e76fe6-9fb9-46f8-9df7-fb92f21a9b44" x="79" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""+$F{sitio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="77bd31b8-6692-4184-a4b0-86d7e1de2aed" x="158" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""+$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e4319212-0d7d-4627-90af-4b6ecbb0c85b" x="237" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaInicioEstimada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a5d17413-b9b1-468b-9567-c4b386921539" x="316" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaFinEstimada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="27fb8c27-4846-47f1-9dc5-89d4ba73edbd" x="395" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaInicioReal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8fd37e20-9d0a-454c-9eb9-7c4ef8680eca" x="474" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaFinReal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3bc97a6e-410e-4974-ae0c-be5c1b4aeb01" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="305251a5-87fb-442a-9232-b4ed2ae615a0" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="bf8b8d76-0e96-4442-878c-e3f730ed3f7b" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

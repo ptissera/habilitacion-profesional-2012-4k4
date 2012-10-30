@@ -37,7 +37,7 @@
       </table>          
     </div>
  <fieldset class="buttons">
-        <g:jasperReport  from="documentacionIntegranteCuadrillaInstanceList" jasper="DocumentacionIntegranteCuadrillaReport" format="PDF" name="Reporte" action="reporte" controller="ReporteDocumentacionIntegranteCuadrilla"/>        
+        <g:jasperReport  from="documentacionIntegranteCuadrillaInstanceList" jasper="DocumentacionIntegranteCuadrillaReport" format="PDF" name="Reporte" action="reporte" controller="InformeDeTareasDesviadasPorFacturacion"/>        
       </fieldset>
   </body>
 </html>
