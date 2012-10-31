@@ -7,13 +7,14 @@
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
     android:paddingTop="4dp" >
-
+
     <TextView
         android:id="@+id/nombreTipoAcontecimientoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginRight="4dp"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -36,13 +37,14 @@
         android:maxLines="2"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/fechaCreacionTextView"
         android:layout_alignParentRight="true"
+        android:layout_alignRight="@+id/nombreTipoAcontecimientoTextView"
         android:src="@android:drawable/ic_menu_more" />
 
 </RelativeLayout>

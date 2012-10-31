@@ -39,11 +39,11 @@ public class Login extends Activity implements WsObserver {
     private void login() {
     	String usu = nombreEditText.getText().toString();
     	String pwd = pwdEditText.getText().toString();
-    	if(usu.isEmpty()) {
+    	if(usu.length() == 0) {
     		Toast.makeText(this, R.string.ingrese_nombre_usuario, Toast.LENGTH_SHORT).show();
     		return;
     	}
-    	if(pwd.isEmpty()) {
+    	if(pwd.length() == 0) {
     		Toast.makeText(this, R.string.ingrese_pwd, Toast.LENGTH_SHORT).show();
     		return;
     	}

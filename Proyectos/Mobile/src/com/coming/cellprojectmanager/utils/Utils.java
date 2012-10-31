@@ -31,7 +31,7 @@ public class Utils {
 	}
 
 	public static Date fechaFromBackendStringToDate(String fecha) {
-		if(fecha == null || fecha.isEmpty()) {
+		if(fecha == null || fecha.length() == 0) {
 			return null;
 		}
 		Date date = null;

@@ -4,11 +4,11 @@
     <string name="title_activity_gestionar_tareas">Tareas</string>    
     <string name="title_activity_gestionar_acontecimientos">Acontecimientos</string>
     <string name="title_activity_seleccionar_sitio">Seleccionar un sitio</string>
-	<string name="title_activity_seleccionar_estado">Seleccione un estado</string> 
+	<string name="title_activity_seleccionar_estado">Actualizar progreso tarea</string> 
 	<string name="title_activity_opciones_de_tareas">Opciones de tarea</string>
 	<string name="title_activity_opciones_de_acontecimiento">Opciones de acontecimiento</string>
-	<string name="title_activity_ver_tarea">Descricption de tarea</string>
-	<string name="title_activity_ver_acontecimiento">Acontecimiento</string>
+	<string name="title_activity_ver_tarea">Ver tarea</string>
+	<string name="title_activity_ver_acontecimiento">Ver acontecimiento</string>
 	<string name="title_activity_nuevo_acontecimiento">Nuevo Acontecimiento</string>
 	<string name="title_activity_login">Login</string>
     <string name="nombre_sitio_hint">seleccione un sitio</string>

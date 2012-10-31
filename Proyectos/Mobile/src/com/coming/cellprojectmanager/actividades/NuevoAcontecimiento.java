@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.json.JSONObject;
-
 import com.coming.cellprojectmanager.R;
 import com.coming.cellprojectmanager.modelo.AcontecimientoBo;
 import com.coming.cellprojectmanager.modelo.SesionBo;
@@ -163,7 +161,7 @@ public class NuevoAcontecimiento extends Activity {
 	private boolean crearAcontecimiento() {
 		esNuevoAcontecimiento = false;
 		String desc = descripcionEditText.getText().toString();
-		if(desc.isEmpty()) {
+		if(desc.length() == 0) {
 			Toast.makeText(this, getString(R.string.toast_falta_descripcion),
 					Toast.LENGTH_SHORT).show();
 			return false;
@@ -178,9 +176,8 @@ public class NuevoAcontecimiento extends Activity {
 		}
 		String tipo = (String)tipoSpinner.getSelectedItem();	
 		acontecimiento.setNombreTipoAcontecimeinto(tipo);
-		Log.d("", desc);
-		Log.d("", JSONObject.quote(desc));
-		acontecimiento.setDescripcion(JSONObject.quote(desc));
+		desc = desc.replaceAll("\n", " ");
+		acontecimiento.setDescripcion(desc);
 		acontecimiento.setTareaId(tareaSeleccionada.getId());
 		return true;
 	}

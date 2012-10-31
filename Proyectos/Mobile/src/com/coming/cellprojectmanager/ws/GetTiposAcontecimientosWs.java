@@ -18,9 +18,9 @@ public class GetTiposAcontecimientosWs extends GetWsBase {
 	protected String doFakeCall(String... params) {
 		return "{" +
 				"\"error\":{\"codigo\":0,\"descripcion\":\"Exito\"}," +
-				"\"tipos\":[{\"id\":1,\"nombre\":\"Materiales cliente\"}," +
-				"{\"id\":2,\"nombre\":\"Permiso acceso\"}," +
-				"{\"id\":3,\"nombre\":\"Ingenieria incompeta\"}]" +
+				"\"tipoAcontecimientos\":[{\"nombre\":\"Materiales a destiempo\"}," +
+				"{\"nombre\":\"Imposible realizar tarea\"}," +
+				"{\"nombre\":\"Ingenieria incompeta\"}]" +
 				"}";
 	}
 

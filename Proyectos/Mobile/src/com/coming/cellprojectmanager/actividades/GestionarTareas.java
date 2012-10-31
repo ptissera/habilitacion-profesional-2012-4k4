@@ -138,17 +138,21 @@ public class GestionarTareas extends Activity implements WsObserver {
     }
 
     public void notifiyPosExecute(String result) {
+    	progressDialog.dismiss();
     	GetTareasWsResponse resp = GetTareasWsResponse.fromJSon(result);
     	if(resp.error.codigo != 0) {
 			Toast.makeText(this, getString(R.string.obtener_tareas_fallo),
 					Toast.LENGTH_SHORT).show();
-	        progressDialog.dismiss();
+    		return;
+    	}
+    	if(resp.error.codigo == 2) {
+			Toast.makeText(this, resp.error.descripcion,
+					Toast.LENGTH_SHORT).show();
     		return;
     	}
         List<TareaBo> tareas = TareaBo.listaDesdeDtos(resp.tareas);
         listAdapter.tareas = tareas;
         listAdapter.notifyDataSetChanged();
-        progressDialog.dismiss();
     }
 
     private void obtenerDatos() {
@@ -208,10 +212,10 @@ public class GestionarTareas extends Activity implements WsObserver {
             Context ctx = inflater.get().getContext();
             String sinDatos = ctx.getString(R.string.sin_datos);
         	String text = ctx.getString(R.string.fechas_estimadas);
-            if(inicioEstimado == null || inicioEstimado.isEmpty()) {
+            if(inicioEstimado == null || inicioEstimado.length() == 0) {
             	inicioEstimado = sinDatos;
             }
-        	if(finEstimado == null || finEstimado.isEmpty()) {
+        	if(finEstimado == null || finEstimado.length() == 0) {
         		finEstimado = sinDatos;
         	}
         	holder.fechasEstimadasTextView.setText(text + " " + inicioEstimado + "-" + finEstimado);
@@ -219,10 +223,10 @@ public class GestionarTareas extends Activity implements WsObserver {
             String inicioReal = Utils.fechaToFrontendString(tarea.getFechaInicioReal());
             String finReal = Utils.fechaToFrontendString(tarea.getFechaFinReal());
         	text = ctx.getString(R.string.fechas_reales);            
-            if(inicioReal == null || inicioReal.isEmpty()) {
+            if(inicioReal == null || inicioReal.length() == 0) {
             	inicioReal = sinDatos;
             }
-            if(finReal == null || finReal.isEmpty()) {
+            if(finReal == null || finReal.length() == 0) {
             	finReal = sinDatos;
             }
             holder.fechasRealesTextView.setText(text + " " + inicioReal + "-" + finReal);

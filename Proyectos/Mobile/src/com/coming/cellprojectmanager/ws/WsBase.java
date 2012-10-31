@@ -94,7 +94,7 @@ public abstract class WsBase extends AsyncTask<String, Void, String> {
 		}			
 		httpClient.close();
 		
-		if(result == null || result.isEmpty()) {
+		if(result == null || result.length() == 0) {
 			result = "{\"error\":{\"codigo\":-1,\"descripcion\":\"Error en la coneccion.\"}}";
 		}
 		Log.i("WsBase", responseStatusCode + " " + result);

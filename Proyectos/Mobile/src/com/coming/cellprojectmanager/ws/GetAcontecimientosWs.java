@@ -23,8 +23,8 @@ public class GetAcontecimientosWs extends GetWsBase {
 	protected String doFakeCall(String... params) {
 		return "{" +
 				"\"error\":{\"codigo\":0,\"descripcion\":\"Exito\"}," +
-				"\"acontecimientos\":[{\"id\":1,\"nombreTipo\":\"Tipo 1 acontecimiento en sitio debido a malas.\",\"usuarioId\":1,\"fechaCreacion\":\"01122012\",\"descripcion\":\"Guardia sitio no esta presente, no podemos acceder. Ya es la quinta vez que no esta el guardia en el sitio.\"}," +
-				"{\"id\":2,\"nombreTipo\":\"Tipo 2\",\"usuarioId\":1,\"fechaCreacion\":\"01122012\",\"descripcion\":\"Materiales no han llegado. Nos retiramos hasta mañana.\"}]" +
+				"\"acontecimientos\":[{\"id\":1,\"nombreTipo\":\"Materiales a destiempo\",\"usuarioId\":1,\"fechaCreacion\":\"01122012\",\"descripcion\":\"Los materiales no han llegado en el horario previsto por el cliente.\"}," +
+				"{\"id\":2,\"nombreTipo\":\"Imposible realizar tarea\",\"usuarioId\":1,\"fechaCreacion\":\"01122012\",\"descripcion\":\"Se relevo mal los materailes y dispositivos necesarios.\"}]" +
 				"}";			
 	}
 

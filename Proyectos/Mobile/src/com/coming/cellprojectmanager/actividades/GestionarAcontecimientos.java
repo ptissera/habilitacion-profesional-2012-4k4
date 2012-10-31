@@ -154,17 +154,21 @@ public class GestionarAcontecimientos extends Activity implements WsObserver {
     }
 
     public void notifiyPosExecute(String result) {
+        progressDialog.dismiss();
     	GetAcontecimientosWsResponse resp = GetAcontecimientosWsResponse.fromJSon(result);
-    	if(resp.error.codigo != 0) {
+    	if(resp.error.codigo == 1) {
 			Toast.makeText(this, getString(R.string.obtener_acontecimientos_fallo),
 					Toast.LENGTH_SHORT).show();
-	        progressDialog.dismiss();
+    		return;
+    	}
+    	if(resp.error.codigo == 2) {
+			Toast.makeText(this, resp.error.descripcion,
+					Toast.LENGTH_SHORT).show();
     		return;
     	}
         List<AcontecimientoBo> acontecimientos = AcontecimientoBo.listaDesdeDtos(resp.acontecimientos);
         listAdapter.acontecimientos = acontecimientos;
         listAdapter.notifyDataSetChanged();
-        progressDialog.dismiss();
     }
 
     private void obtenerDatos() {    	    		
