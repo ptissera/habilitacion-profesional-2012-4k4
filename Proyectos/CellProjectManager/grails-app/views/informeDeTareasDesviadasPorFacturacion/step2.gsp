@@ -17,10 +17,11 @@
         <thead>
           <tr>
             <th>Proyecto</th>
-            <th>Cliente</th>
-            <th>Monto de la Solicitud</th>
-            <th>Porcentaje Desvio</th>
-            <th>Cuadrilla</th>
+            <th>Cliente</th>            
+            <th>$ Monto</th>
+            <th>% Desvio</th>            
+            <th>Cant. Solic.</th>
+            <th>Cant. Tar.</th>
           </tr>
         </thead>
         <tbody>
@@ -28,16 +29,17 @@
           <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
             <td>${dato.proyecto}</td>
             <td>${dato.cliente}</td>
-            <td>${dato.montoSolicitud}</td>
+            <td>${dato.totalMontoProyecto}</td>
             <td>${dato.porcentajeDesvio}</td>
-            <td>${dato.cuadrilla}</td>
+            <td>${dato.totalSolicitudes}</td>
+            <td>${dato.totalTareas}</td>
           </tr>
         </g:each>
         </tbody>
       </table>          
     </div>
  <fieldset class="buttons">
-        <g:jasperReport  from="documentacionIntegranteCuadrillaInstanceList" jasper="DocumentacionIntegranteCuadrillaReport" format="PDF" name="Reporte" action="reporte" controller="InformeDeTareasDesviadasPorFacturacion"/>        
+        <g:jasperReport  from="datos" jasper="TareasDesviadasPorFacturacionInform" format="PDF" name="Informe" action="reporte" controller="InformeDeTareasDesviadasPorFacturacion"/>        
       </fieldset>
   </body>
 </html>

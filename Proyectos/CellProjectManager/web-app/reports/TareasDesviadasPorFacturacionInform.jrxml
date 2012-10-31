@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="60"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<field name="proyecto" class="java.lang.Object"/>
+	<field name="cliente" class="java.lang.Object"/>
+	<field name="totalMontoProyecto" class="java.lang.Object"/>
+	<field name="porcentajeDesvio" class="java.lang.Object"/>
+	<field name="totalSolicitudes" class="java.lang.Object"/>
+	<field name="totalTareas" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="33" y="14" width="500" height="38"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Informe de tareas desviadas por Facturacion]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="452d971c-fe32-40dc-98ef-d599a5e568ff" x="485" y="-6" width="73" height="66"/>
+				<imageExpression><![CDATA["http://localhost:8080/CellProjectManager/images/celltower.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3e70298d-4499-48e5-abfa-09b9aea0eb32" x="3" y="1" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5a929a6a-eef8-4f87-83f4-4a7405d694d8" x="92" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8bf1750d-f175-4e89-b429-c87ee1daead1" x="184" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[$ Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ce3c2d97-8d25-4f31-97b4-3c086957344d" x="276" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[% Desvio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77e6c0ff-620a-4a59-876e-05c460ffa154" x="368" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cant. Solic.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b8f7b45-7f79-4e48-a2e9-48c52de77e2b" x="460" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cant. Tar.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="4" y="23" width="548" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="4" y="19" width="548" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="5" y="-1" width="548" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Immediate">
+			<line>
+				<reportElement uuid="dde105b4-4566-4aeb-bd9c-bfc7ca8dab04" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="36975353-aded-4fc9-8f9d-b38bac06689c" x="0" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{proyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a16c5b4a-39bf-4917-930e-e5eedd86c980" x="92" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="563f5166-e33f-4f65-a2ea-fd6d3651f304" x="184" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{totalMontoProyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="deb3e053-632b-41e0-bcb8-7f4b6526c040" x="276" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{porcentajeDesvio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="deb895a1-3539-4334-b28c-8c943e7216b6" x="368" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{totalSolicitudes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2596d931-bb85-4312-acc7-24ea52d0f172" x="460" y="0" width="92" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{totalTareas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3bc97a6e-410e-4974-ae0c-be5c1b4aeb01" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="305251a5-87fb-442a-9232-b4ed2ae615a0" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="bf8b8d76-0e96-4442-878c-e3f730ed3f7b" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="455" splitType="Prevent">
+			<pieChart>
+				<chart>
+					<reportElement uuid="4133588a-d036-42c7-9faf-27b397bedfc1" x="4" y="24" width="230" height="175"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{proyecto}.nombre]]></keyExpression>
+					<valueExpression><![CDATA[$F{porcentajeDesvio}]]></valueExpression>
+					<labelExpression><![CDATA[$F{porcentajeDesvio}.toString()]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel>
+						<font fontName="Arial Narrow" size="8"/>
+					</itemLabel>
+				</piePlot>
+			</pieChart>
+			<pieChart>
+				<chart>
+					<reportElement uuid="4133588a-d036-42c7-9faf-27b397bedfc1" x="303" y="24" width="230" height="175"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{proyecto}.nombre]]></keyExpression>
+					<valueExpression><![CDATA[$F{totalMontoProyecto}]]></valueExpression>
+					<labelExpression><![CDATA[$F{totalMontoProyecto}.toString()]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel>
+						<font fontName="Arial Narrow" size="8"/>
+					</itemLabel>
+				</piePlot>
+			</pieChart>
+			<pieChart>
+				<chart>
+					<reportElement uuid="4133588a-d036-42c7-9faf-27b397bedfc1" x="303" y="257" width="230" height="175"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{proyecto}.nombre]]></keyExpression>
+					<valueExpression><![CDATA[$F{totalTareas}]]></valueExpression>
+					<labelExpression><![CDATA[$F{totalTareas}.toString()]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel>
+						<font fontName="Arial Narrow" size="8"/>
+					</itemLabel>
+				</piePlot>
+			</pieChart>
+			<staticText>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="4" y="5" width="230" height="20" backcolor="#F0F0F0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% Desvio por Proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="303" y="5" width="230" height="20" backcolor="#F0F0F0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$ Monto por Proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="303" y="237" width="230" height="20" backcolor="#F0F0F0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de Tareas Por Proyecto]]></text>
+			</staticText>
+			<pieChart>
+				<chart>
+					<reportElement uuid="4133588a-d036-42c7-9faf-27b397bedfc1" x="5" y="257" width="230" height="175"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{proyecto}.nombre]]></keyExpression>
+					<valueExpression><![CDATA[$F{totalSolicitudes}]]></valueExpression>
+					<labelExpression><![CDATA[$F{totalSolicitudes}.toString()]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel>
+						<font fontName="Arial Narrow" size="8"/>
+					</itemLabel>
+				</piePlot>
+			</pieChart>
+			<staticText>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="5" y="237" width="230" height="20" backcolor="#F0F0F0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de Solicitudes Por Proyecto]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -14,7 +14,6 @@ class InformeDeTareasDesviadasPorFacturacionController {
         flash.desde = flash.hasta - 30
         flash.monto = 0
     }
-    
      
     def step2(){
         
@@ -34,30 +33,36 @@ class InformeDeTareasDesviadasPorFacturacionController {
             SolicitudDeTarea.getAll().each{ solicitud->
                 if(solicitud.totalPOs()>=monto){                    
                     solicitud.tarea.each{tar->
-                        if((desde !=null ? desde <= tar.fechaInicio : true)
-                            && (hasta !=null ? hasta >= tar.fechaInicio : true)
-                            && (desde !=null ? desde <= tar.fechaFin : true)
-                            && (hasta !=null ? hasta >= tar.fechaFin : true)){
-                            if(tar.fechaInicioReal && tar.fechaInicio!=tar.fechaInicioReal
-                                || (tar.fechaFinReal && tar.fechaFin!=tar.fechaFinReal)){
-                               
-                                def diasDesvio = (tar.fechaInicioReal - tar.fechaInicio) + (tar.fechaFinReal?tar.fechaFinReal - tar.fechaFin:0)
-                                def porcentajeDesvio = (tar.fechaFin - tar.fechaInicio) * diasDesvio / 100
-                                solicitudes << [proyecto: solicitud.proyecto,
+                        if(solicitud.pos){
+                    
+//                        if((desde !=null ? desde <= tar.fechaInicio : true)
+//                            && (hasta !=null ? hasta >= tar.fechaInicio : true)
+//                            && (desde !=null ? desde <= tar.fechaFin : true)
+//                            && (hasta !=null ? hasta >= tar.fechaFin : true)){
+//                            if(tar.fechaInicioReal && tar.fechaInicio!=tar.fechaInicioReal
+//                                || (tar.fechaFinReal && tar.fechaFin!=tar.fechaFinReal)){
+////                               
+//                                def diasDesvio = (tar.fechaInicioReal - tar.fechaInicio) + (tar.fechaFinReal?tar.fechaFinReal - tar.fechaFin:0)
+//                                def porcentajeDesvio = (tar.fechaFin - tar.fechaInicio) * diasDesvio / 100
+                                
+                        def porcentajeDesvio = (tar.fechaFin - tar.fechaInicio)
+                        def item = [proyecto: solicitud.proyecto,
                                     cliente: solicitud.proyecto.cliente, 
                                     solicitud: solicitud,
-                                    montoSolicitud: proyecto.totalPOs(),
-                                    porcentajeDesvio: porcentajeDesvio]
+                                    montoSolicitud: solicitud.totalPOs(),
+                                    porcentajeDesvio: porcentajeDesvio]           
+                                solicitudes << item
+                                }
                             }
-                        }
-                    }
+//                        }
+//                    }
                 }                
             }
-            def auxSolicitudesResultMap = [:]
-                       
+            
+            def auxSolicitudesResultMap = [:]                       
             solicitudes.each{ solic->
                 def key = "${solic.solicitud.id}"
-                if(auxSolicitudesResultMap.containsKey(key)){
+                if(auxSolicitudesResultMap.getAt(key)){
                     auxSolicitudesResultMap[key].sumDesvio += solic.porcentajeDesvio
                     auxSolicitudesResultMap[key].totalTareas++
                     auxSolicitudesResultMap[key].porcentajeDesvio = auxSolicitudesResultMap[key].sumDesvio / auxSolicitudesResultMap[key].totalTareas
@@ -71,39 +76,42 @@ class InformeDeTareasDesviadasPorFacturacionController {
                         totalTareas: 1]
                 }                
             }
-            def auxProyectosResultMap = [:]
             
-            auxSolicitudesResultMap.each{ solicGroup->
-                
+            def auxProyectosResultMap = [:]            
+            auxSolicitudesResultMap.each{ solicGroup->                
                 def item = solicGroup.value
                 def key = "${item.proyecto.id}"
-                if(auxProyectosResultMap.containsKey(key)){
+                if(auxProyectosResultMap.getAt(key)){                    
                     auxProyectosResultMap[key].sumDesvio += item.porcentajeDesvio
                     auxProyectosResultMap[key].totalTareas+=item.totalTareas
-                    auxProyectosResultMap[key].totalMontoProyecto+=item.montoSolicitud
-                    auxProyectosResultMap[key].totalSolicitudes++
-                    auxProyectosResultMap[key].porcentajeDesvio = auxSolicitudesResultMap[key].sumDesvio / auxSolicitudesResultMap[key].totalSolicitudes
-                }else{
+                    auxProyectosResultMap[key].totalMontoProyecto+=new Double(item.montoSolicitud).round(2)
+                    auxProyectosResultMap[key].totalSolicitudes++                    
+                    auxProyectosResultMap[key].porcentajeDesvio = new Double(auxProyectosResultMap[key].sumDesvio / auxProyectosResultMap[key].totalSolicitudes).round(2)
+                }else{                    
                     auxProyectosResultMap[key] = [proyecto: item.proyecto,
                         cliente: item.cliente, 
-                        porcentajeDesvio: item.porcentajeDesvio,         
+                        porcentajeDesvio: new Double(item.porcentajeDesvio).round(2),         
                         totalTareas: item.totalTareas,
                         sumDesvio: item.porcentajeDesvio,
-                        totalMontoProyecto: item.montoSolicitud,
+                        totalMontoProyecto: new Double(item.montoSolicitud).round(2),
                         totalSolicitudes: 1]
-                }  
-                
+                }                  
             }
             
             auxProyectosResultMap.each{
                 def item = it.value
-                System.println(item)
                 datos << item
             }
             
             session.resultReport = datos
             [datos: datos]
         }
+    }
+    
+        
+    def reporte={
+        def datos = session.resultReport            
+        chain(controller: "jasper", action: "index", model: [data: datos], params:params)
     }
     
 }
