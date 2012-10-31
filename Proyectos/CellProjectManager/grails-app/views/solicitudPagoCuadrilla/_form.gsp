@@ -28,10 +28,9 @@
 <g:if test="${solicitudPagoCuadrillaInstance?.id}">
 <div class="fieldcontain ${hasErrors(bean: solicitudPagoCuadrillaInstance, field: 'monto', 'error')} ">
 	<label for="monto">
-		<g:message code="solicitudPagoCuadrilla.monto.label" default="Monto" />
-		
+		<g:message code="solicitudPagoCuadrilla.monto.label" default="Monto $" />		
 	</label>
-	<g:field type="number" name="monto" step="any" value="${solicitudPagoCuadrillaInstance.monto.toString().replace('.',',')}"/>
+	${solicitudPagoCuadrillaInstance.monto.toString()}
 </div>
 </g:if>
 <div class="fieldcontain ${hasErrors(bean: solicitudPagoCuadrillaInstance, field: 'observaciones', 'error')} ">

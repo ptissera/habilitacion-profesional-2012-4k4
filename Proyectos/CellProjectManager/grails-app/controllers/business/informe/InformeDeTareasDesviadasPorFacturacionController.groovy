@@ -24,8 +24,11 @@ class InformeDeTareasDesviadasPorFacturacionController {
              
             def desde = params.desde ? new Date().parse("dd/MM/yyyy", params.desde_value) : null
             def hasta = params.hasta ? new Date().parse("dd/MM/yyyy", params.hasta_value) : null
-            def monto = params.monto
+            Float monto = new Float(params.monto)
             
+            session.informe_monto = monto
+            session.informe_desde = desde.format("dd/MM/yyyy")
+            session.informe_hasta = hasta.format("dd/MM/yyyy")
             
             def datos = [] 
             def solicitudes = []
@@ -111,6 +114,11 @@ class InformeDeTareasDesviadasPorFacturacionController {
         
     def reporte={
         def datos = session.resultReport            
+        
+        params.monto = session.informe_monto
+        params.fechaDesde = session.informe_desde
+        params.fechaHasta = session.informe_hasta
+        
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)
     }
     

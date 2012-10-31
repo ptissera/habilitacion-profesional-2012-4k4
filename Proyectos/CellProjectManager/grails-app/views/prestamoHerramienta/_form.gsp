@@ -10,10 +10,10 @@
 	<g:fecha name="fechaPrestamo" precision="day"  value="${prestamoHerramientaInstance?.fechaPrestamo}"  />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: prestamoHerramientaInstance, field: 'fechaDevolucion', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: prestamoHerramientaInstance, field: 'fechaDevolucion', 'error')} required">
 	<label for="fechaDevolucion">
 		<g:message code="prestamoHerramienta.fechaDevolucion.label" default="Fecha Devolucion" />
-		
+		<span class="required-indicator">*</span>
 	</label>
 	<g:fecha name="fechaDevolucion" precision="day"  value="${prestamoHerramientaInstance?.fechaDevolucion}" default="none" noSelection="['': '']" />
 </div>
@@ -24,14 +24,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="herramienta" name="herramienta.id" from="${business.herramienta.Herramienta.list()}" optionKey="id" required="" value="${prestamoHerramientaInstance?.herramienta?.id}" class="many-to-one"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: prestamoHerramientaInstance, field: 'cuadrilla', 'error')} required">
-	<label for="cuadrilla">
-		<g:message code="prestamoHerramienta.cuadrilla.label" default="Cuadrilla" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="cuadrilla" name="cuadrilla.id" from="${business.cuadrillas.Cuadrilla.list()}" optionKey="id" required="" value="${prestamoHerramientaInstance?.cuadrilla?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: prestamoHerramientaInstance, field: 'descripcion', 'error')} ">

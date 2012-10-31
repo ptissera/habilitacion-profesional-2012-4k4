@@ -27,7 +27,7 @@ class PrestamoHerramientaController {
             isSolicitudCreate = false
             solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
         }
-        def prestamoHerramientaInstance = new PrestamoHerramienta(solicitud: solicitudDeTareaSelected) 
+        def prestamoHerramientaInstance = new PrestamoHerramienta(solicitud: solicitudDeTareaSelected, cuadrilla: solicitudDeTareaSelected.cuadrila) 
         prestamoHerramientaInstance.properties = params
         if (!prestamoHerramientaInstance.save(flush: true)) {
             render(view: "create", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
