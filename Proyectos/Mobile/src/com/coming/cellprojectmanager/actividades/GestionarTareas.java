@@ -140,14 +140,16 @@ public class GestionarTareas extends Activity implements WsObserver {
     public void notifiyPosExecute(String result) {
     	progressDialog.dismiss();
     	GetTareasWsResponse resp = GetTareasWsResponse.fromJSon(result);
-    	if(resp.error.codigo == 1) {
+    	if(resp.error.codigo < 0 || resp.error.codigo == 1) { // fallo
 			Toast.makeText(this, getString(R.string.obtener_tareas_fallo),
 					Toast.LENGTH_SHORT).show();
     		return;
     	}
-    	if(resp.error.codigo == 2) {
+    	if(resp.error.codigo == 2) { // no se encontraron tareas.
 			Toast.makeText(this, resp.error.descripcion,
 					Toast.LENGTH_SHORT).show();
+	        listAdapter.tareas = null;
+	        listAdapter.notifyDataSetChanged();
     		return;
     	}
         List<TareaBo> tareas = TareaBo.listaDesdeDtos(resp.tareas);
