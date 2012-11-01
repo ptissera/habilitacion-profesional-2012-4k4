@@ -405,7 +405,7 @@ class BootStrap {
     def initCuadrilla(){
         
         if(!Cuadrilla.findByNombre('Perez')){
-            cuadrilla1 = new Cuadrilla(nombre: 'Perez', descripcion: 'Cuadrilla de Perez',
+             new Cuadrilla(nombre: 'Perez', descripcion: 'Cuadrilla de Perez',
                 propia: true, estadoCuadrilla: EstadoCuadrilla.findByNombre('Sin Asignacion')).save(flush: true, insert: true)
         }
                         
@@ -564,7 +564,7 @@ class BootStrap {
  
     def initProyectos(){
         if(!Proyecto.findByLicitacion('Claro 001')){
-            cuadrilla1 = new Cuadrilla(licitacion: 'Claro 001', nombre: '3G centro', descripcion: '3G en el centro de Cba',
+            new Cuadrilla(licitacion: 'Claro 001', nombre: '3G centro', descripcion: '3G en el centro de Cba',
                 fechaCreacion: new Date(), estadoProyecto: EstadoProyecto.findByNombre('Creado'),
                 cliente: Cliente.findByRazonSocial('Claro SA'), 
                 usuario: Usuario.findByNombreUsuario('ptissera')).save(flush: true, insert: true)
