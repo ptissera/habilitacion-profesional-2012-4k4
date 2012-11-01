@@ -20,7 +20,7 @@ class CobroSolicitudDeTrabajoController {
     def create() {
         
         def solicitudDeTareaInstance = SolicitudDeTarea.get(params.id)
-        session.setAttribute("solicitudDeTareaSelected",solicitudDeTareaInstance)
+        session.solicitudDeTareaSelected = solicitudDeTareaInstance
         def cobroSolicitudDeTrabajoInstance = new CobroSolicitudDeTrabajo(fechaCobro: new Date(), solicitud: solicitudDeTareaInstance,
             monto: solicitudDeTareaInstance.totalPorCobrar())
         
@@ -28,7 +28,7 @@ class CobroSolicitudDeTrabajoController {
     }
 
     def save() {
-        def solicitudDeTareaInstance = session.getAttribute("solicitudDeTareaSelected")
+        def solicitudDeTareaInstance = session.solicitudDeTareaSelected
         def cobroSolicitudDeTrabajoInstance = new CobroSolicitudDeTrabajo(solicitud:solicitudDeTareaInstance)
         cobroSolicitudDeTrabajoInstance.properties = params
         if (!cobroSolicitudDeTrabajoInstance.save(flush: true)) {

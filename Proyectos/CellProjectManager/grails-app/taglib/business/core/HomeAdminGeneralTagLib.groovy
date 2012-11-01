@@ -2,6 +2,7 @@ package business.core
 import business.cuadrillas.DocumentacionIntegranteCuadrilla
 import business.solicitud.*
 import business.tarea.SolicitudDeTarea
+import business.tarea.EstadoSolicitudTarea
 
 class HomeAdminGeneralTagLib {
     
@@ -9,7 +10,7 @@ class HomeAdminGeneralTagLib {
         def solicitudDeViaticosInstanceList = EstadoSolicitudDeViaticos.findByNombre('Pendiente').solicitudDeViaticos        
         def solicitudPagoCuadrillaInstanceList = EstadoSolicitudPagoCuadrilla.findByNombre('Pendiente').solicitudPagoCuadrilla
         def documentacionIntegranteCuadrillaInstanceList = DocumentacionIntegranteCuadrilla.list()
-        def solicitudDeTareaInstanceList = SolicitudDeTarea.list()
+        def solicitudDeTareaInstanceList = EstadoSolicitudTarea.findByNombre('Pendiente Cobro').solicitudes
         
         def documentacionIntegranteCuadrillaAuxList = []
         documentacionIntegranteCuadrillaInstanceList.each{
@@ -17,14 +18,7 @@ class HomeAdminGeneralTagLib {
                 documentacionIntegranteCuadrillaAuxList << it
             }
         }
-        
-        def solicitudDeTareaInstanceAuxList = []
-        solicitudDeTareaInstanceList.each{
-            if(it.totalPorCobrar()>0){
-                solicitudDeTareaInstanceAuxList << it
-            }
-        }
-        
+                
         def masLargo = false
         if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList || solicitudDeTareaInstanceAuxList){
             out << "<table style='border: 0px; background-color: white;' class='none;'>"
@@ -61,14 +55,15 @@ class HomeAdminGeneralTagLib {
                 masLargo = true   
             }
             
-            if(solicitudDeTareaInstanceAuxList){
+            
+            if(solicitudDeTareaInstanceList.size() > 0){
                 
                 if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
                     out << "<tr style='background-color: white;'><td colspan='2' style='background-color: white;'>"
                 } else {
                     out << "<tr style='background-color: white;'><td style='background-color: white;'>"
                 }
-                cobros(solicitudDeTareaInstanceAuxList)
+                cobros(solicitudDeTareaInstanceList)
                 out << "</td></tr>"
             }else{
                 masLargo = true   

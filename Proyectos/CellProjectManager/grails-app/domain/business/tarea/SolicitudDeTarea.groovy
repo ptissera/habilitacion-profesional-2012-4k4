@@ -53,8 +53,8 @@ class SolicitudDeTarea {
             }
             
             if(cobros){
-                cobros.each{
-                    totalCobros += it.monto
+                cobros.each{                    
+                    totalCobros += it.monto                    
                 }
             }
             

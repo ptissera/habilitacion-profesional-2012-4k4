@@ -243,12 +243,12 @@ class BootStrap {
         }
         
        
-        if(!EstadoSolicitudTarea .findByNombre('Creada')){
+        if(!EstadoSolicitudTarea.findByNombre('Creada')){
             new EstadoSolicitudTarea(nombre: 'Creada', 
                 descripcion: 'Creada').save(flush: true, insert: true)
         }
         
-        if(!EstadoSolicitudTarea .findByNombre('En Ejecucion')){
+        if(!EstadoSolicitudTarea.findByNombre('En Ejecucion')){
             new EstadoSolicitudTarea(nombre: 'En Ejecucion', 
                 descripcion: 'En Ejecucion').save(flush: true, insert: true)
         }        

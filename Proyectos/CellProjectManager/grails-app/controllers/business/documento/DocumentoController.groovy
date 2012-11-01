@@ -1,6 +1,8 @@
 package business.documento
 
 import org.springframework.dao.DataIntegrityViolationException
+import business.tarea.EstadoSolicitudTarea
+import business.tarea.SolicitudDeTarea
 
 class DocumentoController {
 
@@ -112,6 +114,22 @@ class DocumentoController {
             isSolicitudCreate = false
             solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
         }
+       
+        if(solicitudDeTareaSelected.estado.id == EstadoSolicitudTarea.findByNombre('En Ejecucion').id){
+            def estadoAceptado = EstadoDocumento.findByNombre('Aceptado')
+            def areAllAcepted = true
+            solicitudDeTareaSelected = SolicitudDeTarea.get(solicitudDeTareaSelected.id)
+            solicitudDeTareaSelected.documentos.each{
+                if(it.estado!=estadoAceptado){
+                    areAllAcepted=false
+                }
+            }
+            if(areAllAcepted){
+                solicitudDeTareaSelected.estado = EstadoSolicitudTarea.findByNombre('Pendiente Cobro')
+                solicitudDeTareaSelected.save(flush: true)
+            }            
+        }
+        
         if(isSolicitudCreate){ 
             redirect(controller: "solicitudDeTarea", action: "create")
         }else{
