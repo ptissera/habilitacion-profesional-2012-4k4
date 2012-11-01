@@ -26,14 +26,14 @@
             <span id="nombre-label" class="property-label">Desde:
             </span>
             <span class="property-value" aria-labelledby="nombre-label">
-              <g:fecha name="desde" precision="day"  value="${flash.desde}"  />               
+              <g:fecha name="desde" precision="day"  value=""  />               
             </span>
           </li>
           <li class="fieldcontain">
             <span id="nombre-label" class="property-label">Hasta:
             </span>
             <span class="property-value" aria-labelledby="nombre-label">
-              <g:fecha name="hasta" precision="day"  value="${flash.hasta}"  />               
+              <g:fecha name="hasta" precision="day"  value=""  />               
             </span>
           </li>          
         </ol>

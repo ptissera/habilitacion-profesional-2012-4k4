@@ -27,7 +27,9 @@ class InformeDeTareasDesviadasPorFacturacionController {
             Float monto = new Float(params.monto)
             
             session.informe_monto = monto
+            if(desde)
             session.informe_desde = desde.format("dd/MM/yyyy")
+            if(hasta)
             session.informe_hasta = hasta.format("dd/MM/yyyy")
             
             def datos = [] 
