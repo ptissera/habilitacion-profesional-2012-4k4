@@ -28,7 +28,7 @@
 <g:if test="${solicitudPagoCuadrillaInstance?.id}">
 <div class="fieldcontain ${hasErrors(bean: solicitudPagoCuadrillaInstance, field: 'monto', 'error')} ">
 	<label for="monto">
-		<g:message code="solicitudPagoCuadrilla.monto.label" default="Monto $" />		
+		Monto $
 	</label>
 	${solicitudPagoCuadrillaInstance.monto.toString()}
 </div>

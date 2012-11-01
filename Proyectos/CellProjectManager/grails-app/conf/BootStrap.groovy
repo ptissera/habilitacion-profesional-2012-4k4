@@ -497,6 +497,20 @@ class BootStrap {
                 latitud: '423423434', longitud: '42234333', provincia: Provincia.findByNombre('CORDOBA')).save(flush: true, insert: true)
         }
         
+        if(!Sitio.findByNombre('Los reartes I')){
+            new Sitio(nombre: 'Los reartes I', direccion: 'costanera S/N - Los Reartes',
+                latitud: '423423434', longitud: '42234333', provincia: Provincia.findByNombre('CORDOBA')).save(flush: true, insert: true)
+        }
+        
+        if(!Sitio.findByNombre('Los reartes II')){
+            new Sitio(nombre: 'Los reartes II', direccion: 'Plaza central- Los Reartes',
+                latitud: '423423434', longitud: '42234333', provincia: Provincia.findByNombre('CORDOBA')).save(flush: true, insert: true)
+        }
+        
+        if(!Sitio.findByNombre('La Cumbrecita')){
+            new Sitio(nombre: 'La Cumbrecita', direccion: 'Los alamos 323 - La Cumbrecita',
+                latitud: '423423434', longitud: '42234333', provincia: Provincia.findByNombre('CORDOBA')).save(flush: true, insert: true)
+        }
     }
     
     def initTareas(){
@@ -568,6 +582,16 @@ class BootStrap {
                 fechaCreacion: new Date(), estadoProyecto: EstadoProyecto.findByNombre('Creado'),
                 cliente: Cliente.findByRazonSocial('Claro SA'), 
                 usuario: Usuario.findByNombreUsuario('ptissera'),
+                fechaInicio: new Date() + 10,
+                fechaFin: new Date() + 70).save(flush: true, insert: true)
+            
+        }
+        
+        if(!Proyecto.findByLicitacion('Nokia N0021')){
+            new Proyecto(licitacion: 'Nokia N0021', nombre: '2G Nokia', descripcion: 'cobertura 2G para Nokia',
+                fechaCreacion: new Date(), estadoProyecto: EstadoProyecto.findByNombre('Creado'),
+                cliente: Cliente.findByRazonSocial('Nokia SA'), 
+                usuario: Usuario.findByNombreUsuario('mgava'),
                 fechaInicio: new Date() + 10,
                 fechaFin: new Date() + 70).save(flush: true, insert: true)
         }
