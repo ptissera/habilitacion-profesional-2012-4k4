@@ -20,7 +20,7 @@ class HomeAdminGeneralTagLib {
         }
                 
         def masLargo = false
-        if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList || solicitudDeTareaInstanceAuxList){
+        if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList || documentacionIntegranteCuadrillaInstanceList ){
             out << "<table style='border: 0px; background-color: white;' class='none;'>"
             if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList){
                 if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){

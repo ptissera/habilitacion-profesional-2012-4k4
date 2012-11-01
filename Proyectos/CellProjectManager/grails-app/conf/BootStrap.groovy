@@ -10,11 +10,13 @@ import business.herramienta.EstadoHerramienta
 import business.herramienta.Herramienta
 import business.core.EstadoProyecto
 import business.core.Provincia
+import business.core.Proyecto
 import business.core.Cliente
 import business.core.Sitio
 import business.tarea.EstadoSolicitudTarea
 import business.tarea.EstadoTarea
 import business.tarea.Tarea
+import business.tarea.TipoAcontecimiento
 import business.tarea.TipoTarea
 import business.tarea.TipoEquipoDeTarea
 import business.tarea.TipoMaterialDeTarea
@@ -38,6 +40,7 @@ class BootStrap {
         initHerramientas()
         initUnidadesMedida()
         iniParametros()
+        initProyectos()
     }
     
     def initRolAndUsuarios(){
@@ -128,7 +131,23 @@ class BootStrap {
                 enabled: true, email: 'mguillen@coming.com')
             mguillen.setRol(rol)                
             mguillen.save(flush: true, insert: true)
-        }   
+        }           
+        
+        def mperez=Usuario.findByNombreUsuario('mperez')
+        if(!mperez){
+            mperez = new Usuario(nombreUsuario: 'mperez', nombre: 'Mario', apellido: 'Perez', clave: '123',
+                enabled: true, email: 'mperez@coming.com')
+            mperez.setRol(rol_jefeCuadrilla)                
+            mperez.save(flush: true, insert: true)
+        }  
+        
+        def falvarez=Usuario.findByNombreUsuario('falvarez')
+        if(!falvarez){
+            falvarez = new Usuario(nombreUsuario: 'falvarez', nombre: 'Fernando', apellido: 'Alvarez', clave: '123',
+                enabled: true, email: 'falvarez@coming.com')
+            falvarez.setRol(rol_jefeCuadrilla)                
+            falvarez.save(flush: true, insert: true)
+        }
     }
     
     def initTipos(){
@@ -183,8 +202,19 @@ class BootStrap {
         if(!TipoDocumentoIdentificacion.findByNombre('DU')){
             new TipoDocumentoIdentificacion(nombre: 'DU').save(flush: true, insert: true)
         }
+        
         if(!TipoDocumentoIdentificacion.findByNombre('PASAPORTE')){
             new TipoDocumentoIdentificacion(nombre: 'PASAPORTE').save(flush: true, insert: true)
+        }
+        
+        if(!TipoAcontecimiento.findByNombre('Materiales Faltantes')){
+            new TipoAcontecimiento(nombre: 'Materiales Faltantes', 
+                descripcion: 'Materiales Faltantes').save(flush: true, insert: true)
+        }
+        
+        if(!TipoAcontecimiento.findByNombre('Ingenieria mal hecha')){
+            new TipoAcontecimiento(nombre: 'Ingenieria mal hecha', 
+                descripcion: 'Ingenieria mal hecha').save(flush: true, insert: true)
         }
         
     }
@@ -373,18 +403,56 @@ class BootStrap {
     }
     
     def initCuadrilla(){
-        def cuadrilla = Cuadrilla.findByNombre('Perez')
-        if(!cuadrilla){
-            cuadrilla = new Cuadrilla(nombre: 'Perez', descripcion: 'Cuadrilla de Perez',
-                propia: true, estadoCuadrilla: EstadoCuadrilla.findByNombre('Sin Asignacion'))
-            cuadrilla.save(flush: true, insert: true)
+        
+        if(!Cuadrilla.findByNombre('Perez')){
+            cuadrilla1 = new Cuadrilla(nombre: 'Perez', descripcion: 'Cuadrilla de Perez',
+                propia: true, estadoCuadrilla: EstadoCuadrilla.findByNombre('Sin Asignacion')).save(flush: true, insert: true)
         }
                         
-        if(!IntegranteCuadrilla.findByApellido('Perez')){
+        if(!IntegranteCuadrilla.findByApellidoAndNombre('Perez','Juan')){
+            def mperez=Usuario.findByNombreUsuario('mperez')
             new IntegranteCuadrilla(nombre: 'Juan', apellido: 'Perez',documento: '345455534', tipoDocumento: TipoDocumentoIdentificacion.findByNombre('DU'),
-                legajo: '234', telefono: '23444434', fechaAlta: new Date(), 
+                legajo: '234', telefono: '23444434', fechaAlta: new Date(), usuario: mperez, esJefeCuadrilla: true,
                 cuadrilla: Cuadrilla.findByNombre('Perez')).save(flush: true, insert: true)
         }
+        
+        if(!IntegranteCuadrilla.findByApellidoAndNombre('Fernadez','Eduardo')){            
+            new IntegranteCuadrilla(nombre: 'Eduardo', apellido: 'Fernadez',documento: '763665553', tipoDocumento: TipoDocumentoIdentificacion.findByNombre('DU'),
+                legajo: '235', telefono: '2343455', fechaAlta: new Date(), usuario: null, esJefeCuadrilla: false,
+                cuadrilla: Cuadrilla.findByNombre('Perez')).save(flush: true, insert: true)
+        }
+        
+        if(!IntegranteCuadrilla.findByApellidoAndNombre('Godoy','Marcelo')){            
+            new IntegranteCuadrilla(nombre: 'Marcelo', apellido: 'Godoy',documento: '55234437', tipoDocumento: TipoDocumentoIdentificacion.findByNombre('DU'),
+                legajo: '236', telefono: '723465534', fechaAlta: new Date(), usuario: null, esJefeCuadrilla: false,
+                cuadrilla: Cuadrilla.findByNombre('Perez')).save(flush: true, insert: true)
+        }
+        
+        
+        if(!Cuadrilla.findByNombre('Alvarez')){
+            new Cuadrilla(nombre: 'Alvarez', descripcion: 'Cuadrilla de Alvarez',
+                propia: true, estadoCuadrilla: EstadoCuadrilla.findByNombre('Sin Asignacion')).save(flush: true, insert: true)
+        }
+                        
+        if(!IntegranteCuadrilla.findByApellidoAndNombre('Alvarez','Fernando')){
+            def falvarez=Usuario.findByNombreUsuario('falvarez')
+            new IntegranteCuadrilla(nombre: 'Fernando', apellido: 'Alvarez',documento: '345455536', tipoDocumento: TipoDocumentoIdentificacion.findByNombre('DU'),
+                legajo: '240', telefono: '23444434', fechaAlta: new Date(), usuario: falvarez, esJefeCuadrilla: true,
+                cuadrilla: Cuadrilla.findByNombre('Alvarez')).save(flush: true, insert: true)
+        }
+        
+        if(!IntegranteCuadrilla.findByApellidoAndNombre('Aguero','Carlos')){            
+            new IntegranteCuadrilla(nombre: 'Carlos', apellido: 'Aguero',documento: '763665558', tipoDocumento: TipoDocumentoIdentificacion.findByNombre('DU'),
+                legajo: '241', telefono: '2343455', fechaAlta: new Date(), usuario: null, esJefeCuadrilla: false,
+                cuadrilla: Cuadrilla.findByNombre('Alvarez')).save(flush: true, insert: true)
+        }
+        
+        if(!IntegranteCuadrilla.findByApellidoAndNombre('Ibarra','Luis')){            
+            new IntegranteCuadrilla(nombre: 'Luis', apellido: 'Ibarra',documento: '55234439', tipoDocumento: TipoDocumentoIdentificacion.findByNombre('DU'),
+                legajo: '242', telefono: '723465534', fechaAlta: new Date(), usuario: null, esJefeCuadrilla: false,
+                cuadrilla: Cuadrilla.findByNombre('Alvarez')).save(flush: true, insert: true)
+        }
+        
     }
    
     def initProvincia(){
@@ -492,6 +560,15 @@ class BootStrap {
                 descripcion: 'Porcentaje a cobrar del total de cada PO',
                 valor: '60').save(flush: true, insert: true)
         }  
+    }
+ 
+    def initProyectos(){
+        if(!Proyecto.findByLicitacion('Claro 001')){
+            cuadrilla1 = new Cuadrilla(licitacion: 'Claro 001', nombre: '3G centro', descripcion: '3G en el centro de Cba',
+                fechaCreacion: new Date(), estadoProyecto: EstadoProyecto.findByNombre('Creado'),
+                cliente: Cliente.findByRazonSocial('Claro SA'), 
+                usuario: Usuario.findByNombreUsuario('ptissera')).save(flush: true, insert: true)
+        }
     }
     
     def destroy = {
