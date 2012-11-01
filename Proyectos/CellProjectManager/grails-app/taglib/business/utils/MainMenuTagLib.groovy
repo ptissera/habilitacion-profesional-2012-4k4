@@ -24,12 +24,12 @@ class MainMenuTagLib {
                         ["sitio","Sitios"],
                         ["provincia","Provincias"],
                         ["tipoAcontecimiento","Tipo de Acontecimiento"]])
-        
+            }
+            if(session.usuario.isSuperUser() || session.usuario.isAdminGeneral()){ 
                 tituloItemMenu("Cuadrilla")  
                 subItemMenu([["cuadrilla","Cuadrillas"],
-                        ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"]])
-            }
-            if(session.usuario.isSuperUser() || session.usuario.isAdminGeneral()){    
+                        ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"]])            
+            
                 tituloItemMenu("Finanzas")  
                 subItemMenu([["cobroSolicitudDeTrabajo","Cobros"],
                         ["solicitudDeViaticos","Solicitudes De Viaticos"],

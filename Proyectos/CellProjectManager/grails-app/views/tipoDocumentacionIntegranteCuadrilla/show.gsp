@@ -50,16 +50,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${tipoDocumentacionIntegranteCuadrillaInstance?.documentacionIntegranteCuadrilla}">
-				<li class="fieldcontain">
-					<span id="documentacionIntegranteCuadrilla-label" class="property-label"><g:message code="tipoDocumentacionIntegranteCuadrilla.documentacionIntegranteCuadrilla.label" default="Documentacion Integrante Cuadrilla" /></span>
-					
-						<g:each in="${tipoDocumentacionIntegranteCuadrillaInstance.documentacionIntegranteCuadrilla}" var="d">
-						<span class="property-value" aria-labelledby="documentacionIntegranteCuadrilla-label"><g:link controller="documentacionIntegranteCuadrilla" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
 			
 			</ol>
 			<g:form>

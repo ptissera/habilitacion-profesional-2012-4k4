@@ -47,14 +47,14 @@
 				<li class="fieldcontain">
 					<span id="porcentaje-label" class="property-label"><g:message code="solicitudPagoCuadrilla.porcentaje.label" default="Porcentaje" /></span>
 					
-						<span class="property-value" aria-labelledby="porcentaje-label"><g:fieldValue bean="${solicitudPagoCuadrillaInstance}" field="porcentaje"/></span>
+						<span class="property-value" aria-labelledby="porcentaje-label"><g:fieldValue bean="${solicitudPagoCuadrillaInstance}" field="porcentaje"/> %</span>
 					
 				</li>
 				</g:if>
 			
 				<g:if test="${solicitudPagoCuadrillaInstance?.monto}">
 				<li class="fieldcontain">
-					<span id="monto-label" class="property-label"><g:message code="solicitudPagoCuadrilla.monto.label" default="Monto" /></span>
+					<span id="monto-label" class="property-label">Monto $</span>
 					
 						<span class="property-value" aria-labelledby="monto-label"><g:fieldValue bean="${solicitudPagoCuadrillaInstance}" field="monto"/></span>
 					
