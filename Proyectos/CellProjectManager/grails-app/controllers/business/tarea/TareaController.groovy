@@ -240,9 +240,10 @@ class TareaController {
         if (respuesta) {
                 response.status =200
                 render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }, \"tareas\":[$respuesta]}") as JSON
-            }
-     response.status=200
-     render  JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
+        } else {
+            response.status=200
+            render  JSON.parse("{ \"error\": { \"codigo\": 2, \"descripcion\": \"No hay tareas a realizar para su cuadrilla.\" }}") as JSON            
+        }
     }
     
     private void doPostRest(params)

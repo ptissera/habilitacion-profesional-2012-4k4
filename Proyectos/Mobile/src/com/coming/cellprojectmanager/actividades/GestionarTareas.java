@@ -140,7 +140,7 @@ public class GestionarTareas extends Activity implements WsObserver {
     public void notifiyPosExecute(String result) {
     	progressDialog.dismiss();
     	GetTareasWsResponse resp = GetTareasWsResponse.fromJSon(result);
-    	if(resp.error.codigo != 0) {
+    	if(resp.error.codigo == 1) {
 			Toast.makeText(this, getString(R.string.obtener_tareas_fallo),
 					Toast.LENGTH_SHORT).show();
     		return;
