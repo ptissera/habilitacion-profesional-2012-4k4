@@ -567,7 +567,9 @@ class BootStrap {
             new Proyecto(licitacion: 'Claro 001', nombre: '3G centro', descripcion: '3G en el centro de Cba',
                 fechaCreacion: new Date(), estadoProyecto: EstadoProyecto.findByNombre('Creado'),
                 cliente: Cliente.findByRazonSocial('Claro SA'), 
-                usuario: Usuario.findByNombreUsuario('ptissera')).save(flush: true, insert: true)
+                usuario: Usuario.findByNombreUsuario('ptissera'),
+                fechaInicio: new Date() + 10,
+                fechaFin: new Date() + 70).save(flush: true, insert: true)
         }
     }
     

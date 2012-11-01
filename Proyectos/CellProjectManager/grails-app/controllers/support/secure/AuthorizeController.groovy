@@ -9,8 +9,7 @@ class AuthorizeController {
 	
     def home = 
     {
-        [ "cuadrillaSelected",
-         "solicitudDeTareaCreate",
+        [ "cuadrillaSelected",         
          "integranteCuadrillaSelected",
          "documentacionIntegranteCuadrillaSelectedTF",
          "historialCuadrillaSelectedTF",
@@ -27,11 +26,12 @@ class AuthorizeController {
             session.setAttribute(name , null)
         }
         
-        def solicitudDeTareaCreate = session.getAttribute("solicitudDeTareaCreate")
+        def solicitudDeTareaCreate = session.solicitudDeTareaCreate
         if (solicitudDeTareaCreate){
             solicitudDeTareaCreate.delete(flush: true)
+            session.solicitudDeTareaCreate = null
         }
-        session.setAttribute("solicitudDeTareaCreate",null)
+        
         if (session.usuario){
             redirect(uri:"/")   
         } else {
