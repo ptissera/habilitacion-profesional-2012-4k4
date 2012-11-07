@@ -666,6 +666,14 @@ th:hover, tr:hover {
 	text-indent: 25px;
 }
 
+.buttons .sendEmail {
+	background-position: 0.7em center;
+        background-size: 21px 15px;
+	background-repeat: no-repeat;
+	text-indent: 25px;
+	background-image: url(../images/skin/send_email_2.png);
+}
+
 .buttons .add {
 	background-image: url(../images/skin/database_add.png);
 }
@@ -753,13 +761,22 @@ a.skip {
 }
 
  .buttons_add .add, .buttons_add .cerrar, .buttons_add .ejecutar, 
- .buttons_add .viaticos, .buttons_add .cobrar, .buttons_add .pagar {
+ .buttons_add .viaticos, .buttons_add .cobrar, .buttons_add .pagar
+ {
 	background-position: 0.7em center;
         background-size: 16px 16px;
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
 
+.buttons_add .sendEmail {
+	background-position: 0.7em center;
+        background-size: 21px 15px;
+	background-repeat: no-repeat;
+	text-indent: 25px;
+	background-image: url(../images/skin/send_email_2.png);
+}
+        
 .buttons_add .add {
 	background-image: url(../images/skin/database_add.png);
 }

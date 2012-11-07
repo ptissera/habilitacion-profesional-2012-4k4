@@ -232,7 +232,10 @@
           <g:link class="ejecutar" action="pasarEnEjecutacion"  id="${solicitudDeTareaInstance?.id}" >Pasar En Ejecucion</g:link>
         </g:if>          
         <g:link class="viaticos" controller="solicitudDeViaticos" action="create">Solicitar Viaticos</g:link>
-        <g:link class="pagar" action="create" controller="solicitudPagoCuadrilla" >Solicitar Pago</g:link>          
+        <g:link class="pagar" action="create" controller="solicitudPagoCuadrilla" >Solicitar Pago</g:link>                  
+        <g:if test="${solicitudDeTareaInstance.hasDocumentos()}">
+          <g:link class="sendEmail" action="enviarDocumentacionACliente">Enviar doc. a Cliente</g:link>
+        </g:if>
       </fieldset>
 
       <fieldset class="buttons">

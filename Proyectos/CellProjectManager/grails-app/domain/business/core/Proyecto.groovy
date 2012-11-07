@@ -5,7 +5,7 @@ import business.tarea.*
 class Proyecto {
     static hasMany = [ solicitudes:SolicitudDeTarea]
     static belongsTo = [cliente: Cliente, usuario: Usuario, estadoProyecto: EstadoProyecto]
-    static fetchMode = [solicitudes:"eager"] 
+    static fetchMode = [solicitudes:"eager", cliente:"eager"] 
     String licitacion
     String descripcion
     String nombre

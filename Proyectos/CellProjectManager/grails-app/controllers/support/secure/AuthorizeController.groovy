@@ -9,7 +9,8 @@ class AuthorizeController {
 	
     def home = 
     {
-        [ "cuadrillaSelected",         
+        [ "cuadrillaSelected",
+            "enviarDocumentacionAClienteTF",
          "integranteCuadrillaSelected",
          "documentacionIntegranteCuadrillaSelectedTF",
          "historialCuadrillaSelectedTF",
@@ -59,6 +60,7 @@ class AuthorizeController {
         session.usuario = null
         ["solicitudDeTareaCreate",
          "proyectoSelected",
+            "enviarDocumentacionAClienteTF",
          "cuadrillaSelected",
          "solicitudDeTareaCreate",
          "integranteCuadrillaSelected",

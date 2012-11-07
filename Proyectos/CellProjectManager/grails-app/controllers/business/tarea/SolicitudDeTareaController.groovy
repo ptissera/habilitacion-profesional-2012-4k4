@@ -2,6 +2,7 @@ package business.tarea
 
 import org.springframework.dao.DataIntegrityViolationException
 import business.core.Proyecto
+import business.core.Cliente
 import business.cuadrillas.Cuadrilla
 import business.solicitud.*
 import support.tool.ParametrosDelSistema
@@ -25,6 +26,15 @@ class SolicitudDeTareaController {
             session.setAttribute("aDondeVoy",["solicitudDeTarea","list"])
             redirect(action: "selectList", controller: "proyecto")
         }
+    }
+    
+    def enviarDocumentacionACliente(){
+         
+        def solicitudDeTareaInstance = session.solicitudDeTareaSelected
+        session.enviarDocumentacionAClienteTF = true
+        def proyectoInstance = session.proyectoSelected
+        def clienteInstance = Cliente.get(proyectoInstance.clienteId)        
+        [solicitudDeTareaInstance: solicitudDeTareaInstance, emailCliente: clienteInstance.contactoEmail]
     }
 
     def pasarEnEjecutacion(){      
@@ -226,7 +236,8 @@ class SolicitudDeTareaController {
         "poSelectedTF",
          "prestamosSelectedTF", 
         "solicitudPagoCuadrillaSelectedTF",
-        "solicitudViaticosSelectedTF"].each{ name ->
+        "solicitudViaticosSelectedTF",
+        "enviarDocumentacionAClienteTF"].each{ name ->
             session.setAttribute(name , null)
         }
     }

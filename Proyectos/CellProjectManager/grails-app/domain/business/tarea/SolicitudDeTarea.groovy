@@ -40,6 +40,10 @@ class SolicitudDeTarea {
         return estado != null ? estado.getNombre() == "Creada" || estado.getNombre() == "Pendiente Conformidad" : false
     }
     
+    def hasDocumentos(){              
+        return documentos != null ? documentos.size() > 0 : false
+    }
+    
     def totalPorCobrar(){              
          
         Float totalACobrar = 0
