@@ -18,7 +18,7 @@
     <g:if test="${flash.error}">      
       <ul class="errors" role="alert"><li>${flash.error}</li></ul>        
     </g:if>
-    <g:form>
+    <g:form action="enviarEmail">
     <ol class="property-list solicitudDeTarea">
 
       
@@ -72,7 +72,8 @@
     </ol>
     
       <fieldset class="buttons">        
-         <g:link class="sendEmail" action="enviarDocumentacionACliente">Enviar</g:link>
+         <g:submitButton name="sendEmail" class="sendEmail" value="Enviar" />
+           
       </fieldset>
     </g:form>
   </div>

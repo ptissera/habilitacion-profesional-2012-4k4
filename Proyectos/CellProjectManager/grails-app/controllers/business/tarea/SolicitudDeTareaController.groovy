@@ -11,6 +11,8 @@ class SolicitudDeTareaController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    def mailService 
+    
     def index() {
         redirect(action: "list", params: params)
     }
@@ -34,7 +36,26 @@ class SolicitudDeTareaController {
         session.enviarDocumentacionAClienteTF = true
         def proyectoInstance = session.proyectoSelected
         def clienteInstance = Cliente.get(proyectoInstance.clienteId)        
+        flash.contactoEmail = clienteInstance.contactoEmail
         [solicitudDeTareaInstance: solicitudDeTareaInstance, emailCliente: clienteInstance.contactoEmail]
+    }
+    
+    def enviarEmail() {
+        def solicitudDeTareaInstance = session.solicitudDeTareaSelected
+        solicitudDeTareaInstance = SolicitudDeTarea.get(solicitudDeTareaInstance.id)
+        def docs = solicitudDeTareaInstance.documentos
+         
+        mailService.sendMail {     
+            multipart true
+            to "carlostrepat@gmail.com", "marianoguillen@gmail.com", "marianojgava@gmail.com", "javierbrizue101@gmail.com", "argbat@gmail.com" 
+            cc "tissera.pablo@gmail.com"
+            from "coming@coming.com"
+            subject "${params.asunto}"     
+            body "${params.observaciones}" 
+            attachBytes "${docs.nombreArchivo[0]}", "application/pdf", docs.archivo[0]
+        }
+        flash.message = "Documentos enviados"
+        redirect(action: "show", id: session.solicitudDeTareaSelected.id)
     }
 
     def pasarEnEjecutacion(){      
