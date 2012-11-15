@@ -1,0 +1,9 @@
+De acuerdo a lo implementado se trabaja siempre con un proyecto gestionado, una solicitud de tarea seleccionda, una cuadrilla debe haber sido asignada a la S de T 
+
+por logica 
+un prestamo es para una herramienta, para una cuadrilla, para una tarea
+
+fisicamente es
+uno o mas prestamos pára una S de T
+
+La S de T puede tener uno  o mas prestamos asigandos estos pueden o no estar devuelto 
