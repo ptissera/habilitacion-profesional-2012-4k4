@@ -75,6 +75,8 @@
       <g:sortableColumn property="fechaPrestamo" title="${message(code: 'prestamoHerramienta.fechaPrestamo.label', default: 'Fecha Prestamo')}" />      
       <th><g:message code="prestamoHerramienta.herramienta.label" default="Herramienta" /></th>      
       <g:sortableColumn property="descripcion" title="${message(code: 'prestamoHerramienta.descripcion.label', default: 'Descripcion')}" />
+      <g:sortableColumn property="fechaDevolucion" title="${message(code: 'prestamoHerramienta.fechaDevolucion.label', default: 'Fecha Devolucion Estimada')}" />
+      <g:sortableColumn property="fechaDevolucionReal" title="${message(code: 'prestamoHerramienta.fechaDevolucionReal.label', default: 'Fecha Devolucion Real')}" />
       </tr>
       </thead>
       <tbody>
@@ -83,6 +85,8 @@
           <td><g:link action="show" controller="prestamoHerramienta" id="${prestamoHerramientaInstance.id}"><g:formatDate format="dd/MM/yyyy" date="${prestamoHerramientaInstance.fechaPrestamo}" /></g:link></td>        
         <td>${fieldValue(bean: prestamoHerramientaInstance, field: "herramienta")}</td>        
         <td>${fieldValue(bean: prestamoHerramientaInstance, field: "descripcion")}</td>
+        <td><g:formatDate format="dd/MM/yyyy" date="${prestamoHerramientaInstance.fechaDevolucion}" /></td>
+        <td> <g:formatDate format="dd/MM/yyyy" date="${prestamoHerramientaInstance.fechaDevolucionReal}" /> </td>
         </tr>
       </g:each>
       </tbody>

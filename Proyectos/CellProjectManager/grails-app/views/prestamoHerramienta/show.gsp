@@ -40,6 +40,15 @@
 					
 				</li>
 				</g:if>
+                          
+                                <g:if test="${prestamoHerramientaInstance?.fechaDevolucionReal}">
+				<li class="fieldcontain">
+					<span id="fechaDevolucionReal-label" class="property-label"><g:message code="prestamoHerramienta.fechaDevolucionReal.label" default="Fecha Devolucion Real" /></span>
+					
+						<span class="property-value" aria-labelledby="fechaDevolucionReal-label"><g:formatDate date="${prestamoHerramientaInstance?.fechaDevolucionReal}" /></span>
+					
+				</li>
+				</g:if>
 			
 				<g:if test="${prestamoHerramientaInstance?.herramienta}">
 				<li class="fieldcontain">

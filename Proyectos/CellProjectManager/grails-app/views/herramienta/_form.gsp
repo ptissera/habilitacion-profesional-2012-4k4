@@ -34,11 +34,4 @@
 	<g:select id="estado" name="estado.id" from="${business.herramienta.EstadoHerramienta.list()}" optionKey="id" required="" value="${herramientaInstance?.estado?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: herramientaInstance, field: 'prestamos', 'error')} ">
-	<label for="prestamos">
-		<g:message code="herramienta.prestamos.label" default="Prestamos" />
-		
-	</label>
-	<g:select name="prestamos" from="${business.herramienta.PrestamoHerramienta.list()}" multiple="multiple" optionKey="id" size="5" value="${herramientaInstance?.prestamos*.id}" class="many-to-many"/>
-</div>
 

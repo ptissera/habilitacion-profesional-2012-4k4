@@ -28,7 +28,8 @@ class MainMenuTagLib {
             if(session.usuario.isSuperUser() || session.usuario.isAdminGeneral()){ 
                 tituloItemMenu("Cuadrilla")  
                 subItemMenu([["cuadrilla","Cuadrillas"],
-                        ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"]])            
+                        ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"],
+                        ["herramienta", "Herramientas"] ])            
             
                 tituloItemMenu("Finanzas")  
                 subItemMenu([["cobroSolicitudDeTrabajo","Cobros"],

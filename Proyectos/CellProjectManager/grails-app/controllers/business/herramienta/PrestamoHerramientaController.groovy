@@ -1,4 +1,6 @@
 package business.herramienta
+import business.cuadrillas.*
+import business.tarea.*
 
 import org.springframework.dao.DataIntegrityViolationException
 
@@ -27,7 +29,7 @@ class PrestamoHerramientaController {
             isSolicitudCreate = false
             solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
         }
-        def prestamoHerramientaInstance = new PrestamoHerramienta(solicitud: solicitudDeTareaSelected, cuadrilla: solicitudDeTareaSelected.cuadrila) 
+        def prestamoHerramientaInstance = new PrestamoHerramienta(solicitud: solicitudDeTareaSelected, cuadrilla: solicitudDeTareaSelected.cuadrilla) 
         prestamoHerramientaInstance.properties = params
         if (!prestamoHerramientaInstance.save(flush: true)) {
             render(view: "create", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
