@@ -50,13 +50,36 @@ class ReporteDocumentacionIntegranteCuadrillaController {
             def integrantesCuadrillaListSelectedInstance = session.integrantesCuadrillaListSelectedInstance
             def resultReport = []
             def datos = [] 
+            def integrantesCuadrilla = []
             def vigenciaDesde_mayorQue = params.vigenciaDesde_mayorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaDesde_mayorQue_value):null
             def vigenciaDesde_menorQue = params.vigenciaDesde_menorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaDesde_menorQue_value): null
             def vigenciaHasta_mayorQue = params.vigenciaHasta_mayorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaHasta_mayorQue_value):null
             def vigenciaHasta_menorQue = params.vigenciaHasta_menorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaHasta_menorQue_value):null
             
-            integrantesCuadrillaListSelectedInstance.each{ intCuad-> 
-                IntegranteCuadrilla.get(intCuad.id).documentacion.each{doc->                     
+             
+            if(vigenciaDesde_mayorQue){
+                session.reporte_vigenciaDesde_mayorQue = vigenciaDesde_mayorQue.format("dd/MM/yyyy")
+            }
+            if(vigenciaDesde_menorQue){
+                session.reporte_vigenciaDesde_menorQue = vigenciaDesde_menorQue.format("dd/MM/yyyy")
+            }
+            if(vigenciaHasta_mayorQue){
+                session.reporte_vigenciaHasta_mayorQue = vigenciaHasta_mayorQue.format("dd/MM/yyyy")
+            }
+            if(hasta){
+                session.reporte_vigenciaHasta_menorQue = vigenciaHasta_menorQue.format("dd/MM/yyyy")
+            }
+            
+            
+            
+            
+            integrantesCuadrillaListSelectedInstance.each{ intCuad->                 
+                
+                def integranteCuadrilla = IntegranteCuadrilla.get(intCuad.id)
+                
+                integrantesCuadrilla <<  "${integranteCuadrilla.cuadrilla} - (${integranteCuadrilla})"
+                integranteCuadrilla.documentacion.each{doc->                     
+                    
                     tiposDocumentosListSelectedInstance.each{                            
                         if(it==doc.tipoDocumento 
                             && (vigenciaDesde_mayorQue !=null ? vigenciaDesde_mayorQue <= doc.vigenciaDesde : true)
@@ -65,18 +88,26 @@ class ReporteDocumentacionIntegranteCuadrillaController {
                             && (vigenciaHasta_menorQue !=null ? vigenciaHasta_menorQue >= doc.vigenciaHasta : true)){                            
                             resultReport << doc
                             datos << [integrante: doc.integrante, tipoDocumento: doc.tipoDocumento, vigenciaDesde: doc.vigenciaDesde, vigenciaHasta: doc.vigenciaHasta]
+                            
                         }
                     }
                 }
             }            
-            
+            session.reporte_integrantesCuadrilla = integrantesCuadrilla
             session.resultReport = datos
             [documentacionIntegranteCuadrillaInstanceList: resultReport]
         }
     }
     
     def reporte={
+        
         def datos = session.resultReport            
+        params.integrantesCuadrilla = session.reporte_integrantesCuadrilla 
+        params.vigenciaDesde_mayorQue = session.reporte_vigenciaDesde_mayorQue         
+        params.vigenciaDesde_menorQue = session.reporte_vigenciaDesde_menorQue         
+        params.vigenciaHasta_mayorQue =  session.reporte_vigenciaHasta_mayorQue         
+        params.vigenciaHasta_menorQue =  session.reporte_vigenciaHasta_menorQue
+                
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)
     }
     

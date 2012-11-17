@@ -10,6 +10,11 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="integrantesCuadrilla" class="java.util.Collection"/>
+	<parameter name="vigenciaDesde_mayorQue" class="java.lang.String"/>
+	<parameter name="vigenciaDesde_menorQue" class="java.lang.String"/>
+	<parameter name="vigenciaHasta_mayorQue" class="java.lang.String"/>
+	<parameter name="vigenciaHasta_menorQue" class="java.lang.String"/>
 	<field name="vigenciaDesde" class="java.util.Date"/>
 	<field name="integrante" class="java.lang.Object"/>
 	<field name="vigenciaHasta" class="java.util.Date"/>
@@ -18,7 +23,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="153" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="33" y="14" width="500" height="38"/>
 				<textElement>
@@ -30,6 +35,62 @@
 				<reportElement uuid="452d971c-fe32-40dc-98ef-d599a5e568ff" x="485" y="-6" width="73" height="66"/>
 				<imageExpression><![CDATA["http://localhost:8080/CellProjectManager/images/celltower.png"]]></imageExpression>
 			</image>
+			<frame>
+				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="20" y="52" width="455" height="90" backcolor="#F0F0F0"/>
+				<textField>
+					<reportElement uuid="6c14c274-9b10-4a95-84e0-6043fa87ac96" x="13" y="8" width="217" height="73"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[""+$P{integrantesCuadrilla}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="241" y="9" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Desde <=:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="242" y="47" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Hasta <=:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="241" y="67" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Hasta >=:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="241" y="28" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Desde >=:]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="5e0df59d-676a-4fee-981f-976ca95ac502" x="338" y="9" width="100" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{vigenciaDesde_mayorQue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="708da74c-5248-4c1d-99e6-681a3b1bc49e" x="338" y="28" width="100" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{vigenciaDesde_menorQue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="338" y="47" width="100" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{vigenciaHasta_mayorQue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="338" y="67" width="100" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{vigenciaHasta_menorQue}]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</title>
 	<pageHeader>
