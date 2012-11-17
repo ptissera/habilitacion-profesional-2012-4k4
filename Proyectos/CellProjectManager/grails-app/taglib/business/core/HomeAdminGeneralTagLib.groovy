@@ -14,7 +14,12 @@ class HomeAdminGeneralTagLib {
         
         def documentacionIntegranteCuadrillaAuxList = []
         documentacionIntegranteCuadrillaInstanceList.each{
-            if(it.checkVencimiento()<3){
+            if(it.checkVencimiento()==1){
+                documentacionIntegranteCuadrillaAuxList << it
+            }
+        }
+        documentacionIntegranteCuadrillaInstanceList.each{
+            if(it.checkVencimiento()==2){
                 documentacionIntegranteCuadrillaAuxList << it
             }
         }
@@ -205,7 +210,6 @@ class HomeAdminGeneralTagLib {
         out << "</div>"
         out << "</td></tr></table>"
     }
-
 
     def cobros(solicitudDeTareaInstanceList) {
          out << "<table cellspacing='0' cellpadding='0' style='padding: 0px; spacing: 0px; margin: 10px 0px 0px 0px;'>"
