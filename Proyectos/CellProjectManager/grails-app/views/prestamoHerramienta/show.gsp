@@ -11,9 +11,9 @@
 		<a href="#show-prestamoHerramienta" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				 
+				
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+			
 			</ul>
 		</div>
 		<div id="show-prestamoHerramienta" class="content scaffold-show" role="main">
@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="herramienta-label" class="property-label"><g:message code="prestamoHerramienta.herramienta.label" default="Herramienta" /></span>
 					
-						<span class="property-value" aria-labelledby="herramienta-label"><g:link controller="herramienta" action="show" id="${prestamoHerramientaInstance?.herramienta?.id}">${prestamoHerramientaInstance?.herramienta?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="herramienta-label">${prestamoHerramientaInstance?.herramienta?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
@@ -63,7 +63,7 @@
 				<li class="fieldcontain">
 					<span id="cuadrilla-label" class="property-label"><g:message code="prestamoHerramienta.cuadrilla.label" default="Cuadrilla" /></span>
 					
-						<span class="property-value" aria-labelledby="cuadrilla-label"><g:link controller="cuadrilla" action="show" id="${prestamoHerramientaInstance?.cuadrilla?.id}">${prestamoHerramientaInstance?.cuadrilla?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="cuadrilla-label">${prestamoHerramientaInstance?.cuadrilla?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>

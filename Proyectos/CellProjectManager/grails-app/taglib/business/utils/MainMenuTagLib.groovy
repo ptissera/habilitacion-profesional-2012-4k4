@@ -29,7 +29,8 @@ class MainMenuTagLib {
                 tituloItemMenu("Cuadrilla")  
                 subItemMenu([["cuadrilla","Cuadrillas"],
                         ["tipoDocumentacionIntegranteCuadrilla","Tipos de Documentaciones"],
-                        ["herramienta", "Herramientas"] ])            
+                        ["herramienta", "Herramientas"],
+                        ["prestamoHerramienta","Devoluciones Herramientas","listPrestamosActivos"],])            
             
                 tituloItemMenu("Finanzas")  
                 subItemMenu([["cobroSolicitudDeTrabajo","Cobros"],

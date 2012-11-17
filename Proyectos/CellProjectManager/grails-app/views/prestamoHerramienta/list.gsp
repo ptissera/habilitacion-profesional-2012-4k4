@@ -40,7 +40,7 @@
 				<g:each in="${prestamoHerramientaInstanceList}" status="i" var="prestamoHerramientaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${prestamoHerramientaInstance.id}">${fieldValue(bean: prestamoHerramientaInstance, field: "fechaPrestamo")}</g:link></td>
+						<td><g:link action="show" id="${prestamoHerramientaInstance.id}"><g:formatDate date="${prestamoHerramientaInstance.fechaPrestamo}" /></g:link></td>
 					
 						<td><g:formatDate date="${prestamoHerramientaInstance.fechaDevolucion}" /></td>
 					

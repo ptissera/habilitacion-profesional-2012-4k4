@@ -15,6 +15,17 @@ class PrestamoHerramientaController {
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [prestamoHerramientaInstanceList: PrestamoHerramienta.list(params), prestamoHerramientaInstanceTotal: PrestamoHerramienta.count()]
+        
+    }
+    
+    def listPrestamosActivos() {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        [prestamoHerramientaInstanceList: PrestamoHerramienta.findAllByFechaDevolucionRealIsNull(), prestamoHerramientaInstanceTotal: PrestamoHerramienta.count()]
+    }
+    
+    def registrarDevolucion(){
+        def prestamoHerramientaInstance = PrestamoHerramienta.get(params.id)
+          [prestamoHerramientaInstance: prestamoHerramientaInstance]
     }
 
     def create() {
@@ -22,6 +33,30 @@ class PrestamoHerramientaController {
         [prestamoHerramientaInstance: new PrestamoHerramienta(params)]
     }
 
+    def guardarDevolucion() {
+        
+        def prestamoHerramientaInstance = PrestamoHerramienta.get(params.id)
+        def fechaDevolucionReal = params.fechaDevolucionReal_value ? new Date().parse("dd/MM/yyyy", params.fechaDevolucionReal_value):null
+        if(!fechaDevolucionReal){
+            flash.message = "Debe ingresar fecha de Devolucion Real"
+            render(view: "registrarDevolucion", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
+            return
+        }
+        prestamoHerramientaInstance.fechaDevolucionReal = fechaDevolucionReal
+        if (!prestamoHerramientaInstance.save(flush: true)) {
+            render(view: "registrarDevolucion", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
+            return
+        }else {
+                def herramienta = Herramienta.get(prestamoHerramientaInstance.herramientaId)
+                herramienta.estado = EstadoHerramienta.findByNombre("Libre")
+                herramienta.save(flush: true)
+        }
+
+        flash.message = "La devolucion fue registrada correctamente"
+         redirect(controller: "prestamoHerramienta", action: "listPrestamosActivos")
+        
+        
+    }
     def save() {
         def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
         boolean isSolicitudCreate = true

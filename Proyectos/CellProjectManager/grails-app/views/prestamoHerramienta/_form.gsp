@@ -18,14 +18,6 @@
 	<g:fecha name="fechaDevolucion" precision="day"  value="${prestamoHerramientaInstance?.fechaDevolucion}" default="none" noSelection="['': '']" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: prestamoHerramientaInstance, field: 'fechaDevolucionReal', 'error')}">
-	<label for="fechaDevolucion">
-		<g:message code="prestamoHerramienta.fechaDevolucionReal.label" default="Fecha Devolucion Real" />
-		
-	</label>
-	<g:fecha name="fechaDevolucionReal" precision="day"  value="${prestamoHerramientaInstance?.fechaDevolucionReal}" default="none" noSelection="['': '']" />
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: prestamoHerramientaInstance, field: 'herramienta', 'error')} required">
 	<label for="herramienta">
 		<g:message code="prestamoHerramienta.herramienta.label" default="Herramienta" />

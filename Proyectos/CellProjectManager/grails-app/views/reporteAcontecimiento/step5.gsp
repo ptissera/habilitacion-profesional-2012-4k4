@@ -9,7 +9,7 @@
   <body>
 
     <div id="list-documentacionIntegranteCuadrilla" class="content scaffold-list" role="main">
-      <h1>Reporte Proyectos - Paso 5/5</h1>
+      <h1>Reporte Acontecimientos - Paso 5/5</h1>
       <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
       </g:if>
