@@ -50,7 +50,7 @@ class ReporteDocumentacionIntegranteCuadrillaController {
             def integrantesCuadrillaListSelectedInstance = session.integrantesCuadrillaListSelectedInstance
             def resultReport = []
             def datos = [] 
-            def integrantesCuadrilla = []
+            def tiposDocumentos = ""
             def vigenciaDesde_mayorQue = params.vigenciaDesde_mayorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaDesde_mayorQue_value):null
             def vigenciaDesde_menorQue = params.vigenciaDesde_menorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaDesde_menorQue_value): null
             def vigenciaHasta_mayorQue = params.vigenciaHasta_mayorQue_value ? new Date().parse("dd/MM/yyyy", params.vigenciaHasta_mayorQue_value):null
@@ -66,18 +66,19 @@ class ReporteDocumentacionIntegranteCuadrillaController {
             if(vigenciaHasta_mayorQue){
                 session.reporte_vigenciaHasta_mayorQue = vigenciaHasta_mayorQue.format("dd/MM/yyyy")
             }
-            if(hasta){
+            if(vigenciaHasta_menorQue){
                 session.reporte_vigenciaHasta_menorQue = vigenciaHasta_menorQue.format("dd/MM/yyyy")
             }
             
             
-            
+            tiposDocumentosListSelectedInstance.each{
+                tiposDocumentos += "${it.nombre} \n"
+            }
+            session.reporte_tiposDocumentos = tiposDocumentos
             
             integrantesCuadrillaListSelectedInstance.each{ intCuad->                 
                 
                 def integranteCuadrilla = IntegranteCuadrilla.get(intCuad.id)
-                
-                integrantesCuadrilla <<  "${integranteCuadrilla.cuadrilla} - (${integranteCuadrilla})"
                 integranteCuadrilla.documentacion.each{doc->                     
                     
                     tiposDocumentosListSelectedInstance.each{                            
@@ -93,7 +94,7 @@ class ReporteDocumentacionIntegranteCuadrillaController {
                     }
                 }
             }            
-            session.reporte_integrantesCuadrilla = integrantesCuadrilla
+            
             session.resultReport = datos
             [documentacionIntegranteCuadrillaInstanceList: resultReport]
         }
@@ -102,7 +103,7 @@ class ReporteDocumentacionIntegranteCuadrillaController {
     def reporte={
         
         def datos = session.resultReport            
-        params.integrantesCuadrilla = session.reporte_integrantesCuadrilla 
+        params.tiposDocumentos = session.reporte_tiposDocumentos 
         params.vigenciaDesde_mayorQue = session.reporte_vigenciaDesde_mayorQue         
         params.vigenciaDesde_menorQue = session.reporte_vigenciaDesde_menorQue         
         params.vigenciaHasta_mayorQue =  session.reporte_vigenciaHasta_mayorQue         

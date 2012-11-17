@@ -10,7 +10,7 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<parameter name="integrantesCuadrilla" class="java.util.Collection"/>
+	<parameter name="tiposDocumentos" class="java.lang.String"/>
 	<parameter name="vigenciaDesde_mayorQue" class="java.lang.String"/>
 	<parameter name="vigenciaDesde_menorQue" class="java.lang.String"/>
 	<parameter name="vigenciaHasta_mayorQue" class="java.lang.String"/>
@@ -37,11 +37,6 @@
 			</image>
 			<frame>
 				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="20" y="52" width="455" height="90" backcolor="#F0F0F0"/>
-				<textField>
-					<reportElement uuid="6c14c274-9b10-4a95-84e0-6043fa87ac96" x="13" y="8" width="217" height="73"/>
-					<textElement/>
-					<textFieldExpression><![CDATA[""+$P{integrantesCuadrilla}]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="241" y="9" width="85" height="14"/>
 					<textElement textAlignment="Right">
@@ -72,7 +67,9 @@
 				</staticText>
 				<textField>
 					<reportElement uuid="5e0df59d-676a-4fee-981f-976ca95ac502" x="338" y="9" width="100" height="14"/>
-					<textElement/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$P{vigenciaDesde_mayorQue}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -90,6 +87,18 @@
 					<textElement/>
 					<textFieldExpression><![CDATA[$P{vigenciaHasta_menorQue}]]></textFieldExpression>
 				</textField>
+				<textField>
+					<reportElement uuid="c836b171-eccf-43f5-a662-aa7c0f6efa9c" x="41" y="24" width="183" height="62"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{tiposDocumentos}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="13" y="9" width="116" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Tipos de Documentos:]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</title>
