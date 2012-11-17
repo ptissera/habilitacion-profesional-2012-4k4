@@ -31,12 +31,28 @@ class PrestamoHerramientaController {
         }
         def prestamoHerramientaInstance = new PrestamoHerramienta(solicitud: solicitudDeTareaSelected, cuadrilla: solicitudDeTareaSelected.cuadrilla) 
         prestamoHerramientaInstance.properties = params
+        
+        def herramienta = prestamoHerramientaInstance.herramienta
+        if (herramienta.estado == EstadoHerramienta.findByNombre("Prestada") )
+          {    flash.message = "La herramienta se encuentra en Prestamo"
+                  render(view: "create", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
+                  return
+          }else{
+           if (herramienta.estado == EstadoHerramienta.findByNombre("No disponible") )
+              {  flash.message = "La herramienta no esta Disponible"
+                  render(view: "create", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
+                  return
+              } 
+         }
         if (!prestamoHerramientaInstance.save(flush: true)) {
             render(view: "create", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
             return
+        }else {
+                herramienta.estado = EstadoHerramienta.findByNombre("Prestada")
+                herramienta.save(flush: true)
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), prestamoHerramientaInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), prestamoHerramientaInstance.id])
         if(isSolicitudCreate){ 
             redirect(controller: "solicitudDeTarea", action: "create")
         }else{
@@ -70,6 +86,7 @@ class PrestamoHerramientaController {
 
     def update() {
         def prestamoHerramientaInstance = PrestamoHerramienta.get(params.id)
+        
         if (!prestamoHerramientaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), params.id])
             redirect(action: "list")
@@ -86,13 +103,36 @@ class PrestamoHerramientaController {
                 return
             }
         }
-
+        // si cambio la herramienta valido
+         if (prestamoHerramientaInstance.herramienta != Herramienta.findById(params.herramienta.id) )
+         {def herramienta = Herramienta.findById(params.herramienta.id)
+         if (herramienta.estado == EstadoHerramienta.findByNombre("Prestada") )
+          {    flash.message = "La herramienta se encuentra en Prestamo"
+                  render(view: "edit", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
+                  return
+          }else{
+           if (herramienta.estado == EstadoHerramienta.findByNombre("No disponible") )
+              {  flash.message = "La herramienta no esta Disponible"
+                  render(view: "edit", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
+                  return
+              } 
+         }
+         }
+         
+        //si cargo fecha de devolucion real, cambio estado a libre
+        if (params.fechaDevolucionReal)
+         {     def herramienta = Herramienta.findById(params.herramienta.id)
+               herramienta.estado = EstadoHerramienta.findByNombre("Libre")
+               herramienta.save(flush: true)
+         } 
+         
+        
         prestamoHerramientaInstance.properties = params
-
+        
         if (!prestamoHerramientaInstance.save(flush: true)) {
             render(view: "edit", model: [prestamoHerramientaInstance: prestamoHerramientaInstance])
             return
-        }
+        } 
 
 	flash.message = message(code: 'default.updated.message', args: [message(code: 'prestamoHerramienta.label', default: 'PrestamoHerramienta'), prestamoHerramientaInstance.id])
         

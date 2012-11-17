@@ -59,17 +59,6 @@
         </li>
       </g:if>
 
-      <g:if test="${herramientaInstance?.prestamos}">
-        <li class="fieldcontain">
-          <span id="prestamos-label" class="property-label"><g:message code="herramienta.prestamos.label" default="Prestamos" /></span>
-
-        <g:each in="${herramientaInstance.prestamos}" var="p">
-          <span class="property-value" aria-labelledby="prestamos-label"><g:link controller="prestamoHerramienta" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-        </g:each>
-
-        </li>
-      </g:if>
-
     </ol>
     <g:form>
       <fieldset class="buttons">

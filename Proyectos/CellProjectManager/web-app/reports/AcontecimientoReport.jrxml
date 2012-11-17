@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<field name="tipoAcontecimiento" class="java.lang.String"/>
+	<field name="creador" class="java.lang.String"/>
+	<field name="tipoTarea" class="java.lang.String"/>
+	<field name="fechaCreacion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="33" y="14" width="500" height="38"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Acontecimientos]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="452d971c-fe32-40dc-98ef-d599a5e568ff" x="485" y="-6" width="73" height="66"/>
+				<imageExpression><![CDATA["http://localhost:8080/CellProjectManager/images/celltower.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement uuid="dde105b4-4566-4aeb-bd9c-bfc7ca8dab04" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="1ef13d73-1e1a-43d0-b22a-4c20f3eb5247" x="6" y="3" width="138" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tipo de Acontecimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b8e4191d-93b7-4ff3-be91-55d8fd4695f1" x="144" y="3" width="138" height="20"/>
+				<textElement/>
+				<text><![CDATA[Creador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="60bf3424-ff15-4369-affa-442f12e32009" x="282" y="3" width="138" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tipo de Tarea]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef560ee5-6e34-4435-a0d0-0a3158c2c264" x="420" y="3" width="119" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha de Creacion]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="b86688c2-431e-4b03-b0be-9abf80ba61ab" mode="Transparent" x="0" y="0" width="552" height="20"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="06237f33-51f5-4830-bb2a-25ac0aa43a5a" x="0" y="0" width="138" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipoAcontecimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="413947ac-4133-4d88-9733-a7a1ae31fbab" x="138" y="0" width="138" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{creador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cb004295-9072-42d6-b0f8-3852a7966f19" x="276" y="0" width="138" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipoTarea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="046d0a6f-9f96-4ba9-bdba-8400f1a166e4" x="414" y="0" width="138" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaCreacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3bc97a6e-410e-4974-ae0c-be5c1b4aeb01" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="305251a5-87fb-442a-9232-b4ed2ae615a0" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="bf8b8d76-0e96-4442-878c-e3f730ed3f7b" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
