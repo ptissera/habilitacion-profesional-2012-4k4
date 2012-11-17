@@ -10,6 +10,14 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="clientes" class="java.lang.String"/>
+	<parameter name="estadosProyecto" class="java.lang.String"/>
+	<parameter name="fechaCreacion_mayorQue" class="java.lang.String"/>
+	<parameter name="fechaCreacion_menorQue" class="java.lang.String"/>
+	<parameter name="fechaInicio_mayorQue" class="java.lang.String"/>
+	<parameter name="fechaInicio_menorQue" class="java.lang.String"/>
+	<parameter name="fechaFin_mayorQue" class="java.lang.String"/>
+	<parameter name="fechaFin_menorQue" class="java.lang.String"/>
 	<field name="estado" class="java.lang.Object"/>
 	<field name="cliente" class="java.lang.Object"/>
 	<field name="fechaCreacion" class="java.util.Date"/>
@@ -19,7 +27,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="202" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="33" y="14" width="500" height="38"/>
 				<textElement textAlignment="Center">
@@ -31,6 +39,107 @@
 				<reportElement uuid="452d971c-fe32-40dc-98ef-d599a5e568ff" x="485" y="-6" width="73" height="66"/>
 				<imageExpression><![CDATA["http://localhost:8080/CellProjectManager/images/celltower.png"]]></imageExpression>
 			</image>
+			<frame>
+				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="14" y="60" width="529" height="129" backcolor="#F0F0F0"/>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="343" y="9" width="95" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Creación <=:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="354" y="47" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Inicio <=:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="353" y="67" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Inicio >=:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="343" y="28" width="95" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Creación >=:]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="5e0df59d-676a-4fee-981f-976ca95ac502" x="450" y="9" width="66" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fechaCreacion_mayorQue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="708da74c-5248-4c1d-99e6-681a3b1bc49e" x="450" y="28" width="66" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{fechaCreacion_menorQue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="450" y="47" width="66" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{fechaInicio_mayorQue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="450" y="67" width="66" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{fechaInicio_menorQue}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="c836b171-eccf-43f5-a662-aa7c0f6efa9c" x="28" y="24" width="145" height="96"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{estadosProyecto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="13" y="9" width="116" height="14"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Estados Proyecto]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="450" y="106" width="66" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{fechaFin_menorQue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="353" y="106" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Fin >=:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="354" y="86" width="85" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha Fin <=:]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="450" y="86" width="66" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{fechaFin_mayorQue}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="183" y="9" width="116" height="14"/>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Clientes]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="c836b171-eccf-43f5-a662-aa7c0f6efa9c" x="198" y="24" width="133" height="96"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$P{clientes}]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</title>
 	<pageHeader>
@@ -40,27 +149,27 @@
 		<band height="22" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="da68d1a0-dab8-40a9-bab3-2107ad5e1a43" x="0" y="0" width="111" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="c145a3cd-8494-4b11-9f31-b61882a5ea4e" x="111" y="0" width="111" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="e2b1ab2c-1755-4b0c-8369-eec919bd0eb0" x="222" y="0" width="111" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Creacion]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="b0f50dbd-e0ec-44a2-9005-e37ba0092b9d" x="333" y="0" width="111" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Inicio]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="0c733d7f-7f58-4c0e-acc8-50fba2fed4c7" x="444" y="0" width="111" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Fin]]></text>
 			</staticText>
 			<rectangle>
