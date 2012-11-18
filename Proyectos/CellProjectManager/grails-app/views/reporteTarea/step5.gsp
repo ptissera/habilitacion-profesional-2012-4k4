@@ -9,7 +9,7 @@
   <body>
 
     <div id="list-documentacionIntegranteCuadrilla" class="content scaffold-list" role="main">
-      <h1>Reporte Proyectos - Paso 5/5</h1>
+      <h1>Reporte Tareas - Paso 5/5</h1>
       <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
       </g:if>
@@ -41,7 +41,7 @@
       </table>          
     </div>
  <fieldset class="buttons">
-        <g:jasperReport  from="proyectoInstanceList" jasper="TareaReport" format="PDF" name="Reporte" action="reporte" controller="ReporteProyecto"/>        
+        <g:jasperReport  from="tareaInstanceList" jasper="TareaReport" format="PDF" name="Reporte" action="reporte" controller="ReporteTarea"/>        
       </fieldset>
   </body>
 </html>

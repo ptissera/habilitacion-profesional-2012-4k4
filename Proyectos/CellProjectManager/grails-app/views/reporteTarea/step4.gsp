@@ -49,7 +49,7 @@
               Menor que:
             </span>            
             <span class="property-value" aria-labelledby="nombre-label">
-              <g:fecha name="fechaFin_menorQue" precision="day"  value="${tareaInstance?.fechaFin}"  /> 
+              <g:fecha name="fechaFinEstimada_menorQue" precision="day"  value="${tareaInstance?.fechaFin}"  /> 
               
             </span>
           </li>
