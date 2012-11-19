@@ -12,7 +12,8 @@ class MainMenuTagLib {
                         ["proyecto","Seleccionar Proyectos","selectList"],
                         ["proyecto","Asignar Proyectos","asignProject"],
                         ["solicitudDeTarea","Gestor de solicitud de tarea"],
-                        ["solicitudDeTarea","Crear Solicitud de Tarea","create"]])
+                        ["solicitudDeTarea","Crear Solicitud de Tarea","create"],
+                        ["tarea","Actualizar progreso de Tarea","listCreadas"]])
                               	
                 tituloItemMenu("Soporte Usuarios")
                 subItemMenu([["usuario","Usuarios"],

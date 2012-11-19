@@ -18,6 +18,42 @@ class TareaController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [tareaInstanceList: Tarea.list(params), tareaInstanceTotal: Tarea.count()]
     }
+    
+     def listCreadas() {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        [tareaInstanceList: Tarea.list(params), tareaInstanceTotal: Tarea.count()]
+    }
+    
+     def actualizarEstado(){
+        def tareaInstance = Tarea.get(params.id)
+          [tareaInstance: tareaInstance]
+    }
+    
+     def guardarEstado() {
+        def tareaInstance = Tarea.get(params.id)
+        def estadoEnEjecucion = EstadoTarea.findByNombre('En ejecucion')
+        
+        if (  params.estado.id.toString() == estadoEnEjecucion.id.toString() &&
+              tareaInstance.estado == EstadoTarea.findByNombre('Creada')  )
+            {
+             tareaInstance.estado = estadoEnEjecucion
+             if (!tareaInstance.save(flush: true)) {
+                  flash.message = "No se pudo guardar nuevo estado"
+                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                  return
+             } else{
+                 flash.message = "Estado de Tarea actualizado"
+                 verificarSolicitudTarea(tareaInstance)
+                 redirect(controller: "tarea", action: "listCreadas")
+             }
+            } else {
+                  flash.message = "No es posible actualizar al estado seleccionado"
+                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                  return
+            }
+            
+            
+    }
 
     def create() {
         cleanSelected()
