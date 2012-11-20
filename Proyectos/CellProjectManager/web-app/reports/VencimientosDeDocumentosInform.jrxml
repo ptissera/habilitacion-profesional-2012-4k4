@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="202"/>
+	<property name="ireport.y" value="129"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -13,15 +13,9 @@
 	<parameter name="tiposDocumentos" class="java.lang.String"/>
 	<parameter name="fechaDesde" class="java.lang.String"/>
 	<parameter name="fechaHasta" class="java.lang.String"/>
-	<field name="tipoDocumento" class="java.lang.String">
-		<fieldDescription><![CDATA[Tipo de Documentos]]></fieldDescription>
-	</field>
-	<field name="porcentaje" class="java.lang.Object">
-		<fieldDescription><![CDATA[% / Total]]></fieldDescription>
-	</field>
-	<field name="totalTiposDocs" class="java.lang.Object">
-		<fieldDescription><![CDATA[Cant. Doc.]]></fieldDescription>
-	</field>
+	<field name="tipoDocumento" class="java.lang.String"/>
+	<field name="porcentaje" class="java.lang.Object"/>
+	<field name="totalTiposDocs" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -94,18 +88,24 @@
 				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="5" y="-1" width="548" height="1"/>
 			</line>
 			<staticText>
-				<reportElement uuid="62412e41-79dd-4926-a3b3-4bdfe29e5729" x="0" y="0" width="185" height="20"/>
-				<textElement textAlignment="Center"/>
+				<reportElement uuid="72510d03-f0d7-4747-818e-7e0da045c57c" x="0" y="0" width="185" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Tipo de Documentos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="bd6f1da1-749f-4da8-8694-ee77489bf946" x="185" y="0" width="185" height="20"/>
-				<textElement textAlignment="Center"/>
+				<reportElement uuid="5c6463a0-6889-4836-a089-64d998920ab5" x="185" y="0" width="185" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[% / Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="d9722f01-28a9-47fa-827c-fbfe4761bf56" x="370" y="0" width="185" height="20"/>
-				<textElement textAlignment="Center"/>
+				<reportElement uuid="f826d206-a8b5-4761-b37f-80094bd9897a" x="370" y="0" width="185" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Cant. Doc.]]></text>
 			</staticText>
 		</band>
@@ -119,19 +119,19 @@
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement uuid="6fea2521-14ce-4dea-a787-3d4cdf6c9e0d" x="0" y="0" width="185" height="20"/>
+				<reportElement uuid="f05f9f22-f8cc-4a06-b1de-f2d0c17e945e" x="0" y="0" width="185" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{tipoDocumento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="83a07322-f2e6-42af-99eb-a6f079ed28e4" x="185" y="0" width="185" height="20"/>
+				<reportElement uuid="cc6b61b0-d66d-4152-bda0-5e0d50bdf93e" x="185" y="0" width="185" height="20"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[""+$F{porcentaje}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="4035861d-eab3-43ca-8404-42dc88646985" x="370" y="0" width="185" height="20"/>
+				<reportElement uuid="df2876eb-1f04-44b7-bbca-3e40e53e69f3" x="370" y="0" width="185" height="20"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[""+$F{totalTiposDocs}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{totalTiposDocs}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -162,32 +162,15 @@
 	</pageFooter>
 	<summary>
 		<band height="455" splitType="Prevent">
-			<pie3DChart>
-				<chart>
-					<reportElement uuid="b815667c-bc40-4228-9110-cbd1d5a6079e" x="29" y="25" width="498" height="187"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<pieDataset>
-					<keyExpression><![CDATA[$F{tipoDocumento}]]></keyExpression>
-					<valueExpression><![CDATA[$F{porcentaje}]]></valueExpression>
-					<labelExpression><![CDATA[$F{porcentaje}]]></labelExpression>
-				</pieDataset>
-				<pie3DPlot>
-					<plot/>
-					<itemLabel/>
-				</pie3DPlot>
-			</pie3DChart>
 			<staticText>
-				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="33" y="5" width="494" height="20" backcolor="#F0F0F0"/>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" mode="Opaque" x="33" y="5" width="494" height="20" backcolor="#F0F0F0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[% Tipos / Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="33" y="238" width="494" height="20" backcolor="#F0F0F0"/>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" mode="Opaque" x="33" y="238" width="494" height="20" backcolor="#F0F0F0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
@@ -213,6 +196,23 @@
 					<itemLabel/>
 				</bar3DPlot>
 			</bar3DChart>
+			<pie3DChart>
+				<chart>
+					<reportElement uuid="2a71f39f-1f51-4753-bf73-a0fbfcb3bef9" x="33" y="25" width="494" height="198"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{tipoDocumento}]]></keyExpression>
+					<valueExpression><![CDATA[$F{porcentaje}]]></valueExpression>
+					<labelExpression><![CDATA[$F{porcentaje}.toString()]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
 		</band>
 	</summary>
 </jasperReport>
