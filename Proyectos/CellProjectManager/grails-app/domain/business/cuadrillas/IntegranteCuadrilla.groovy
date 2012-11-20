@@ -28,7 +28,7 @@ class IntegranteCuadrilla {
         usuario(blank:true, nullable:true, validator:{usuario, obj -> obj.esJefeCuadrilla ? usuario!=null : true })
     }
     
-     def checkDocumentacion(){
+    def checkDocumentacion(){
         int codigo = 4
         getDocumentacion().each{ it ->
             if(it.checkVencimiento()<codigo){
@@ -47,8 +47,19 @@ class IntegranteCuadrilla {
         }
     }
    
+    def afterInsert = {
+        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: this.cuadrilla)       
+        historial.setDescripcion("    IntegranteCuadrilla -- Alta -- (${this.toString()})")
+        historial.save()
+    }
+    
+    def beforeDelete = {
+        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: this.cuadrilla)       
+        historial.setDescripcion("    IntegranteCuadrilla -- Baja -- (${this.toString()})")
+        historial.save()
+    }
     
     @Override String toString() {
-		return getApellido() + ", " + getNombre()
-	}
+        return getApellido() + ", " + getNombre()
+    }
 }

@@ -40,7 +40,11 @@ class Cuadrilla {
         }
     }
    
-    
+    def afterInsert = {
+        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: this)       
+        historial.setDescripcion("    Cuadrilla -- Alta -- (${this.toString()})")
+        historial.save()
+    }
     
     @Override String toString() {
 		return getNombre()

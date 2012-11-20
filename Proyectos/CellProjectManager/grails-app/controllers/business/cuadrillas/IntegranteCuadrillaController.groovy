@@ -32,10 +32,7 @@ class IntegranteCuadrillaController {
             render(view: "create", model: [integranteCuadrillaInstance: integranteCuadrillaInstance])
             return
         }
-        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: cuadrilaInstance)       
-        historial.setDescripcion("    IntegranteCuadrilla -- Alta -- ($integranteCuadrillaInstance)")
-        historial.save()
-		flash.message = message(code: 'default.created.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), integranteCuadrillaInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), integranteCuadrillaInstance.id])
         redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
     }
 
@@ -98,9 +95,7 @@ class IntegranteCuadrillaController {
         def integranteCuadrillaInstance = IntegranteCuadrilla.get(params.id)       
         
         def cuadrilaInstance=session.getAttribute("cuadrillaSelected") 
-        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: cuadrilaInstance)       
-        historial.setDescripcion("    IntegranteCuadrilla -- Baja -- ($integranteCuadrillaInstance)")
-        historial.save()
+        
         if (!integranteCuadrillaInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
             redirect(action: "show",controller: "cuadrilla", id: cuadrilaInstance.id)

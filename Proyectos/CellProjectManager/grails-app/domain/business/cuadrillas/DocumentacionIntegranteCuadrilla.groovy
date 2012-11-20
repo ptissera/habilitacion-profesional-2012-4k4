@@ -16,7 +16,23 @@ class DocumentacionIntegranteCuadrilla {
     
     def checkVencimiento(){
         def diffDate = getVigenciaHasta() - new Date()
-        return (diffDate <=0 ? 1:(diffDate > 0  && diffDate <= tipoDocumento.getDiaAntesVencimiento()?2:3))        
+        def value = (diffDate <=0 ? 1:(diffDate > 0  && diffDate <= tipoDocumento.getDiaAntesVencimiento()?2:3))        
+        if(value == 1){
+            saveLogVencimientos()
+        }
+        return value;
+    }
+    
+    def saveLogVencimientos(){
+         
+        def historial = HistorialVencimientosDocumentacion.findByFechaEnQueVencioAndIdDocumentoIntegranteCuadrilla(vigenciaHasta,id)
+        if(!historial){
+            new HistorialVencimientosDocumentacion(fecha: new Date(), 
+                fechaEnQueVencio: vigenciaHasta,
+                idDocumentoIntegranteCuadrilla: id,
+                tipoDocumento: tipoDocumento
+            ).save()            
+        }
     }
     
     def estadoDocumento(){
