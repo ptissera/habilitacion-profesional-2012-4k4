@@ -46,7 +46,9 @@ class MainMenuTagLib {
                         ])
                 
                 tituloItemMenu("Informes")  
-                subItemMenu([["informeDeTareasDesviadasPorFacturacion","Tareas desviadas por Facturacion"]
+                subItemMenu([["informeDeTareasDesviadasPorFacturacion","Tareas desviadas por Facturacion"],
+				             ["informeDeAcontecimientos","Acontecimientos"],
+							 ["informeDeVencimientosDeDocumentos","Vencimientos De Documentos"]
                         ])
                 
                 tituloItemMenu("Parametros Del Sitio")  
