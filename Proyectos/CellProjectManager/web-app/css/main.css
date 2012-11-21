@@ -801,6 +801,11 @@ a.skip {
 	background-image: url(../images/taglib/cobro_1.png);        
 }
 
+.jasperButton img {
+ width: 20px;
+ height: 20px;
+}
+
 #status li {
         line-height: 1.3;
 }
