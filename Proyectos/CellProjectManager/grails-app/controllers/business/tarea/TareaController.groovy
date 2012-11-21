@@ -4,6 +4,8 @@ import grails.converters.JSON
 import support.secure.*
 import business.cuadrillas.*
 import business.core.Sitio
+import business.core.Proyecto
+import business.tarea.SolicitudDeTarea
 import java.text.SimpleDateFormat
 
 class TareaController {
@@ -21,7 +23,24 @@ class TareaController {
     
      def listCreadas() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [tareaInstanceList: Tarea.list(params), tareaInstanceTotal: Tarea.count()]
+        Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
+        if(proyectoSelected){
+            params.max = Math.min(params.max ? params.int('max') : 10, 100)
+            def solicitudDeTareaInstanceList = SolicitudDeTarea.findAllByProyecto(proyectoSelected)
+            def lista = []
+            def listaTareas = []
+            solicitudDeTareaInstanceList.each{
+              lista = Tarea.findAllBySolicitudDeTarea(it)
+              lista.each{
+                  listaTareas << [id: it.id , estado: it.estado, sitio: it.sitio, tipoTarea: it.tipoTarea, fechaInicio: it.fechaInicio, fechaFin: it.fechaFin, fechaInicioReal: it.fechaInicioReal, fechaFinReal: it.fechaFinReal]
+              }
+            }
+            println listaTareas
+            [tareaInstanceList: listaTareas , tareaInstanceList: 10]
+        }else{
+            session.setAttribute("aDondeVoy",["tarea","listCreadas"])
+            redirect(action: "selectList", controller: "proyecto")
+        }
     }
     
      def actualizarEstado(){
@@ -32,9 +51,13 @@ class TareaController {
      def guardarEstado() {
         def tareaInstance = Tarea.get(params.id)
         def estadoEnEjecucion = EstadoTarea.findByNombre('En ejecucion')
+        def estadoSuspendida = EstadoTarea.findByNombre('Suspendida')
+        def estadoResuelta = EstadoTarea.findByNombre('Resuelta')
+        def estadoCancelada = EstadoTarea.findByNombre('Cancelada')
+        boolean cambioEstado = false
         
         if (  params.estado.id.toString() == estadoEnEjecucion.id.toString() &&
-              tareaInstance.estado == EstadoTarea.findByNombre('Creada')  )
+              (tareaInstance.estado == EstadoTarea.findByNombre('Creada') || tareaInstance.estado == EstadoTarea.findByNombre('Resuelta')  || tareaInstance.estado == EstadoTarea.findByNombre('Suspendida')) )
             {
              tareaInstance.estado = estadoEnEjecucion
              if (!tareaInstance.save(flush: true)) {
@@ -45,13 +68,63 @@ class TareaController {
                  flash.message = "Estado de Tarea actualizado"
                  verificarSolicitudTarea(tareaInstance)
                  redirect(controller: "tarea", action: "listCreadas")
+                 cambioEstado = true
              }
-            } else {
-                  flash.message = "No es posible actualizar al estado seleccionado"
-                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
-                  return
             }
             
+        if(params.estado.id.toString() == estadoSuspendida.id.toString() &&
+           tareaInstance.estado == EstadoTarea.findByNombre('En Ejecucion') )
+        {
+             tareaInstance.estado = estadoSuspendida
+             if (!tareaInstance.save(flush: true)) {
+                  flash.message = "No se pudo guardar nuevo estado"
+                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                  return
+             } else{
+                 flash.message = "Estado de Tarea actualizado"
+                 verificarSolicitudTarea(tareaInstance)
+                 redirect(controller: "tarea", action: "listCreadas")
+                 cambioEstado = true
+             }
+            
+        }  
+
+        if(params.estado.id.toString() == estadoResuelta.id.toString() &&
+           tareaInstance.estado == EstadoTarea.findByNombre('En Ejecucion'))
+        {
+            tareaInstance.estado = estadoResuelta
+             if (!tareaInstance.save(flush: true)) {
+                  flash.message = "No se pudo guardar nuevo estado"
+                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                  return
+             } else{
+                 flash.message = "Estado de Tarea actualizado"
+                 verificarSolicitudTarea(tareaInstance)
+                 redirect(controller: "tarea", action: "listCreadas")
+                 cambioEstado = true
+             }
+        } 
+        
+        if(params.estado.id.toString() == estadoCancelada.id.toString() &&
+           tareaInstance.estado == EstadoTarea.findByNombre('Creada'))
+        {
+             tareaInstance.estado = estadoCancelada
+             if (!tareaInstance.save(flush: true)) {
+                  flash.message = "No se pudo guardar nuevo estado"
+                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                  return
+             } else{
+                 flash.message = "Estado de Tarea actualizado"
+                 verificarSolicitudTarea(tareaInstance)
+                 redirect(controller: "tarea", action: "listCreadas")
+                 cambioEstado = true
+             }
+        }
+        
+       if (!cambioEstado) 
+        {flash.message = "No es posible actualizar al estado seleccionado"
+        render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+        return}
             
     }
 
