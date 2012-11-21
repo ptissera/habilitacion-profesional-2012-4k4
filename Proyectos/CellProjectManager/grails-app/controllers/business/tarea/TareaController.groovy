@@ -21,34 +21,29 @@ class TareaController {
         [tareaInstanceList: Tarea.list(params), tareaInstanceTotal: Tarea.count()]
     }
     
-     def listCreadas() {
+    def listCreadas() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
         if(proyectoSelected){
-            params.max = Math.min(params.max ? params.int('max') : 10, 100)
-            def solicitudDeTareaInstanceList = SolicitudDeTarea.findAllByProyecto(proyectoSelected)
-            def lista = []
-            def listaTareas = []
-            solicitudDeTareaInstanceList.each{
-              lista = Tarea.findAllBySolicitudDeTarea(it)
-              lista.each{
-                  listaTareas << [id: it.id , estado: it.estado, sitio: it.sitio, tipoTarea: it.tipoTarea, fechaInicio: it.fechaInicio, fechaFin: it.fechaFin, fechaInicioReal: it.fechaInicioReal, fechaFinReal: it.fechaFinReal]
-              }
+            def tareaInstanceList = []
+            proyectoSelected.solicitudes.each{ 
+                SolicitudDeTarea.get(it.id).tarea.each{tarea->                        
+                    tareaInstanceList << tarea
+                }
             }
-            println listaTareas
-            [tareaInstanceList: listaTareas , tareaInstanceList: 10]
+            [tareaInstanceList: tareaInstanceList, tareaInstanceTotal: tareaInstanceList.size()]
         }else{
             session.setAttribute("aDondeVoy",["tarea","listCreadas"])
             redirect(action: "selectList", controller: "proyecto")
         }
     }
     
-     def actualizarEstado(){
+    def actualizarEstado(){
         def tareaInstance = Tarea.get(params.id)
-          [tareaInstance: tareaInstance]
+        [tareaInstance: tareaInstance]
     }
     
-     def guardarEstado() {
+    def guardarEstado() {
         def tareaInstance = Tarea.get(params.id)
         def estadoEnEjecucion = EstadoTarea.findByNombre('En ejecucion')
         def estadoSuspendida = EstadoTarea.findByNombre('Suspendida')
@@ -57,74 +52,74 @@ class TareaController {
         boolean cambioEstado = false
         
         if (  params.estado.id.toString() == estadoEnEjecucion.id.toString() &&
-              (tareaInstance.estado == EstadoTarea.findByNombre('Creada') || tareaInstance.estado == EstadoTarea.findByNombre('Resuelta')  || tareaInstance.estado == EstadoTarea.findByNombre('Suspendida')) )
-            {
-             tareaInstance.estado = estadoEnEjecucion
-             if (!tareaInstance.save(flush: true)) {
-                  flash.message = "No se pudo guardar nuevo estado"
-                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
-                  return
-             } else{
-                 flash.message = "Estado de Tarea actualizado"
-                 verificarSolicitudTarea(tareaInstance)
-                 redirect(controller: "tarea", action: "listCreadas")
-                 cambioEstado = true
-             }
+            (tareaInstance.estado == EstadoTarea.findByNombre('Creada') || tareaInstance.estado == EstadoTarea.findByNombre('Resuelta')  || tareaInstance.estado == EstadoTarea.findByNombre('Suspendida')) )
+        {
+            tareaInstance.estado = estadoEnEjecucion
+            if (!tareaInstance.save(flush: true)) {
+                flash.message = "No se pudo guardar nuevo estado"
+                render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                return
+            } else{
+                flash.message = "Estado de Tarea actualizado"
+                verificarSolicitudTarea(tareaInstance)
+                redirect(controller: "tarea", action: "listCreadas")
+                cambioEstado = true
             }
+        }
             
         if(params.estado.id.toString() == estadoSuspendida.id.toString() &&
-           tareaInstance.estado == EstadoTarea.findByNombre('En Ejecucion') )
+            tareaInstance.estado == EstadoTarea.findByNombre('En Ejecucion') )
         {
-             tareaInstance.estado = estadoSuspendida
-             if (!tareaInstance.save(flush: true)) {
-                  flash.message = "No se pudo guardar nuevo estado"
-                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
-                  return
-             } else{
-                 flash.message = "Estado de Tarea actualizado"
-                 verificarSolicitudTarea(tareaInstance)
-                 redirect(controller: "tarea", action: "listCreadas")
-                 cambioEstado = true
-             }
+            tareaInstance.estado = estadoSuspendida
+            if (!tareaInstance.save(flush: true)) {
+                flash.message = "No se pudo guardar nuevo estado"
+                render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                return
+            } else{
+                flash.message = "Estado de Tarea actualizado"
+                verificarSolicitudTarea(tareaInstance)
+                redirect(controller: "tarea", action: "listCreadas")
+                cambioEstado = true
+            }
             
         }  
 
         if(params.estado.id.toString() == estadoResuelta.id.toString() &&
-           tareaInstance.estado == EstadoTarea.findByNombre('En Ejecucion'))
+            tareaInstance.estado == EstadoTarea.findByNombre('En Ejecucion'))
         {
             tareaInstance.estado = estadoResuelta
-             if (!tareaInstance.save(flush: true)) {
-                  flash.message = "No se pudo guardar nuevo estado"
-                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
-                  return
-             } else{
-                 flash.message = "Estado de Tarea actualizado"
-                 verificarSolicitudTarea(tareaInstance)
-                 redirect(controller: "tarea", action: "listCreadas")
-                 cambioEstado = true
-             }
+            if (!tareaInstance.save(flush: true)) {
+                flash.message = "No se pudo guardar nuevo estado"
+                render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                return
+            } else{
+                flash.message = "Estado de Tarea actualizado"
+                verificarSolicitudTarea(tareaInstance)
+                redirect(controller: "tarea", action: "listCreadas")
+                cambioEstado = true
+            }
         } 
         
         if(params.estado.id.toString() == estadoCancelada.id.toString() &&
-           tareaInstance.estado == EstadoTarea.findByNombre('Creada'))
+            tareaInstance.estado == EstadoTarea.findByNombre('Creada'))
         {
-             tareaInstance.estado = estadoCancelada
-             if (!tareaInstance.save(flush: true)) {
-                  flash.message = "No se pudo guardar nuevo estado"
-                  render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
-                  return
-             } else{
-                 flash.message = "Estado de Tarea actualizado"
-                 verificarSolicitudTarea(tareaInstance)
-                 redirect(controller: "tarea", action: "listCreadas")
-                 cambioEstado = true
-             }
+            tareaInstance.estado = estadoCancelada
+            if (!tareaInstance.save(flush: true)) {
+                flash.message = "No se pudo guardar nuevo estado"
+                render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+                return
+            } else{
+                flash.message = "Estado de Tarea actualizado"
+                verificarSolicitudTarea(tareaInstance)
+                redirect(controller: "tarea", action: "listCreadas")
+                cambioEstado = true
+            }
         }
         
-       if (!cambioEstado) 
+        if (!cambioEstado) 
         {flash.message = "No es posible actualizar al estado seleccionado"
-        render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
-        return}
+            render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
+            return}
             
     }
 
@@ -327,8 +322,8 @@ class TareaController {
         def observaciones        
         def elsitio
         tareas.each{
-              while (!finLista)              
-              {
+            while (!finLista)              
+            {
                 id = it.id[i]
                 tipoTarea = it.tipoTarea[i].nombre
                 fechaInicioEstimada = it.fechaInicio[i].format("ddMMyyyy")
@@ -342,13 +337,13 @@ class TareaController {
                 esPrimetasLinea=false
                 i++
                 if (it.id[i] == null)
-                 finLista = true
-              }  
-            }
+                finLista = true
+            }  
+        }
             
         if (respuesta) {
-                response.status =200
-                render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }, \"tareas\":[$respuesta]}") as JSON
+            response.status =200
+            render  JSON.parse("{ \"error\": { \"codigo\": 0, \"descripcion\": \"Exito\" }, \"tareas\":[$respuesta]}") as JSON
         } else {
             response.status=200
             render  JSON.parse("{ \"error\": { \"codigo\": 2, \"descripcion\": \"No hay tareas a realizar para su cuadrilla.\" }}") as JSON            
@@ -363,11 +358,11 @@ class TareaController {
         tarea.observaciones = objetoJSON.observaciones
         tarea.estado = EstadoTarea.findByNombre(objetoJSON.estado)
         if (objetoJSON.fechaFinReal != "")
-            tarea.fechaFinReal = new Date().parse("ddMMyyyy", objetoJSON.fechaFinReal) 
+        tarea.fechaFinReal = new Date().parse("ddMMyyyy", objetoJSON.fechaFinReal) 
         else 
-            tarea.fechaFinReal = null;
+        tarea.fechaFinReal = null;
         if (objetoJSON.fechaInicioReal != "")            
-            tarea.fechaInicioReal = new Date().parse("ddMMyyyy", objetoJSON.fechaInicioReal) 
+        tarea.fechaInicioReal = new Date().parse("ddMMyyyy", objetoJSON.fechaInicioReal) 
         tarea.tipoTarea = TipoTarea.findByNombre(objetoJSON.nombreTipoTarea)
         if (tarea.save(flush: true)) {
             verificarSolicitudTarea(tarea)
@@ -378,42 +373,42 @@ class TareaController {
         render JSON.parse("{ \"error\": { \"codigo\": 1, \"descripcion\": \"Fallo\" }}") as JSON
     }
     
- def verificarSolicitudTarea(tarea)   
- {
-     def solicitud = SolicitudDeTarea.findById(tarea.solicitudDeTarea.id)
-     def tareas = Tarea.findAllBySolicitudDeTarea(tarea.solicitudDeTarea)
-     boolean finLista = false
-     boolean tieneTareaActiva = false
-     def i=0
-     tareas.each{
-                if (it.estado.nombre == "En Ejecucion")
-                 tieneTareaActiva = true
-            }
-     if (!tieneTareaActiva){
-         finLista = false
-         boolean tieneTareaResuelta = true
-          tareas.each{
+    def verificarSolicitudTarea(tarea)   
+    {
+        def solicitud = SolicitudDeTarea.findById(tarea.solicitudDeTarea.id)
+        def tareas = Tarea.findAllBySolicitudDeTarea(tarea.solicitudDeTarea)
+        boolean finLista = false
+        boolean tieneTareaActiva = false
+        def i=0
+        tareas.each{
+            if (it.estado.nombre == "En Ejecucion")
+            tieneTareaActiva = true
+        }
+        if (!tieneTareaActiva){
+            finLista = false
+            boolean tieneTareaResuelta = true
+            tareas.each{
                 // puede llegar a estar alguna tarea suspendida, en ese caso la ST esta En ejecucion
                 if (it.estado.nombre != "Resuelta")
-                 tieneTareaResuelta = false
+                tieneTareaResuelta = false
             }
-         if (!tieneTareaResuelta) {
-           solicitud.estado = EstadoSolicitudTarea.findByNombre("En Ejecucion")
-           solicitud.save(flush:true)
-         }  else {
-           solicitud.estado = EstadoSolicitudTarea.findByNombre('Pendiente Conformidad')
-           solicitud.save(flush:true)
-         }
+            if (!tieneTareaResuelta) {
+                solicitud.estado = EstadoSolicitudTarea.findByNombre("En Ejecucion")
+                solicitud.save(flush:true)
+            }  else {
+                solicitud.estado = EstadoSolicitudTarea.findByNombre('Pendiente Conformidad')
+                solicitud.save(flush:true)
+            }
          
             
-     }     
-     else{
-         solicitud.estado = EstadoSolicitudTarea.findByNombre("En Ejecucion")
-         solicitud.save(flush:true)
-     }
+        }     
+        else{
+            solicitud.estado = EstadoSolicitudTarea.findByNombre("En Ejecucion")
+            solicitud.save(flush:true)
+        }
         
      
- }
+    }
     
 }
 

@@ -58,9 +58,7 @@ class InformeProcentajeDeViaticosEnProyectosController {
         
     def reporte={
         def datos = session.resultReport            
-        println "datos = ${datos}"
-        params.porcentaje = session.informe_porcentaje
-        
+        params.porcentaje = session.informe_porcentaje        
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)
     }
     
