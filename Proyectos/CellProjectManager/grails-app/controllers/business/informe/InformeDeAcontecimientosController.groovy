@@ -61,14 +61,19 @@ class InformeDeAcontecimientosController {
                     }                    
                 }
             }
-            
-            datos.each{
-                it.porcentajeAcontecimientos = it.totalAcontecimientos / totalCount * 100
+             def datosInforme = []           
+            datos.each{dato->
+                dato.value.porcentajeAcontecimientos = new Double(dato.value.totalAcontecimientos / totalCount * 100).round(2)
+                datosInforme << dato.value
             }
+             session.resultReport = datosInforme
+            [datos: datosInforme]
         }                
                 
-        session.resultReport = datos
-        [datos: datos]
+        
+                    
+           
+      
     }
         
     def reporte={

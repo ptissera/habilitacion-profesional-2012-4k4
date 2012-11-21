@@ -77,4 +77,13 @@ class SolicitudDeTarea {
         return totalPOs
     }
     
+    def totalViaticos(){              
+                    
+        Float totalViaticos = 0            
+        viaticos.each{
+            totalViaticos += it.monto
+        }
+        
+        return totalViaticos
+    }
 }

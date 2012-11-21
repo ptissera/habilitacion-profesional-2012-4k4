@@ -40,16 +40,17 @@ class MainMenuTagLib {
                 
                 tituloItemMenu("Reportes")  
                 subItemMenu([["reporteDocumentacionIntegranteCuadrilla","Documentacion Operarios"],
-                             ["reporteProyecto","Proyectos"],
-                             ["reporteTarea","Tareas"],
-                             ["reporteAcontecimiento","Acontecimientos"]
-                        ])
+                        ["reporteProyecto","Proyectos"],
+                        ["reporteTarea","Tareas"],
+                        ["reporteAcontecimiento","Acontecimientos"]
+                    ])
                 
                 tituloItemMenu("Informes")  
                 subItemMenu([["informeDeTareasDesviadasPorFacturacion","Tareas desviadas por Facturacion"],
-				             ["informeDeAcontecimientos","Acontecimientos"],
-							 ["informeDeVencimientosDeDocumentos","Vencimientos De Documentos"]
-                        ])
+                        ["informeDeAcontecimientos","Acontecimientos"],
+                        ["informeDeVencimientosDeDocumentos","Vencimientos De Documentos"],                        
+                        ["informeProcentajeDeViaticosEnProyectos","Procentaje De Viaticos En Proyectos"]
+                    ])
                 
                 tituloItemMenu("Parametros Del Sitio")  
                 subItemMenu([["parametrosDelSistema","Parametrizaciones"]])

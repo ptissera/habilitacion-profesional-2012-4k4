@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="32"/>
+	<property name="ireport.y" value="202"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -13,15 +13,9 @@
 	<parameter name="tiposAcontecimientos" class="java.lang.String"/>
 	<parameter name="fechaDesde" class="java.lang.String"/>
 	<parameter name="fechaHasta" class="java.lang.String"/>
-	<field name="tipoAcontecimiento" class="java.lang.String">
-		<fieldDescription><![CDATA[Tipo de Acontecimiento]]></fieldDescription>
-	</field>
-	<field name="porcentajeAcontecimientos" class="java.lang.Object">
-		<fieldDescription><![CDATA[% / Total]]></fieldDescription>
-	</field>
-	<field name="totalAcontecimientos" class="java.lang.Object">
-		<fieldDescription><![CDATA[Cant. Acont.]]></fieldDescription>
-	</field>
+	<field name="tipoAcontecimiento" class="java.lang.String"/>
+	<field name="porcentajeAcontecimientos" class="java.lang.Double"/>
+	<field name="totalAcontecimientos" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -142,7 +136,7 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="20" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<textField>
 				<reportElement uuid="3bc97a6e-410e-4974-ae0c-be5c1b4aeb01" style="Column header" x="433" y="0" width="80" height="20"/>
 				<textElement textAlignment="Right">
@@ -170,7 +164,7 @@
 		<band height="455" splitType="Prevent">
 			<pie3DChart>
 				<chart>
-					<reportElement uuid="b815667c-bc40-4228-9110-cbd1d5a6079e" x="29" y="25" width="498" height="187"/>
+					<reportElement uuid="b815667c-bc40-4228-9110-cbd1d5a6079e" x="29" y="34" width="498" height="195"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -186,14 +180,14 @@
 				</pie3DPlot>
 			</pie3DChart>
 			<staticText>
-				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="33" y="5" width="494" height="20" backcolor="#F0F0F0"/>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" mode="Opaque" x="29" y="14" width="498" height="20" backcolor="#F0F0F0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[% Tipos / Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="33" y="238" width="494" height="20" backcolor="#F0F0F0"/>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" mode="Opaque" x="33" y="247" width="494" height="20" backcolor="#F0F0F0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
@@ -201,7 +195,7 @@
 			</staticText>
 			<bar3DChart>
 				<chart>
-					<reportElement uuid="993d5a9d-8c0f-4edb-b2fb-849b10812b25" x="33" y="258" width="494" height="185"/>
+					<reportElement uuid="993d5a9d-8c0f-4edb-b2fb-849b10812b25" x="33" y="267" width="494" height="185"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>

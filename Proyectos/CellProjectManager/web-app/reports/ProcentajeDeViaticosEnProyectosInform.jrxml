@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="porcentaje" class="java.lang.Object"/>
+	<field name="proyecto" class="java.lang.String">
+		<fieldDescription><![CDATA[Proyecto]]></fieldDescription>
+	</field>
+	<field name="porcentaje" class="java.lang.Double">
+		<fieldDescription><![CDATA[Porcentaje %]]></fieldDescription>
+	</field>
+	<field name="totalViaticos" class="java.lang.Object">
+		<fieldDescription><![CDATA[$ Total Viaticos]]></fieldDescription>
+	</field>
+	<field name="totalProyecto" class="java.lang.Object">
+		<fieldDescription><![CDATA[$ Total Proyecto]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<frame>
+				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="23" y="67" width="455" height="17" backcolor="#F0F0F0"/>
+			</frame>
+			<staticText>
+				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="33" y="14" width="500" height="38"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Informe Procentaje De Viaticos En Proyectos]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="452d971c-fe32-40dc-98ef-d599a5e568ff" x="485" y="-6" width="73" height="66"/>
+				<imageExpression><![CDATA["http://localhost:8080/CellProjectManager/images/celltower.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="33" y="70" width="163" height="14"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porcetaje de viaticos mayor a %:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="6282b0b8-b3f5-4a33-98ac-8368ffecee4b" x="202" y="70" width="116" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""+$P{porcentaje}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<line>
+				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="4" y="23" width="548" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="4" y="19" width="548" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="5" y="-1" width="548" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="2187f535-4363-41eb-b137-088cd26b4d76" x="0" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="48877b03-3877-40b5-8b6c-3995d276b785" x="138" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porcentaje %]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="46b128ba-9275-4162-bb75-215ad35160e8" x="276" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[$ Total Viaticos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="286df3f5-213b-4fef-b1f4-d837dd1c89c9" x="414" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[$ Total Proyecto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Immediate">
+			<line>
+				<reportElement uuid="dde105b4-4566-4aeb-bd9c-bfc7ca8dab04" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="e67a8e52-010e-48a9-a936-e2c370862e6a" x="0" y="0" width="138" height="20"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{proyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eb210a2a-7bc8-442d-85c1-9d9fac116562" x="138" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="61c824c3-92cb-4ad0-ab9a-98b57a4421a7" x="276" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[""+$F{totalViaticos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="804aab67-befa-4006-8dfc-3fb15a068c9e" x="414" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[""+$F{totalProyecto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3bc97a6e-410e-4974-ae0c-be5c1b4aeb01" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="305251a5-87fb-442a-9232-b4ed2ae615a0" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="bf8b8d76-0e96-4442-878c-e3f730ed3f7b" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="455" splitType="Prevent">
+			<staticText>
+				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" x="4" y="5" width="230" height="20" backcolor="#F0F0F0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% Desvio por Proyecto]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
