@@ -34,7 +34,7 @@ class InformeProcentajeDeViaticosEnProyectosController {
                     }else{
                         datos[key] = [
                             proyecto: proyecto.toString(),
-                            porcetaje: 0,
+                            porcentaje: 0,
                             totalViaticos: solicitud.totalViaticos(),
                             totalProyecto: solicitud.totalPOs()
                         ]
@@ -58,7 +58,7 @@ class InformeProcentajeDeViaticosEnProyectosController {
         
     def reporte={
         def datos = session.resultReport            
-        
+        println "datos = ${datos}"
         params.porcentaje = session.informe_porcentaje
         
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)
