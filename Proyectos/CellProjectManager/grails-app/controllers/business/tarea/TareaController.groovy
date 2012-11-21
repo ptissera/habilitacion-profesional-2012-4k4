@@ -55,6 +55,7 @@ class TareaController {
             (tareaInstance.estado == EstadoTarea.findByNombre('Creada') || tareaInstance.estado == EstadoTarea.findByNombre('Resuelta')  || tareaInstance.estado == EstadoTarea.findByNombre('Suspendida')) )
         {
             tareaInstance.estado = estadoEnEjecucion
+            tareaInstance.fechaInicioReal = new Date()
             if (!tareaInstance.save(flush: true)) {
                 flash.message = "No se pudo guardar nuevo estado"
                 render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])
@@ -88,6 +89,7 @@ class TareaController {
             tareaInstance.estado == EstadoTarea.findByNombre('En Ejecucion'))
         {
             tareaInstance.estado = estadoResuelta
+            tareaInstance.fechaFinReal = new Date()
             if (!tareaInstance.save(flush: true)) {
                 flash.message = "No se pudo guardar nuevo estado"
                 render(view: "actualizarEstado", model: [tareaInstance: tareaInstance])

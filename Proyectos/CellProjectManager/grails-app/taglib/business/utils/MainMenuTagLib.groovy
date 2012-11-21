@@ -42,7 +42,8 @@ class MainMenuTagLib {
                 subItemMenu([["reporteDocumentacionIntegranteCuadrilla","Documentacion Operarios"],
                         ["reporteProyecto","Proyectos"],
                         ["reporteTarea","Tareas"],
-                        ["reporteAcontecimiento","Acontecimientos"]
+                        ["reporteAcontecimiento","Acontecimientos"],
+                        ["reporteSolicitudViatico","Viaticos"]
                     ])
                 
                 tituloItemMenu("Informes")  
