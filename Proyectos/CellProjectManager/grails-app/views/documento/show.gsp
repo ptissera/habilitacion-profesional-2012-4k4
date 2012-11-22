@@ -82,8 +82,7 @@
 				<li class="fieldcontain">
 					<span id="estado-label" class="property-label"><g:message code="documento.estado.label" default="Estado" /></span>
 					
-						<span class="property-value" aria-labelledby="estado-label"><g:link controller="estadoDocumento" action="show" id="${documentoInstance?.estado?.id}">${documentoInstance?.estado?.encodeAsHTML()}</g:link></span>
-					
+					        <span class="property-value" aria-labelledby="estado-label"><g:fieldValue bean="${documentoInstance}" field="estado"/></span>
 				</li>
 				</g:if>
 			

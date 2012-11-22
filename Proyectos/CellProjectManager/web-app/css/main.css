@@ -760,7 +760,7 @@ a.skip {
 	text-decoration: underline;
 }
 
- .buttons_add .add, .buttons_add .cerrar, .buttons_add .ejecutar, 
+ .buttons_add .add, .buttons_add .cerrar, .buttons_add .aprobar,  .buttons_add .cancelar, .buttons_add .ejecutar, 
  .buttons_add .viaticos, .buttons_add .cobrar, .buttons_add .pagar
  {
 	background-position: 0.7em center;
@@ -783,6 +783,14 @@ a.skip {
 
 .buttons_add .cerrar {
 	background-image: url(../images/taglib/cerrar_1.png);
+}
+
+.buttons_add .aprobar {
+	background-image: url(../images/taglib/aprobar_1.png);
+}
+
+.buttons_add .cancelar {
+	background-image: url(../images/taglib/cancelar_1.png);
 }
 
 .buttons_add .ejecutar {

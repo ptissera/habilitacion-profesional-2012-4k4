@@ -4,6 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import business.core.Proyecto
 import business.core.Cliente
 import business.cuadrillas.Cuadrilla
+import business.documento.EstadoDocumento
 import business.solicitud.*
 import support.tool.ParametrosDelSistema
 
@@ -54,12 +55,31 @@ class SolicitudDeTareaController {
             body "${params.observaciones}" 
             attachBytes "${docs.nombreArchivo[0]}", "application/pdf", docs.archivo[0]
         }
+        
+        docs.each{
+            it.fechaEnviado = new Date()
+            it.estado = EstadoDocumento.findByNombre("Enviado")
+            it.save(flush:true)
+        }
+        
+        
         flash.message = "Documentos enviados"
         redirect(action: "show", id: session.solicitudDeTareaSelected.id)
     }
 
     def pasarEnEjecutacion(){      
         def solicitudDeTareaInstance = SolicitudDeTarea.get(params.id)   
+        
+        if (solicitudDeTareaInstance.estado == EstadoSolicitudTarea.findByNombre('Cancelada')){
+            flash.error = "La solicitud esta cancelada"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        if (solicitudDeTareaInstance.estado == EstadoSolicitudTarea.findByNombre('Cerrada')){
+            flash.error = "La solicitud esta cerrada"
+            redirect(action: "show", id: params.id)
+            return
+        }
                  
         if(solicitudDeTareaInstance.tarea){
             solicitudDeTareaInstance.tarea.each{ tarea ->
@@ -111,6 +131,19 @@ class SolicitudDeTareaController {
     
     def registrarSolicitudDeViaticos(){
         def solicitudDeTareaInstance = SolicitudDeTarea.get(params.id) 
+        
+         if (solicitudDeTareaInstance.estado == EstadoSolicitudTarea.findByNombre('Cancelada')){
+            flash.error = "La solicitud esta cancelada"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        if (solicitudDeTareaInstance.estado == EstadoSolicitudTarea.findByNombre('Cerrada')){
+            flash.error = "La solicitud esta cerrada"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        
+        
         
         if(!solicitudDeTareaInstance.tarea){
             flash.message = "No se puede crear la Solicitud de Viaticos. La solicitud de tareas no contiene tareas aun!"
@@ -215,6 +248,17 @@ class SolicitudDeTareaController {
                 return
             }
         }
+        
+         if (solicitudDeTareaInstance.estado == EstadoSolicitudTarea.findByNombre('Cancelada')){
+            flash.error = "La solicitud esta cancelada"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        if (solicitudDeTareaInstance.estado == EstadoSolicitudTarea.findByNombre('Cerrada')){
+            flash.error = "La solicitud esta cerrada"
+            redirect(action: "show", id: params.id)
+            return
+        }
 
         solicitudDeTareaInstance.properties = params
 
@@ -233,6 +277,17 @@ class SolicitudDeTareaController {
         if (!solicitudDeTareaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'solicitudDeTarea.label', default: 'SolicitudDeTarea'), params.id])
             redirect(action: "list")
+            return
+        }
+        
+         if (solicitudDeTareaInstance.estado == EstadoSolicitudTarea.findByNombre('Cancelada')){
+            flash.error = "La solicitud esta cancelada"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        if (solicitudDeTareaInstance.estado == EstadoSolicitudTarea.findByNombre('Cerrada')){
+            flash.error = "La solicitud esta cerrada"
+            redirect(action: "show", id: params.id)
             return
         }
 

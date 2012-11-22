@@ -3,6 +3,7 @@ import business.cuadrillas.DocumentacionIntegranteCuadrilla
 import business.solicitud.*
 import business.tarea.SolicitudDeTarea
 import business.tarea.EstadoSolicitudTarea
+import business.herramienta.PrestamoHerramienta
 
 class HomeAdminGeneralTagLib {
     
@@ -11,6 +12,8 @@ class HomeAdminGeneralTagLib {
         def solicitudPagoCuadrillaInstanceList = EstadoSolicitudPagoCuadrilla.findByNombre('Pendiente').solicitudPagoCuadrilla
         def documentacionIntegranteCuadrillaInstanceList = DocumentacionIntegranteCuadrilla.list()
         def solicitudDeTareaInstanceList = EstadoSolicitudTarea.findByNombre('Pendiente Cobro').solicitudes
+        def prestamoHerramientaInstanceList = PrestamoHerramienta.list()
+        
         
         def documentacionIntegranteCuadrillaAuxList = []
         documentacionIntegranteCuadrillaInstanceList.each{
@@ -23,9 +26,16 @@ class HomeAdminGeneralTagLib {
                 documentacionIntegranteCuadrillaAuxList << it
             }
         }
+        
+        def prestamoHerramientaInstanceAuxList = []
+        prestamoHerramientaInstanceList.each{
+            if(it.fechaDevolucionReal == null ){
+                prestamoHerramientaInstanceAuxList << it
+            }
+        }
                 
         def masLargo = false
-        if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList || documentacionIntegranteCuadrillaInstanceList ){
+        if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList || documentacionIntegranteCuadrillaInstanceList || prestamoHerramientaInstanceAuxList ){
             out << "<table style='border: 0px; background-color: white;' class='none;'>"
             if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList){
                 if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
@@ -61,15 +71,30 @@ class HomeAdminGeneralTagLib {
             }
             
             
-            if(solicitudDeTareaInstanceList.size() > 0){
+            if(solicitudDeTareaInstanceList.size() > 0 || prestamoHerramientaInstanceAuxList.size > 0 ){
                 
                 if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
                     out << "<tr style='background-color: white;'><td colspan='2' style='background-color: white;'>"
                 } else {
                     out << "<tr style='background-color: white;'><td style='background-color: white;'>"
                 }
-                cobros(solicitudDeTareaInstanceList)
-                out << "</td></tr>"
+                
+                
+                if(solicitudDeTareaInstanceList.size() > 0 && prestamoHerramientaInstanceAuxList.size > 0){
+                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                    cobros(solicitudDeTareaInstanceList)
+                    out << "</td><td>"
+                    herramientas(prestamoHerramientaInstanceAuxList)
+                    out << "</td></tr>"
+                } else if(solicitudDeTareaInstanceList.size() > 0 ){
+                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                    cobros(solicitudDeTareaInstanceList)
+                    out << "</td></tr>"
+                } else {
+                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                    herramientas(prestamoHerramientaInstanceAuxList)
+                    out << "</td></tr>"
+                }
             }else{
                 masLargo = true   
             }
@@ -216,7 +241,7 @@ class HomeAdminGeneralTagLib {
         out << "<tr> <td style='padding: 0px; spacing: 0px; margin: 0px;'>"
         out << "<div style='height: 25px; width: 100%; text-align: center; padding: 0px; spacing: 10px; margin: 0px; border-collapse: collapse;"
         out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;background-color: #CFDF78; font-weight: bold;'>"
-        out << "Cobros de Solicitud de Trabjos"
+        out << "Cobros de Solicitud de Tareas"
         out << "</div>"
         out << "</td></tr><tr><td  style='padding: 0px; spacing: 0px; margin: 0px;'>"
         out << "<tr> <td style='padding: 0px; spacing: 0px; margin: 0px;'>"
@@ -242,6 +267,45 @@ class HomeAdminGeneralTagLib {
             out << """<tr class="${(i % 2) == 0 ? 'even' : 'odd'}"  style='padding: 0px; spacing: 0px; margin: 0px;'>"""            
             out <<   "<td width='80%'>" + """${link(controller:"cobroSolicitudDeTrabajo",action:"create",id: solicitudDeTareaInstance.id){solicitudDeTareaInstance}}""" + "</td>"
             out <<   "<td width='10%'>${solicitudDeTareaInstance.totalPorCobrar()}</td>"
+            out << "</tr>"
+        }			
+	out << "   </tbody>"
+        out << "</table>"	
+        out << "</div>"
+        out << "</td></tr></table>"
+    }
+    
+     def herramientas(prestamoHerramientaInstanceList) {
+        out << "<table cellspacing='0' cellpadding='0' style='padding: 0px; spacing: 0px; margin: 10px 0px 0px 0px;'>"
+        out << "<tr> <td style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "<div style='height: 25px; width: 100%; text-align: center; padding: 0px; spacing: 10px; margin: 0px; border-collapse: collapse;"
+        out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;background-color: #CFDF78; font-weight: bold;'>"
+        out << "Herramientas no devueltas"
+        out << "</div>"
+        out << "</td></tr><tr><td  style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "<tr> <td style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "<div style='height: 25px; width: 100%; padding: 0px; spacing: 0px; margin: 0px;border-collapse: collapse;"
+        out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;'>"
+        out << "<table  style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "    <thead>"
+        out << "       <tr>"
+        out << "           <th width='80%'> Herramienta </th>"
+        out << "           <th width='10%'> Fecha Devolucion </th>"
+        
+        out << "       </tr>"
+        out << "    </thead>"
+        out << "</table>"
+        out << "</div>"
+        out << "</td></tr><tr><td  style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "<div style='overflow: auto;height: 150px; width: 100%; padding: 0px; spacing: 0px; margin: 0px;border-collapse: collapse;"
+        out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;'>"
+        out << "<table style='padding: 0px; spacing: 0px; margin: 0px;'>"
+        out << "    <tbody>"
+        
+        prestamoHerramientaInstanceList.eachWithIndex() { prestamoHerramientaInstance, i ->
+            out << """<tr class="${(i % 2) == 0 ? 'even' : 'odd'}"  style='padding: 0px; spacing: 0px; margin: 0px;'>"""            
+            out <<   "<td width='80%'>" + """${link(controller:"prestamoHerramienta",action:"registrarDevolucion",id: prestamoHerramientaInstance.id){prestamoHerramientaInstance}}""" + "</td>"
+            out <<   "<td width='10%'>${prestamoHerramientaInstance.fechaDevolucion.format('dd/MM/yyyy')}</td>"
             out << "</tr>"
         }			
 	out << "   </tbody>"

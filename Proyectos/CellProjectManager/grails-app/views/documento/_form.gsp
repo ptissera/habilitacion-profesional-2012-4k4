@@ -16,29 +16,7 @@
   <g:textField name="observaciones" required="" value="${documentoInstance?.observaciones}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'fechaRealizado', 'error')} ">
-  <label for="fechaRealizado">
-    <g:message code="documento.fechaRealizado.label" default="Fecha Realizado" />
 
-  </label>
-  <g:fecha name="fechaRealizado" precision="day"  value="${documentoInstance?.fechaRealizado}" default="none" noSelection="['': '']" />
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'fechaEnviado', 'error')} ">
-  <label for="fechaEnviado">
-    <g:message code="documento.fechaEnviado.label" default="Fecha Enviado" />
-
-  </label>
-  <g:fecha name="fechaEnviado" precision="day"  value="${documentoInstance?.fechaEnviado}" default="none" noSelection="['': '']" />
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'fechaAprobado', 'error')} ">
-  <label for="fechaAprobado">
-    <g:message code="documento.fechaAprobado.label" default="Fecha Aprobado" />
-
-  </label>
-  <g:fecha name="fechaAprobado" precision="day"  value="${documentoInstance?.fechaAprobado}" default="none" noSelection="['': '']" />
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'archivo', 'error')} required">
   <label for="archivo">
@@ -54,13 +32,5 @@
       </g:link>      
     </div>
   </g:if>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: documentoInstance, field: 'estado', 'error')} required">
-  <label for="estado">
-    <g:message code="documento.estado.label" default="Estado" />
-    <span class="required-indicator">*</span>
-  </label>
-  <g:select id="estado" name="estado.id" from="${business.documento.EstadoDocumento.list()}" optionKey="id" required="" value="${documentoInstance?.estado?.id}" class="many-to-one"/>
 </div>
 

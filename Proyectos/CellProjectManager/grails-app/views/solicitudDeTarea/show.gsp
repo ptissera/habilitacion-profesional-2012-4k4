@@ -148,7 +148,7 @@
             <thead>
               <tr>
                 <th><g:message code="documento.tipo.label" default="Tipo" /></th>
-            <g:sortableColumn property="observaciones" title="${message(code: 'documento.observaciones.label', default: 'Observaciones')}" />
+            <g:sortableColumn property="estado" title="${message(code: 'documento.estado.label', default: 'Estado')}" />
             <g:sortableColumn property="fechaRealizado" title="${message(code: 'documento.fechaRealizado.label', default: 'Fecha Realizado')}" />
             <g:sortableColumn property="fechaEnviado" title="${message(code: 'documento.fechaEnviado.label', default: 'Fecha Enviado')}" />
             <g:sortableColumn property="fechaAprobado" title="${message(code: 'documento.fechaAprobado.label', default: 'Fecha Aprobado')}" />
@@ -158,7 +158,7 @@
             <g:each in="${solicitudDeTareaInstance?.documentos}" status="i" var="documentoInstance">
               <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                 <td>${fieldValue(bean: documentoInstance, field: "tipo")}</td>
-                <td>${fieldValue(bean: documentoInstance, field: "observaciones")}</td>
+                <td>${fieldValue(bean: documentoInstance, field: "estado")}</td>
                 <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaRealizado}" /></td>
               <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaEnviado}" /></td>
               <td><g:formatDate format="dd/MM/yyyy" date="${documentoInstance.fechaAprobado}" /></td>

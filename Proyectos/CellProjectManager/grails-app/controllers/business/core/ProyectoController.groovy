@@ -1,6 +1,7 @@
 package business.core
 
 import support.secure.Usuario
+import business.tarea.*
 
 import org.springframework.dao.DataIntegrityViolationException
 
@@ -103,6 +104,12 @@ class ProyectoController {
             return
         }
         
+        if(proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cancelado')){
+            flash.error = "El proyecto esta cancelado"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        
         def estadoSolicitudInstance = EstadoSolicitudTarea.findByNombre('Cerrada')
         boolean isOK = true
         proyectoInstance.solicitudes.each( isOK = isOK && it.estado==estadoSolicitudInstance )
@@ -151,7 +158,19 @@ class ProyectoController {
                 return
             }
         }
-
+        
+        if (proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cancelado')){
+            flash.error = "El proyecto esta cancelado"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        if (proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cerrado')){
+            flash.error = "El proyecto esta cerrado"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        
+        
         proyectoInstance.properties = params
 
         if (!proyectoInstance.save(flush: true)) {
@@ -170,6 +189,17 @@ class ProyectoController {
             redirect(action: "list")
             return
         }
+        
+        if (proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cancelado')){
+            flash.error = "El proyecto esta cancelado"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        if (proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cerrado')){
+            flash.error = "El proyecto esta cerrado"
+            redirect(action: "show", id: params.id)
+            return
+        }
 
         try {
             proyectoInstance.delete(flush: true)
@@ -180,5 +210,31 @@ class ProyectoController {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'proyecto.label', default: 'Proyecto'), params.id])
             redirect(action: "show", id: params.id)
         }
+    } 
+
+    def cancelarProyecto(){
+        def proyectoInstance = Proyecto.get(params.id)
+        if (!proyectoInstance) {
+	    flash.message = message(code: 'default.not.found.message', args: [message(code: 'proyecto.label', default: 'Proyecto'), params.id])
+            redirect(action: "list")
+            return
+        }
+        proyectoInstance.estadoProyecto = EstadoProyecto.findByNombre("Cancelado")
+        if (proyectoInstance.save(flush:true)){
+           proyectoInstance.solicitudes.each{
+              it.estado = EstadoSolicitudTarea.findByNombre("Cancelada")
+              if (it.save(flush:true)){
+                  it.tarea.each{
+                      it.estado= EstadoTarea.findByNombre("Cancelada")
+                      it.save(flush:true)
+                  }
+              }
+           }
+        }
+        
+        flash.message = "Proyecto Cancelado"
+        redirect(action: "show", id: params.id)
     }
+       
+   
 }

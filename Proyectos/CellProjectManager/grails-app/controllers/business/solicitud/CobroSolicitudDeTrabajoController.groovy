@@ -36,7 +36,7 @@ class CobroSolicitudDeTrabajoController {
             return
         }
         if(solicitudDeTareaInstance.totalPorCobrar()==cobroSolicitudDeTrabajoInstance.monto){
-            solicitudDeTareaInstance.estado=EstadoSolicitudTarea.findByNombre("Cerrado")
+            solicitudDeTareaInstance.estado=EstadoSolicitudTarea.findByNombre("Cerrada")
             solicitudDeTareaInstance.save(flush: true)
         }
         flash.message = message(code: 'default.created.message', args: [message(code: 'cobroSolicitudDeTrabajo.label', default: 'CobroSolicitudDeTrabajo'), cobroSolicitudDeTrabajoInstance.id])

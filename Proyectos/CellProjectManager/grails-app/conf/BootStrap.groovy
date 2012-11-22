@@ -338,15 +338,10 @@ class BootStrap {
                 descripcion: 'Enviado').save(flush: true, insert: true)
         }        
         
-        if(!EstadoDocumento.findByNombre('Aceptado')){
-            new EstadoDocumento(nombre: 'Aceptado', 
-                descripcion: 'Aceptado').save(flush: true, insert: true)
+        if(!EstadoDocumento.findByNombre('Aprobado')){
+            new EstadoDocumento(nombre: 'Aprobado', 
+                descripcion: 'Aprobado').save(flush: true, insert: true)
         }                
-        
-        if(!EstadoDocumento.findByNombre('Rechazado')){
-            new EstadoDocumento(nombre: 'Rechazado', 
-                descripcion: 'Rechazado').save(flush: true, insert: true)
-        }        
         
         if(!EstadoDocumento.findByNombre('Incompleto')){
             new EstadoDocumento(nombre: 'Incompleto', 

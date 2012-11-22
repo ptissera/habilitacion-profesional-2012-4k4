@@ -38,6 +38,10 @@ class DocumentoController {
         }    else {
             flash.message = 'file cannot be empty'          
         }
+        
+        documentoInstance.estado = EstadoDocumento.findByNombre("Creado")
+        documentoInstance.fechaRealizado = new Date()
+        
         if (!documentoInstance.save(flush: true)) {
             render(view: "create", model: [documentoInstance: documentoInstance])
             return
@@ -172,5 +176,79 @@ class DocumentoController {
         response.setHeader("Content-disposition", "filename=${documentoInstance.nombreArchivo}")
         response.outputStream << documentoInstance.archivo
    
+    }
+    
+    def aprobarDocumento(){
+        def documentoInstance = Documento.get(params.id)
+        if (!documentoInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+            redirect(action: "list")
+            return
+        }
+            documentoInstance.estado = EstadoDocumento.findByNombre("Aprobado")
+            documentoInstance.fechaAprobado = new Date()
+            
+            if (documentoInstance.save(flush: true))
+            {  flash.message = message(code: 'default.updated.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+               
+            }
+            def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+            boolean isSolicitudCreate = true
+            if(!solicitudDeTareaSelected){
+                isSolicitudCreate = false
+                solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+            }
+            
+            if(isSolicitudCreate){ 
+                verificarEstadoSolicitudTarea(solicitudDeTareaCreate) 
+                redirect(controller: "solicitudDeTarea", action: "create")
+            }else{
+                verificarEstadoSolicitudTarea(solicitudDeTareaSelected) 
+                redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+            }
+        
+    }
+    
+    def desaprobarDocumento(){
+        def documentoInstance = Documento.get(params.id)
+        if (!documentoInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+            redirect(action: "list")
+            return
+        }
+            documentoInstance.estado = EstadoDocumento.findByNombre("Incompleto")
+            
+            if (documentoInstance.save(flush: true))
+            {  flash.message = message(code: 'default.updated.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+               
+            }
+            def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+            boolean isSolicitudCreate = true
+            if(!solicitudDeTareaSelected){
+                isSolicitudCreate = false
+                solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+            }
+            if(isSolicitudCreate){ 
+                redirect(controller: "solicitudDeTarea", action: "create")
+            }else{
+                redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+            }
+    }
+    
+    def verificarEstadoSolicitudTarea(solicitudDeTarea) {
+        def solicitud = SolicitudDeTarea.get(solicitudDeTarea.id)
+        boolean tieneDocumentacionOK = true
+        def estadoAprobado = EstadoDocumento.findByNombre("Aprobado")
+        def estadoSolicitudPendienteConformidad = EstadoSolicitudTarea.findByNombre("Pendiente Conformidad")
+        solicitudDeTarea.documentos.each{
+            if (it.estado.id != estadoAprobado.id )
+                tieneDocumentacionOK = false
+        }
+        if (tieneDocumentacionOK && solicitud.estado.id == estadoSolicitudPendienteConformidad.id)
+        {
+            solicitud.estado = EstadoSolicitudTarea.findByNombre("Pendiente Cobro")
+            solicitud.save(flush:true)            
+        }
+        
     }
 }

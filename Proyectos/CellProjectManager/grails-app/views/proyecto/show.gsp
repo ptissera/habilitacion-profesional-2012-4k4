@@ -137,6 +137,7 @@
     <g:form>
       <fieldset class="buttons_add">
         <g:actionSubmit class="cerrar" action="closeProject" value="${message(code: 'default.button.cerrarProyecto.label', default: 'Cerrar')}" onclick="return confirm('${message(code: 'default.button.cerrarProyecto.confirm.message', default: 'Esta seguro que desea cerrar el Proyecto?')}');" />
+        <g:actionSubmit class="cancelar" action="cancelarProyecto" value="${message(code: 'default.button.cancelarProyecto.label', default: 'Cancelar')}" onclick="return confirm('${message(code: 'default.button.cancelarProyecto.confirm.message', default: 'Esta seguro que desea cancelar el Proyecto?')}');" />
       </fieldset>
       <fieldset class="buttons">
         <g:hiddenField name="id" value="${proyectoInstance?.id}" />

@@ -3,6 +3,7 @@ package business.solicitud
 import org.springframework.dao.DataIntegrityViolationException
 import support.tool.ParametrosDelSistema
 import business.tarea.SolicitudDeTarea
+import business.tarea.EstadoSolicitudTarea
 import business.solicitud.EstadoSolicitudPagoCuadrilla
 
 class SolicitudPagoCuadrillaController {
@@ -44,6 +45,24 @@ class SolicitudPagoCuadrillaController {
     def save() {
         def solicitudDeTareaInstance = session.getAttribute("solicitudDeTareaSelected")
         solicitudDeTareaInstance = SolicitudDeTarea.get(solicitudDeTareaInstance.id)
+        
+        def estadoCancelado = EstadoSolicitudTarea.findByNombre('Cancelada')
+        def estadoCerrada = EstadoSolicitudTarea.findByNombre('Cerrada')
+         if (solicitudDeTareaInstance.estado.id == estadoCancelado.id){
+            flash.error = "La solicitud esta cancelada"
+            redirect(controller:"solicitudDeTarea", action: "show", id: solicitudDeTareaInstance.id)
+            return
+        }
+        if (solicitudDeTareaInstance.estado.id == estadoCerrada.id){
+            flash.error = "La solicitud esta cerrada"
+            redirect(controller:"solicitudDeTarea", action: "show", id: solicitudDeTareaInstance.id)
+            return
+        }
+        
+        
+        
+        
+        
         def solicitudPagoCuadrillaInstance = new SolicitudPagoCuadrilla( solicitud: solicitudDeTareaInstance, fechaCreacion: new Date(), estado:EstadoSolicitudPagoCuadrilla.findByNombre('Pendiente'))
         solicitudPagoCuadrillaInstance.properties = params
         

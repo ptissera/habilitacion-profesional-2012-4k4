@@ -3,6 +3,7 @@ package business.solicitud
 import org.springframework.dao.DataIntegrityViolationException
 import support.tool.ParametrosDelSistema
 import business.tarea.SolicitudDeTarea
+import business.tarea.EstadoSolicitudTarea
 
 class SolicitudDeViaticosController {
 
@@ -49,6 +50,20 @@ class SolicitudDeViaticosController {
 
     def save() {
         def solicitudDeTareaInstance = session.getAttribute("solicitudDeTareaSelected")
+        def estadoCancelado = EstadoSolicitudTarea.findByNombre('Cancelada')
+        def estadoCerrada = EstadoSolicitudTarea.findByNombre('Cerrada')
+         if (solicitudDeTareaInstance.estado.id == estadoCancelado.id){
+            flash.error = "La solicitud esta cancelada"
+            redirect(controller:"solicitudDeTarea", action: "show", id: solicitudDeTareaInstance.id)
+            return
+        }
+        if (solicitudDeTareaInstance.estado.id == estadoCerrada.id){
+            flash.error = "La solicitud esta cerrada"
+            redirect(controller:"solicitudDeTarea", action: "show", id: solicitudDeTareaInstance.id)
+            return
+        }
+        
+        
         def solicitudDeViaticosInstance = new SolicitudDeViaticos(fechaCreacion: new Date(),
             solicitud:solicitudDeTareaInstance , 
             estado:EstadoSolicitudDeViaticos.findByNombre('Pendiente'))
