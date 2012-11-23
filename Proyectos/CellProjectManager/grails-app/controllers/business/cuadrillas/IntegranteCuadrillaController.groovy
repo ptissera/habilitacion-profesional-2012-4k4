@@ -58,7 +58,7 @@ class IntegranteCuadrillaController {
             redirect(action: "list")
             return
         }        
-        [integranteCuadrillaInstance: integranteCuadrillaInstance]
+        [integranteCuadrillaInstance: integranteCuadrillaInstance, cuadrilaInstance: session.getAttribute("cuadrillaSelected")]
     }
 
     def update() {

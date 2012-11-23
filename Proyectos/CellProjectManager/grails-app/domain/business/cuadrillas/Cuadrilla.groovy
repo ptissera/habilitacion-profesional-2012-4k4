@@ -20,6 +20,15 @@ class Cuadrilla {
         historialDeCambios()
     }
     
+    def haveJefeCuadrilla(){
+        def hayJefe = false
+        getOperarios().each{ it ->
+            if(it.esJefeCuadrilla){
+                hayJefe = true
+            }
+        }   
+        return hayJefe
+    }
      
      def checkDocumentacion(){
         int codigo = 4
