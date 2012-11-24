@@ -26,20 +26,13 @@
 	<g:checkBox name="propia" value="${cuadrillaInstance?.propia}" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: cuadrillaInstance, field: 'estadoCuadrilla', 'error')} required">
-	<label for="estadoCuadrilla">
-		<g:message code="cuadrilla.estadoCuadrilla.label" default="Estado Cuadrilla" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="estadoCuadrilla" name="estadoCuadrilla.id" from="${business.cuadrillas.EstadoCuadrilla.list()}" optionKey="id" required="" value="${cuadrillaInstance?.estadoCuadrilla?.id}" class="many-to-one"/>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: cuadrillaInstance, field: 'operarios', 'error')} ">
 	<table>
 				<thead>
                                   <tr><g:message code="cuadrilla.operarios.label" default="Operarios" /></tr>
 					<tr>					
-						<g:sortableColumn property="du" title="${message(code: 'empleado.du.label', default: 'Du')}" />					
+						<g:sortableColumn property="documento" title="${message(code: 'empleado.documento.label', default: 'Documento')}" />					
 						<g:sortableColumn property="nombre" title="${message(code: 'empleado.nombre.label', default: 'Nombre')}" />					
 						<g:sortableColumn property="apellido" title="${message(code: 'empleado.apellido.label', default: 'Apellido')}" />					
 						<g:sortableColumn property="legajo" title="${message(code: 'empleado.legajo.label', default: 'Legajo')}" />					
@@ -50,7 +43,7 @@
 				<tbody>
 				<g:each in="${cuadrillaInstance?.operarios}" status="i" var="empleadoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
-						<td>${fieldValue(bean: empleadoInstance, field: "du")}</td>					
+						<td>${fieldValue(bean: empleadoInstance, field: "documento")}</td>					
 						<td>${fieldValue(bean: empleadoInstance, field: "nombre")}</td>					
 						<td>${fieldValue(bean: empleadoInstance, field: "apellido")}</td>					
 						<td>${fieldValue(bean: empleadoInstance, field: "legajo")}</td>					

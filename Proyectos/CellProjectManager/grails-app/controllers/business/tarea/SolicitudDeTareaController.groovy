@@ -3,7 +3,9 @@ package business.tarea
 import org.springframework.dao.DataIntegrityViolationException
 import business.core.Proyecto
 import business.core.Cliente
+import business.tarea.EstadoSolicitudTarea
 import business.cuadrillas.Cuadrilla
+import business.cuadrillas.EstadoCuadrilla
 import business.documento.EstadoDocumento
 import business.solicitud.*
 import support.tool.ParametrosDelSistema
@@ -36,6 +38,13 @@ class SolicitudDeTareaController {
         def solicitudDeTareaInstance = session.solicitudDeTareaSelected
         session.enviarDocumentacionAClienteTF = true
         def proyectoInstance = session.proyectoSelected
+        
+        if (solicitudDeTareaInstance.estado != EstadoSolicitudTarea.findByNombre("Pendiente Conformidad")) {      
+                flash.error = "La solicitud de tarea debe estar en estado Pendiente Conformidad"
+                redirect(action: "show", id: session.solicitudDeTareaSelected.id)
+                return
+        }      
+        
         def clienteInstance = Cliente.get(proyectoInstance.clienteId)        
         flash.contactoEmail = clienteInstance.contactoEmail
         [solicitudDeTareaInstance: solicitudDeTareaInstance, emailCliente: clienteInstance.contactoEmail]
@@ -114,8 +123,10 @@ class SolicitudDeTareaController {
         
         Cuadrilla cuadrilla = Cuadrilla.get(solicitudDeTareaInstance.cuadrilla.id)
         EstadoSolicitudTarea estadoEnEjecucion = EstadoSolicitudTarea.findByNombre('En Ejecucion')
-        def solicitudEnEjecucion = SolicitudDeTarea.findAllByEstadoAndCuadrilla(estadoEnEjecucion, cuadrilla);
-        if(solicitudEnEjecucion.size()>0){
+        
+        //def solicitudEnEjecucion = SolicitudDeTarea.findAllByEstadoAndCuadrilla(estadoEnEjecucion, cuadrilla);
+        // if(solicitudEnEjecucion.size()>0){
+        if (cuadrilla.estadoCuadrilla == EstadoCuadrilla.findByNombre("Asignada")){        
             flash.error = "La cuadrilla ${cuadrilla} ya tiene una solicitud de tarea en ejecucion"
         }
         
@@ -123,7 +134,11 @@ class SolicitudDeTareaController {
             redirect(action: "show", id: solicitudDeTareaInstance.id)            
         }else{
             solicitudDeTareaInstance.estado = estadoEnEjecucion
-            solicitudDeTareaInstance.save(flush: true)
+            if (solicitudDeTareaInstance.save(flush: true))
+            {
+                cuadrilla.estadoCuadrilla = EstadoCuadrilla.findByNombre("Asignada")
+                cuadrilla.save(flush:true)
+            }
             flash.message = "Solicitud de Tarea En Ejecucion"
             redirect(action: "show", id: solicitudDeTareaInstance.id)
         }
@@ -316,5 +331,24 @@ class SolicitudDeTareaController {
         "enviarDocumentacionAClienteTF"].each{ name ->
             session.setAttribute(name , null)
         }
+    }
+    
+    def cancelarSolicitudDeTarea(){
+        def SolicitudDeTareaInstance = SolicitudDeTarea.get(params.id)
+        if (!SolicitudDeTareaInstance) {
+	    flash.message = message(code: 'default.not.found.message', args: [message(code: 'solicitudDeTarea.label', default: 'Solicitud De Tarea'), params.id])
+            redirect(action: "list")
+            return
+        }
+        SolicitudDeTareaInstance.estado = EstadoSolicitudTarea.findByNombre("Cancelada")
+        if (SolicitudDeTareaInstance.save(flush:true)){
+           SolicitudDeTareaInstance.tarea.each{
+              it.estado = EstadoTarea.findByNombre("Cancelada")
+              it.save(flush:true)
+              }
+        }
+        
+        flash.message = "Solicitud De Tarea Cancelada"
+        redirect(action: "show", id: params.id)
     }
 }

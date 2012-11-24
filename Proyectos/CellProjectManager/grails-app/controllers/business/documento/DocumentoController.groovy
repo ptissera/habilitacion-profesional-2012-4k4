@@ -185,6 +185,14 @@ class DocumentoController {
             redirect(action: "list")
             return
         }
+        
+        if (documentoInstance.estado != EstadoDocumento.findByNombre("Enviado")){
+            flash.error = "El documento debe estar en estado Enviado"
+            redirect(action: "show")
+            return
+        }
+        
+        
             documentoInstance.estado = EstadoDocumento.findByNombre("Aprobado")
             documentoInstance.fechaAprobado = new Date()
             
@@ -199,11 +207,11 @@ class DocumentoController {
                 solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
             }
             
+            verificarEstadoSolicitudTarea(solicitudDeTareaSelected)  
+            
             if(isSolicitudCreate){ 
-                verificarEstadoSolicitudTarea(solicitudDeTareaCreate) 
                 redirect(controller: "solicitudDeTarea", action: "create")
             }else{
-                verificarEstadoSolicitudTarea(solicitudDeTareaSelected) 
                 redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
             }
         

@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="estadoCuadrilla-label" class="property-label"><g:message code="cuadrilla.estadoCuadrilla.label" default="Estado Cuadrilla" /></span>
 					
-						<span class="property-value" aria-labelledby="estadoCuadrilla-label"><g:link controller="estadoCuadrilla" action="show" id="${cuadrillaInstance?.estadoCuadrilla?.id}">${cuadrillaInstance?.estadoCuadrilla?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="estadoCuadrilla-label"><g:fieldValue bean="${cuadrillaInstance}" field="estadoCuadrilla"/></span>
 					
 				</li>
 				</g:if>

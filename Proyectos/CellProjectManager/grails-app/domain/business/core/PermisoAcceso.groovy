@@ -12,7 +12,7 @@ class PermisoAcceso {
     byte[] archivo
     
     static constraints = {        
-        fechaDesde(blank: false, validator: {date, obj -> obj.id ? true : date - new Date() >= 0} )
+        fechaDesde(blank: false, validator: {date, obj -> obj.id ? true : date - obj.fechaHasta <= 0} )
         fechaHasta(blank: false, validator: {date, obj -> date!=null ? date - obj.fechaDesde >= 0 : true})
         nombreArchivo(blank: true)
         archivo(maxSize: 50000000)   

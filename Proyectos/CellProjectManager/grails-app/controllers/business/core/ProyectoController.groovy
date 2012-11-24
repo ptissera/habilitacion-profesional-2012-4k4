@@ -219,6 +219,18 @@ class ProyectoController {
             redirect(action: "list")
             return
         }
+        
+        if (proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cancelado')){
+            flash.error = "El proyecto esta cancelado"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        if (proyectoInstance.estadoProyecto==EstadoProyecto.findByNombre('Cerrado')){
+            flash.error = "El proyecto esta cerrado"
+            redirect(action: "show", id: params.id)
+            return
+        }
+        
         proyectoInstance.estadoProyecto = EstadoProyecto.findByNombre("Cancelado")
         if (proyectoInstance.save(flush:true)){
            proyectoInstance.solicitudes.each{

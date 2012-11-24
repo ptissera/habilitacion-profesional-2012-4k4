@@ -26,7 +26,10 @@ class TareaController {
         Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
         if(proyectoSelected){
             def tareaInstanceList = []
+            
+            println proyectoSelected.solicitudes
             proyectoSelected.solicitudes.each{ 
+                println  proyectoSelected 
                 SolicitudDeTarea.get(it.id).tarea.each{tarea->                        
                     tareaInstanceList << tarea
                 }
