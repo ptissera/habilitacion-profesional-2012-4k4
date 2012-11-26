@@ -7,105 +7,111 @@ import business.herramienta.PrestamoHerramienta
 
 class HomeAdminGeneralTagLib {
     
-    def homeAdminGeneral = {        
-        def solicitudDeViaticosInstanceList = EstadoSolicitudDeViaticos.findByNombre('Pendiente').solicitudDeViaticos        
-        def solicitudPagoCuadrillaInstanceList = EstadoSolicitudPagoCuadrilla.findByNombre('Pendiente').solicitudPagoCuadrilla
-        def documentacionIntegranteCuadrillaInstanceList = DocumentacionIntegranteCuadrilla.list()
-        def solicitudDeTareaInstanceList = EstadoSolicitudTarea.findByNombre('Pendiente Cobro').solicitudes
-        def prestamoHerramientaInstanceList = PrestamoHerramienta.list()
+    def homeAdminGeneral = {      
+        if(session.usuario){
+            if(session.usuario.isSuperUser() || session.usuario.isAdminGeneral()){ 
+                def solicitudDeViaticosInstanceList = EstadoSolicitudDeViaticos.findByNombre('Pendiente').solicitudDeViaticos        
+                def solicitudPagoCuadrillaInstanceList = EstadoSolicitudPagoCuadrilla.findByNombre('Pendiente').solicitudPagoCuadrilla
+                def documentacionIntegranteCuadrillaInstanceList = DocumentacionIntegranteCuadrilla.list()
+                def solicitudDeTareaInstanceList = EstadoSolicitudTarea.findByNombre('Pendiente Cobro').solicitudes
+                def prestamoHerramientaInstanceList = PrestamoHerramienta.list()
         
         
-        def documentacionIntegranteCuadrillaAuxList = []
-        documentacionIntegranteCuadrillaInstanceList.each{
-            if(it.checkVencimiento()==1){
-                documentacionIntegranteCuadrillaAuxList << it
-            }
-        }
-        documentacionIntegranteCuadrillaInstanceList.each{
-            if(it.checkVencimiento()==2){
-                documentacionIntegranteCuadrillaAuxList << it
-            }
-        }
+                def documentacionIntegranteCuadrillaAuxList = []
+                documentacionIntegranteCuadrillaInstanceList.each{
+                    if(it.checkVencimiento()==1){
+                        documentacionIntegranteCuadrillaAuxList << it
+                    }
+                }
+                documentacionIntegranteCuadrillaInstanceList.each{
+                    if(it.checkVencimiento()==2){
+                        documentacionIntegranteCuadrillaAuxList << it
+                    }
+                }
         
-        def prestamoHerramientaInstanceAuxList = []
-        prestamoHerramientaInstanceList.each{
-            if(it.fechaDevolucionReal == null ){
-                prestamoHerramientaInstanceAuxList << it
-            }
-        }
-                
-        def masLargo = false
-        if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList || documentacionIntegranteCuadrillaInstanceList || prestamoHerramientaInstanceAuxList ){
-            out << "<table style='border: 0px; background-color: white;' class='none;'>"
-            if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList){
-                if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
-                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
-                    viaticos(solicitudDeViaticosInstanceList)
-                    out << "</td><td>"
-                    pagos(solicitudPagoCuadrillaInstanceList)
-                    out << "</td></tr>"
-                } else if(solicitudDeViaticosInstanceList){
-                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
-                    viaticos(solicitudDeViaticosInstanceList)
-                    out << "</td></tr>"
-                } else {
-                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
-                    pagos(solicitudPagoCuadrillaInstanceList)
-                    out << "</td></tr>"
-                }
-            }else{
-                masLargo = true   
-            }
-            
-            if(documentacionIntegranteCuadrillaAuxList){
-                
-                if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
-                    out << "<tr style='background-color: white;' ><td colspan='2' style='background-color: white;'>"
-                } else {
-                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
-                }
-                vencimientos(documentacionIntegranteCuadrillaAuxList)
-                out << "</td></tr>"
-            }else{
-                masLargo = true   
-            }
-            
-            
-            if(solicitudDeTareaInstanceList.size() > 0 || prestamoHerramientaInstanceAuxList.size > 0 ){
-                
-                if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
-                    out << "<tr style='background-color: white;'><td colspan='2' style='background-color: white;'>"
-                } else {
-                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                def prestamoHerramientaInstanceAuxList = []
+                prestamoHerramientaInstanceList.each{
+                    if(it.fechaDevolucionReal == null ){
+                        prestamoHerramientaInstanceAuxList << it
+                    }
                 }
                 
-                
-                if(solicitudDeTareaInstanceList.size() > 0 && prestamoHerramientaInstanceAuxList.size > 0){
-                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
-                    cobros(solicitudDeTareaInstanceList)
-                    out << "</td><td>"
-                    herramientas(prestamoHerramientaInstanceAuxList)
-                    out << "</td></tr>"
-                } else if(solicitudDeTareaInstanceList.size() > 0 ){
-                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
-                    cobros(solicitudDeTareaInstanceList)
-                    out << "</td></tr>"
-                } else {
-                    out << "<tr style='background-color: white;'><td style='background-color: white;'>"
-                    herramientas(prestamoHerramientaInstanceAuxList)
-                    out << "</td></tr>"
-                }
-            }else{
-                masLargo = true   
-            }
+                def masLargo = false
+                if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList || documentacionIntegranteCuadrillaAuxList || documentacionIntegranteCuadrillaInstanceList || prestamoHerramientaInstanceAuxList ){
+                    out << "<table style='border: 0px; background-color: white;' class='none;'>"
+                    if(solicitudDeViaticosInstanceList || solicitudPagoCuadrillaInstanceList){
+                        if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
+                            out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                            viaticos(solicitudDeViaticosInstanceList)
+                            out << "</td><td>"
+                            pagos(solicitudPagoCuadrillaInstanceList)
+                            out << "</td></tr>"
+                        } else if(solicitudDeViaticosInstanceList){
+                            out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                            viaticos(solicitudDeViaticosInstanceList)
+                            out << "</td></tr>"
+                        } else {
+                            out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                            pagos(solicitudPagoCuadrillaInstanceList)
+                            out << "</td></tr>"
+                        }
+                    }else{
+                        masLargo = true   
+                    }
             
-            out <<"</table>"
-        } else {
-            out << "<div style='height: 300px;'></div>"
-            masLargo = true
-        }
-        if(masLargo == true){
-            out << "<div style='height: 200px;'></div>"
+                    if(documentacionIntegranteCuadrillaAuxList){
+                
+                        if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
+                            out << "<tr style='background-color: white;' ><td colspan='2' style='background-color: white;'>"
+                        } else {
+                            out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                        }
+                        vencimientos(documentacionIntegranteCuadrillaAuxList)
+                        out << "</td></tr>"
+                    }else{
+                        masLargo = true   
+                    }
+            
+            
+                    if(solicitudDeTareaInstanceList.size() > 0 || prestamoHerramientaInstanceAuxList.size > 0 ){
+                
+                        if(solicitudDeViaticosInstanceList && solicitudPagoCuadrillaInstanceList){
+                            out << "<tr style='background-color: white;'><td colspan='2' style='background-color: white;'>"
+                        } else {
+                            out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                        }
+                
+                
+                        if(solicitudDeTareaInstanceList.size() > 0 && prestamoHerramientaInstanceAuxList.size > 0){
+                            out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                            cobros(solicitudDeTareaInstanceList)
+                            out << "</td><td>"
+                            herramientas(prestamoHerramientaInstanceAuxList)
+                            out << "</td></tr>"
+                        } else if(solicitudDeTareaInstanceList.size() > 0 ){
+                            out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                            cobros(solicitudDeTareaInstanceList)
+                            out << "</td></tr>"
+                        } else {
+                            out << "<tr style='background-color: white;'><td style='background-color: white;'>"
+                            herramientas(prestamoHerramientaInstanceAuxList)
+                            out << "</td></tr>"
+                        }
+                    }else{
+                        masLargo = true   
+                    }
+            
+                    out <<"</table>"
+                } else {
+                    out << "<div style='height: 300px;'></div>"
+                    masLargo = true
+                }
+                if(masLargo == true){
+                    out << "<div style='height: 200px;'></div>"
+                }
+            } else {
+                out << "<div style='height: 500px;'></div>"
+            }
         }
     }
   
@@ -237,7 +243,7 @@ class HomeAdminGeneralTagLib {
     }
 
     def cobros(solicitudDeTareaInstanceList) {
-         out << "<table cellspacing='0' cellpadding='0' style='padding: 0px; spacing: 0px; margin: 10px 0px 0px 0px;'>"
+        out << "<table cellspacing='0' cellpadding='0' style='padding: 0px; spacing: 0px; margin: 10px 0px 0px 0px;'>"
         out << "<tr> <td style='padding: 0px; spacing: 0px; margin: 0px;'>"
         out << "<div style='height: 25px; width: 100%; text-align: center; padding: 0px; spacing: 10px; margin: 0px; border-collapse: collapse;"
         out << "border-color: #DFDFDF; border-style: solid; border-width: 1px;width: 100%;background-color: #CFDF78; font-weight: bold;'>"
@@ -275,7 +281,7 @@ class HomeAdminGeneralTagLib {
         out << "</td></tr></table>"
     }
     
-     def herramientas(prestamoHerramientaInstanceList) {
+    def herramientas(prestamoHerramientaInstanceList) {
         out << "<table cellspacing='0' cellpadding='0' style='padding: 0px; spacing: 0px; margin: 10px 0px 0px 0px;'>"
         out << "<tr> <td style='padding: 0px; spacing: 0px; margin: 0px;'>"
         out << "<div style='height: 25px; width: 100%; text-align: center; padding: 0px; spacing: 10px; margin: 0px; border-collapse: collapse;"

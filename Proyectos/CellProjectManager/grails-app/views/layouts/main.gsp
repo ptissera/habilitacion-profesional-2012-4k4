@@ -22,7 +22,10 @@
   <g:resourcesCalendar lang="es"/>
 </head>
 <body>
-  <div id="grailsLogo" role="banner" style="width: 100%; height: 90px;"><img src="${resource(dir: 'images', file: 'celltower.png')}" style="padding: 10px 10px; width: 100px;height: 100px;  position:absolute;z-index: 1"/></div>
+  <div id="grailsLogo" role="banner" style="width: 100%; height: 90px;"><img src="${resource(dir: 'images', file: 'celltower.png')}" style="padding: 10px 10px; width: 100px;height: 100px;  position:absolute;z-index: 1"/>
+  <div style="padding: 43px 132px; width: 600px; color: #bbddcc; font-size: 35px; position:absolute;z-index: 1">Coming Manager Project v1.0</div>
+<div style="padding: 45px 130px; width: 600px; color: green; font-size: 35px; position:absolute;z-index: 1">Coming Manager Project v1.0</div>
+  </div>
   <div id="header">
     <g:loginControl />
     <g:selectedItems />

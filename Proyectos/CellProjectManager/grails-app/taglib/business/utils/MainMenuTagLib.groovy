@@ -6,7 +6,8 @@ class MainMenuTagLib {
         if(session.usuario){
             
             startMainMenu()
-            if(session.usuario.isSuperUser()){
+            if(session.usuario.isSuperUser() || session.usuario.isAdminProyecto()){
+                
                 tituloItemMenu("Proyectos & Tareas")  
                 subItemMenu([["proyecto","Gestor de Proyectos"],
                         ["proyecto","Seleccionar Proyectos","selectList"],
@@ -18,14 +19,14 @@ class MainMenuTagLib {
                 tituloItemMenu("Soporte Usuarios")
                 subItemMenu([["usuario","Usuarios"],
                         ["rol","Roles"]])
-        
+            }
                 tituloItemMenu("Soporte Sitio")
                 subItemMenu([["cliente","Clientes"],              
                         ["tipoTarea","Tipo De Tarea"],
                         ["sitio","Sitios"],
                         ["provincia","Provincias"],
                         ["tipoAcontecimiento","Tipo de Acontecimiento"]])
-            }
+            
             if(session.usuario.isSuperUser() || session.usuario.isAdminGeneral()){ 
                 tituloItemMenu("Cuadrilla")  
                 subItemMenu([["cuadrilla","Cuadrillas"],
