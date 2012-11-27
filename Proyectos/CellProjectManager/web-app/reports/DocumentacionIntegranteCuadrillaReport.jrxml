@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="11"/>
+	<property name="ireport.y" value="27"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -15,143 +15,204 @@
 	<parameter name="vigenciaDesde_menorQue" class="java.lang.String"/>
 	<parameter name="vigenciaHasta_mayorQue" class="java.lang.String"/>
 	<parameter name="vigenciaHasta_menorQue" class="java.lang.String"/>
-	<field name="vigenciaDesde" class="java.util.Date"/>
+	<parameter name="cuadrillas" class="java.lang.String"/>
+	<parameter name="integrantes" class="java.lang.String"/>
+	<field name="vigenciaDesde" class="java.lang.String"/>
 	<field name="integrante" class="java.lang.Object"/>
-	<field name="vigenciaHasta" class="java.util.Date"/>
+	<field name="vigenciaHasta" class="java.lang.String"/>
 	<field name="tipoDocumento" class="java.lang.Object"/>
+	<field name="cuadrilla" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="153" splitType="Stretch">
+		<band height="235" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="33" y="14" width="500" height="38"/>
-				<textElement>
+				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="2" y="0" width="483" height="60"/>
+				<textElement textAlignment="Center">
 					<font size="24"/>
 				</textElement>
-				<text><![CDATA[Documentación Integrantes Cuadrilla]]></text>
+				<text><![CDATA[Reporte de Documentación de Integrantes de Cuadrilla]]></text>
 			</staticText>
 			<image>
 				<reportElement uuid="452d971c-fe32-40dc-98ef-d599a5e568ff" x="485" y="-6" width="73" height="66"/>
 				<imageExpression><![CDATA["http://localhost:8080/CellProjectManager/images/celltower.png"]]></imageExpression>
 			</image>
 			<frame>
-				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="20" y="52" width="455" height="90" backcolor="#F0F0F0"/>
+				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="2" y="71" width="551" height="149" backcolor="#F0F0F0"/>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="241" y="9" width="85" height="14"/>
-					<textElement textAlignment="Right">
-						<font isBold="true"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="267" y="82" width="103" height="14"/>
+					<textElement>
+						<font size="8" isBold="false" isUnderline="false"/>
 					</textElement>
-					<text><![CDATA[Fecha Desde <=:]]></text>
+					<text><![CDATA[Fecha Vigencia  <=:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="242" y="47" width="85" height="14"/>
-					<textElement textAlignment="Right">
-						<font isBold="true"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="268" y="111" width="102" height="14"/>
+					<textElement>
+						<font size="8" isBold="false" isUnderline="false"/>
 					</textElement>
-					<text><![CDATA[Fecha Hasta <=:]]></text>
+					<text><![CDATA[Fecha Vencimiento  <=:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="241" y="67" width="85" height="14"/>
-					<textElement textAlignment="Right">
-						<font isBold="true"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="267" y="96" width="103" height="14"/>
+					<textElement>
+						<font size="8" isBold="false" isUnderline="false"/>
 					</textElement>
-					<text><![CDATA[Fecha Hasta >=:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="241" y="28" width="85" height="14"/>
-					<textElement textAlignment="Right">
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[Fecha Desde >=:]]></text>
+					<text><![CDATA[Fecha Vigencia  >=:]]></text>
 				</staticText>
 				<textField>
-					<reportElement uuid="5e0df59d-676a-4fee-981f-976ca95ac502" x="338" y="9" width="100" height="14"/>
+					<reportElement uuid="5e0df59d-676a-4fee-981f-976ca95ac502" x="370" y="82" width="69" height="14"/>
 					<textElement>
-						<font isBold="true"/>
+						<font size="8" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{vigenciaDesde_mayorQue}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="708da74c-5248-4c1d-99e6-681a3b1bc49e" x="338" y="28" width="100" height="14"/>
-					<textElement/>
+					<reportElement uuid="708da74c-5248-4c1d-99e6-681a3b1bc49e" x="370" y="96" width="69" height="14"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$P{vigenciaDesde_menorQue}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="338" y="47" width="100" height="14"/>
-					<textElement/>
+					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="370" y="111" width="69" height="14"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$P{vigenciaHasta_mayorQue}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="338" y="67" width="100" height="14"/>
-					<textElement/>
-					<textFieldExpression><![CDATA[$P{vigenciaHasta_menorQue}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement uuid="c836b171-eccf-43f5-a662-aa7c0f6efa9c" x="41" y="24" width="183" height="62"/>
-					<textElement/>
-					<textFieldExpression><![CDATA[$P{tiposDocumentos}]]></textFieldExpression>
+					<reportElement uuid="c836b171-eccf-43f5-a662-aa7c0f6efa9c" x="335" y="30" width="96" height="43"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{cuadrillas}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="13" y="9" width="116" height="14"/>
-					<textElement textAlignment="Right">
-						<font isBold="true" isUnderline="true"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="22" y="82" width="100" height="14"/>
+					<textElement>
+						<font size="8" isBold="false" isUnderline="false"/>
 					</textElement>
 					<text><![CDATA[Tipos de Documentos:]]></text>
 				</staticText>
+				<textField>
+					<reportElement uuid="c836b171-eccf-43f5-a662-aa7c0f6efa9c" x="133" y="82" width="121" height="43"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{tiposDocumentos}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="22" y="30" width="111" height="14"/>
+					<textElement>
+						<font size="8" isBold="false" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Integrantes de Cuadrilla:]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="c836b171-eccf-43f5-a662-aa7c0f6efa9c" x="133" y="30" width="121" height="43"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{integrantes}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="7d4e586e-c28b-494a-a426-64b0a10bf20c" x="0" y="0" width="145" height="20"/>
+					<textElement>
+						<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Parámetros del reporte]]></text>
+				</staticText>
 			</frame>
+			<staticText>
+				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="269" y="101" width="53" height="14"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cuadrillas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="270" y="196" width="102" height="14"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha Vencimiento  >=:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="372" y="196" width="69" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vigenciaHasta_menorQue}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="22" splitType="Stretch">
+		<band height="27" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="0f5dac03-d8a9-480c-a3ad-22515e4e6493" x="33" y="0" width="100" height="20"/>
-				<textElement/>
+				<reportElement uuid="0f5dac03-d8a9-480c-a3ad-22515e4e6493" x="100" y="2" width="131" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Integrante]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="4867aa50-b0e6-4dd8-99cb-67e812864554" x="161" y="0" width="100" height="20"/>
-				<textElement/>
+				<reportElement uuid="4867aa50-b0e6-4dd8-99cb-67e812864554" x="231" y="2" width="122" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Tipo Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="d131db61-cfa2-4eda-9fe7-00b220b32d34" x="322" y="0" width="100" height="20"/>
-				<textElement/>
-				<text><![CDATA[Vigencia Desde]]></text>
+				<reportElement uuid="d131db61-cfa2-4eda-9fe7-00b220b32d34" x="353" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vigencia]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="6749ffff-711c-4f54-9879-3f67eea8c458" x="433" y="0" width="100" height="20"/>
-				<textElement/>
-				<text><![CDATA[Vigencia Hasta]]></text>
+				<reportElement uuid="6749ffff-711c-4f54-9879-3f67eea8c458" x="453" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vencimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8159a97a-6eb8-41a8-82d5-0460e6583f58" x="0" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuadrilla]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement uuid="b86688c2-431e-4b03-b0be-9abf80ba61ab" mode="Transparent" x="20" y="-3" width="523" height="18"/>
+				<reportElement uuid="b86688c2-431e-4b03-b0be-9abf80ba61ab" mode="Transparent" x="0" y="2" width="555" height="23"/>
 			</rectangle>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement uuid="b63d12eb-8246-47fa-b0b7-642f115b8ac4" x="33" y="0" width="100" height="20"/>
-				<textElement/>
+				<reportElement uuid="b63d12eb-8246-47fa-b0b7-642f115b8ac4" x="100" y="0" width="131" height="20"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[""+$F{integrante}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="ccc22a8b-c508-4d1f-a20b-e19e2c2d6229" x="161" y="0" width="122" height="20"/>
-				<textElement/>
+				<reportElement uuid="ccc22a8b-c508-4d1f-a20b-e19e2c2d6229" x="231" y="0" width="122" height="20"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[""+$F{tipoDocumento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="5f259ccd-afa7-4d89-b2d5-6b1181a6ac84" x="322" y="0" width="100" height="20"/>
-				<textElement/>
+				<reportElement uuid="5f259ccd-afa7-4d89-b2d5-6b1181a6ac84" x="353" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{vigenciaDesde}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="f252d3e6-eeb4-4f0d-aac6-515fa3d682b0" x="433" y="0" width="100" height="20"/>
-				<textElement/>
+				<reportElement uuid="f252d3e6-eeb4-4f0d-aac6-515fa3d682b0" x="453" y="2" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{vigenciaHasta}]]></textFieldExpression>
 			</textField>
 			<line>
@@ -160,6 +221,11 @@
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement uuid="9a0cf807-11a2-4bed-9640-fb5e7571b148" x="0" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cuadrilla}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>

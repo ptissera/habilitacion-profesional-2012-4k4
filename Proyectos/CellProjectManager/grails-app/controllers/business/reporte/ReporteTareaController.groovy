@@ -9,14 +9,16 @@ class ReporteTareaController {
     }
     
     def step1(){
+        flash.message = null
         [estadosTareasListInstance: EstadoTarea.list()]
     }
     
     def step2(){
+        flash.message = null
         def estadosTareasListInstance = params.estadosTareasIds.collect { EstadoTarea.get(it) }        
         if(!estadosTareasListInstance){
             flash.message = "Debe seleccionar al menos un Estado"
-            render(view: "step1", model: [estadosTareasListInstance: estadosTareasListInstance])
+            render(view: "step1", model: [estadosTareasListInstance: EstadoTarea.list()])
         }else{
             session.estadosTareasListInstance = estadosTareasListInstance
             [sitiosTareasListInstance: Sitio.list()]
@@ -24,11 +26,11 @@ class ReporteTareaController {
     }
     
     def step3(){
-        
+        flash.message = null
         def sitiosTareasListInstance = params.sitiosIds.collect { Sitio.get(it) }        
         if(!sitiosTareasListInstance){
             flash.message = "Debe seleccionar al menos un Sitio"
-            render(view: "step2", model: [sitiosTareasListInstance: sitiosTareasListInstance])
+            render(view: "step2", model: [sitiosTareasListInstance: Sitio.list()])
         }else{
             session.sitiosTareasListInstance = sitiosTareasListInstance
              [tiposTareasListInstance: TipoTarea.list()]
@@ -37,17 +39,18 @@ class ReporteTareaController {
     
     
     def step4(){
-        
+        flash.message = null
         def tiposTareasListInstance = params.tiposIds.collect { TipoTarea.get(it) }        
         if(!tiposTareasListInstance){
             flash.message = "Debe seleccionar al menos un Tipo de Tarea"
-            render(view: "step3", model: [tiposTareasListInstance: tiposTareasListInstance])
+            render(view: "step3", model: [tiposTareasListInstance: TipoTarea.list()])
         }else{
             session.tiposTareasListInstance = tiposTareasListInstance
         }
     }
     
     def step5(){
+           flash.message = null
             def estadosTareasListInstance = session.estadosTareasListInstance
             def sitiosTareasListInstance =  session.sitiosTareasListInstance
             def tiposTareasListInstance = session.tiposTareasListInstance
@@ -142,14 +145,38 @@ class ReporteTareaController {
         params.estadosTareas = session.reporteEstadosTareas
         params.tiposDeTareas = session.reporteTiposDeTareas
         params.sitios = session.reporteSitios
-        params.inicioEstimado_mayorQue = session.reporteInicioEstimado_mayorQue
-        params.inicioEstimado_menorQue = session.reporteInicioEstimado_menorQue
-        params.finEstimado_mayorQue = session.reporteFinEstimado_mayorQue
-        params.finEstimado_menorQue = session.reporteFinEstimado_menorQue
-        params.inicioReal_mayorQue = session.reporteInicioReal_mayorQue
-        params.inicioReal_menorQue = session.reporteInicioReal_menorQue
-        params.finReal_mayorQue = session.reporteFinReal_mayorQue
-        params.finReal_menorQue = session.reporteFinReal_menorQue
+        if(session.reporteInicioEstimado_mayorQue)
+            params.inicioEstimado_mayorQue = session.reporteInicioEstimado_mayorQue
+        else
+           params.inicioEstimado_mayorQue = "Todas las fechas"
+        if(session.reporteInicioEstimado_menorQue)
+            params.inicioEstimado_menorQue = session.reporteInicioEstimado_menorQue
+        else
+            params.inicioEstimado_menorQue ="Todas las fechas"
+        if(session.reporteFinEstimado_mayorQue)
+            params.finEstimado_mayorQue = session.reporteFinEstimado_mayorQue
+        else
+            params.finEstimado_mayorQue="Todas las fechas"
+        if(session.reporteFinEstimado_menorQue)    
+            params.finEstimado_menorQue = session.reporteFinEstimado_menorQue
+        else
+            params.finEstimado_menorQue ="Todas las fechas"
+        if(session.reporteInicioReal_mayorQue)    
+            params.inicioReal_mayorQue = session.reporteInicioReal_mayorQue
+        else
+            params.inicioReal_mayorQue ="Todas las fechas"
+        if(session.reporteInicioReal_menorQue)    
+            params.inicioReal_menorQue = session.reporteInicioReal_menorQue
+        else
+            params.inicioReal_menorQue ="Todas las fechas"
+        if(session.reporteFinReal_mayorQue)
+            params.finReal_mayorQue = session.reporteFinReal_mayorQue
+        else
+            params.finReal_mayorQue = "Todas las fechas"
+        if(session.reporteFinReal_menorQue)    
+            params.finReal_menorQue = session.reporteFinReal_menorQue
+        else
+            params.finReal_menorQue ="Todas las fechas"
         
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)
     }

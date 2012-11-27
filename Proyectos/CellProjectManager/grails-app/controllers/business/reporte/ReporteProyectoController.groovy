@@ -8,14 +8,16 @@ class ReporteProyectoController {
     }
     
     def step1(){
+        flash.message = null
         [estadosProyectosListInstance: EstadoProyecto.list()]
     }
     
     def step2(){
+        flash.message = null
         def estadosProyectosListInstance = params.estadoProyectoIds.collect { EstadoProyecto.get(it) }        
         if(!estadosProyectosListInstance){
             flash.message = "Debe seleccionar al menos un Estado"
-            render(view: "step1", model: [estadosProyectosListInstance: estadosProyectosListInstance])
+            render(view: "step1", model: [estadosProyectosListInstance:  EstadoProyecto.list()])
         }else{
             def estadosProyecto = ""
             estadosProyectosListInstance.each{
@@ -28,11 +30,11 @@ class ReporteProyectoController {
     }
     
     def step3(){
-        
+        flash.message = null
         def clientesProyectosListInstance = params.clientesIds.collect { Cliente.get(it) }        
         if(!clientesProyectosListInstance){
             flash.message = "Debe seleccionar al menos un Cliente"
-            render(view: "step2", model: [clientesProyectosListInstance: clientesProyectosListInstance])
+            render(view: "step2", model: [clientesProyectosListInstance: Cliente.list()])
         }else{
             def clientes = ""
             clientesProyectosListInstance.each{
@@ -44,6 +46,7 @@ class ReporteProyectoController {
     }
     
     def step4(){
+        flash.message = null
         def clientesProyectosListInstance = session.clientesProyectosListInstance
         def estadosProyectosListInstance =  session.estadosProyectosListInstance
         def resultReport = []
@@ -89,7 +92,18 @@ class ReporteProyectoController {
                     && (fechaFin_menorQue !=null ? fechaFin_menorQue >= it.fechaFin : true)){                            
                 }
                 resultReport << it
-                datos << [estado: it.estadoProyecto, cliente: it.cliente, fechaCreacion: it.fechaCreacion, fechaInicio: it.fechaInicio, fechaFin: it.fechaFin]
+                
+                def fechaCreacionEditada = null
+                def fechaInicioEditada = null
+                def fechaFinEditada = null
+                if (it.fechaCreacion)    
+                    fechaCreacionEditada = it.fechaCreacion.format("dd/MM/yyyy")
+                if (it.fechaInicio)   
+                    fechaInicioEditada = it.fechaInicio.format("dd/MM/yyyy")
+                if (it.fechaFin)    
+                    fechaFinEditada = it.fechaFin.format("dd/MM/yyyy")
+                    
+                datos << [estado: it.estadoProyecto, cliente: it.cliente, fechaCreacion: fechaCreacionEditada, fechaInicio: fechaInicioEditada, fechaFin: fechaFinEditada]
             }
         }
         session.resultReport = datos
@@ -102,12 +116,30 @@ class ReporteProyectoController {
         
         params.clientes = session.report_clientes
         params.estadosProyecto = session.report_estadosProyecto        
-        params.fechaCreacion_mayorQue = session.reporte_fechaCreacion_mayorQue
-        params.fechaCreacion_menorQue =  session.reporte_fechaCreacion_menorQue
-        params.fechaInicio_mayorQue = session.reporte_fechaInicio_mayorQue
-        params.fechaInicio_menorQue = session.reporte_fechaInicio_menorQue
-        params.fechaFin_mayorQue = session.reporte_fechaFin_mayorQue
-        params.fechaFin_menorQue = session.reporte_fechaFin_menorQue
+        if (session.reporte_fechaCreacion_mayorQue)
+            params.fechaCreacion_mayorQue = session.reporte_fechaCreacion_mayorQue
+        else
+            params.fechaCreacion_mayorQue = "Todas las fechas"
+        if(session.reporte_fechaCreacion_menorQue)    
+            params.fechaCreacion_menorQue =  session.reporte_fechaCreacion_menorQue
+        else
+            params.fechaCreacion_menorQue = "Todas las fechas"
+        if(session.reporte_fechaInicio_mayorQue)
+            params.fechaInicio_mayorQue = session.reporte_fechaInicio_mayorQue
+        else
+            params.fechaInicio_mayorQue = "Todas las fechas"
+        if(session.reporte_fechaInicio_menorQue)    
+            params.fechaInicio_menorQue = session.reporte_fechaInicio_menorQue
+        else
+            params.fechaInicio_menorQue ="Todas las fechas"
+        if(session.reporte_fechaFin_mayorQue)    
+            params.fechaFin_mayorQue = session.reporte_fechaFin_mayorQue
+        else
+            params.fechaFin_mayorQue = "Todas las fechas"
+        if(session.reporte_fechaFin_menorQue)
+            params.fechaFin_menorQue = session.reporte_fechaFin_menorQue
+        else
+            params.fechaFin_menorQue ="Todas las fechas"
     
         def datos = session.resultReport            
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)

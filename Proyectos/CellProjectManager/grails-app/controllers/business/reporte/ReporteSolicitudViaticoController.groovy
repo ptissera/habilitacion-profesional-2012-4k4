@@ -8,14 +8,16 @@ class ReporteSolicitudViaticoController {
     }
     
     def step1(){
+        flash.message = null
         [estadoViaticoListInstance: EstadoSolicitudDeViaticos.list()]
     }
     
     def step2(){
+        flash.message = null
         def estadoViaticoListInstance = params.estadoViaticoIds.collect { EstadoSolicitudDeViaticos.get(it) }        
         if(!estadoViaticoListInstance){
             flash.message = "Debe seleccionar al menos un Estado"
-            render(view: "step1", model: [estadoViaticoListInstance: estadoViaticoListInstance])
+            render(view: "step1", model: [estadoViaticoListInstance: EstadoSolicitudDeViaticos.list()])
         } else {
             session.estados = estadoViaticoListInstance
         }
@@ -23,6 +25,7 @@ class ReporteSolicitudViaticoController {
     }
     
     def step3() {
+        flash.message = null
         def estadoViaticoListInstance = session.estados
         def resultReport = []
         def datos = [] 
@@ -43,18 +46,19 @@ class ReporteSolicitudViaticoController {
         
         
         if(fechaCreacion_mayorQue){
-            session.reporte_fechaCreacion_mayorQue = fechaCreacion_mayorQue.format("dd/MM/yyyy")
+            session.reporteViatico_fechaCreacion_mayorQue = fechaCreacion_mayorQue.format("dd/MM/yyyy")
         }
         if(fechaCreacion_menorQue){
-            session.reporte_fechaCreacion_menorQue = fechaCreacion_menorQue.format("dd/MM/yyyy")
+            session.reporteViatico_fechaCreacion_menorQue = fechaCreacion_menorQue.format("dd/MM/yyyy")
         }
         if(fechaPago_mayorQue){
-            session.reporte_fechaPago_mayorQue = fechaPago_mayorQue.format("dd/MM/yyyy")
+            session.reporteViatico_fechaPago_mayorQue = fechaPago_mayorQue.format("dd/MM/yyyy")
         }
         if(fechaPago_menorQue){
-            session.reporte_fechaPago_menorQue = fechaPago_menorQue.format("dd/MM/yyyy")
+            session.reporteViatico_fechaPago_menorQue = fechaPago_menorQue.format("dd/MM/yyyy")
         }
         
+       
         def estadosNombre = ""
         def fechaCreacionEditada = null
         def fechaPagoEditada = null
@@ -79,7 +83,7 @@ class ReporteSolicitudViaticoController {
                         fechaCreacionEditada = it.fechaCreacion.format("dd/MM/yyyy")
                      if (it.fechaPago)
                         fechaPagoEditada = it.fechaPago.format("dd/MM/yyyy")
-                      datos << [estado: it.estado, fechaCreacion: fechaCreacionEditada, fechaPago: fechaPagoEditada, monto: it.monto]
+                      datos << [estado: it.estado, fechaCreacion: fechaCreacionEditada, fechaPago: fechaPagoEditada, monto: " \$  ${it.monto.toString()}" ]
                   }
              }
         }
@@ -93,12 +97,30 @@ class ReporteSolicitudViaticoController {
         
         params.estados = session.estadosNombre
         params.estadosProyecto = session.report_estadosProyecto        
-        params.fechaCreacion_mayorQue = session.reporte_fechaCreacion_mayorQue
-        params.fechaCreacion_menorQue =  session.reporte_fechaCreacion_menorQue
-        params.fechaPago_mayorQue = session.reporte_fechaPago_mayorQue
-        params.fechaPago_menorQue = session.reporte_fechaPago_menorQue
-        params.montoDesde = session.reporte_montoDesde.toString()
-        params.montoHasta = session.reporte_montoHasta.toString()
+        if(session.reporteViatico_fechaCreacion_mayorQue)
+            params.fechaCreacion_mayorQue = session.reporteViatico_fechaCreacion_mayorQue
+        else
+            params.fechaCreacion_mayorQue = "Todas las fechas"
+        if(session.reporteViatico_fechaCreacion_menorQue)     
+            params.fechaCreacion_menorQue =  session.reporteViatico_fechaCreacion_menorQue
+        else
+            params.fechaCreacion_menorQue = "Todas las fechas"
+        if(session.reporteViatico_fechaPago_mayorQue)    
+            params.fechaPago_mayorQue = session.reporteViatico_fechaPago_mayorQue
+        else
+            params.fechaPago_mayorQue ="Todas las fechas"
+        if(session.reporteViatico_fechaPago_menorQue)    
+            params.fechaPago_menorQue = session.reporteViatico_fechaPago_menorQue
+        else
+            params.fechaPago_menorQue ="Todas las fechas"
+        if(session.reporte_montoDesde)    
+            params.montoDesde = " \$  ${session.reporte_montoDesde}" 
+        else
+            params.montoDesde = "Todos los montos"
+        if(session.reporte_montoHasta)    
+            params.montoHasta = " \$  ${session.reporte_montoHasta}"
+        else
+         params.montoHasta =  "Todos los montos"
     
         def datos = session.resultReport            
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)

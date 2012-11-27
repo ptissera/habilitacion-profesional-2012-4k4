@@ -33,7 +33,7 @@
           </li>
         </ol>
         <fieldset class="buttons">
-          <g:submitButton name="siguiente" class="siguiente" value="Siguiente" />
+          <g:submitButton name="buscar" class="buscar" value="Buscar" />
         </fieldset>
       </g:form>
     </div>

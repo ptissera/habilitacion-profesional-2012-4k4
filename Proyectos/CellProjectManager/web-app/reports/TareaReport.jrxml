@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
-	<property name="ireport.zoom" value="2.143588810000002"/>
-	<property name="ireport.x" value="484"/>
-	<property name="ireport.y" value="367"/>
+	<property name="ireport.zoom" value="1.8150000000000004"/>
+	<property name="ireport.x" value="312"/>
+	<property name="ireport.y" value="95"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -47,28 +47,28 @@
 			<frame>
 				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="0" y="69" width="555" height="155" backcolor="#F0F0F0"/>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="202" y="20" width="101" height="14"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="202" y="20" width="86" height="14"/>
 					<textElement textAlignment="Left">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Inicio EstimadoDesde >=:]]></text>
+					<text><![CDATA[Inicio Estimado >=:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="202" y="34" width="101" height="14"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="202" y="34" width="86" height="14"/>
 					<textElement textAlignment="Left">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Inicio Estimado Hasta <=:]]></text>
+					<text><![CDATA[Inicio Estimado <=:]]></text>
 				</staticText>
 				<textField>
-					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="303" y="20" width="73" height="14"/>
+					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="288" y="20" width="73" height="14"/>
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{inicioEstimado_mayorQue}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="303" y="34" width="73" height="14"/>
+					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="288" y="34" width="73" height="14"/>
 					<textElement>
 						<font size="8"/>
 					</textElement>
@@ -124,89 +124,89 @@
 					<text><![CDATA[Parámetros del reporte]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="202" y="68" width="101" height="14"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="202" y="62" width="86" height="14"/>
 					<textElement textAlignment="Left">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Inicio Real Hasta <=:]]></text>
+					<text><![CDATA[Inicio Real  <=:]]></text>
 				</staticText>
 				<textField>
-					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="303" y="54" width="73" height="14"/>
+					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="288" y="48" width="73" height="14"/>
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{inicioReal_mayorQue}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="303" y="68" width="73" height="14"/>
+					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="288" y="62" width="73" height="14"/>
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{inicioReal_menorQue}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="202" y="54" width="101" height="14"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="202" y="48" width="86" height="14"/>
 					<textElement textAlignment="Left">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Inicio Real Desde >=:]]></text>
+					<text><![CDATA[Inicio Real  >=:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="379" y="68" width="95" height="14"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="379" y="62" width="79" height="14"/>
 					<textElement textAlignment="Left">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Fin Real Hasta <=:]]></text>
+					<text><![CDATA[Fin Real  <=:]]></text>
 				</staticText>
 				<textField>
-					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="480" y="54" width="73" height="14"/>
+					<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="458" y="48" width="73" height="14"/>
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{finReal_mayorQue}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="480" y="68" width="73" height="14"/>
+					<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="458" y="62" width="73" height="14"/>
 					<textElement>
 						<font size="8"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{finReal_menorQue}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="379" y="54" width="95" height="14"/>
+					<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="379" y="48" width="79" height="14"/>
 					<textElement textAlignment="Left">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Fin Real Desde >=:]]></text>
+					<text><![CDATA[Fin Real  >=:]]></text>
 				</staticText>
 			</frame>
 			<staticText>
-				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="379" y="103" width="95" height="14"/>
+				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="379" y="103" width="79" height="14"/>
 				<textElement textAlignment="Left">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Fin Estimado Hasta <=:]]></text>
+				<text><![CDATA[Fin Estimado  <=:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="481" y="89" width="73" height="14"/>
+				<reportElement uuid="2e753ede-4e1f-47ba-af85-77deb1aaccbb" x="458" y="89" width="73" height="14"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{finEstimado_mayorQue}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="481" y="103" width="73" height="14"/>
+				<reportElement uuid="5dcf3346-3f2b-4043-82b2-7fd1e9695eff" x="458" y="103" width="73" height="14"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{finEstimado_menorQue}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="379" y="89" width="95" height="14"/>
+				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="379" y="89" width="79" height="14"/>
 				<textElement textAlignment="Left">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Fin Estimado Desde >=:]]></text>
+				<text><![CDATA[Fin Estimado  >=:]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -217,49 +217,49 @@
 		<band height="22" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="4744a5c4-eeaf-4295-8376-2c7a50ed6f52" x="0" y="0" width="79" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="9cd659a4-cf5c-4658-9f20-8e5a40091023" x="79" y="0" width="79" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Sitio]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="e306f02d-4069-42bf-afa9-9687a460d680" x="158" y="0" width="79" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="651b8731-72b5-4460-a390-944dc43841da" x="237" y="0" width="79" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Inicio Estimado]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="4799c741-eab7-4543-9e0c-10a6f0b77983" x="316" y="0" width="79" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fin Estimado]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="dbff4077-672a-4e1d-8b1b-5f63d72a43ae" x="395" y="0" width="79" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Inicio real]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="d070a57c-db75-4695-8faf-0e98322940b5" x="474" y="0" width="79" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fin Real]]></text>
@@ -279,37 +279,37 @@
 			</line>
 			<textField>
 				<reportElement uuid="0234034b-591f-41ec-8e00-c18dbd5e9406" x="0" y="0" width="79" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[""+$F{estado}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="f8e76fe6-9fb9-46f8-9df7-fb92f21a9b44" x="79" y="0" width="79" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[""+$F{sitio}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="77bd31b8-6692-4184-a4b0-86d7e1de2aed" x="158" y="0" width="79" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[""+$F{tipo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="e4319212-0d7d-4627-90af-4b6ecbb0c85b" x="237" y="0" width="79" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{fechaInicioEstimada}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="a5d17413-b9b1-468b-9567-c4b386921539" x="316" y="0" width="79" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{fechaFinEstimada}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="27fb8c27-4846-47f1-9dc5-89d4ba73edbd" x="395" y="0" width="79" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{fechaInicioReal}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="8fd37e20-9d0a-454c-9eb9-7c4ef8680eca" x="474" y="0" width="79" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{fechaFinReal}]]></textFieldExpression>
 			</textField>
 		</band>

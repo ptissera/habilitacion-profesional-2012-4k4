@@ -6,6 +6,14 @@
   <head>
     <meta name="layout" content="main">		
     <title>Reporte</title>    
+      <g:javascript>
+    function marcarTodos(name) {
+     boxes = document.getElementsByName(name);
+     for (i = 0; i < boxes.length; i++)
+     if (!boxes[i].disabled)
+   		{	boxes[i].checked = !boxes[i].checked ; }
+     }
+  </g:javascript>
   </head>
   <body>
 
@@ -20,6 +28,8 @@
           <li class="fieldcontain">
             <span id="nombre-label" class="property-label"><g:message code="cliente.nombre.label" default="Seleccione Cliente" /></span>
             <span class="property-value" aria-labelledby="nombre-label">
+              <g:checkBox name="todos" value="${false}" onclick="marcarTodos('clientesIds')"/>
+              <g:message code="acontecimiento.todos.label" default="Todos" />                
               <g:checkBoxList name="clientesIds" from="${clientesProyectosListInstance}" value="${clientesProyectosListInstance}" optionKey="id"/>
             </span>
           </li>

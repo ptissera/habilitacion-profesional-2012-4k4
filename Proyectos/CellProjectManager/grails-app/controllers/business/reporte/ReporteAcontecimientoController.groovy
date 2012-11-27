@@ -9,14 +9,16 @@ class ReporteAcontecimientoController {
     }
     
     def step1(){
+        flash.message = null
         [tipoAcontecimientoListInstance: TipoAcontecimiento.list()]
     }
     
     def step2(){
+        flash.message = null
         def tipoAcontecimientoListInstance = params.tipoAcontecimientoIds.collect { TipoAcontecimiento.get(it) }        
         if(!tipoAcontecimientoListInstance){
             flash.message = "Debe seleccionar al menos un tipo de Acontecimiento"
-            render(view: "step1", model: [tipoAcontecimientoListInstance: tipoAcontecimientoListInstance])
+            render(view: "step1", model: [tipoAcontecimientoListInstance: TipoAcontecimiento.list()])
         }else{
             session.tipoAcontecimientoListInstance = tipoAcontecimientoListInstance
             [creadorListInstance: Usuario.list()]
@@ -24,11 +26,11 @@ class ReporteAcontecimientoController {
     }
     
     def step3(){
-        
+        flash.message = null
         def creadorListInstance = params.creadorIds.collect { Usuario.get(it) }        
         if(!creadorListInstance){
             flash.message = "Debe seleccionar al menos un creador"
-            render(view: "step2", model: [creadorListInstance: creadorListInstance])
+            render(view: "step2", model: [creadorListInstance: Usuario.list()])
         }else{
             session.creadorListInstance = creadorListInstance
             [tipoTareaListInstance: TipoTarea.list()]
@@ -37,17 +39,18 @@ class ReporteAcontecimientoController {
     
     
     def step4(){
-        
+        flash.message = null
         def tipoTareaListInstance = params.tipoTareaIds.collect { TipoTarea.get(it) }        
         if(!tipoTareaListInstance){
             flash.message = "Debe seleccionar al menos un Tipo de Tarea"
-            render(view: "step3", model: [tipoTareaListInstance: tipoTareaListInstance])
+            render(view: "step3", model: [tipoTareaListInstance:  TipoTarea.list()])
         }else{
             session.tipoTareaListInstance = tipoTareaListInstance
         }
     }
     
     def step5(){
+            flash.message = null
             def tipoAcontecimientoListInstance = session.tipoAcontecimientoListInstance
             def creadorListInstance =  session.creadorListInstance
             def tipoTareaListInstance = session.tipoTareaListInstance
@@ -55,8 +58,14 @@ class ReporteAcontecimientoController {
             def datos = [] 
             def fechaCreacion_mayorQue = params.fechaCreacion_mayorQue_value ? new Date().parse("dd/MM/yyyy", params.fechaCreacion_mayorQue_value):null
             def fechaCreacion_menorQue = params.fechaCreacion_menorQue_value ? new Date().parse("dd/MM/yyyy", params.fechaCreacion_menorQue_value):null
-            session.reporte_fechaCreacion_mayorQue =  fechaCreacion_mayorQue.format("dd/MM/yyyy")           
-            session.reporte_fechaCreacion_menorQue =  fechaCreacion_menorQue.format("dd/MM/yyyy")
+            if(fechaCreacion_mayorQue)
+                session.reporteAcontecimiento_fechaCreacion_mayorQue =  fechaCreacion_mayorQue.format("dd/MM/yyyy")       
+            else    
+                session.reporteAcontecimiento_fechaCreacion_mayorQue = null
+            if(fechaCreacion_menorQue)    
+                session.reporteAcontecimiento_fechaCreacion_menorQue =  fechaCreacion_menorQue.format("dd/MM/yyyy")
+            else
+                session.reporteAcontecimiento_fechaCreacion_menorQue = null
         
             def busqueda =[]
             def tiposAcontecimientos = ""
@@ -88,9 +97,9 @@ class ReporteAcontecimientoController {
                       }
                   }
               }    
-            session.reporte_tiposDocumentos = tiposAcontecimientos    
-            session.reporte_tiposDeTareas = tiposDeTareas    
-            session.reporte_creadores = creadores    
+            session.reporteAcontecimiento_tiposDocumentos = tiposAcontecimientos    
+            session.reporteAcontecimiento_tiposDeTareas = tiposDeTareas    
+            session.reporteAcontecimiento_creadores = creadores    
             session.resultReport = datos
             [acontecimientoInstanceList: resultReport]
         
@@ -98,11 +107,17 @@ class ReporteAcontecimientoController {
     
     def reporte={
         def datos = session.resultReport   
-        params.tiposAcontecimientos = session.reporte_tiposDocumentos 
-        params.creadores = session.reporte_creadores
-        params.tiposDeTareas = session.reporte_tiposDeTareas
-        params.fechaCreacion_mayorQue = session.reporte_fechaCreacion_mayorQue         
-        params.fechaCreacion_menorQue = session.reporte_fechaCreacion_menorQue    
+        params.tiposAcontecimientos = session.reporteAcontecimiento_tiposDocumentos 
+        params.creadores = session.reporteAcontecimiento_creadores
+        params.tiposDeTareas = session.reporteAcontecimiento_tiposDeTareas
+        if (session.reporteAcontecimiento_fechaCreacion_mayorQue)
+            params.fechaCreacion_mayorQue = session.reporteAcontecimiento_fechaCreacion_mayorQue         
+        else
+           params.fechaCreacion_mayorQue = "Todas las fechas"
+        if   (session.reporteAcontecimiento_fechaCreacion_menorQue ) 
+            params.fechaCreacion_menorQue = session.reporteAcontecimiento_fechaCreacion_menorQue    
+        else
+            params.fechaCreacion_menorQue = "Todas las fechas"
         
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)
     }
