@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DocumentacionIntegranteCuadrillaReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b38952c-1169-499f-948a-d9aaeef3a6e0">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.2100000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="202"/>
+	<property name="ireport.y" value="240"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -13,6 +13,7 @@
 	<parameter name="tiposAcontecimientos" class="java.lang.String"/>
 	<parameter name="fechaDesde" class="java.lang.String"/>
 	<parameter name="fechaHasta" class="java.lang.String"/>
+	<field name="fechaAcontecimiento" class="java.lang.String"/>
 	<field name="tipoAcontecimiento" class="java.lang.String"/>
 	<field name="porcentajeAcontecimientos" class="java.lang.Double"/>
 	<field name="totalAcontecimientos" class="java.lang.Object"/>
@@ -22,7 +23,7 @@
 	<title>
 		<band height="183" splitType="Stretch">
 			<frame>
-				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="23" y="67" width="455" height="103" backcolor="#F0F0F0"/>
+				<reportElement uuid="74354e74-53a0-4b55-a788-1aba57b192a8" mode="Opaque" x="23" y="67" width="504" height="103" backcolor="#F0F0F0"/>
 			</frame>
 			<staticText>
 				<reportElement uuid="59c8f3a6-9b3d-4ee7-8681-3ef6bbb62a28" style="Column header" x="33" y="14" width="445" height="38"/>
@@ -37,37 +38,37 @@
 			</image>
 			<staticText>
 				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="33" y="70" width="137" height="14"/>
-				<textElement textAlignment="Right">
+				<textElement>
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Tipos de Acontecimientos:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="312" y="73" width="77" height="14"/>
-				<textElement textAlignment="Right">
-					<font isBold="true"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Fecha Desde:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="318" y="90" width="71" height="14"/>
-				<textElement textAlignment="Right">
-					<font isBold="true"/>
+				<reportElement uuid="c2cb831a-daa3-4fa8-a086-9428ae7f02cc" x="312" y="91" width="77" height="14"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Fecha Hasta:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="6282b0b8-b3f5-4a33-98ac-8368ffecee4b" x="77" y="91" width="199" height="68"/>
+				<reportElement uuid="6282b0b8-b3f5-4a33-98ac-8368ffecee4b" x="33" y="87" width="222" height="68"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[""+$P{tiposAcontecimientos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="ce8e0c33-db9d-4333-8b26-46e61a69f0fd" x="395" y="73" width="65" height="14"/>
+				<reportElement uuid="ce8e0c33-db9d-4333-8b26-46e61a69f0fd" x="395" y="73" width="107" height="14"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[""+$P{fechaDesde}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="1566f86c-66a7-416a-b8c1-3fb5c73c0d80" x="395" y="91" width="65" height="14"/>
+				<reportElement uuid="1566f86c-66a7-416a-b8c1-3fb5c73c0d80" x="395" y="91" width="107" height="14"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[""+$P{fechaHasta}]]></textFieldExpression>
 			</textField>
@@ -78,58 +79,61 @@
 	</pageHeader>
 	<columnHeader>
 		<band height="26" splitType="Stretch">
-			<line>
-				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="4" y="23" width="548" height="1"/>
-			</line>
-			<line>
-				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="4" y="19" width="548" height="1"/>
-			</line>
-			<line>
-				<reportElement uuid="d01f00b5-96dc-4aff-b211-50471e1a92a7" x="5" y="-1" width="548" height="1"/>
-			</line>
+			<rectangle>
+				<reportElement uuid="e31fbbdf-df37-432b-b890-cc9d1b8b05bb" x="0" y="0" width="553" height="26"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</rectangle>
 			<staticText>
-				<reportElement uuid="ce3caf62-58d3-4d01-8eac-33e3972285a2" x="2" y="3" width="185" height="19"/>
+				<reportElement uuid="54ed4620-8581-4f87-9def-3df6d8a6a82c" x="0" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="82f9e29c-acc2-4b4c-af3b-0e0db638c6f5" x="138" y="0" width="138" height="20"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Acontecimiento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="f11f9497-7d05-44f7-819e-3c7c23376f1b" x="187" y="3" width="185" height="19"/>
+				<reportElement uuid="060626cd-b19e-4b39-a9ae-a640dd024fde" x="276" y="0" width="138" height="20"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[% / Total]]></text>
+				<text><![CDATA[Porcentaje]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="4b1214f9-23fd-49bd-8f05-168c58146d30" x="372" y="3" width="185" height="19"/>
+				<reportElement uuid="c1c8d9f7-bf6a-490f-a8ac-8e6c8d72e771" x="414" y="0" width="138" height="20"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cant. Acont.]]></text>
+				<text><![CDATA[Cantidad Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Immediate">
-			<line>
-				<reportElement uuid="dde105b4-4566-4aeb-bd9c-bfc7ca8dab04" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
 			<textField>
-				<reportElement uuid="032dc51f-f1a5-46aa-bfbc-eb890ecfae26" x="0" y="0" width="185" height="20"/>
-				<textElement/>
+				<reportElement uuid="d6ad747e-6b04-4e4f-9d44-1629fa2688a5" x="0" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fechaAcontecimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="caa7d7c3-02ad-48d0-997f-e0ee7e319fcb" x="138" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{tipoAcontecimiento}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement uuid="4d20b214-4e8e-424d-9e52-64a8fd00c807" x="185" y="0" width="185" height="20"/>
+			<textField pattern="###0.00">
+				<reportElement uuid="95fb6ca5-467f-453b-9601-4cd81aeca04c" x="276" y="0" width="138" height="20"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[""+$F{porcentajeAcontecimientos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{porcentajeAcontecimientos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="64c7e22d-1b2d-4f5d-a8da-3fee13f92345" x="370" y="0" width="185" height="20"/>
+				<reportElement uuid="1f10c025-e433-4bf8-893d-fe8c63b5e412" x="414" y="0" width="138" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[""+$F{totalAcontecimientos}]]></textFieldExpression>
 			</textField>
@@ -172,7 +176,7 @@
 				<pieDataset>
 					<keyExpression><![CDATA[$F{tipoAcontecimiento}]]></keyExpression>
 					<valueExpression><![CDATA[$F{porcentajeAcontecimientos}]]></valueExpression>
-					<labelExpression><![CDATA[$F{porcentajeAcontecimientos}]]></labelExpression>
+					<labelExpression><![CDATA[$F{tipoAcontecimiento}]]></labelExpression>
 				</pieDataset>
 				<pie3DPlot>
 					<plot/>
@@ -184,14 +188,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[% Tipos / Total]]></text>
+				<text><![CDATA[Porcentaje representativo de Tipos en Total de Acontecimientos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="27ac6503-6d20-4aa6-b25e-31369f273c82" mode="Opaque" x="33" y="247" width="494" height="20" backcolor="#F0F0F0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Totales Por Tipo]]></text>
+				<text><![CDATA[Totales Por Fecha de Creación]]></text>
 			</staticText>
 			<bar3DChart>
 				<chart>
@@ -203,7 +207,7 @@
 				<categoryDataset>
 					<categorySeries>
 						<seriesExpression><![CDATA[$F{tipoAcontecimiento}]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{totalAcontecimientos}]]></categoryExpression>
+						<categoryExpression><![CDATA[$F{fechaAcontecimiento}]]></categoryExpression>
 						<valueExpression><![CDATA[$F{totalAcontecimientos}]]></valueExpression>
 						<labelExpression><![CDATA[$F{tipoAcontecimiento}]]></labelExpression>
 					</categorySeries>

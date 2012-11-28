@@ -1,6 +1,7 @@
 package business.informe
 
 import business.tarea.TipoAcontecimiento
+import business.tarea.Acontecimiento
 
 class InformeDeAcontecimientosController {
 
@@ -46,26 +47,28 @@ class InformeDeAcontecimientosController {
             
             def datos = [:] 
             def totalCount = 0
-            Acontecimiento.getAll().each{ acontecimiento->
+            Acontecimiento.list(sort:'fechaCreacion').each{ acontecimiento->
                 def key = "${acontecimiento.tipoAcontecimientoId}"
-                if((desde !=null ? desde <= acontecimiento.fecha : true) 
-                    && (hasta !=null ? hasta >= acontecimiento.fecha : true)
-                    && keysTipoAcontecimientoMap..getAt(key)){
+                if((desde !=null ? desde <= acontecimiento.fechaCreacion : true) 
+                    && (hasta !=null ? hasta >= acontecimiento.fechaCreacion : true)
+                    && keysTipoAcontecimientoMap.getAt(key)){
                     totalCount++
                     if(datos.getAt(key)){
                         datos[key].totalAcontecimientos++
                     }else{
                         datos[key] = [tipoAcontecimiento: acontecimiento.tipoAcontecimiento,                            
                             porcentajeAcontecimientos: 0,
-                            totalAcontecimientos: 1]
+                            totalAcontecimientos: 1,
+                            fechaAcontecimiento: acontecimiento.fechaCreacion.format("MM/yyyy")]
                     }                    
                 }
             }
              def datosInforme = []           
             datos.each{dato->
-                dato.value.porcentajeAcontecimientos = new Double(dato.value.totalAcontecimientos / totalCount * 100).round(2)
+                dato.value.porcentajeAcontecimientos = new Float(dato.value.totalAcontecimientos / totalCount * 100).round(2)
                 datosInforme << dato.value
             }
+            println datosInforme
              session.resultReport = datosInforme
             [datos: datosInforme]
         }                
@@ -79,11 +82,18 @@ class InformeDeAcontecimientosController {
     def reporte={
         def datos = session.resultReport            
         params.tiposAcontecimientos = session.informe_tipos_acontecimientos
-        params.fechaDesde = session.informe_desde
-        params.fechaHasta = session.informe_hasta
+        if(session.informe_desde)
+            params.fechaDesde = session.informe_desde
+       else
+            params.fechaDesde= "Todas las fechas"
+        if (session.informe_hasta)
+            params.fechaHasta = session.informe_hasta
+        else
+            params.fechaHasta= "Todas las fechas"
         
         chain(controller: "jasper", action: "index", model: [data: datos], params:params)
     }
     
     
 }
+

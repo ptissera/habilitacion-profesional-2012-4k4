@@ -16,6 +16,7 @@
       <table>
         <thead>
           <tr>
+            <th>Fecha de Creacion</th>
             <th>Tipo de Acontecimiento</th>
             <th>% / Total</th>            
             <th>Cant. Acont.</th>
@@ -24,6 +25,7 @@
         <tbody>
         <g:each in="${datos}" status="i" var="dato">
           <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+            <td>${dato.fechaAcontecimiento}</td>
             <td>${dato.tipoAcontecimiento}</td>
             <td>${dato.porcentajeAcontecimientos}</td>
             <td>${dato.totalAcontecimientos}</td>
