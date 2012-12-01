@@ -65,21 +65,3 @@
 	</label>
 	<g:field type="email" name="contactoEmail" value="${clienteInstance?.contactoEmail}"/>
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: clienteInstance, field: 'licitaciones', 'error')} ">
-	<label for="licitaciones">
-		<g:message code="cliente.licitaciones.label" default="Licitaciones" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${clienteInstance?.licitaciones?}" var="l">
-    <li><g:link controller="proyecto" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="proyecto" action="create" params="['cliente.id': clienteInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'proyecto.label', default: 'Proyecto')])}</g:link>
-</li>
-</ul>
-
-</div>
-
