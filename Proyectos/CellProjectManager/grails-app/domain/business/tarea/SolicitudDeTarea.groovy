@@ -37,7 +37,11 @@ class SolicitudDeTarea {
     }
     
     def hasEstadoCreada(){              
-        return estado != null ? estado.getNombre() == "Creada" || estado.getNombre() == "Pendiente Conformidad" : false
+        return estado != null ? estado.getNombre() == "Creada"  || estado.getNombre() == "Pendiente Conformidad" : false
+    }
+    
+     def hasEstadoEnEjecucion(){              
+        return estado != null ? estado.getNombre() == "En Ejecucion" : false
     }
     
     def hasDocumentos(){              

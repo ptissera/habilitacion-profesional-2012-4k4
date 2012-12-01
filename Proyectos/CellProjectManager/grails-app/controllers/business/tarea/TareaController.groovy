@@ -179,7 +179,13 @@ class TareaController {
             return
         }
         session.setAttribute("tareaSelected",tareaInstance)
-        [tareaInstance: tareaInstance]
+        
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")        
+        if(!solicitudDeTareaSelected){
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+        
+        [tareaInstance: tareaInstance, solicitudDeTareaInstance: solicitudDeTareaSelected]
     }
 
     def edit() {

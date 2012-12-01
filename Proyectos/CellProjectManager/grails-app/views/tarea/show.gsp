@@ -38,7 +38,7 @@
 
         </li>
       </g:if>
-      
+
       <g:if test="${tareaInstance?.fechaInicioReal}">
         <li class="fieldcontain">
           <span id="fechaInicioReal-label" class="property-label"><g:message code="tarea.fechaInicioReal.label" default="Fecha Inicio Real" /></span>
@@ -47,7 +47,7 @@
 
         </li>
       </g:if>
-      
+
       <g:if test="${tareaInstance?.fechaFin}">
         <li class="fieldcontain">
           <span id="fechaFin-label" class="property-label"><g:message code="tarea.fechaFin.label" default="Fecha Fin" /></span>
@@ -56,7 +56,7 @@
 
         </li>
       </g:if>
-      
+
       <g:if test="${tareaInstance?.fechaFinReal}">
         <li class="fieldcontain">
           <span id="fechaFinReal-label" class="property-label"><g:message code="tarea.fechaFinReal.label" default="Fecha Fin Real" /></span>
@@ -161,7 +161,7 @@
             <g:each in="${tareaInstance.permisos}" status="i" var="permisoAccesoInstance">
               <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
                 <td><g:formatDate format="dd/MM/yyyy" date="${permisoAccesoInstance.fechaDesde}" /></td>					
-                <td><g:formatDate format="dd/MM/yyyy" date="${permisoAccesoInstance.fechaHasta}" /></td>					
+              <td><g:formatDate format="dd/MM/yyyy" date="${permisoAccesoInstance.fechaHasta}" /></td>					
               <td>${fieldValue(bean: permisoAccesoInstance, field: "nombreArchivo")}</td>					
               </tr>
             </g:each>
@@ -170,8 +170,8 @@
 
         </li>
       </g:if>
-      
-       <g:if test="${tareaInstance?.acontecimientos}">
+
+      <g:if test="${tareaInstance?.acontecimientos}">
         <li class="fieldcontain">
           <span id="acontecimientos-label" class="property-label"><g:message code="tarea.acontecimientos.label" default="Acontecimientos" /></span>
 
@@ -186,7 +186,7 @@
             <g:each in="${tareaInstance.acontecimientos}" status="i" var="acontecimientoInstance">
               <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">					
                 <td><g:formatDate format="dd/MM/yyyy" date="${acontecimientoInstance.fechaCreacion}" /></td>					
-                <td>${fieldValue(bean: acontecimientoInstance, field: "descripcion")}</td>
+              <td>${fieldValue(bean: acontecimientoInstance, field: "descripcion")}</td>
               </tr>
             </g:each>
             </tbody>
@@ -216,6 +216,11 @@
 
     </ol>
     <g:form>
+      <g:if test="${solicitudDeTareaInstance.hasEstadoEnEjecucion()}">
+        <fieldset class="buttons_add">                                        
+          <g:link class="add" controller="acontecimiento" action="create" params="['tarea.id': tareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'acontecimiento.label', default: 'Acontecimiento')])}</g:link>
+        </fieldset>
+      </g:if>
       <fieldset class="buttons">
         <g:hiddenField name="id" value="${tareaInstance?.id}" />
         <g:link class="edit" action="edit" id="${tareaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
