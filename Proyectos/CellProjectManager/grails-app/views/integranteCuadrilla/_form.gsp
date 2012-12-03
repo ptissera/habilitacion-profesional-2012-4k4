@@ -51,7 +51,7 @@
   <g:textField name="telefono" value="${integranteCuadrillaInstance?.telefono}"/>
 </div>
 
-<g:if test="${cuadrilaInstance.haveJefeCuadrilla()==integranteCuadrillaInstance?.esJefeCuadrilla}">
+<g:if test="${ (cuadrilaInstance.haveJefeCuadrilla()==false) || (integranteCuadrillaInstance?.esJefeCuadrilla==true)}">
   <div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'esJefeCuadrilla', 'error')} ">
     <label for="esJefeCuadrilla">
       <g:message code="integranteCuadrilla.esJefeCuadrilla.label" default="Jefe de Cuadrilla" />
@@ -66,6 +66,14 @@
       <span class="required-indicator">*</span>
     </label>
     <g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" optionKey="id" required="" value="${integranteCuadrillaInstance?.usuario?.id}" class="many-to-one"/>
+  </div>
+</g:if>
+<g:if test="${(cuadrilaInstance.haveJefeCuadrilla()==true) && (integranteCuadrillaInstance?.esJefeCuadrilla==false)}">
+  <div class="fieldcontain ${hasErrors(bean: integranteCuadrillaInstance, field: 'esJefeCuadrilla', 'error')} ">
+    <label for="esJefeCuadrilla">
+      <g:message code="integranteCuadrilla.esJefeCuadrilla.label" default="Jefe de Cuadrilla" />
+    </label>
+    <g:checkBox name="esJefeCuadrilla"  value="${integranteCuadrillaInstance?.esJefeCuadrilla}" disabled="disabled" />
   </div>
 </g:if>
 

@@ -18,9 +18,10 @@ class IntegranteCuadrillaController {
 
     def create() {
         cleanSelected() 
-        def integranteCuadrillaInstance=new IntegranteCuadrilla(params)        
+        def integranteCuadrillaInstance=new IntegranteCuadrilla(params)   
+        integranteCuadrillaInstance.esJefeCuadrilla = false
         session.setAttribute("integranteCuadrillaSelected",integranteCuadrillaInstance);
-        [integranteCuadrillaInstance: new IntegranteCuadrilla(params), cuadrilaInstance: session.getAttribute("cuadrillaSelected")]
+        [integranteCuadrillaInstance: integranteCuadrillaInstance, cuadrilaInstance: session.getAttribute("cuadrillaSelected")]
     }
 
     def save() {
@@ -29,7 +30,7 @@ class IntegranteCuadrillaController {
         integranteCuadrillaInstance.setFechaAlta(new Date())
         integranteCuadrillaInstance.setCuadrilla(cuadrilaInstance)
         if (!integranteCuadrillaInstance.save(flush: true)) {
-            render(view: "create", model: [integranteCuadrillaInstance: integranteCuadrillaInstance])
+            render(view: "create", model: [integranteCuadrillaInstance: integranteCuadrillaInstance, cuadrilaInstance: session.getAttribute("cuadrillaSelected")])
             return
         }
         flash.message = message(code: 'default.created.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), integranteCuadrillaInstance.id])
@@ -41,7 +42,7 @@ class IntegranteCuadrillaController {
         def integranteCuadrillaInstance = IntegranteCuadrilla.get(params.id)
         session.setAttribute("integranteCuadrillaSelected",integranteCuadrillaInstance);
         if (!integranteCuadrillaInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
             redirect(action: "list")
             return
         }
@@ -73,7 +74,7 @@ class IntegranteCuadrillaController {
             def version = params.version.toLong()
             if (integranteCuadrillaInstance.version > version) {
                 integranteCuadrillaInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla')] as Object[],
+                    [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla')] as Object[],
                           "Another user has updated this IntegranteCuadrilla while you were editing")
                 render(view: "edit", model: [integranteCuadrillaInstance: integranteCuadrillaInstance])
                 return
@@ -87,7 +88,7 @@ class IntegranteCuadrillaController {
             return
         }       
         
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), integranteCuadrillaInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), integranteCuadrillaInstance.id])
         redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
     }
 
@@ -97,25 +98,25 @@ class IntegranteCuadrillaController {
         def cuadrilaInstance=session.getAttribute("cuadrillaSelected") 
         
         if (!integranteCuadrillaInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
             redirect(action: "show",controller: "cuadrilla", id: cuadrilaInstance.id)
             return
         }
 
         try {
             integranteCuadrillaInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
             redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
-           redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'integranteCuadrilla.label', default: 'IntegranteCuadrilla'), params.id])
+            redirect(action: "show",controller: "integranteCuadrilla", id: integranteCuadrillaInstance.id)
         }
     }
     
-     def cleanSelected() 
+    def cleanSelected() 
     {
-         [ "integranteCuadrillaSelected",
+        [ "integranteCuadrillaSelected",
         "documentacionIntegranteCuadrillaSelectedTF",
         "historialCuadrillaSelectedTF"].each{ name ->
             session.setAttribute(name , null)

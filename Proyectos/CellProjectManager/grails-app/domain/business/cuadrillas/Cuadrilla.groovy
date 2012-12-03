@@ -22,15 +22,17 @@ class Cuadrilla {
     
     def haveJefeCuadrilla(){
         def hayJefe = false
-        getOperarios().each{ it ->
-            if(it.esJefeCuadrilla){
-                hayJefe = true
-            }
-        }   
+        if(getOperarios()){
+            getOperarios().each{ it ->
+                if(it.esJefeCuadrilla){
+                    hayJefe = true
+                }
+            }   
+        }
         return hayJefe
     }
      
-     def checkDocumentacion(){
+    def checkDocumentacion(){
         int codigo = 4
         getOperarios().each{ it ->
             if(it.checkDocumentacion()<codigo){
@@ -48,14 +50,8 @@ class Cuadrilla {
             default: return ""
         }
     }
-   
-    def afterInsert = {
-        def historial=new HistorialCuadrilla(fecha: new Date(), cuadrilla: this)       
-        historial.setDescripcion("    Cuadrilla -- Alta -- (${this.toString()})")
-        historial.save()
-    }
-    
+       
     @Override String toString() {
-		return getNombre()
-	}
+        return getNombre()
+    }
 }
