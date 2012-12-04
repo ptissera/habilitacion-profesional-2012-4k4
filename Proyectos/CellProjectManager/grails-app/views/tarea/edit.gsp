@@ -34,8 +34,7 @@
                                 <fieldset class="buttons_add">                                        
                                         <g:link class="add" controller="materialDeTarea" action="create" params="['tarea.id': tareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'materialDeTarea.label', default: 'MaterialDeTarea')])}</g:link>
                                         <g:link class="add" controller="equipoDeTarea" action="create" params="['tarea.id': tareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'equipoDeTarea.label', default: 'EquipoDeTarea')])}</g:link>
-                                        <g:link class="add" controller="permisoAcceso" action="create" params="['tarea.id': tareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso')])}</g:link>
-                                        <g:link class="add" controller="acontecimiento" action="create" params="['tarea.id': tareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'acontecimiento.label', default: 'Acontecimiento')])}</g:link>
+                                        <g:link class="add" controller="permisoAcceso" action="create" params="['tarea.id': tareaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'permisoAcceso.label', default: 'PermisoAcceso')])}</g:link>                                        
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
