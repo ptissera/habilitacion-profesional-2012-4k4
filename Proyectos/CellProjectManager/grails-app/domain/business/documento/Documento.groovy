@@ -24,6 +24,11 @@ class Documento {
         
     }
     
+    def hasEstadoEnviado(){              
+        return estado.id == EstadoDocumento.findByNombre('Enviado').id
+    }
+    
+    
     
     @Override String toString() {        
 	return  getTipo()

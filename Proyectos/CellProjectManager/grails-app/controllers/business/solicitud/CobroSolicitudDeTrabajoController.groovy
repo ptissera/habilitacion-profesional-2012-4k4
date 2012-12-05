@@ -28,7 +28,7 @@ class CobroSolicitudDeTrabajoController {
     }
 
     def save() {
-        def solicitudDeTareaInstance = session.solicitudDeTareaSelected
+        def solicitudDeTareaInstance = SolicitudDeTarea.get(session.solicitudDeTareaSelected.id)
         def cobroSolicitudDeTrabajoInstance = new CobroSolicitudDeTrabajo(solicitud:solicitudDeTareaInstance)
         cobroSolicitudDeTrabajoInstance.properties = params
         if (!cobroSolicitudDeTrabajoInstance.save(flush: true)) {

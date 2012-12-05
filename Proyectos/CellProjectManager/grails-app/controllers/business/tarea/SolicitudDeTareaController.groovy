@@ -39,7 +39,7 @@ class SolicitudDeTareaController {
         session.enviarDocumentacionAClienteTF = true
         def proyectoInstance = session.proyectoSelected
         
-        if (solicitudDeTareaInstance.estado != EstadoSolicitudTarea.findByNombre("Pendiente Conformidad")) {      
+        if (solicitudDeTareaInstance.estado.id != EstadoSolicitudTarea.findByNombre("Pendiente Conformidad").id) {      
                 flash.error = "La solicitud de tarea debe estar en estado Pendiente Conformidad"
                 redirect(action: "show", id: session.solicitudDeTareaSelected.id)
                 return
@@ -222,7 +222,7 @@ class SolicitudDeTareaController {
 
     def show() {
         cleanSelected()
-        def solicitudDeTareaInstance = SolicitudDeTarea.get(params.id)
+        def solicitudDeTareaInstance = SolicitudDeTarea.get(params.id)        
         if (!solicitudDeTareaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'solicitudDeTarea.label', default: 'SolicitudDeTarea'), params.id])
             redirect(action: "list")

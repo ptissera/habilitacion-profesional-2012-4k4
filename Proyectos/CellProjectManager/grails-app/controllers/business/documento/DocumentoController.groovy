@@ -58,6 +58,8 @@ class DocumentoController {
     def show() {
         session.setAttribute("documentoSelectedTF",true)
         def documentoInstance = Documento.get(params.id)
+        
+        
         if (!documentoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
             redirect(action: "list")
@@ -182,38 +184,25 @@ class DocumentoController {
         def documentoInstance = Documento.get(params.id)
         if (!documentoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
-            redirect(action: "list")
+            redirect(action: "show")
             return
         }
         
-        if (documentoInstance.estado != EstadoDocumento.findByNombre("Enviado")){
+        if (documentoInstance.estado.id != EstadoDocumento.findByNombre("Enviado").id){
             flash.error = "El documento debe estar en estado Enviado"
             redirect(action: "show")
             return
         }
         
         
-            documentoInstance.estado = EstadoDocumento.findByNombre("Aprobado")
-            documentoInstance.fechaAprobado = new Date()
-            
-            if (documentoInstance.save(flush: true))
-            {  flash.message = message(code: 'default.updated.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
-               
-            }
-            def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
-            boolean isSolicitudCreate = true
-            if(!solicitudDeTareaSelected){
-                isSolicitudCreate = false
-                solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
-            }
-            
-            verificarEstadoSolicitudTarea(solicitudDeTareaSelected)  
-            
-            if(isSolicitudCreate){ 
-                redirect(controller: "solicitudDeTarea", action: "create")
-            }else{
-                redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
-            }
+        documentoInstance.estado = EstadoDocumento.findByNombre("Aprobado")
+        documentoInstance.fechaAprobado = new Date()            
+        documentoInstance.save(flush: true)
+       
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")        
+        verificarEstadoSolicitudTarea(solicitudDeTareaSelected)  
+        redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+        
         
     }
     
@@ -221,26 +210,26 @@ class DocumentoController {
         def documentoInstance = Documento.get(params.id)
         if (!documentoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
-            redirect(action: "list")
+            redirect(action: "show")
             return
         }
-            documentoInstance.estado = EstadoDocumento.findByNombre("Incompleto")
+        documentoInstance.estado = EstadoDocumento.findByNombre("Incompleto")
             
-            if (documentoInstance.save(flush: true))
-            {  flash.message = message(code: 'default.updated.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
+        if (documentoInstance.save(flush: true))
+        {  flash.message = message(code: 'default.updated.message', args: [message(code: 'documento.label', default: 'Documento'), params.id])
                
-            }
-            def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
-            boolean isSolicitudCreate = true
-            if(!solicitudDeTareaSelected){
-                isSolicitudCreate = false
-                solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
-            }
-            if(isSolicitudCreate){ 
-                redirect(controller: "solicitudDeTarea", action: "create")
-            }else{
-                redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
-            }
+        }
+        def solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaCreate")
+        boolean isSolicitudCreate = true
+        if(!solicitudDeTareaSelected){
+            isSolicitudCreate = false
+            solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
+        }
+        if(isSolicitudCreate){ 
+            redirect(controller: "solicitudDeTarea", action: "create")
+        }else{
+            redirect(controller: "solicitudDeTarea", action: "edit", id: solicitudDeTareaSelected.id)
+        }
     }
     
     def verificarEstadoSolicitudTarea(solicitudDeTarea) {
@@ -250,7 +239,7 @@ class DocumentoController {
         def estadoSolicitudPendienteConformidad = EstadoSolicitudTarea.findByNombre("Pendiente Conformidad")
         solicitudDeTarea.documentos.each{
             if (it.estado.id != estadoAprobado.id )
-                tieneDocumentacionOK = false
+            tieneDocumentacionOK = false
         }
         if (tieneDocumentacionOK && solicitud.estado.id == estadoSolicitudPendienteConformidad.id)
         {

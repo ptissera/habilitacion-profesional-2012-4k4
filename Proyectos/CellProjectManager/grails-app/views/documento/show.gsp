@@ -88,6 +88,12 @@
 			
 			</ol>
 			<g:form>
+                          <g:if test="${documentoInstance?.hasEstadoEnviado()}">
+                                <fieldset class="buttons_add">
+                                        <g:actionSubmit class="aprobar" action="aprobarDocumento" value="${message(code: 'default.button.aprobarDocumento.label', default: 'Aprobar')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.aprobarDocumento.confirm.message', default: 'Confirma aprobacion?')}');" />
+                                        <g:actionSubmit class="cancelar" action="desaprobarDocumento" value="${message(code: 'default.button.desaprobarDocumento.label', default: 'Incompleto')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.desaprobarDocumento.confirm.message', default: 'Confirma estado incompleto?')}');" />
+                                </fieldset>
+                            </g:if>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${documentoInstance?.id}" />
 					<g:link class="edit" action="edit" id="${documentoInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
