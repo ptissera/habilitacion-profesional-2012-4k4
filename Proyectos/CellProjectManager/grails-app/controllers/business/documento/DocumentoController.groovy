@@ -237,12 +237,15 @@ class DocumentoController {
         boolean tieneDocumentacionOK = true
         def estadoAprobado = EstadoDocumento.findByNombre("Aprobado")
         def estadoSolicitudPendienteConformidad = EstadoSolicitudTarea.findByNombre("Pendiente Conformidad")
-        solicitudDeTarea.documentos.each{
-            if (it.estado.id != estadoAprobado.id )
+      
+        solicitud.documentos.each{
+            if (it.estado.id != estadoAprobado.id ){
             tieneDocumentacionOK = false
+            }
         }
+        
         if (tieneDocumentacionOK && solicitud.estado.id == estadoSolicitudPendienteConformidad.id)
-        {
+        {            
             solicitud.estado = EstadoSolicitudTarea.findByNombre("Pendiente Cobro")
             solicitud.save(flush:true)            
         }

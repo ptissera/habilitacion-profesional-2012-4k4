@@ -35,7 +35,8 @@ class CobroSolicitudDeTrabajoController {
             render(view: "create", model: [cobroSolicitudDeTrabajoInstance: cobroSolicitudDeTrabajoInstance])
             return
         }
-        if(solicitudDeTareaInstance.totalPorCobrar()==cobroSolicitudDeTrabajoInstance.monto){
+        
+        if(solicitudDeTareaInstance.totalPorCobrar()==0){
             solicitudDeTareaInstance.estado=EstadoSolicitudTarea.findByNombre("Cerrada")
             solicitudDeTareaInstance.save(flush: true)
         }

@@ -112,11 +112,15 @@ class ProyectoController {
         
         def estadoSolicitudInstance = EstadoSolicitudTarea.findByNombre('Cerrada')
         boolean isOK = true
-        proyectoInstance.solicitudes.each( isOK = isOK && it.estado==estadoSolicitudInstance )
+        proyectoInstance.solicitudes.each{it->
+            if( it.estadoId != estadoSolicitudInstance.id){
+                isOK = false
+            }            
+        }
         
         if(isOK){
             flash.message = "El proyecto paso a estado cerrado"
-            proyectoInstance.estadoProyecto = EstadoSolicitudTarea.findByNombre('Activo')
+            proyectoInstance.estadoProyecto = EstadoSolicitudTarea.findByNombre('Cerrado')
             proyectoInstance.save(flush: true)
             redirect(action: "show", id: params.id)
             return
