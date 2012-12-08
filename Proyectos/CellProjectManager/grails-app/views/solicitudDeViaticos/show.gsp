@@ -21,6 +21,15 @@
 			</g:if>
 			<ol class="property-list solicitudDeViaticos">
 			
+                          <g:if test="${solicitudDeViaticosInstance?.solicitud}">
+                            <li class="fieldcontain">
+                              <span id="solicitud-label" class="property-label">Cuadrilla</span>
+
+                              <span class="property-value" aria-labelledby="solicitud-label">${solicitudDeViaticosInstance?.solicitud?.cuadrilla?.encodeAsHTML()}</span>
+
+                            </li>
+                          </g:if>
+
 				<g:if test="${solicitudDeViaticosInstance?.solicitud}">
 				<li class="fieldcontain">
 					<span id="solicitud-label" class="property-label"><g:message code="solicitudDeViaticos.solicitud.label" default="Solicitud" /></span>

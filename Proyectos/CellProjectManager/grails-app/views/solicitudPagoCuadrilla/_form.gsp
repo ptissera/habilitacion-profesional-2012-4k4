@@ -1,5 +1,14 @@
 <%@ page import="business.solicitud.SolicitudPagoCuadrilla" %>
 
+<g:if test="${solicitudPagoCuadrillaInstance?.solicitud}">
+ <div class="fieldcontain ${hasErrors(bean: solicitudPagoCuadrillaInstance, field: 'cuadrilla', 'error')} ">
+  <label for="cuadrilla">Cuadrilla</label>
+
+    ${solicitudPagoCuadrillaInstance?.solicitud?.cuadrilla?.encodeAsHTML()}
+
+ </div>
+</g:if>
+
 <g:if test="${solicitudPagoCuadrillaInstance?.id}">
 <div class="fieldcontain ${hasErrors(bean: solicitudPagoCuadrillaInstance, field: 'fechaPago', 'error')} ">
 	<label for="fechaPago">
