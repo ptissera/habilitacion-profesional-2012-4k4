@@ -65,7 +65,7 @@
       <g:message code="integranteCuadrilla.usuario.label" default="Usuario" />
       <span class="required-indicator">*</span>
     </label>
-    <g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" optionKey="id" required="" value="${integranteCuadrillaInstance?.usuario?.id}" class="many-to-one"/>
+    <g:select id="usuario" name="usuario.id" from="${support.secure.Rol.findByNombre('ROLE_JEFE_CUADRILLA').usuarios}" optionKey="id" required="" value="${integranteCuadrillaInstance?.usuario?.id}" class="many-to-one"/>
   </div>
 </g:if>
 <g:if test="${(cuadrilaInstance.haveJefeCuadrilla()==true) && (integranteCuadrillaInstance?.esJefeCuadrilla==false)}">
