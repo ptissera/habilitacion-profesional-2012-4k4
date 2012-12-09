@@ -54,14 +54,15 @@ class SolicitudDeTareaController {
         def solicitudDeTareaInstance = session.solicitudDeTareaSelected
         solicitudDeTareaInstance = SolicitudDeTarea.get(solicitudDeTareaInstance.id)
         def docs = solicitudDeTareaInstance.documentos
-         
+         def asunto = "Coming - ${params.asunto}"
+        def bodyMessage = "${params.observaciones} \n\n Coming S.A"
         mailService.sendMail {     
             multipart true
             to "carlostrepat@gmail.com", "marianoguillen@gmail.com", "marianojgava@gmail.com", "javierbrizue101@gmail.com", "argbat@gmail.com" 
             cc "tissera.pablo@gmail.com"
             from "coming@coming.com"
-            subject "${params.asunto}"     
-            body "${params.observaciones}" 
+            subject asunto
+            body bodyMessage 
             attachBytes "${docs.nombreArchivo[0]}", "application/pdf", docs.archivo[0]
         }
         
