@@ -12,8 +12,8 @@ class CuadrillaController {
 
     def list() {
         cleanSelected() 
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [cuadrillaInstanceList: Cuadrilla.list(params), cuadrillaInstanceTotal: Cuadrilla.count()]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)        
+        [cuadrillaInstanceList: Cuadrilla.list(), cuadrillaInstanceTotal: Cuadrilla.count()]
     }
 
     def create() {

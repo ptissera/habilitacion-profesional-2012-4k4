@@ -97,7 +97,7 @@
                                 
 				<li class="fieldcontain">
 					<span id="esJefeCuadrilla-label" class="property-label"><g:message code="integranteCuadrilla.esJefeCuadrilla.label" default="Jefe de Cuadrilla" /></span>
-						<span class="property-value" aria-labelledby="propia-label"><g:checkBox name="esJefeCuadrilla" value="${integranteCuadrillaInstance?.esJefeCuadrilla}"  style="display: block"/></span>
+						<span class="property-value" aria-labelledby="propia-label"><g:checkBox name="esJefeCuadrilla" value="${integranteCuadrillaInstance?.esJefeCuadrilla}"  disabled="disabled" /></span>
 				</li>
 				
                           
