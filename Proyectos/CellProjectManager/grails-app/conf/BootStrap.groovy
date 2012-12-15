@@ -427,6 +427,20 @@ class BootStrap {
                 cuit: '20-223444344-3', contactoNombre: 'Juan Lemperd', contactoTelefono: '144255553', 
                 contactoEmail: 'juan.lemperd@nokia.com').save(flush: true, insert: true)
         }
+        
+        if(!Cliente.findByRazonSocial('Movistar SA')){
+            new Cliente(razonSocial: 'Movistar SA', 
+                telefono: '035112334343', email: 'movistar@movistar.com', direccion: 'Olivares 2323, Cordoba Capital',
+                cuit: '20-20437543-5', contactoNombre: 'Francisco Luque', contactoTelefono: '144255553', 
+                contactoEmail: 'francisco.luque@movistar.com').save(flush: true, insert: true)
+        }
+        
+        if(!Cliente.findByRazonSocial('Personal SA')){
+            new Cliente(razonSocial: 'Personal SA', 
+                telefono: '03514873434', email: 'personal@personal.com', direccion: '27 de Abril 763, Cordoba Capital',
+                cuit: '20-223444344-3', contactoNombre: 'Fernando Aguilera', contactoTelefono: '144255553', 
+                contactoEmail: 'fernando.aguilera@personal.com').save(flush: true, insert: true)
+        }
     }
     
     def initCuadrilla(){
