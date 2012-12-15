@@ -11,8 +11,8 @@
                   
                   function seleccionarUsuario(it , idUsuario , idProyecto ) {
                  
-                    if(confirm('¿Confirma Seleccion de proyecto?')){                      
-                      ${remoteFunction(controller:"proyecto", action:"userForProject", params:"'idUsuario=' + it.selectedIndex + '&idProyecto=' + idProyecto", onComplete:'updateMessage(XMLHttpRequest)')};
+                    if(confirm('¿Confirma Seleccion de proyecto?')){                       
+                      ${remoteFunction(controller:"proyecto", action:"userForProject", params:"'idUsuario=' + it.value + '&idProyecto=' + idProyecto", onComplete:'updateMessage(XMLHttpRequest)')};
                     } else {
                       it.selectedIndex = idUsuario;
                       $('#message').attr("style", "display:none");
@@ -58,7 +58,7 @@
                                                 <td>${fieldValue(bean: proyectoInstance, field: "cliente")}</td>
 					
 						<td>
-                                                      <g:select id="usuario" name="usuario.id" from="${support.secure.Usuario.list()}" onchange="seleccionarUsuario(this , ${proyectoInstance?.usuario?.id}, ${proyectoInstance?.id})" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>                                                
+                                                      <g:select id="usuario" name="usuario.id" from="${support.secure.Rol.findByNombre('ROLE_ADMIN_PROYECTO').usuarios}" onchange="seleccionarUsuario(this , ${proyectoInstance?.usuario?.id}, ${proyectoInstance?.id})" optionKey="id" value="${proyectoInstance?.usuario?.id}" class="many-to-one" noSelection="['null': '']"/>                                                
                                                       
                                                 </td>
 										

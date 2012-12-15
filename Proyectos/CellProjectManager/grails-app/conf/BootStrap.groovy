@@ -85,6 +85,38 @@ class BootStrap {
             sebastian.save(flush: true, insert: true)
         }
         
+         def fmantaraz=Usuario.findByNombreUsuario('fmantaraz')
+        if(!fmantaraz){
+            fmantaraz = new Usuario(nombreUsuario: 'fmantaraz', nombre: 'Francisco', apellido: 'Mantaraz', clave: '123',
+                enabled: true, email: 'fmantaraz@coming.com')
+            fmantaraz.setRol(rol_adminProy)
+            fmantaraz.save(flush: true, insert: true)
+        }
+        
+        def gdelgadino=Usuario.findByNombreUsuario('gdelgadino')
+        if(!gdelgadino){
+            gdelgadino = new Usuario(nombreUsuario: 'gdelgadino', nombre: 'Guillermo', apellido: 'Delgadino', clave: '123',
+                enabled: true, email: 'gdelgadino@coming.com')
+            gdelgadino.setRol(rol_adminProy)
+            gdelgadino.save(flush: true, insert: true)
+        }
+        
+        def jgracia=Usuario.findByNombreUsuario('jgracia')
+        if(!jgracia){
+            jgracia = new Usuario(nombreUsuario: 'jgracia', nombre: 'Juan', apellido: 'Gracia', clave: '123',
+                enabled: true, email: 'jgracia@coming.com')
+            jgracia.setRol(rol_adminProy)
+            jgracia.save(flush: true, insert: true)
+        }
+        
+        def jgaray=Usuario.findByNombreUsuario('jgaray')
+        if(!jgaray){
+            jgaray = new Usuario(nombreUsuario: 'jgaray', nombre: 'Joel', apellido: 'Garay', clave: '123',
+                enabled: true, email: 'jgaray@coming.com')
+            jgaray.setRol(rol_adminProy)
+            jgaray.save(flush: true, insert: true)
+        }
+        
         def pablo=Usuario.findByNombreUsuario('ptissera')
         if(!pablo){
             pablo = new Usuario(nombreUsuario: 'ptissera', nombre: 'Pablo', apellido: 'Tissera', clave: '123',
