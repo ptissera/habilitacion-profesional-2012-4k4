@@ -172,7 +172,7 @@ CREATE TABLE `documentacion_integrante_cuadrilla` (
 
 LOCK TABLES `documentacion_integrante_cuadrilla` WRITE;
 /*!40000 ALTER TABLE `documentacion_integrante_cuadrilla` DISABLE KEYS */;
-INSERT INTO `documentacion_integrante_cuadrilla` VALUES (1,3,'SMG 00011',1,1,'2012-10-01 00:00:00','2012-12-30 00:00:00'),(2,2,'GEA 00112',1,2,'2012-11-01 00:00:00','2012-11-27 00:00:00'),(3,2,'',3,1,'2012-10-02 00:00:00','2012-11-16 00:00:00'),(4,1,'GEA 000234',3,2,'2012-10-02 00:00:00','2012-11-09 00:00:00'),(5,1,'Sancor ',2,1,'2012-10-09 00:00:00','2012-11-06 00:00:00'),(6,2,'GEA 003233',2,2,'2012-09-04 00:00:00','2012-10-31 00:00:00'),(7,1,'',4,1,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(8,1,'GEA 0000032',4,2,'2012-11-01 00:00:00','2013-10-05 00:00:00'),(9,1,'Sancor Seg',5,1,'2012-11-01 00:00:00','2013-11-07 00:00:00'),(10,0,'GEA 000023',5,2,'2012-11-01 00:00:00','2012-11-16 00:00:00'),(11,1,'Sancor Seg',6,1,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(12,1,'GEA 00000012',6,2,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(15,0,'Sancor 0366454',9,1,'2012-12-06 00:00:00','2013-01-24 00:00:00'),(16,0,'SM 0004653',9,2,'2012-12-07 00:00:00','2013-01-25 00:00:00'),(17,0,'Sancor 0038762',10,1,'2012-12-06 00:00:00','2012-12-19 00:00:00'),(18,0,'SM 03888473',10,2,'2012-12-06 00:00:00','2013-01-17 00:00:00');
+INSERT INTO `documentacion_integrante_cuadrilla` VALUES (1,3,'SMG 00011',1,1,'2012-10-01 00:00:00','2012-12-30 00:00:00'),(2,3,'GEA 00112',1,2,'2012-11-01 00:00:00','2013-01-25 00:00:00'),(3,3,'',3,1,'2012-10-02 00:00:00','2013-01-31 00:00:00'),(4,2,'GEA 000234',3,2,'2012-10-02 00:00:00','2013-01-25 00:00:00'),(5,2,'Sancor ',2,1,'2012-10-09 00:00:00','2013-01-24 00:00:00'),(6,2,'GEA 003233',2,2,'2012-09-04 00:00:00','2012-10-31 00:00:00'),(7,1,'',4,1,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(8,1,'GEA 0000032',4,2,'2012-11-01 00:00:00','2013-10-05 00:00:00'),(9,1,'Sancor Seg',5,1,'2012-11-01 00:00:00','2013-11-07 00:00:00'),(10,1,'GEA 000023',5,2,'2012-11-01 00:00:00','2013-01-25 00:00:00'),(11,1,'Sancor Seg',6,1,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(12,1,'GEA 00000012',6,2,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(15,0,'Sancor 0366454',9,1,'2012-12-06 00:00:00','2013-01-24 00:00:00'),(16,0,'SM 0004653',9,2,'2012-12-07 00:00:00','2013-01-25 00:00:00'),(17,0,'Sancor 0038762',10,1,'2012-12-06 00:00:00','2012-12-19 00:00:00'),(18,0,'SM 03888473',10,2,'2012-12-06 00:00:00','2013-01-17 00:00:00');
 /*!40000 ALTER TABLE `documentacion_integrante_cuadrilla` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -817,7 +817,7 @@ CREATE TABLE `proyecto` (
 
 LOCK TABLES `proyecto` WRITE;
 /*!40000 ALTER TABLE `proyecto` DISABLE KEYS */;
-INSERT INTO `proyecto` VALUES (1,1,1,'3G en el centro del pais',2,'2012-10-31 23:35:32','2013-01-18 00:00:00','2012-11-16 00:00:00','Claro 001','3G centro',3),(2,0,2,'cobertura 2G para Nokia',1,'2012-11-01 10:20:54','2013-01-10 10:20:54','2012-11-11 10:20:54','Nokia N0021','2G Nokia',5),(3,1,1,'Update SWAPs',2,'2012-11-01 15:10:03','2012-11-22 00:00:00','2012-11-16 00:00:00','Claro 000235','Update SWAPs',2),(4,1,3,'Personal 3G Centro',2,'2012-12-03 11:36:33','2013-01-24 00:00:00','2012-12-21 00:00:00','P00023','Personal 3G Centro',NULL);
+INSERT INTO `proyecto` VALUES (1,4,1,'3G en el centro del pais',2,'2012-10-31 23:35:32','2013-01-18 00:00:00','2012-11-16 00:00:00','Claro 001','3G centro',17),(2,7,2,'cobertura 2G para Nokia',2,'2012-11-01 10:20:54','2013-01-10 10:20:54','2012-11-11 10:20:54','Nokia N0021','2G Nokia',2),(3,6,1,'Update SWAPs',2,'2012-11-01 15:10:03','2012-11-22 00:00:00','2012-11-16 00:00:00','Claro 000235','Update SWAPs',16),(4,8,3,'Personal 3G Centro',2,'2012-12-03 11:36:33','2013-01-24 00:00:00','2012-12-21 00:00:00','P00023','Personal 3G Centro',19);
 /*!40000 ALTER TABLE `proyecto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -944,7 +944,7 @@ CREATE TABLE `solicitud_de_viaticos` (
 
 LOCK TABLES `solicitud_de_viaticos` WRITE;
 /*!40000 ALTER TABLE `solicitud_de_viaticos` DISABLE KEYS */;
-INSERT INTO `solicitud_de_viaticos` VALUES (1,1,1,'2012-11-01 10:35:13','2012-11-01 16:27:52',750,NULL,5),(2,2,2,'2012-11-01 15:22:09','2012-11-01 19:32:00',1350,'ok',9),(3,0,1,'2012-11-01 16:26:35',NULL,750,NULL,6),(4,1,1,'2012-11-01 19:28:42','2012-11-24 21:49:45',1050,NULL,1),(5,0,1,'2012-12-04 16:48:54',NULL,1800,NULL,12);
+INSERT INTO `solicitud_de_viaticos` VALUES (1,1,1,'2012-11-01 10:35:13','2012-11-01 16:27:52',750,NULL,5),(2,2,2,'2012-11-01 15:22:09','2012-11-01 19:32:00',1350,'ok',9),(3,2,2,'2012-11-01 16:26:35','2012-12-14 16:44:00',750,NULL,6),(4,1,1,'2012-11-01 19:28:42','2012-11-24 21:49:45',1050,NULL,1),(5,0,1,'2012-12-04 16:48:54',NULL,1800,NULL,12);
 /*!40000 ALTER TABLE `solicitud_de_viaticos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -979,7 +979,7 @@ CREATE TABLE `solicitud_pago_cuadrilla` (
 
 LOCK TABLES `solicitud_pago_cuadrilla` WRITE;
 /*!40000 ALTER TABLE `solicitud_pago_cuadrilla` DISABLE KEYS */;
-INSERT INTO `solicitud_pago_cuadrilla` VALUES (1,3,2,'2012-11-01 10:37:02','2012-11-01 19:33:00',414,'pago inicial',30,5),(2,1,1,'2012-11-01 15:22:45','2012-11-01 16:31:47',3840,'primer adelando ',32,9),(3,0,1,'2012-11-01 19:30:29',NULL,4320,'primer pago',30,1),(4,2,2,'2012-11-13 14:21:19','2012-11-13 14:21:00',3600,'es de 30',30,9),(5,0,1,'2012-12-04 16:49:18',NULL,2970,'primer pago',33,12);
+INSERT INTO `solicitud_pago_cuadrilla` VALUES (1,3,2,'2012-11-01 10:37:02','2012-11-01 19:33:00',414,'pago inicial',30,5),(2,1,1,'2012-11-01 15:22:45','2012-11-01 16:31:47',3840,'primer adelando ',32,9),(3,0,1,'2012-11-01 19:30:29',NULL,4320,'primer pago',30,1),(4,2,2,'2012-11-13 14:21:19','2012-11-13 14:21:00',3600,'es de 30',30,9),(5,2,2,'2012-12-04 16:49:18','2012-12-14 16:45:00',2970,'primer pago',33,12);
 /*!40000 ALTER TABLE `solicitud_pago_cuadrilla` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1297,7 +1297,7 @@ CREATE TABLE `usuario` (
   KEY `FKF814F32EF7E035F9` (`integrante_cuadrilla_id`),
   CONSTRAINT `FKF814F32EB4651BC2` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`),
   CONSTRAINT `FKF814F32EF7E035F9` FOREIGN KEY (`integrante_cuadrilla_id`) REFERENCES `integrante_cuadrilla` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1306,7 +1306,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,1,'Tissera','123','mtissera@coming.com','\0',7,'Mariana','mtissera',2),(2,0,'Hernandez','123','shernandez@coming.com','\0',NULL,'Sebastian','shernandez',4),(3,0,'Tissera','123','ptissera@coming.com','\0',NULL,'Pablo','ptissera',1),(4,0,'Trepat','123','ctrepat@coming.com','\0',NULL,'Carlos','ctrepat',1),(5,0,'Gava','123','mgava@coming.com','\0',NULL,'Mariano','mgava',1),(6,0,'Odasso','123','dodasso@coming.com','\0',NULL,'Demian','dodasso',1),(7,0,'Brizuela','123','jbrizuela@coming.com','\0',NULL,'Javier','jbrizuela',1),(8,0,'Guillen','123','mguillen@coming.com','\0',NULL,'Mariano','mguillen',1),(9,1,'Perez','123','mperez@coming.com','\0',1,'Mario','mperez',3),(10,1,'Alvarez','123','falvarez@coming.com','\0',4,'Fernando','falvarez',3),(15,1,'Riquelme','123','jose.riquelme@coming.com','',9,'Jose','jriquelme',3);
+INSERT INTO `usuario` VALUES (1,1,'Tissera','123','mtissera@coming.com','\0',7,'Mariana','mtissera',2),(2,0,'Hernandez','123','shernandez@coming.com','\0',NULL,'Sebastian','shernandez',4),(3,0,'Tissera','123','ptissera@coming.com','\0',NULL,'Pablo','ptissera',1),(4,0,'Trepat','123','ctrepat@coming.com','\0',NULL,'Carlos','ctrepat',1),(5,0,'Gava','123','mgava@coming.com','\0',NULL,'Mariano','mgava',1),(6,0,'Odasso','123','dodasso@coming.com','\0',NULL,'Demian','dodasso',1),(7,0,'Brizuela','123','jbrizuela@coming.com','\0',NULL,'Javier','jbrizuela',1),(8,0,'Guillen','123','mguillen@coming.com','\0',NULL,'Mariano','mguillen',1),(9,1,'Perez','123','mperez@coming.com','\0',1,'Mario','mperez',3),(10,1,'Alvarez','123','falvarez@coming.com','\0',4,'Fernando','falvarez',3),(15,1,'Riquelme','123','jose.riquelme@coming.com','',9,'Jose','jriquelme',3),(16,1,'Mantaraz','123','fmantaraz@coming.com','',NULL,'Francisco','fmantaraz',4),(17,1,'Delgadino','123','gdelgadino@coming.com','',NULL,'Guillermo','gdelgadino',4),(18,1,'Gracia','123','jgracia@coming.com','',NULL,'Juan','jgracia',4),(19,1,'Garay','123','jgaray@coming.com','',NULL,'Joel','jgaray',4);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1319,4 +1319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-12-04 20:22:16
+-- Dump completed on 2012-12-15 16:46:15
