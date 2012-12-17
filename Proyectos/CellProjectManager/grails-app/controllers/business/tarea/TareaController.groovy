@@ -24,6 +24,7 @@ class TareaController {
     def listCreadas() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         Proyecto proyectoSelected=(Proyecto)session.getAttribute("proyectoSelected")
+        proyectoSelected = Proyecto.get(proyectoSelected.id)
         if(proyectoSelected){
             def tareaInstanceList = []
             proyectoSelected.solicitudes.each{ 
@@ -132,7 +133,8 @@ class TareaController {
         if(!solicitudDeTareaSelected){            
             solicitudDeTareaSelected = session.getAttribute("solicitudDeTareaSelected")
         }
-        tareaInstance.ordenEjecucion = solicitudDeTareaSelected.tarea == null ? 1 : solicitudDeTareaSelected.tarea.size() + 1
+        solicitudDeTareaSelected = SolicitudDeTarea.get(solicitudDeTareaSelected.id)
+        tareaInstance.ordenEjecucion = solicitudDeTareaSelected.tarea ? solicitudDeTareaSelected.tarea.size() + 1 : 1
         session.setAttribute("tareaSelected",tareaInstance)
         [tareaInstance: tareaInstance]
     }

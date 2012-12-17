@@ -130,7 +130,7 @@ CREATE TABLE `cuadrilla` (
   UNIQUE KEY `nombre` (`nombre`),
   KEY `FK8CB956555F36CEAB` (`estado_cuadrilla_id`),
   CONSTRAINT `FK8CB956555F36CEAB` FOREIGN KEY (`estado_cuadrilla_id`) REFERENCES `estado_cuadrilla` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +139,7 @@ CREATE TABLE `cuadrilla` (
 
 LOCK TABLES `cuadrilla` WRITE;
 /*!40000 ALTER TABLE `cuadrilla` DISABLE KEYS */;
-INSERT INTO `cuadrilla` VALUES (1,0,'Cuadrilla de Perez',1,'Perez',''),(2,0,'Cuadrilla de Alvarez',1,'Alvarez',''),(9,1,'Cuadrilla de Riquelme',2,'Riquelme','');
+INSERT INTO `cuadrilla` VALUES (1,0,'Cuadrilla de Perez',1,'Perez',''),(2,0,'Cuadrilla de Alvarez',1,'Alvarez',''),(9,1,'Cuadrilla de Riquelme',2,'Riquelme',''),(10,0,'Cuadrila de Miguel Llanos',1,'Llanos','');
 /*!40000 ALTER TABLE `cuadrilla` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +163,7 @@ CREATE TABLE `documentacion_integrante_cuadrilla` (
   KEY `FK12207A0940097C32` (`tipo_documento_id`),
   CONSTRAINT `FK12207A0940097C32` FOREIGN KEY (`tipo_documento_id`) REFERENCES `tipo_documentacion_integrante_cuadrilla` (`id`),
   CONSTRAINT `FK12207A095E74BCF` FOREIGN KEY (`integrante_id`) REFERENCES `integrante_cuadrilla` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `documentacion_integrante_cuadrilla` (
 
 LOCK TABLES `documentacion_integrante_cuadrilla` WRITE;
 /*!40000 ALTER TABLE `documentacion_integrante_cuadrilla` DISABLE KEYS */;
-INSERT INTO `documentacion_integrante_cuadrilla` VALUES (1,3,'SMG 00011',1,1,'2012-10-01 00:00:00','2012-12-30 00:00:00'),(2,3,'GEA 00112',1,2,'2012-11-01 00:00:00','2013-01-25 00:00:00'),(3,3,'',3,1,'2012-10-02 00:00:00','2013-01-31 00:00:00'),(4,2,'GEA 000234',3,2,'2012-10-02 00:00:00','2013-01-25 00:00:00'),(5,2,'Sancor ',2,1,'2012-10-09 00:00:00','2013-01-24 00:00:00'),(6,2,'GEA 003233',2,2,'2012-09-04 00:00:00','2012-10-31 00:00:00'),(7,1,'',4,1,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(8,1,'GEA 0000032',4,2,'2012-11-01 00:00:00','2013-10-05 00:00:00'),(9,1,'Sancor Seg',5,1,'2012-11-01 00:00:00','2013-11-07 00:00:00'),(10,1,'GEA 000023',5,2,'2012-11-01 00:00:00','2013-01-25 00:00:00'),(11,1,'Sancor Seg',6,1,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(12,1,'GEA 00000012',6,2,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(15,0,'Sancor 0366454',9,1,'2012-12-06 00:00:00','2013-01-24 00:00:00'),(16,0,'SM 0004653',9,2,'2012-12-07 00:00:00','2013-01-25 00:00:00'),(17,0,'Sancor 0038762',10,1,'2012-12-06 00:00:00','2012-12-19 00:00:00'),(18,0,'SM 03888473',10,2,'2012-12-06 00:00:00','2013-01-17 00:00:00');
+INSERT INTO `documentacion_integrante_cuadrilla` VALUES (1,3,'SMG 00011',1,1,'2012-10-01 00:00:00','2012-12-30 00:00:00'),(2,3,'GEA 00112',1,2,'2012-11-01 00:00:00','2013-01-25 00:00:00'),(3,3,'',3,1,'2012-10-02 00:00:00','2013-01-31 00:00:00'),(4,2,'GEA 000234',3,2,'2012-10-02 00:00:00','2013-01-25 00:00:00'),(5,2,'Sancor ',2,1,'2012-10-09 00:00:00','2013-01-24 00:00:00'),(6,2,'GEA 003233',2,2,'2012-09-04 00:00:00','2012-10-31 00:00:00'),(7,1,'',4,1,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(8,1,'GEA 0000032',4,2,'2012-11-01 00:00:00','2013-10-05 00:00:00'),(9,1,'Sancor Seg',5,1,'2012-11-01 00:00:00','2013-11-07 00:00:00'),(10,1,'GEA 000023',5,2,'2012-11-01 00:00:00','2013-01-25 00:00:00'),(11,1,'Sancor Seg',6,1,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(12,1,'GEA 00000012',6,2,'2012-11-01 00:00:00','2013-11-01 00:00:00'),(15,0,'Sancor 0366454',9,1,'2012-12-06 00:00:00','2013-01-24 00:00:00'),(16,0,'SM 0004653',9,2,'2012-12-07 00:00:00','2013-01-25 00:00:00'),(17,0,'Sancor 0038762',10,1,'2012-12-06 00:00:00','2012-12-19 00:00:00'),(18,0,'SM 03888473',10,2,'2012-12-06 00:00:00','2013-01-17 00:00:00'),(19,0,'Sancor 01238123',11,1,'2012-12-21 00:00:00','2013-01-31 00:00:00'),(20,0,'SM 90034998',11,2,'2012-12-15 00:00:00','2013-01-31 00:00:00'),(21,0,'Sancor 8283766',12,1,'2012-12-15 00:00:00','2013-01-31 00:00:00'),(22,0,'SM 883774663',12,2,'2012-12-13 00:00:00','2013-01-31 00:00:00');
 /*!40000 ALTER TABLE `documentacion_integrante_cuadrilla` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -510,7 +510,7 @@ CREATE TABLE `historial_cuadrilla` (
   PRIMARY KEY (`id`),
   KEY `FKECDEA1C552129DB8` (`cuadrilla_id`),
   CONSTRAINT `FKECDEA1C552129DB8` FOREIGN KEY (`cuadrilla_id`) REFERENCES `cuadrilla` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -519,7 +519,7 @@ CREATE TABLE `historial_cuadrilla` (
 
 LOCK TABLES `historial_cuadrilla` WRITE;
 /*!40000 ALTER TABLE `historial_cuadrilla` DISABLE KEYS */;
-INSERT INTO `historial_cuadrilla` VALUES (1,0,2,'    IntegranteCuadrilla -- Alta -- (Haja, Homero)','2012-11-19 15:01:00'),(4,0,9,'    IntegranteCuadrilla -- Alta -- (Riquelme, Jose)','2012-12-03 10:22:30'),(5,0,9,'    IntegranteCuadrilla -- Alta -- (Pereira, Nicolas)','2012-12-03 10:24:06');
+INSERT INTO `historial_cuadrilla` VALUES (1,0,2,'    IntegranteCuadrilla -- Alta -- (Haja, Homero)','2012-11-19 15:01:00'),(4,0,9,'    IntegranteCuadrilla -- Alta -- (Riquelme, Jose)','2012-12-03 10:22:30'),(5,0,9,'    IntegranteCuadrilla -- Alta -- (Pereira, Nicolas)','2012-12-03 10:24:06'),(6,0,10,'    IntegranteCuadrilla -- Alta -- (Llanos, Miguel)','2012-12-16 23:18:50'),(7,0,10,'    IntegranteCuadrilla -- Alta -- (Prado, Julio)','2012-12-16 23:20:24');
 /*!40000 ALTER TABLE `historial_cuadrilla` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -583,7 +583,7 @@ CREATE TABLE `integrante_cuadrilla` (
   CONSTRAINT `FK8B2586B552129DB8` FOREIGN KEY (`cuadrilla_id`) REFERENCES `cuadrilla` (`id`),
   CONSTRAINT `FK8B2586B575BB3762` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
   CONSTRAINT `FK8B2586B5C53C606E` FOREIGN KEY (`tipo_documento_id`) REFERENCES `tipo_documento_identificacion` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -592,7 +592,7 @@ CREATE TABLE `integrante_cuadrilla` (
 
 LOCK TABLES `integrante_cuadrilla` WRITE;
 /*!40000 ALTER TABLE `integrante_cuadrilla` DISABLE KEYS */;
-INSERT INTO `integrante_cuadrilla` VALUES (1,0,'Perez',1,'345455534','','2012-10-31 23:32:33',NULL,'234','Juan','23444434',1,9),(2,0,'Fernadez',1,'763665553','\0','2012-10-31 23:32:34',NULL,'235','Eduardo','2343455',1,NULL),(3,0,'Godoy',1,'55234437','\0','2012-10-31 23:32:34',NULL,'236','Marcelo','723465534',1,NULL),(4,0,'Alvarez',2,'345455536','','2012-10-31 23:32:34',NULL,'240','Fernando','23444434',1,10),(5,0,'Aguero',2,'763665558','\0','2012-10-31 23:32:34',NULL,'241','Carlos','2343455',1,NULL),(6,0,'Ibarra',2,'55234439','\0','2012-10-31 23:32:34',NULL,'242','Luis','723465534',1,NULL),(7,0,'Haja',2,'5534534545','\0','2012-11-19 15:01:00',NULL,'4234','Homero','4423434',1,1),(9,0,'Riquelme',9,'28773665','','2012-12-03 10:22:30',NULL,'223','Jose','05422332233',1,15),(10,0,'Pereira',9,'277366625','\0','2012-12-03 10:24:06',NULL,'224','Nicolas','0514883764',1,NULL);
+INSERT INTO `integrante_cuadrilla` VALUES (1,0,'Perez',1,'345455534','','2012-10-31 23:32:33',NULL,'234','Juan','23444434',1,9),(2,0,'Fernadez',1,'763665553','\0','2012-10-31 23:32:34',NULL,'235','Eduardo','2343455',1,NULL),(3,0,'Godoy',1,'55234437','\0','2012-10-31 23:32:34',NULL,'236','Marcelo','723465534',1,NULL),(4,0,'Alvarez',2,'345455536','','2012-10-31 23:32:34',NULL,'240','Fernando','23444434',1,10),(5,0,'Aguero',2,'763665558','\0','2012-10-31 23:32:34',NULL,'241','Carlos','2343455',1,NULL),(6,0,'Ibarra',2,'55234439','\0','2012-10-31 23:32:34',NULL,'242','Luis','723465534',1,NULL),(7,0,'Haja',2,'5534534545','\0','2012-11-19 15:01:00',NULL,'4234','Homero','4423434',1,1),(9,0,'Riquelme',9,'28773665','','2012-12-03 10:22:30',NULL,'223','Jose','05422332233',1,15),(10,0,'Pereira',9,'277366625','\0','2012-12-03 10:24:06',NULL,'224','Nicolas','0514883764',1,NULL),(11,0,'Llanos',10,'235348657','','2012-12-16 23:18:50',NULL,'1011','Miguel','0351475635646',1,20),(12,0,'Prado',10,'223434474','\0','2012-12-16 23:20:24',NULL,'1012','Julio','03514837726',1,NULL);
 /*!40000 ALTER TABLE `integrante_cuadrilla` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1078,7 +1078,7 @@ CREATE TABLE `tipo_documentacion_integrante_cuadrilla` (
 
 LOCK TABLES `tipo_documentacion_integrante_cuadrilla` WRITE;
 /*!40000 ALTER TABLE `tipo_documentacion_integrante_cuadrilla` DISABLE KEYS */;
-INSERT INTO `tipo_documentacion_integrante_cuadrilla` VALUES (1,0,'Seguro de vida obligatorio ley 3323',15,'Seguro de vida'),(2,1,'Certificado Medico apto para trabajos en altura',9,'Apto medico'),(3,0,'ART 333',14,'uno nuevo');
+INSERT INTO `tipo_documentacion_integrante_cuadrilla` VALUES (1,0,'Seguro de vida obligatorio ley 3323',15,'Seguro de vida'),(2,1,'Certificado Medico apto para trabajos en altura',9,'Apto medico'),(3,1,'ART 333',14,'ART');
 /*!40000 ALTER TABLE `tipo_documentacion_integrante_cuadrilla` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1297,7 +1297,7 @@ CREATE TABLE `usuario` (
   KEY `FKF814F32EF7E035F9` (`integrante_cuadrilla_id`),
   CONSTRAINT `FKF814F32EB4651BC2` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`),
   CONSTRAINT `FKF814F32EF7E035F9` FOREIGN KEY (`integrante_cuadrilla_id`) REFERENCES `integrante_cuadrilla` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1306,7 +1306,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,1,'Tissera','123','mtissera@coming.com','\0',7,'Mariana','mtissera',2),(2,0,'Hernandez','123','shernandez@coming.com','\0',NULL,'Sebastian','shernandez',4),(3,0,'Tissera','123','ptissera@coming.com','\0',NULL,'Pablo','ptissera',1),(4,0,'Trepat','123','ctrepat@coming.com','\0',NULL,'Carlos','ctrepat',1),(5,0,'Gava','123','mgava@coming.com','\0',NULL,'Mariano','mgava',1),(6,0,'Odasso','123','dodasso@coming.com','\0',NULL,'Demian','dodasso',1),(7,0,'Brizuela','123','jbrizuela@coming.com','\0',NULL,'Javier','jbrizuela',1),(8,0,'Guillen','123','mguillen@coming.com','\0',NULL,'Mariano','mguillen',1),(9,1,'Perez','123','mperez@coming.com','\0',1,'Mario','mperez',3),(10,1,'Alvarez','123','falvarez@coming.com','\0',4,'Fernando','falvarez',3),(15,1,'Riquelme','123','jose.riquelme@coming.com','',9,'Jose','jriquelme',3),(16,1,'Mantaraz','123','fmantaraz@coming.com','',NULL,'Francisco','fmantaraz',4),(17,1,'Delgadino','123','gdelgadino@coming.com','',NULL,'Guillermo','gdelgadino',4),(18,1,'Gracia','123','jgracia@coming.com','',NULL,'Juan','jgracia',4),(19,1,'Garay','123','jgaray@coming.com','',NULL,'Joel','jgaray',4);
+INSERT INTO `usuario` VALUES (1,1,'Tissera','123','mtissera@coming.com','\0',7,'Mariana','mtissera',2),(2,0,'Hernandez','123','shernandez@coming.com','\0',NULL,'Sebastian','shernandez',4),(3,0,'Tissera','123','ptissera@coming.com','\0',NULL,'Pablo','ptissera',1),(4,0,'Trepat','123','ctrepat@coming.com','\0',NULL,'Carlos','ctrepat',1),(5,0,'Gava','123','mgava@coming.com','\0',NULL,'Mariano','mgava',1),(6,0,'Odasso','123','dodasso@coming.com','\0',NULL,'Demian','dodasso',1),(7,0,'Brizuela','123','jbrizuela@coming.com','\0',NULL,'Javier','jbrizuela',1),(8,0,'Guillen','123','mguillen@coming.com','\0',NULL,'Mariano','mguillen',1),(9,1,'Perez','123','mperez@coming.com','\0',1,'Mario','mperez',3),(10,1,'Alvarez','123','falvarez@coming.com','\0',4,'Fernando','falvarez',3),(15,1,'Riquelme','123','jose.riquelme@coming.com','',9,'Jose','jriquelme',3),(16,1,'Mantaraz','123','fmantaraz@coming.com','',NULL,'Francisco','fmantaraz',4),(17,1,'Delgadino','123','gdelgadino@coming.com','',NULL,'Guillermo','gdelgadino',4),(18,1,'Gracia','123','jgracia@coming.com','',NULL,'Juan','jgracia',4),(19,1,'Garay','123','jgaray@coming.com','',NULL,'Joel','jgaray',4),(20,1,'Llanos','123','mllanos@coming.com.ar','',11,'Miguel','mllanos',3);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1319,4 +1319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-12-15 16:46:15
+-- Dump completed on 2012-12-16 23:22:33
