@@ -70,7 +70,7 @@ CREATE TABLE `cliente` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `cuit` (`cuit`),
   UNIQUE KEY `razon_social` (`razon_social`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,0,'luis.chamorro@claro.com','Luis Chamorro','1232133323','34-2344432344-3','Av Sabatini 650, Cordoba Capital','claro@claro.com','Claro SA','334443444'),(2,0,'juan.lemperd@nokia.com','Juan Lemperd','144255553','20-223444344-3','27 de Abril 763, Cordoba Capital','nokia@nokia.com','Nokia SA','73645534'),(3,0,'enrique.loza@personal.com.ar','Enrique Loza','03512876354','202663524339','San Martin 230','personal@personal.com.ar','Personal SA','05243366233');
+INSERT INTO `cliente` VALUES (1,0,'luis.chamorro@claro.com','Luis Chamorro','1232133323','34-2344432344-3','Av Sabatini 650, Cordoba Capital','claro@claro.com','Claro SA','334443444'),(2,0,'juan.lemperd@nokia.com','Juan Lemperd','144255553','20-223444344-3','27 de Abril 763, Cordoba Capital','nokia@nokia.com','Nokia SA','73645534'),(3,0,'enrique.loza@personal.com.ar','Enrique Loza','03512876354','202663524339','San Martin 230','personal@personal.com.ar','Personal SA','05243366233'),(4,0,'francisco.luque@movistar.com','Francisco Luque','144255553','20-20437543-5','Olivares 2323, Cordoba Capital','movistar@movistar.com','Movistar SA','035112334343');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1319,4 +1319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-12-16 23:22:33
+-- Dump completed on 2012-12-17 22:43:37
